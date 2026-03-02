@@ -43,6 +43,12 @@ const projects = [
     image: "/images/project-topics.jpg",
     href: "/projects#e2b",
   },
+  {
+    title: "Developer Events",
+    category: "EVENTS",
+    image: "/images/project-growth-talks.jpg",
+    href: "/projects#events",
+  },
 ]
 
 export default function HomePage() {

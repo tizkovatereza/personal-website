@@ -40,6 +40,7 @@ const HIDDEN_ELEMENTS: HiddenElement[] = [
   { id: 'cities', x: 30, y: 75, type: 'easter', label: 'SF / PRAGUE / BERLIN', discovered: false, hitRadius: 6 },
   { id: 'tagline', x: 65, y: 25, type: 'easter', label: 'growth · AI · writing', discovered: false, hitRadius: 5 },
   { id: 'sayhi', x: 10, y: 30, type: 'easter', label: 'say hi', discovered: false, hitRadius: 4 },
+  { id: 'hack', x: 82, y: 28, type: 'easter', label: '{hack}', discovered: false, hitRadius: 4 },
 ]
 
 export function SFFogHero() {

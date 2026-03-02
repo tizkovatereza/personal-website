@@ -56,6 +56,14 @@ const projects = [
     tag: 'STARTUP',
     image: '/images/project-deeplearning.jpg',
   },
+  {
+    id: 'events',
+    title: 'Developer Events & Hackathons',
+    description: 'Organized AI hackathons and developer events in San Francisco, Prague, and online through E2B. Including the first AI hackathon in Czech Republic with 50+ builders, hackathons at AGI House in SF, and community meetups across US and Europe. 100-200 attendees per event.',
+    link: 'https://lu.ma/e2b',
+    tag: 'EVENTS',
+    image: '/images/project-growth-talks.jpg',
+  },
 ]
 
 export default function ProjectsPage() {
