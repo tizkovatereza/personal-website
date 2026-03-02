@@ -128,32 +128,17 @@ export function SFFogHero() {
       {/* === CENTERED TEXT CONTENT (always visible) === */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
         {/* Name */}
-        <h1 
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4"
-          style={{
-            textShadow: '0 0 60px rgba(0,0,0,0.5), 0 0 120px rgba(0,0,0,0.3), 0 4px 30px rgba(0,0,0,0.9)',
-          }}
-        >
+        <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-3">
           TEREZA TIZKOVA
         </h1>
         
         {/* Subtitle - What I do */}
-        <p 
-          className="font-mono text-sm md:text-base tracking-[0.3em] text-white/90 mb-2"
-          style={{
-            textShadow: '0 0 30px rgba(0,0,0,0.6), 0 2px 20px rgba(0,0,0,0.9)',
-          }}
-        >
+        <p className="font-mono text-xs md:text-sm tracking-[0.3em] text-white/90 mb-2">
           GROWTH · AI · WRITING
         </p>
         
         {/* Locations */}
-        <p 
-          className="font-mono text-xs md:text-sm tracking-[0.2em] text-white/70"
-          style={{
-            textShadow: '0 0 20px rgba(0,0,0,0.6), 0 2px 15px rgba(0,0,0,0.9)',
-          }}
-        >
+        <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-white/70">
           SAN FRANCISCO · PRAGUE
         </p>
       </div>
