@@ -1,26 +1,14 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-
-interface Clearing {
-  id: number
-  x: number
-  y: number
-  radius: number
-}
 
 export function SFFogHero() {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
-  const containerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [clearings, setClearings] = useState<Clearing[]>([])
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
-
-  const clearingIdRef = useRef(0)
 
   useEffect(() => {
     setMounted(true)
@@ -30,43 +18,12 @@ export function SFFogHero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    setMousePos({ x, y })
-  }, [])
-
-  const handleClick = useCallback((e: React.MouseEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    
-    // Add permanent clearing
-    const newClearing: Clearing = {
-      id: clearingIdRef.current++,
-      x,
-      y,
-      radius: isMobile ? 12 : 10,
-    }
-    setClearings(prev => [...prev, newClearing])
-  }, [isMobile])
-
   if (!mounted) {
     return <div className="w-full h-screen bg-background" />
   }
 
-  const fogLayers = isMobile ? 2 : 4
-
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full h-screen overflow-hidden select-none cursor-crosshair"
-      onMouseMove={handleMouseMove}
-      onClick={handleClick}
-    >
+    <div className="relative w-full h-screen overflow-hidden">
       {/* === DAY SCENE: Real Photo === */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? 'opacity-0' : 'opacity-100'}`}
@@ -93,13 +50,88 @@ export function SFFogHero() {
         />
       </div>
 
-      {/* === CENTERED TEXT CONTENT (same layout as before) === */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+      {/* === REALISTIC FOG LAYERS === */}
+      {/* Layer 1: Ground-hugging thick fog at bottom */}
+      <div 
+        className="absolute inset-0 pointer-events-none animate-fog-slow"
+        style={{
+          background: isDark 
+            ? 'linear-gradient(to top, rgba(30,30,35,0.95) 0%, rgba(30,30,35,0.7) 20%, rgba(30,30,35,0.3) 40%, transparent 60%)'
+            : 'linear-gradient(to top, rgba(245,245,250,0.98) 0%, rgba(245,245,250,0.75) 25%, rgba(245,245,250,0.4) 45%, transparent 65%)',
+          width: '200%',
+          left: '-25%',
+        }}
+      />
+      
+      {/* Layer 2: Mid-level wispy fog */}
+      <div 
+        className="absolute inset-0 pointer-events-none animate-fog-medium"
+        style={{
+          background: isDark
+            ? `radial-gradient(ellipse 80% 40% at 20% 60%, rgba(40,40,50,0.6) 0%, transparent 70%),
+               radial-gradient(ellipse 60% 35% at 70% 55%, rgba(35,35,45,0.5) 0%, transparent 60%),
+               radial-gradient(ellipse 90% 30% at 50% 70%, rgba(30,30,40,0.55) 0%, transparent 65%)`
+            : `radial-gradient(ellipse 80% 40% at 20% 60%, rgba(255,255,255,0.7) 0%, transparent 70%),
+               radial-gradient(ellipse 60% 35% at 70% 55%, rgba(250,250,255,0.6) 0%, transparent 60%),
+               radial-gradient(ellipse 90% 30% at 50% 70%, rgba(255,255,255,0.65) 0%, transparent 65%)`,
+          width: '250%',
+          left: '-50%',
+        }}
+      />
+      
+      {/* Layer 3: High wisps - thin streaks */}
+      {!isMobile && (
+        <div 
+          className="absolute inset-0 pointer-events-none animate-fog-fast"
+          style={{
+            background: isDark
+              ? `radial-gradient(ellipse 120% 15% at 30% 35%, rgba(50,50,60,0.35) 0%, transparent 70%),
+                 radial-gradient(ellipse 100% 12% at 80% 25%, rgba(45,45,55,0.3) 0%, transparent 65%),
+                 radial-gradient(ellipse 80% 10% at 50% 45%, rgba(40,40,50,0.25) 0%, transparent 60%)`
+              : `radial-gradient(ellipse 120% 15% at 30% 35%, rgba(255,255,255,0.5) 0%, transparent 70%),
+                 radial-gradient(ellipse 100% 12% at 80% 25%, rgba(250,250,255,0.45) 0%, transparent 65%),
+                 radial-gradient(ellipse 80% 10% at 50% 45%, rgba(255,255,255,0.4) 0%, transparent 60%)`,
+            width: '300%',
+            left: '-75%',
+          }}
+        />
+      )}
+      
+      {/* Layer 4: Subtle rolling patches */}
+      {!isMobile && (
+        <div 
+          className="absolute inset-0 pointer-events-none animate-fog-wisp"
+          style={{
+            background: isDark
+              ? `radial-gradient(ellipse 50% 50% at 15% 50%, rgba(35,35,45,0.4) 0%, transparent 60%),
+                 radial-gradient(ellipse 40% 40% at 85% 40%, rgba(40,40,50,0.35) 0%, transparent 55%),
+                 radial-gradient(ellipse 60% 35% at 50% 65%, rgba(30,30,40,0.45) 0%, transparent 65%)`
+              : `radial-gradient(ellipse 50% 50% at 15% 50%, rgba(255,255,255,0.55) 0%, transparent 60%),
+                 radial-gradient(ellipse 40% 40% at 85% 40%, rgba(250,250,255,0.5) 0%, transparent 55%),
+                 radial-gradient(ellipse 60% 35% at 50% 65%, rgba(255,255,255,0.6) 0%, transparent 65%)`,
+            width: '200%',
+            left: '-25%',
+          }}
+        />
+      )}
+      
+      {/* Layer 5: Very subtle overall haze */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: isDark
+            ? 'radial-gradient(ellipse 100% 100% at 50% 100%, rgba(25,25,30,0.5) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse 100% 100% at 50% 100%, rgba(255,255,255,0.45) 0%, transparent 70%)',
+        }}
+      />
+
+      {/* === CENTERED TEXT CONTENT (always visible) === */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
         {/* Name */}
         <h1 
           className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4"
           style={{
-            textShadow: '0 0 40px rgba(255,255,255,0.3), 0 4px 30px rgba(0,0,0,0.8)',
+            textShadow: '0 0 60px rgba(0,0,0,0.5), 0 0 120px rgba(0,0,0,0.3), 0 4px 30px rgba(0,0,0,0.9)',
           }}
         >
           TEREZA TIZKOVA
@@ -107,9 +139,9 @@ export function SFFogHero() {
         
         {/* Subtitle - What I do */}
         <p 
-          className="font-mono text-sm md:text-base tracking-[0.3em] text-white/80 mb-2"
+          className="font-mono text-sm md:text-base tracking-[0.3em] text-white/90 mb-2"
           style={{
-            textShadow: '0 2px 20px rgba(0,0,0,0.8)',
+            textShadow: '0 0 30px rgba(0,0,0,0.6), 0 2px 20px rgba(0,0,0,0.9)',
           }}
         >
           GROWTH · AI · WRITING
@@ -117,49 +149,13 @@ export function SFFogHero() {
         
         {/* Locations */}
         <p 
-          className="font-mono text-xs md:text-sm tracking-[0.2em] text-white/60"
+          className="font-mono text-xs md:text-sm tracking-[0.2em] text-white/70"
           style={{
-            textShadow: '0 2px 15px rgba(0,0,0,0.8)',
+            textShadow: '0 0 20px rgba(0,0,0,0.6), 0 2px 15px rgba(0,0,0,0.9)',
           }}
         >
           SAN FRANCISCO · PRAGUE
         </p>
-      </div>
-
-      {/* === FOG LAYERS with mouse tracking and click clearings === */}
-      <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: fogLayers }).map((_, i) => {
-          const opacity = isDark 
-            ? 0.5 + (i * 0.1)
-            : 0.6 + (i * 0.08)
-          const speed = ['animate-fog-slow', 'animate-fog-medium', 'animate-fog-fast', 'animate-fog-wisp'][i]
-          const color = isDark 
-            ? `rgba(10, 10, 10, ${opacity})`
-            : `rgba(250, 250, 252, ${opacity})`
-          
-          // Build mask with mouse position + all clearings
-          const mouseMask = `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, transparent ${isMobile ? 8 : 6}%, black ${isMobile ? 15 : 12}%)`
-          const clearingMasks = clearings.map(c => 
-            `radial-gradient(circle at ${c.x}% ${c.y}%, transparent ${c.radius - 2}%, black ${c.radius + 5}%)`
-          )
-          const allMasks = [mouseMask, ...clearingMasks].join(', ')
-          
-          return (
-            <div
-              key={`fog-${i}`}
-              className={`absolute inset-0 ${speed}`}
-              style={{
-                background: `linear-gradient(90deg, ${color} 0%, transparent 15%, ${color} 35%, transparent 55%, ${color} 75%, transparent 100%)`,
-                width: '300%',
-                left: '-50%',
-                maskImage: allMasks,
-                WebkitMaskImage: allMasks,
-                maskComposite: clearings.length > 0 ? 'intersect' : undefined,
-                WebkitMaskComposite: clearings.length > 0 ? 'source-in' : undefined,
-              }}
-            />
-          )
-        })}
       </div>
 
       {/* Scroll indicator */}
