@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 interface Star {
   x: number
@@ -20,17 +21,32 @@ interface OrbitingDot {
   glowIntensity: number
 }
 
-export function OrbitalHero() {
+interface OrbitalHeroProps {
+  fogActive?: boolean
+}
+
+export function OrbitalHero({ fogActive = false }: OrbitalHeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
+  const scrollRef = useRef(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
   
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current = window.scrollY
+      setScrollY(window.scrollY)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   
   useEffect(() => {
@@ -119,17 +135,20 @@ export function OrbitalHero() {
       const tiltX = mouseRef.current.y * mouseInfluence
       const tiltY = mouseRef.current.x * mouseInfluence
       
+      // Fog glow multiplier
+      const glowMultiplier = fogActive ? 1.8 : 1
+      
       // Draw stars with twinkle
       stars.forEach(star => {
         const twinkle = Math.sin(time * star.twinkleSpeed * 60 + star.twinkleOffset) * 0.3 + 0.7
         ctx.beginPath()
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * twinkle})`
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * twinkle * glowMultiplier})`
         ctx.fill()
       })
       
       // Draw orbits
-      orbits.forEach((orbit, i) => {
+      orbits.forEach((orbit) => {
         ctx.beginPath()
         ctx.strokeStyle = orbitColor
         ctx.lineWidth = 1
@@ -164,15 +183,16 @@ export function OrbitalHero() {
         const x = centerX + (perspectiveA * cosAngle * cosRot - perspectiveB * sinAngle * sinRot)
         const y = centerY + (perspectiveA * cosAngle * sinRot + perspectiveB * sinAngle * cosRot)
         
-        // Glow effect
+        // Glow effect - enhanced when fog is active
         const color = dot.color === 'pink' ? pink : blue
-        const glow = ctx.createRadialGradient(x, y, 0, x, y, dot.size * 4)
+        const glowSize = dot.size * 4 * glowMultiplier
+        const glow = ctx.createRadialGradient(x, y, 0, x, y, glowSize)
         glow.addColorStop(0, color)
         glow.addColorStop(0.3, color.replace(')', ', 0.5)').replace('rgb', 'rgba'))
         glow.addColorStop(1, 'transparent')
         
         ctx.beginPath()
-        ctx.arc(x, y, dot.size * 4, 0, Math.PI * 2)
+        ctx.arc(x, y, glowSize, 0, Math.PI * 2)
         ctx.fillStyle = glow
         ctx.fill()
         
@@ -206,7 +226,13 @@ export function OrbitalHero() {
       container.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('resize', handleResize)
     }
-  }, [isMobile])
+  }, [isMobile, fogActive])
+  
+  // Calculate text scale and opacity based on scroll
+  const maxScroll = 300
+  const scrollProgress = Math.min(scrollY / maxScroll, 1)
+  const textScale = 1 - (scrollProgress * 0.4) // Scale from 1 to 0.6
+  const textOpacity = 1 - (scrollProgress * 0.7) // Fade from 1 to 0.3
   
   return (
     <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-background">
@@ -215,20 +241,25 @@ export function OrbitalHero() {
         className="absolute inset-0"
       />
       
-      {/* Center content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider text-foreground mb-4 text-center">
+      {/* Center content - smaller and fades on scroll */}
+      <div 
+        className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none transition-transform duration-100"
+        style={{
+          transform: `scale(${textScale})`,
+          opacity: textOpacity,
+        }}
+      >
+        <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-foreground mb-3 text-center">
           TEREZA TIZKOVA
         </h1>
-        <p className="font-mono text-xs sm:text-sm tracking-widest text-muted-foreground uppercase">
-          growth · AI · writing · interstellar curiosity
+        <p className="font-mono text-[10px] sm:text-xs tracking-widest text-muted-foreground uppercase">
+          growth · AI · writing
         </p>
       </div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-muted-foreground to-transparent" />
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+        <ChevronDown className="w-5 h-5 text-muted-foreground" />
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import { ArrowRight, MapPin, Snowflake, BookOpen, Sparkles } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'The coordinates of Tereza Tizkova',
+  description: 'About Tereza Tizkova',
 }
 
 const timeline = [
@@ -50,13 +50,9 @@ const interests = [
 
 export default function AboutPage() {
   return (
-    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl">
+    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl dot-grid">
       {/* Header */}
       <header className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="w-2 h-2 bg-secondary signal-dot" />
-          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">PERSONNEL FILE</span>
-        </div>
         <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wider uppercase mb-4">
           ABOUT
         </h1>
@@ -65,13 +61,13 @@ export default function AboutPage() {
       {/* Photo + Bio Section */}
       <section className="flex flex-col md:flex-row gap-12 mb-16">
         {/* Photo with film grain */}
-        <div className="w-64 h-64 md:w-72 md:h-72 flex-shrink-0 relative film-grain">
-          <div className="absolute inset-0 border border-border" />
+        <div className="w-64 h-80 md:w-72 md:h-96 flex-shrink-0 relative film-grain overflow-hidden">
+          <div className="absolute inset-0 border border-border z-10" />
           <Image
-            src="/images/tereza-about.jpg"
+            src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6a36e07e-59d5-4087-b68c-71e82a4f50c0_1179x2556.png"
             alt="Tereza Tizkova"
             fill
-            className="object-cover grayscale"
+            className="object-cover object-top"
             priority
           />
         </div>
@@ -110,7 +106,7 @@ export default function AboutPage() {
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-8">
           <span className="w-2 h-2 bg-primary signal-dot" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">TRAJECTORY</h2>
+          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">TIMELINE</h2>
         </div>
         
         <div className="relative pl-8 timeline-line">
@@ -147,7 +143,7 @@ export default function AboutPage() {
           {interests.map((interest) => (
             <div
               key={interest.label}
-              className="p-6 bg-card border border-border glow-border"
+              className="p-6 bg-card border border-border project-card-hover"
             >
               <interest.icon className="h-6 w-6 text-primary mb-4" />
               <h3 className="font-mono text-xs tracking-widest uppercase mb-2">{interest.label}</h3>
@@ -164,7 +160,7 @@ export default function AboutPage() {
       <section className="mb-16 p-8 bg-card border border-border">
         <div className="flex items-center gap-3 mb-6">
           <span className="w-2 h-2 bg-primary blink" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">OPEN CHANNEL</h2>
+          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">GET IN TOUCH</h2>
         </div>
         <p className="text-muted-foreground mb-6 max-w-lg">
           I love meeting new people. Whether you want to collaborate, 

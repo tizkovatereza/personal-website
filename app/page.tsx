@@ -1,8 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { blogPosts } from "@/lib/blog-posts"
 import { OrbitalHero } from "@/components/orbital-hero"
+import { FogEffect } from "@/components/fog-effect"
 
 const projects = [
   {
@@ -12,7 +16,7 @@ const projects = [
     href: "/projects#topics",
   },
   {
-    title: "DeepLearning.AI Course",
+    title: "DeepLearning.AI",
     category: "EDUCATION",
     image: "/images/project-deeplearning.jpg",
     href: "/projects#deeplearning",
@@ -45,19 +49,23 @@ const projects = [
 
 export default function HomePage() {
   const recentPosts = blogPosts.slice(0, 3)
+  const [fogActive, setFogActive] = useState(false)
 
   return (
     <div className="min-h-screen">
+      {/* Fog Easter Egg */}
+      <FogEffect active={fogActive} />
+      
       {/* Orbital Hero - Full viewport */}
-      <OrbitalHero />
+      <OrbitalHero fogActive={fogActive} />
 
       {/* Content below the fold */}
-      <div className="px-6 py-16 lg:px-12 max-w-5xl">
+      <div className="px-6 py-16 lg:px-12 max-w-5xl dot-grid">
         {/* About Section */}
         <section className="mb-20">
           <div className="flex items-center gap-3 mb-8">
             <span className="w-2 h-2 bg-primary signal-dot" />
-            <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">TRANSMISSION</h2>
+            <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">ABOUT</h2>
           </div>
           
           <div className="space-y-6 text-foreground/90 leading-relaxed max-w-3xl">
@@ -90,12 +98,12 @@ export default function HomePage() {
         {/* Dashed Divider */}
         <div className="dashed-divider mb-16" />
 
-        {/* Recent Projects - Horizontal scroll */}
+        {/* Recent Projects - Horizontal scroll with SMALL cards */}
         <section className="mb-20">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 bg-secondary signal-dot" />
-              <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">RECENT PROJECTS</h2>
+              <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">PROJECTS</h2>
             </div>
             <Link
               href="/projects"
@@ -104,24 +112,28 @@ export default function HomePage() {
               VIEW ALL <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
+          
+          <p className="text-muted-foreground text-sm mb-6 max-w-xl">
+            Things I&apos;ve built, taught, and organized.
+          </p>
 
           <div className="horizontal-scroll scrollbar-hide -mx-6 px-6">
             {projects.map((project) => (
               <Link
                 key={project.title}
                 href={project.href}
-                className="group w-[220px] flex-shrink-0"
+                className="group w-[280px] flex-shrink-0"
               >
-                <div className="aspect-square overflow-hidden mb-3 bg-card border border-border relative scanlines chromatic-hover">
+                <div className="h-[180px] overflow-hidden mb-3 bg-card border border-border relative project-card-hover">
                   <Image
                     src={project.image}
                     alt={project.title}
-                    width={220}
-                    height={220}
+                    width={280}
+                    height={180}
                     className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
-                  {/* Noise overlay */}
-                  <div className="absolute inset-0 opacity-10 mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
+                  {/* Noise overlay on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
                 </div>
                 <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
                   {project.category}
@@ -137,12 +149,12 @@ export default function HomePage() {
         {/* Dashed Divider */}
         <div className="dashed-divider mb-16" />
 
-        {/* Latest Transmissions (Blog) */}
-        <section>
+        {/* Latest Posts (Blog) */}
+        <section className="mb-20">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 bg-primary blink" />
-              <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">LATEST TRANSMISSIONS</h2>
+              <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">LATEST POSTS</h2>
             </div>
             <Link
               href="/blog"
@@ -151,6 +163,10 @@ export default function HomePage() {
               VIEW ALL <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
+          
+          <p className="text-muted-foreground text-sm mb-6 max-w-xl">
+            Writing about AI, growth, startups, and life.
+          </p>
 
           <div className="space-y-0">
             {recentPosts.map((post, index) => (
@@ -185,6 +201,26 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Dashed Divider */}
+        <div className="dashed-divider mb-16" />
+
+        {/* Fog Easter Egg Links */}
+        <div className="flex items-center justify-center gap-8 py-8">
+          <button
+            onClick={() => setFogActive(true)}
+            className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors uppercase tracking-widest"
+          >
+            we&apos;re so back
+          </button>
+          <span className="text-muted-foreground/20">·</span>
+          <button
+            onClick={() => setFogActive(false)}
+            className="font-mono text-[10px] text-muted-foreground/50 hover:text-secondary transition-colors uppercase tracking-widest"
+          >
+            it&apos;s so over
+          </button>
+        </div>
       </div>
     </div>
   )

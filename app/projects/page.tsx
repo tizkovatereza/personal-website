@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Transmissions from the lab',
+  description: 'Things I\'ve built, taught, and organized',
 }
 
 const projects = [
@@ -60,18 +60,18 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl">
+    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl dot-grid">
       {/* Header */}
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="w-2 h-2 bg-primary signal-dot" />
-          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">LAB OUTPUT</span>
+          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">WORK</span>
         </div>
         <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wider uppercase mb-4">
           PROJECTS
         </h1>
-        <p className="text-muted-foreground max-w-xl font-mono text-sm">
-          Transmissions from the lab. Each one started as an experiment and grew into something worth sharing.
+        <p className="text-muted-foreground max-w-xl text-sm">
+          Things I&apos;ve built, taught, and organized.
         </p>
       </header>
 
@@ -84,18 +84,18 @@ export default function ProjectsPage() {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block bg-card border border-border overflow-hidden glow-border"
+            className="group block bg-card border border-border overflow-hidden project-card-hover"
           >
             {/* Image with scanlines and noise */}
-            <div className="relative h-48 bg-muted overflow-hidden scanlines">
+            <div className="relative h-48 bg-muted overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 chromatic-hover"
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
               />
-              {/* Noise texture overlay */}
-              <div className="absolute inset-0 opacity-10 mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
+              {/* Noise texture overlay on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
               
               {/* Tag */}
               <span className="absolute bottom-4 left-4 px-2 py-1 font-mono text-[10px] tracking-widest uppercase bg-primary text-primary-foreground">

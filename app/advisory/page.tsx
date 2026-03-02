@@ -49,17 +49,13 @@ const stats = [
 
 export default function AdvisoryPage() {
   return (
-    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl">
+    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl dot-grid">
       {/* Header */}
       <header className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="w-2 h-2 bg-primary signal-dot" />
-          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">COLLABORATION PROTOCOLS</span>
-        </div>
         <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wider uppercase mb-4">
           ADVISORY
         </h1>
-        <p className="text-muted-foreground max-w-2xl font-mono text-sm mb-8">
+        <p className="text-muted-foreground max-w-2xl text-sm mb-8">
           Let&apos;s build something together. I help startups figure out growth, developer tools positioning, and go-to-market strategy.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
@@ -67,14 +63,14 @@ export default function AdvisoryPage() {
             href="mailto:tereza.tizkova@gmail.com?subject=Advisory%20Inquiry"
             className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-mono text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
           >
-            INITIATE CONTACT
+            GET IN TOUCH
             <ArrowRight className="h-3 w-3" />
           </Link>
           <Link
             href="/about"
             className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-border text-foreground font-mono text-xs tracking-widest uppercase hover:border-primary hover:text-primary transition-colors"
           >
-            VIEW CREDENTIALS
+            ABOUT ME
           </Link>
         </div>
       </header>
@@ -93,7 +89,7 @@ export default function AdvisoryPage() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="p-6 bg-card border border-border glow-border"
+              className="p-6 bg-card border border-border project-card-hover"
             >
               <service.icon className="h-5 w-5 text-primary mb-4" />
               <h3 className="font-mono text-xs tracking-widest uppercase mb-3">{service.title}</h3>
@@ -110,7 +106,7 @@ export default function AdvisoryPage() {
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-8">
           <span className="w-2 h-2 bg-primary signal-dot" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">AUDIENCE METRICS</h2>
+          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">AUDIENCE</h2>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -133,7 +129,7 @@ export default function AdvisoryPage() {
         <div className="p-6 bg-card border border-border">
           <div className="flex items-center gap-3 mb-4">
             <span className="w-2 h-2 bg-secondary" />
-            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">ENGAGEMENT PROTOCOL</h3>
+            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">HOW IT WORKS</h3>
           </div>
           <div className="space-y-4 text-sm text-muted-foreground">
             <p>
@@ -150,7 +146,7 @@ export default function AdvisoryPage() {
         <div className="p-6 bg-card border border-border">
           <div className="flex items-center gap-3 mb-4">
             <span className="w-2 h-2 bg-primary" />
-            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">COORDINATES</h3>
+            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">LOCATION</h3>
           </div>
           <div className="space-y-4 text-sm text-muted-foreground">
             <p>
@@ -181,7 +177,7 @@ export default function AdvisoryPage() {
           href="mailto:tereza.tizkova@gmail.com?subject=Advisory%20Inquiry"
           className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-mono text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
         >
-          SEND TRANSMISSION
+          SEND MESSAGE
           <ArrowRight className="h-3 w-3" />
         </Link>
       </section>
