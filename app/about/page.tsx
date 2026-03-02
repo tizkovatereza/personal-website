@@ -40,6 +40,12 @@ const timeline = [
     description: 'Master\'s in pure mathematics. Bachelor\'s in marketing & economics.',
     location: 'Prague',
   },
+  {
+    year: '2017—',
+    title: 'Discover Academy',
+    description: 'Lecturer at non-profit summer school for talented Czech and Slovak high schoolers. Teaching graduate-level math in interactive, debate-based lessons to 400+ students annually.',
+    location: 'Slovakia',
+  },
 ]
 
 const interests = [

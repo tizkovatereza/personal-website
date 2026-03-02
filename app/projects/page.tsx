@@ -64,6 +64,14 @@ const projects = [
     tag: 'EVENTS',
     image: '/images/project-growth-talks.jpg',
   },
+  {
+    id: 'discover',
+    title: 'Discover Academy',
+    description: 'Lecturer at Discover Summer Academy (discover.sk), a non-profit summer school for talented Czech and Slovak high school students. Taught graduate-level mathematics to teenagers in interactive, debate-based lessons. Discover annually brings 400+ students together with young lecturers from top universities worldwide.',
+    link: 'https://discover.sk/en/',
+    tag: 'TEACHING',
+    image: '/images/project-advent.jpg',
+  },
 ]
 
 export default function ProjectsPage() {

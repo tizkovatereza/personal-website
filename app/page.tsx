@@ -49,6 +49,12 @@ const projects = [
     image: "/images/project-growth-talks.jpg",
     href: "/projects#events",
   },
+  {
+    title: "Discover Academy",
+    category: "TEACHING",
+    image: "/images/project-advent.jpg",
+    href: "/projects#discover",
+  },
 ]
 
 export default function HomePage() {
