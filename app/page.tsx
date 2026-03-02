@@ -1,8 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
-import { getAllPosts } from "@/lib/mdx"
-import { formatDate } from "@/lib/format"
+import { blogPosts } from "@/lib/blog-posts"
 
 const projects = [
   {
@@ -50,9 +49,8 @@ const socialLinks = [
   { href: "https://terezatizkova.substack.com", label: "Substack" },
 ]
 
-export default async function HomePage() {
-  const posts = await getAllPosts()
-  const recentPosts = posts.slice(0, 3)
+export default function HomePage() {
+  const recentPosts = blogPosts.slice(0, 3)
 
   return (
     <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-4xl">
@@ -178,37 +176,37 @@ export default async function HomePage() {
         </div>
 
         <div className="space-y-6">
-          {recentPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
+          {recentPosts.map((post, index) => (
+            <a
+              key={index}
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="block group"
             >
               <article className="flex gap-6">
-                {post.coverImage && (
-                  <div className="w-24 h-24 flex-shrink-0 overflow-hidden bg-muted">
-                    <Image
-                      src={post.coverImage}
-                      alt={post.title}
-                      width={96}
-                      height={96}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
+                <div className="w-24 h-24 flex-shrink-0 overflow-hidden bg-muted">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    width={96}
+                    height={96}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold group-hover:text-primary transition-colors mb-1">
+                  <h3 className="font-semibold group-hover:text-primary transition-colors mb-1 line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2">
-                    {formatDate(post.date)}
+                    {post.date}
                   </p>
                   <p className="text-sm text-muted-foreground italic line-clamp-2">
-                    {post.excerpt}
+                    {post.subtitle}
                   </p>
                 </div>
               </article>
-            </Link>
+            </a>
           ))}
         </div>
       </section>
