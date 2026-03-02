@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Sidebar } from '@/components/sidebar'
@@ -19,16 +19,22 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 })
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: {
     default: 'Tereza Tizkova',
     template: '%s | Tereza Tizkova',
   },
-  description: 'Growth Lead, Math Grad, Content Creator, Community Builder. Building at the intersection of AI, growth, and writing.',
+  description: 'Growth · AI · Writing · Interstellar Curiosity. Building at the intersection of technology and creativity.',
   metadataBase: new URL('https://tereza.dev'),
   openGraph: {
     title: 'Tereza Tizkova',
-    description: 'Growth Lead, Math Grad, Content Creator, Community Builder.',
+    description: 'Growth · AI · Writing · Interstellar Curiosity.',
     url: 'https://tereza.dev',
     siteName: 'Tereza Tizkova',
     locale: 'en_US',
@@ -37,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Tereza Tizkova',
-    description: 'Growth Lead, Math Grad, Content Creator, Community Builder.',
+    description: 'Growth · AI · Writing · Interstellar Curiosity.',
   },
   robots: {
     index: true,
@@ -52,8 +58,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#1a1a1a' },
+    { media: '(prefers-color-scheme: light)', color: '#f5f0e8' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
   ],
 }
 
@@ -63,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"

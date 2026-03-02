@@ -5,59 +5,60 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Editorial dark theme - sarahchieng.com inspired */
+/* Sci-fi surrealism meets retro academia */
 :root {
   /* Dark mode as default */
-  --background: #1a1a1a;
-  --foreground: #f5f5f5;
-  --card: #242424;
-  --card-foreground: #f5f5f5;
-  --popover: #242424;
-  --popover-foreground: #f5f5f5;
+  --background: #0a0a0a;
+  --foreground: #e8e8e8;
+  --card: #141414;
+  --card-foreground: #e8e8e8;
+  --popover: #141414;
+  --popover-foreground: #e8e8e8;
   --primary: #ffc2d3;
-  --primary-foreground: #1a1a1a;
+  --primary-foreground: #0a0a0a;
   --secondary: #c2e0ff;
-  --secondary-foreground: #1a1a1a;
-  --muted: #2a2a2a;
-  --muted-foreground: #a0a0a0;
+  --secondary-foreground: #0a0a0a;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
   --accent: #ffc2d3;
-  --accent-foreground: #1a1a1a;
+  --accent-foreground: #0a0a0a;
   --destructive: #ff6b6b;
-  --destructive-foreground: #f5f5f5;
-  --border: #333333;
-  --input: #2a2a2a;
+  --destructive-foreground: #e8e8e8;
+  --border: #222222;
+  --input: #1a1a1a;
   --ring: #ffc2d3;
   --radius: 0px;
   --sidebar-width: 280px;
+  --cream: #f5f0e8;
 }
 
-/* Light mode */
+/* Light mode - warm cream academic */
 .light {
-  --background: #ffffff;
+  --background: #f5f0e8;
   --foreground: #1a1a1a;
-  --card: #f8f8f8;
+  --card: #ffffff;
   --card-foreground: #1a1a1a;
   --popover: #ffffff;
   --popover-foreground: #1a1a1a;
   --primary: #e85a7e;
   --primary-foreground: #ffffff;
-  --secondary: #5a9fd4;
+  --secondary: #4a8fd4;
   --secondary-foreground: #ffffff;
-  --muted: #f5f5f5;
+  --muted: #ebe6de;
   --muted-foreground: #666666;
   --accent: #e85a7e;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #e5e5e5;
-  --input: #f5f5f5;
+  --border: #d4cfc7;
+  --input: #ebe6de;
   --ring: #e85a7e;
 }
 
 @theme inline {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-mono: var(--font-jetbrains-mono), 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -127,17 +128,71 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Dot grid background pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scanline effect */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Chromatic aberration on hover */
+.chromatic-hover {
+  transition: all 0.3s ease;
+}
+.chromatic-hover:hover {
+  filter: drop-shadow(-2px 0 0 rgba(255, 194, 211, 0.5)) drop-shadow(2px 0 0 rgba(194, 224, 255, 0.5));
+}
+
+/* Glowing border on hover */
+.glow-border {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glow-border:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(255, 194, 211, 0.2);
+}
+
+/* Section heading style - uppercase grotesque */
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Monospace label */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* Dotted divider */
 .dotted-divider {
   border-top: 1px dotted var(--border);
 }
 
-/* Section heading style */
-.section-heading {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+/* Dashed divider */
+.dashed-divider {
+  border-top: 1px dashed var(--border);
 }
 
 /* Hide scrollbar but keep functionality */
@@ -172,6 +227,16 @@ html {
   }
 }
 
+/* Blink animation for cursor/signal */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
 /* Pulse animation for message bubble */
 @keyframes gentle-pulse {
   0%, 100% { transform: scale(1); }
@@ -180,4 +245,89 @@ html {
 
 .pulse-gentle {
   animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+/* Signal dot animation */
+@keyframes signal-pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.signal-dot {
+  animation: signal-pulse 2s ease-in-out infinite;
+}
+
+/* Film grain overlay */
+.film-grain {
+  position: relative;
+}
+.film-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Orbital send animation */
+@keyframes orbit-send {
+  0% {
+    transform: rotate(0deg) translateX(20px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) translateX(40px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+.orbit-send {
+  animation: orbit-send 1s ease-out forwards;
+}
+
+/* Horizontal scroll for project cards */
+.horizontal-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+}
+
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Timeline vertical line */
+.timeline-line {
+  position: relative;
+}
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--primary));
+}
+
+/* Star twinkle animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
 }
