@@ -75,7 +75,7 @@ export function SFFogHero() {
           src="/images/sf-day.jpg"
           alt="San Francisco skyline during the day"
           fill
-          className="object-cover"
+          className="object-cover grayscale"
           priority
         />
       </div>
@@ -88,7 +88,7 @@ export function SFFogHero() {
           src="/images/sf-night.jpg"
           alt="Golden Gate Bridge at night"
           fill
-          className="object-cover"
+          className="object-cover grayscale"
           priority
         />
       </div>
