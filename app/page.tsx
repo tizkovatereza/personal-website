@@ -1,12 +1,10 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { blogPosts } from "@/lib/blog-posts"
-import { OrbitalHero } from "@/components/orbital-hero"
-import { FogEffect } from "@/components/fog-effect"
+import { SFFogHero } from "@/components/sf-fog-hero"
 
 const projects = [
   {
@@ -49,15 +47,11 @@ const projects = [
 
 export default function HomePage() {
   const recentPosts = blogPosts.slice(0, 3)
-  const [fogActive, setFogActive] = useState(false)
 
   return (
     <div className="min-h-screen">
-      {/* Fog Easter Egg */}
-      <FogEffect active={fogActive} />
-      
-      {/* Orbital Hero - Full viewport */}
-      <OrbitalHero fogActive={fogActive} />
+      {/* SF Fog Hero - Full viewport interactive experience */}
+      <SFFogHero />
 
       {/* Content below the fold */}
       <div className="px-6 py-16 lg:px-12 max-w-5xl dot-grid">
@@ -201,26 +195,6 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-
-        {/* Dashed Divider */}
-        <div className="dashed-divider mb-16" />
-
-        {/* Fog Easter Egg Links */}
-        <div className="flex items-center justify-center gap-8 py-8">
-          <button
-            onClick={() => setFogActive(true)}
-            className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors uppercase tracking-widest"
-          >
-            we&apos;re so back
-          </button>
-          <span className="text-muted-foreground/20">·</span>
-          <button
-            onClick={() => setFogActive(false)}
-            className="font-mono text-[10px] text-muted-foreground/50 hover:text-secondary transition-colors uppercase tracking-widest"
-          >
-            it&apos;s so over
-          </button>
-        </div>
       </div>
     </div>
   )

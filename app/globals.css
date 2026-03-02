@@ -343,3 +343,41 @@ html {
 .twinkle {
   animation: twinkle 3s ease-in-out infinite;
 }
+
+/* SF Fog animations - multiple layers at different speeds */
+@keyframes fog-drift-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fog-drift-medium {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(-75%); }
+}
+
+@keyframes fog-drift-fast {
+  0% { transform: translateX(-10%); }
+  100% { transform: translateX(-60%); }
+}
+
+@keyframes fog-drift-wisp {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-30%) translateY(-5%); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.animate-fog-slow {
+  animation: fog-drift-slow 60s linear infinite;
+}
+
+.animate-fog-medium {
+  animation: fog-drift-medium 45s linear infinite;
+}
+
+.animate-fog-fast {
+  animation: fog-drift-fast 30s linear infinite;
+}
+
+.animate-fog-wisp {
+  animation: fog-drift-wisp 25s ease-in-out infinite;
+}
