@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/mdx'
 
-const siteUrl = process.env.SITE_URL || 'https://thesmartmethod.com'
+const siteUrl = process.env.SITE_URL || 'https://tereza.dev'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
 
   const postUrls = posts.map((post) => ({
-    url: `${siteUrl}/posts/${post.slug}`,
+    url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
@@ -21,10 +21,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${siteUrl}/archive`,
+      url: `${siteUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/advisory`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     {
       url: `${siteUrl}/about`,

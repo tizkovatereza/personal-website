@@ -60,7 +60,7 @@ export default async function PostPage({ params }: PostPageProps) {
     .filter((p, i) => i !== currentIndex)
     .slice(0, 2)
 
-  const postUrl = `https://thesmartmethod.com/posts/${slug}`
+  const postUrl = `https://tereza.dev/blog/${slug}`
 
   return (
     <>
@@ -68,11 +68,11 @@ export default async function PostPage({ params }: PostPageProps) {
       <article className="container mx-auto max-w-3xl px-4 py-16">
         {/* Back Link */}
         <Link
-          href="/"
+          href="/blog"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to home
+          Back to blog
         </Link>
 
         {/* Header */}

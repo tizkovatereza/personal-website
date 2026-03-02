@@ -11,7 +11,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
   if (featured) {
     return (
       <article className="group">
-        <Link href={`/posts/${post.slug}`} className="block">
+        <Link href={`/blog/${post.slug}`} className="block">
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -19,7 +19,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                 <span aria-hidden="true">·</span>
                 <span>{post.readingTime}</span>
               </div>
-              <h2 className="font-serif text-3xl font-semibold tracking-tight group-hover:text-accent transition-colors text-balance">
+              <h2 className="font-serif text-3xl font-semibold tracking-tight group-hover:text-primary transition-colors text-balance">
                 {post.title}
               </h2>
             </div>
@@ -46,14 +46,14 @@ export function PostCard({ post, featured = false }: PostCardProps) {
 
   return (
     <article className="group py-6 border-b border-border/40 last:border-0">
-      <Link href={`/posts/${post.slug}`} className="block">
+      <Link href={`/blog/${post.slug}`} className="block">
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readingTime}</span>
           </div>
-          <h3 className="font-serif text-xl font-medium tracking-tight group-hover:text-accent transition-colors text-balance">
+          <h3 className="font-serif text-xl font-medium tracking-tight group-hover:text-primary transition-colors text-balance">
             {post.title}
           </h3>
           <p className="text-sm text-muted-foreground line-clamp-2">

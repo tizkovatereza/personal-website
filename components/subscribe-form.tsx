@@ -47,7 +47,7 @@ export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
   if (status === 'success') {
     return (
       <div className={variant === 'inline' ? '' : 'rounded-lg border border-border bg-card p-6'}>
-        <div className="flex items-center gap-3 text-accent">
+        <div className="flex items-center gap-3 text-primary">
           <CheckCircle className="h-5 w-5" />
           <p className="font-medium">{message}</p>
         </div>

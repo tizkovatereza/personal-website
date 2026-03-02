@@ -1,98 +1,172 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import { SubscribeForm } from '@/components/subscribe-form'
+import { ArrowRight, MapPin, Sparkles, BookOpen, Snowflake } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About The Smart Method newsletter',
+  description: 'The story behind Tereza Tizkova',
 }
+
+const timeline = [
+  {
+    year: '2024',
+    title: 'O-1 Visa Holder',
+    description: 'Recognized for extraordinary ability in technology and business.',
+  },
+  {
+    year: '2021-2024',
+    title: 'E2B - Growth & DevRel',
+    description: 'Founding team member. Built growth from zero, established developer relations, shaped product positioning.',
+  },
+  {
+    year: '2023',
+    title: 'DeepLearning.ai Collaboration',
+    description: 'Co-created AI course reaching thousands of developers worldwide.',
+  },
+  {
+    year: '2020',
+    title: 'Math Graduate',
+    description: 'Studied mathematics with a focus on logic and abstract thinking.',
+  },
+]
+
+const interests = [
+  { icon: Snowflake, label: 'Snowflakes', description: 'I find them endlessly fascinating' },
+  { icon: BookOpen, label: 'Curated reading', description: 'Quality over quantity' },
+  { icon: Sparkles, label: 'Writing', description: 'Thinking in public' },
+]
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-16">
-      <article className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:font-semibold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-accent">
-        <header className="not-prose mb-12 space-y-4">
-          <h1 className="font-serif text-4xl font-bold tracking-tight">About</h1>
-          <p className="text-xl text-muted-foreground">
-            The story behind The Smart Method
-          </p>
-        </header>
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="container mx-auto max-w-5xl px-4 py-16">
+        <div className="flex flex-col md:flex-row gap-12 items-start">
+          {/* Photo */}
+          <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0 mx-auto md:mx-0">
+            <div className="absolute inset-0 bg-primary/20 rounded-3xl transform rotate-3" />
+            <div className="relative w-full h-full rounded-3xl overflow-hidden bg-secondary border-4 border-background shadow-xl">
+              <Image
+                src="/images/tereza-about.jpg"
+                alt="Tereza Tizkova"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
 
-        <p>
-          Hi, I'm Alex Chen. I'm a designer and writer exploring the intersection of 
-          technology, productivity, and human flourishing.
-        </p>
-
-        <p>
-          The Smart Method started as a personal experiment: could I build a sustainable 
-          writing practice while working full-time in tech? What began as private notes 
-          eventually became this newsletter—a space to think through ideas about how we 
-          work, create, and live in an increasingly digital world.
-        </p>
-
-        <h2>What I Write About</h2>
-
-        <p>
-          My essays tend to orbit a few core themes:
-        </p>
-
-        <ul>
-          <li>
-            <strong>Deep work and focus</strong> — How to cultivate meaningful, concentrated 
-            work in an age of distraction
-          </li>
-          <li>
-            <strong>Thoughtful technology</strong> — Building and using tools that enhance 
-            rather than diminish our lives
-          </li>
-          <li>
-            <strong>Remote work and rituals</strong> — The practices and systems that make 
-            flexible work sustainable
-          </li>
-          <li>
-            <strong>Design philosophy</strong> — How the things we make shape the people 
-            who use them
-          </li>
-        </ul>
-
-        <h2>Why "The Smart Method"?</h2>
-
-        <p>
-          The name is a bit tongue-in-cheek. There's no single "smart method" for navigating 
-          work and life—anyone who tells you otherwise is probably selling something. But there 
-          is value in thinking methodically about our choices, in being intentional rather than 
-          reactive.
-        </p>
-
-        <p>
-          This newsletter is my attempt to think out loud about those choices. Sometimes I'll 
-          share practical strategies; other times, it's more about asking better questions.
-        </p>
-
-        <h2>Get in Touch</h2>
-
-        <p>
-          I love hearing from readers. Whether you want to share your own experiences, push 
-          back on something I've written, or just say hello, my inbox is always open.
-        </p>
-
-        <p>
-          The best way to reach me is via email at{' '}
-          <a href="mailto:hello@thesmartmethod.com">hello@thesmartmethod.com</a>. I read 
-          everything, though I can't always respond to everything.
-        </p>
-
-        <p>
-          You can also find me on{' '}
-          <a href="https://twitter.com/thesmartmethod" target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>{' '}
-          where I occasionally share shorter thoughts and links.
-        </p>
-
-        <div className="not-prose mt-12">
-          <SubscribeForm />
+          {/* Bio */}
+          <div className="flex-1 space-y-6">
+            <h1 className="font-serif text-4xl md:text-5xl font-bold tracking-tight">
+              About me
+            </h1>
+            <div className="prose prose-lg max-w-none text-muted-foreground">
+              <p>
+                Hi! I'm Tereza, a math graduate turned growth person. I spent 2.5 years 
+                as a founding member at <strong className="text-foreground">E2B</strong>, 
+                where I built and led growth and developer relations from scratch.
+              </p>
+              <p>
+                These days, I work on growth for developer tools, teach AI courses 
+                (including a collaboration with DeepLearning.ai), and write about 
+                tech, startups, and life.
+              </p>
+              <p>
+                I'm an <strong className="text-foreground">O-1 visa holder</strong> based 
+                between San Francisco, Prague, and Berlin. I like building things that 
+                help people learn and create.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="h-4 w-4" />
+              <span className="text-sm">San Francisco / Prague / Berlin</span>
+            </div>
+          </div>
         </div>
-      </article>
+      </section>
+
+      {/* Timeline */}
+      <section className="bg-secondary/50 py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+            Journey so far
+          </h2>
+          <div className="space-y-8">
+            {timeline.map((item, index) => (
+              <div key={index} className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
+                    {item.year.slice(2)}
+                  </div>
+                  {index !== timeline.length - 1 && (
+                    <div className="w-px h-full bg-border mt-2" />
+                  )}
+                </div>
+                <div className="pb-8">
+                  <p className="text-sm text-muted-foreground mb-1">{item.year}</p>
+                  <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Personal touches */}
+      <section className="container mx-auto max-w-5xl px-4 py-16">
+        <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight mb-8">
+          Things I like
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {interests.map((interest) => (
+            <div
+              key={interest.label}
+              className="p-6 bg-card rounded-2xl border border-border hover:border-primary/30 transition-colors"
+            >
+              <interest.icon className="h-8 w-8 text-primary mb-4" />
+              <h3 className="font-semibold mb-1">{interest.label}</h3>
+              <p className="text-sm text-muted-foreground">{interest.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary/5 py-16">
+        <div className="container mx-auto max-w-5xl px-4 text-center">
+          <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight mb-4">
+            Want to chat?
+          </h2>
+          <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
+            I love meeting new people. Whether you want to collaborate, 
+            ask questions, or just say hi - my inbox is open.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="mailto:tereza.tizkova@gmail.com"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all hover:scale-105"
+            >
+              Send me an email
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/advisory"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors"
+            >
+              Work with me
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Subscribe */}
+      <section className="container mx-auto max-w-3xl px-4 py-16">
+        <SubscribeForm />
+      </section>
     </div>
   )
 }

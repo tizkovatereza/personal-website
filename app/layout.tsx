@@ -1,9 +1,10 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { MessageBubble } from '@/components/message-bubble'
 import './globals.css'
 
 const inter = Inter({ 
@@ -20,23 +21,23 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'The Smart Method',
-    template: '%s | The Smart Method',
+    default: 'Tereza Tizkova',
+    template: '%s | Tereza Tizkova',
   },
-  description: 'A personal newsletter on technology, design, and the future of work. Thoughtful essays delivered to your inbox.',
-  metadataBase: new URL('https://thesmartmethod.com'),
+  description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
+  metadataBase: new URL('https://tereza.dev'),
   openGraph: {
-    title: 'The Smart Method',
-    description: 'A personal newsletter on technology, design, and the future of work.',
-    url: 'https://thesmartmethod.com',
-    siteName: 'The Smart Method',
+    title: 'Tereza Tizkova',
+    description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
+    url: 'https://tereza.dev',
+    siteName: 'Tereza Tizkova',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Smart Method',
-    description: 'A personal newsletter on technology, design, and the future of work.',
+    title: 'Tereza Tizkova',
+    description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
   },
   robots: {
     index: true,
@@ -49,6 +50,13 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#262626' },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,7 +67,7 @@ export default function RootLayout({
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
@@ -68,6 +76,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <MessageBubble />
         </ThemeProvider>
         <Analytics />
       </body>
