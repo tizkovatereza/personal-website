@@ -11,14 +11,6 @@ interface Clearing {
   radius: number
 }
 
-interface HiddenElement {
-  id: string
-  x: number
-  y: number
-  label: string
-  discovered: boolean
-}
-
 export function SFFogHero() {
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === 'dark'
@@ -27,17 +19,6 @@ export function SFFogHero() {
   const [isMobile, setIsMobile] = useState(false)
   const [clearings, setClearings] = useState<Clearing[]>([])
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
-  const [hiddenElements, setHiddenElements] = useState<HiddenElement[]>([
-    // Name
-    { id: 'name', x: 50, y: 45, label: 'TEREZA TIZKOVA', discovered: false },
-    // What I do
-    { id: 'growth', x: 25, y: 35, label: 'GROWTH', discovered: false },
-    { id: 'ai', x: 50, y: 60, label: 'AI', discovered: false },
-    { id: 'writing', x: 75, y: 35, label: 'WRITING', discovered: false },
-    // Locations
-    { id: 'sf', x: 20, y: 70, label: 'SAN FRANCISCO', discovered: false },
-    { id: 'prague', x: 80, y: 70, label: 'PRAGUE', discovered: false },
-  ])
 
   const clearingIdRef = useRef(0)
 
@@ -71,50 +52,13 @@ export function SFFogHero() {
       radius: isMobile ? 12 : 10,
     }
     setClearings(prev => [...prev, newClearing])
-
-    // Check for discoveries
-    setHiddenElements(prev => prev.map(el => {
-      if (el.discovered) return el
-      const distance = Math.sqrt(Math.pow(el.x - x, 2) + Math.pow(el.y - y, 2))
-      if (distance < 15) {
-        return { ...el, discovered: true }
-      }
-      return el
-    }))
   }, [isMobile])
-
-  const discoveredCount = hiddenElements.filter(e => e.discovered).length
-  const totalCount = hiddenElements.length
 
   if (!mounted) {
     return <div className="w-full h-screen bg-background" />
   }
 
   const fogLayers = isMobile ? 2 : 4
-
-  // Generate SVG mask for fog clearings
-  const generateMask = () => {
-    const allClearings = [
-      ...clearings,
-      { id: -1, x: mousePos.x, y: mousePos.y, radius: isMobile ? 10 : 8 }
-    ]
-    
-    return `
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <defs>
-          <mask id="fog-mask">
-            <rect width="100%" height="100%" fill="white"/>
-            ${allClearings.map(c => `
-              <circle cx="${c.x}%" cy="${c.y}%" r="${c.radius}%" fill="black">
-                <animate attributeName="r" from="${c.radius * 0.8}%" to="${c.radius}%" dur="0.3s" fill="freeze"/>
-              </circle>
-            `).join('')}
-          </mask>
-        </defs>
-        <rect width="100%" height="100%" fill="currentColor" mask="url(#fog-mask)"/>
-      </svg>
-    `
-  }
 
   return (
     <div 
@@ -149,55 +93,40 @@ export function SFFogHero() {
         />
       </div>
 
-      {/* === HIDDEN ELEMENTS (revealed when fog clears) === */}
-      <div className="absolute inset-0 pointer-events-none">
-        {hiddenElements.map(el => {
-          // Check if this element is near mouse or any clearing
-          const isNearMouse = Math.sqrt(Math.pow(el.x - mousePos.x, 2) + Math.pow(el.y - mousePos.y, 2)) < 12
-          const isNearClearing = clearings.some(c => 
-            Math.sqrt(Math.pow(el.x - c.x, 2) + Math.pow(el.y - c.y, 2)) < c.radius + 5
-          )
-          const isVisible = isNearMouse || isNearClearing || el.discovered
-
-          const isName = el.id === 'name'
-          const isLocation = el.id === 'sf' || el.id === 'prague'
-          
-          return (
-            <div
-              key={el.id}
-              className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-              }`}
-              style={{
-                left: `${el.x}%`,
-                top: `${el.y}%`,
-              }}
-            >
-              <span 
-                className={`
-                  font-display tracking-tight whitespace-nowrap
-                  ${isName 
-                    ? 'text-4xl md:text-6xl lg:text-7xl font-bold' 
-                    : isLocation
-                      ? 'text-lg md:text-xl font-mono tracking-[0.2em]'
-                      : 'text-2xl md:text-3xl lg:text-4xl font-semibold'
-                  }
-                  ${el.discovered ? 'text-white' : 'text-white/90'}
-                `}
-                style={{
-                  textShadow: el.discovered 
-                    ? '0 0 30px rgba(255,255,255,0.5), 0 2px 20px rgba(0,0,0,0.8)'
-                    : '0 2px 20px rgba(0,0,0,0.8)',
-                }}
-              >
-                {el.label}
-              </span>
-            </div>
-          )
-        })}
+      {/* === CENTERED TEXT CONTENT (same layout as before) === */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+        {/* Name */}
+        <h1 
+          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4"
+          style={{
+            textShadow: '0 0 40px rgba(255,255,255,0.3), 0 4px 30px rgba(0,0,0,0.8)',
+          }}
+        >
+          TEREZA TIZKOVA
+        </h1>
+        
+        {/* Subtitle - What I do */}
+        <p 
+          className="font-mono text-sm md:text-base tracking-[0.3em] text-white/80 mb-2"
+          style={{
+            textShadow: '0 2px 20px rgba(0,0,0,0.8)',
+          }}
+        >
+          GROWTH · AI · WRITING
+        </p>
+        
+        {/* Locations */}
+        <p 
+          className="font-mono text-xs md:text-sm tracking-[0.2em] text-white/60"
+          style={{
+            textShadow: '0 2px 15px rgba(0,0,0,0.8)',
+          }}
+        >
+          SAN FRANCISCO · PRAGUE
+        </p>
       </div>
 
-      {/* === FOG LAYERS with mask === */}
+      {/* === FOG LAYERS with mouse tracking and click clearings === */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: fogLayers }).map((_, i) => {
           const opacity = isDark 
@@ -208,6 +137,13 @@ export function SFFogHero() {
             ? `rgba(10, 10, 10, ${opacity})`
             : `rgba(250, 250, 252, ${opacity})`
           
+          // Build mask with mouse position + all clearings
+          const mouseMask = `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, transparent ${isMobile ? 8 : 6}%, black ${isMobile ? 15 : 12}%)`
+          const clearingMasks = clearings.map(c => 
+            `radial-gradient(circle at ${c.x}% ${c.y}%, transparent ${c.radius - 2}%, black ${c.radius + 5}%)`
+          )
+          const allMasks = [mouseMask, ...clearingMasks].join(', ')
+          
           return (
             <div
               key={`fog-${i}`}
@@ -216,61 +152,18 @@ export function SFFogHero() {
                 background: `linear-gradient(90deg, ${color} 0%, transparent 15%, ${color} 35%, transparent 55%, ${color} 75%, transparent 100%)`,
                 width: '300%',
                 left: '-50%',
-                maskImage: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, transparent ${isMobile ? 8 : 6}%, black ${isMobile ? 15 : 12}%)`,
-                WebkitMaskImage: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, transparent ${isMobile ? 8 : 6}%, black ${isMobile ? 15 : 12}%)`,
+                maskImage: allMasks,
+                WebkitMaskImage: allMasks,
+                maskComposite: clearings.length > 0 ? 'intersect' : undefined,
+                WebkitMaskComposite: clearings.length > 0 ? 'source-in' : undefined,
               }}
             />
           )
         })}
-        
-        {/* Additional mask layer for permanent clearings */}
-        {clearings.length > 0 && (
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: isDark ? 'rgba(10,10,10,0.7)' : 'rgba(250,250,252,0.7)',
-              maskImage: clearings.map(c => 
-                `radial-gradient(circle at ${c.x}% ${c.y}%, transparent ${c.radius - 2}%, black ${c.radius + 3}%)`
-              ).join(', '),
-              WebkitMaskImage: clearings.map(c => 
-                `radial-gradient(circle at ${c.x}% ${c.y}%, transparent ${c.radius - 2}%, black ${c.radius + 3}%)`
-              ).join(', '),
-              maskComposite: 'intersect',
-              WebkitMaskComposite: 'source-in',
-            }}
-          />
-        )}
-      </div>
-
-      {/* Discovery counter */}
-      <div className="absolute top-6 right-6 z-20">
-        <div 
-          className="px-4 py-2 backdrop-blur-md border border-white/20 font-mono text-sm text-white/80"
-          style={{ background: 'rgba(0,0,0,0.3)' }}
-        >
-          <span className="text-white">{discoveredCount}</span>
-          <span className="text-white/50">/{totalCount}</span>
-          <span className="ml-2 text-white/50">discovered</span>
-        </div>
-      </div>
-
-      {/* Instructions */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20">
-        <p 
-          className="font-mono text-xs tracking-wider text-white/60 text-center"
-          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
-        >
-          {discoveredCount === 0 
-            ? 'CLICK TO UNCOVER'
-            : discoveredCount < totalCount 
-              ? 'KEEP EXPLORING'
-              : 'ALL FOUND'
-          }
-        </p>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
         <div className="flex flex-col items-center gap-2 text-white/60">
           <span className="font-mono text-xs tracking-wider">SCROLL</span>
           <svg 
