@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
+import { Sidebar } from '@/components/sidebar'
+import { MobileNav } from '@/components/mobile-nav'
 import { MessageBubble } from '@/components/message-bubble'
 import './globals.css'
 
@@ -13,9 +13,9 @@ const inter = Inter({
   display: 'swap',
 })
 
-const playfair = Playfair_Display({ 
+const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-space-grotesk',
   display: 'swap',
 })
 
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     default: 'Tereza Tizkova',
     template: '%s | Tereza Tizkova',
   },
-  description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
+  description: 'Growth Lead, Math Grad, Content Creator, Community Builder. Building at the intersection of AI, growth, and writing.',
   metadataBase: new URL('https://tereza.dev'),
   openGraph: {
     title: 'Tereza Tizkova',
-    description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
+    description: 'Growth Lead, Math Grad, Content Creator, Community Builder.',
     url: 'https://tereza.dev',
     siteName: 'Tereza Tizkova',
     locale: 'en_US',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Tereza Tizkova',
-    description: 'Growth for developer tools, AI courses, and writing about tech, startups, and life.',
+    description: 'Growth Lead, Math Grad, Content Creator, Community Builder.',
   },
   robots: {
     index: true,
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
-    { media: '(prefers-color-scheme: dark)', color: '#262626' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#1a1a1a' },
   ],
 }
 
@@ -63,19 +63,25 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased min-h-screen flex flex-col">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
+          {/* Mobile Navigation */}
+          <MobileNav />
+          
+          {/* Desktop Layout with Fixed Sidebar */}
+          <div className="lg:flex">
+            <Sidebar />
+            <main className="flex-1 lg:ml-[280px] min-h-screen">
+              {children}
+            </main>
+          </div>
+          
           <MessageBubble />
         </ThemeProvider>
         <Analytics />
