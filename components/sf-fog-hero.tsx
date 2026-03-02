@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useCallback } from 'react'
+import Image from 'next/image'
 
 interface RevealCircle {
   x: number
@@ -106,7 +107,7 @@ export function SFFogHero() {
     const yPercent = (y / rect.height) * 100
     
     // Add reveal circle
-    const revealRadius = isMobile ? 60 : 80
+    const revealRadius = isMobile ? 80 : 120
     setReveals(prev => [...prev, {
       x,
       y,
@@ -156,111 +157,35 @@ export function SFFogHero() {
   // Generate SVG mask for reveal circles
   const maskId = "fog-reveal-mask"
   const breathingRadius = (r: RevealCircle) => {
-    const breathing = Math.sin(r.phase) * 3
+    const breathing = Math.sin(r.phase) * 5
     return r.radius + breathing
   }
   
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-[#0a0a0f] cursor-crosshair"
+      className="relative w-full h-screen overflow-hidden cursor-crosshair"
       onClick={handleClick}
       onTouchStart={handleClick}
     >
-      {/* SF Skyline Background - Always visible under fog */}
+      {/* Realistic SF Skyline Background Image */}
       <div className="absolute inset-0">
-        {/* Sky gradient - very dark */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a12] via-[#0d0d18] to-[#0a0a0f]" />
+        <Image
+          src="/images/sf-skyline.jpg"
+          alt="San Francisco skyline at dusk"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Slight dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/20" />
         
-        {/* Distant hills silhouette */}
-        <svg className="absolute bottom-0 left-0 right-0 h-[60%]" viewBox="0 0 1200 400" preserveAspectRatio="none">
-          {/* Far hills */}
-          <path 
-            d="M0 400 L0 280 Q100 200 200 250 Q350 180 500 220 Q650 180 750 200 Q900 150 1000 180 Q1100 160 1200 200 L1200 400 Z"
-            fill="#0d0d12"
-          />
-          {/* Twin Peaks silhouette */}
-          <path 
-            d="M700 400 L650 300 Q700 240 750 300 Q800 250 850 320 L900 400 Z"
-            fill="#101018"
-            className={elements.find(e => e.id === 'twin')?.discovered ? 'opacity-100' : 'opacity-50'}
-          />
-        </svg>
-        
-        {/* Golden Gate Bridge silhouette */}
-        <svg className="absolute bottom-[25%] left-[5%] w-[25%] h-[30%]" viewBox="0 0 300 200">
-          <g className={elements.find(e => e.id === 'ggb')?.discovered ? 'opacity-100' : 'opacity-30'}>
-            {/* Main cables */}
-            <path 
-              d="M20 60 Q75 20 150 10 Q225 20 280 60"
-              stroke={elements.find(e => e.id === 'ggb')?.discovered ? '#cc4466' : '#1a1a24'}
-              strokeWidth="4"
-              fill="none"
-            />
-            {/* Towers */}
-            <rect x="65" y="10" width="10" height="150" fill={elements.find(e => e.id === 'ggb')?.discovered ? '#993344' : '#121218'} />
-            <rect x="225" y="10" width="10" height="150" fill={elements.find(e => e.id === 'ggb')?.discovered ? '#993344' : '#121218'} />
-            {/* Road deck */}
-            <rect x="0" y="150" width="300" height="6" fill={elements.find(e => e.id === 'ggb')?.discovered ? '#662233' : '#0f0f14'} />
-            {/* Vertical cables */}
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-              <line 
-                key={i} 
-                x1={40 + i * 25} 
-                y1={150} 
-                x2={40 + i * 25} 
-                y2={60 - Math.abs(4 - i) * 5}
-                stroke={elements.find(e => e.id === 'ggb')?.discovered ? '#883355' : '#14141c'}
-                strokeWidth="1"
-              />
-            ))}
-          </g>
-        </svg>
-        
-        {/* Sutro Tower silhouette */}
-        <svg className="absolute bottom-[35%] left-[52%] w-[8%] h-[25%]" viewBox="0 0 80 200">
-          <g className={elements.find(e => e.id === 'sutro')?.discovered ? 'opacity-100' : 'opacity-30'}>
-            {/* Main structure */}
-            <polygon 
-              points="40,0 35,60 20,60 25,150 10,200 30,200 35,150 45,150 50,200 70,200 55,150 60,60 45,60"
-              fill={elements.find(e => e.id === 'sutro')?.discovered ? '#cc6688' : '#101018'}
-            />
-            {/* Cross beams */}
-            <line x1="25" y1="80" x2="55" y2="80" stroke={elements.find(e => e.id === 'sutro')?.discovered ? '#aa5577' : '#0d0d14'} strokeWidth="2" />
-            <line x1="20" y1="120" x2="60" y2="120" stroke={elements.find(e => e.id === 'sutro')?.discovered ? '#aa5577' : '#0d0d14'} strokeWidth="2" />
-          </g>
-        </svg>
-        
-        {/* Transamerica Pyramid silhouette */}
-        <svg className="absolute bottom-[20%] right-[10%] w-[6%] h-[35%]" viewBox="0 0 60 200">
-          <polygon 
-            points="30,0 10,200 50,200"
-            fill={elements.find(e => e.id === 'pyramid')?.discovered ? '#cc88aa' : '#101018'}
-            className={elements.find(e => e.id === 'pyramid')?.discovered ? 'opacity-100' : 'opacity-30'}
-          />
-        </svg>
-        
-        {/* City buildings silhouette */}
-        <svg className="absolute bottom-0 left-0 right-0 h-[30%]" viewBox="0 0 1200 200" preserveAspectRatio="none">
-          <rect x="100" y="80" width="40" height="120" fill="#0c0c12" />
-          <rect x="150" y="100" width="30" height="100" fill="#0e0e14" />
-          <rect x="200" y="60" width="50" height="140" fill="#0b0b10" />
-          <rect x="280" y="90" width="35" height="110" fill="#0d0d13" />
-          <rect x="350" y="70" width="45" height="130" fill="#0c0c11" />
-          <rect x="450" y="110" width="30" height="90" fill="#0e0e15" />
-          <rect x="550" y="50" width="60" height="150" fill="#0a0a0f" />
-          <rect x="650" y="80" width="40" height="120" fill="#0c0c12" />
-          <rect x="750" y="100" width="35" height="100" fill="#0d0d14" />
-          <rect x="850" y="65" width="55" height="135" fill="#0b0b11" />
-          <rect x="950" y="90" width="45" height="110" fill="#0c0c13" />
-          <rect x="1050" y="75" width="50" height="125" fill="#0d0d12" />
-        </svg>
-        
-        {/* Hidden text elements */}
+        {/* Hidden text elements overlaid on the image */}
         {elements.filter(e => e.type === 'text' || e.type === 'easter' || e.type === 'name').map(el => (
           <div
             key={el.id}
-            className={`absolute transition-opacity duration-500 ${el.discovered || fogCleared ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute transition-all duration-700 ${el.discovered || fogCleared ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
             style={{
               left: `${el.x}%`,
               top: `${el.y}%`,
@@ -269,17 +194,41 @@ export function SFFogHero() {
           >
             <span 
               className={`
-                font-mono text-xs tracking-widest whitespace-nowrap
-                ${el.type === 'name' ? 'text-2xl md:text-4xl font-display font-bold text-foreground' : ''}
-                ${el.type === 'text' ? 'text-secondary' : ''}
-                ${el.type === 'easter' ? 'text-primary/80 text-[10px]' : ''}
+                font-mono tracking-widest whitespace-nowrap
+                ${el.type === 'name' ? 'text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white' : ''}
+                ${el.type === 'text' ? 'text-sm md:text-base text-white/90' : ''}
+                ${el.type === 'easter' ? 'text-white/70 text-[10px] md:text-xs' : ''}
               `}
               style={{
                 textShadow: el.discovered || fogCleared 
-                  ? el.type === 'landmark' || el.type === 'name' 
-                    ? '0 0 20px rgba(255, 194, 211, 0.5)' 
-                    : '0 0 15px rgba(194, 224, 255, 0.5)'
+                  ? el.type === 'name' 
+                    ? '0 0 40px rgba(255, 194, 211, 0.8), 0 0 80px rgba(255, 194, 211, 0.4), 0 2px 20px rgba(0,0,0,0.8)' 
+                    : el.type === 'landmark'
+                    ? '0 0 30px rgba(255, 194, 211, 0.6), 0 2px 10px rgba(0,0,0,0.8)'
+                    : '0 0 20px rgba(194, 224, 255, 0.6), 0 2px 10px rgba(0,0,0,0.8)'
                   : 'none'
+              }}
+            >
+              {el.label}
+            </span>
+          </div>
+        ))}
+        
+        {/* Landmark labels that appear when discovered */}
+        {elements.filter(e => e.type === 'landmark').map(el => (
+          <div
+            key={`label-${el.id}`}
+            className={`absolute transition-all duration-700 ${el.discovered || fogCleared ? 'opacity-100' : 'opacity-0'}`}
+            style={{
+              left: `${el.x}%`,
+              top: `${el.y}%`,
+              transform: 'translate(-50%, -50%)'
+            }}
+          >
+            <span 
+              className="font-mono text-[10px] md:text-xs tracking-widest text-white/80 whitespace-nowrap"
+              style={{
+                textShadow: '0 0 20px rgba(255, 194, 211, 0.6), 0 2px 10px rgba(0,0,0,0.9)'
               }}
             >
               {el.label}
@@ -288,7 +237,7 @@ export function SFFogHero() {
         ))}
       </div>
       
-      {/* Fog layers - with mask cutouts */}
+      {/* Realistic Fog layers - with mask cutouts */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: fogCleared ? -1 : 10 }}>
         <defs>
           <mask id={maskId}>
@@ -305,60 +254,71 @@ export function SFFogHero() {
             ))}
           </mask>
           
-          {/* Fog gradient */}
-          <linearGradient id="fog-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1a1a24" stopOpacity="0.95" />
-            <stop offset="50%" stopColor="#181822" stopOpacity="0.98" />
-            <stop offset="100%" stopColor="#1c1c28" stopOpacity="0.95" />
+          {/* Realistic fog gradients - more natural grays */}
+          <linearGradient id="fog-gradient-realistic-1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#d8dce3" stopOpacity="0.92" />
+            <stop offset="30%" stopColor="#c5cbd5" stopOpacity="0.95" />
+            <stop offset="70%" stopColor="#b8bfcc" stopOpacity="0.93" />
+            <stop offset="100%" stopColor="#cfd5de" stopOpacity="0.91" />
           </linearGradient>
           
-          <linearGradient id="fog-gradient-2" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#141420" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#0a0a12" stopOpacity="0.7" />
+          <linearGradient id="fog-gradient-realistic-2" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#e0e4ea" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#d0d6df" stopOpacity="0.75" />
+            <stop offset="100%" stopColor="#bcc3cf" stopOpacity="0.6" />
           </linearGradient>
+          
+          <linearGradient id="fog-gradient-realistic-3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#c8ced8" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#dfe3e9" stopOpacity="0.8" />
+          </linearGradient>
+          
+          {/* Fog texture filter for more realistic look */}
+          <filter id="fog-blur">
+            <feGaussianBlur stdDeviation="2" />
+          </filter>
         </defs>
         
-        {/* Fog layer 1 - slowest, thickest */}
+        {/* Base fog layer - thickest, slowest */}
         <g mask={`url(#${maskId})`} className={fogCleared ? 'opacity-0 transition-opacity duration-1000' : 'opacity-100'}>
           <rect 
-            width="200%" 
+            width="300%" 
             height="100%" 
-            fill="url(#fog-gradient-1)"
+            fill="url(#fog-gradient-realistic-1)"
             className="animate-fog-slow"
+            style={{ filter: 'url(#fog-blur)' }}
           />
         </g>
         
-        {/* Fog layer 2 */}
+        {/* Middle fog layer */}
         <g mask={`url(#${maskId})`} className={fogCleared ? 'opacity-0 transition-opacity duration-700' : 'opacity-100'}>
           <rect 
-            width="200%" 
+            width="300%" 
             height="100%" 
-            fill="#16161e"
-            fillOpacity="0.8"
+            fill="url(#fog-gradient-realistic-2)"
             className="animate-fog-medium"
           />
         </g>
         
-        {/* Fog layer 3 - faster, lighter */}
+        {/* Wispy fog layer - faster */}
         {!isMobile && (
           <g mask={`url(#${maskId})`} className={fogCleared ? 'opacity-0 transition-opacity duration-500' : 'opacity-100'}>
             <rect 
-              width="200%" 
+              width="300%" 
               height="100%" 
-              fill="#1e1e28"
-              fillOpacity="0.6"
+              fill="url(#fog-gradient-realistic-3)"
               className="animate-fog-fast"
             />
           </g>
         )}
         
-        {/* Fog layer 4 - fastest wisps */}
+        {/* Top wisp layer - fastest, most transparent */}
         {!isMobile && (
           <g mask={`url(#${maskId})`} className={fogCleared ? 'opacity-0 transition-opacity duration-300' : 'opacity-100'}>
             <rect 
-              width="200%" 
+              width="300%" 
               height="100%" 
-              fill="url(#fog-gradient-2)"
+              fill="#e8ebf0"
               fillOpacity="0.4"
               className="animate-fog-wisp"
             />
@@ -366,30 +326,30 @@ export function SFFogHero() {
         )}
       </svg>
       
-      {/* Discovery counter */}
-      <div className="absolute top-6 right-6 z-20 font-mono text-[10px] tracking-widest text-muted-foreground">
+      {/* Discovery counter - positioned for visibility against fog */}
+      <div className="absolute top-6 right-6 z-20 font-mono text-[10px] tracking-widest text-gray-700 bg-white/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
         {discoveredCount}/{HIDDEN_ELEMENTS.length} discovered
       </div>
       
       {/* Instruction hint */}
       {discoveredCount === 0 && !fogCleared && (
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 font-mono text-[10px] tracking-widest text-muted-foreground/50 animate-pulse">
-          click to explore
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 font-mono text-[10px] tracking-widest text-gray-600 bg-white/40 backdrop-blur-sm px-4 py-2 rounded-full animate-pulse">
+          click to explore through the fog
         </div>
       )}
       
       {/* Control buttons */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-6">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-6 bg-white/30 backdrop-blur-sm px-5 py-2 rounded-full">
         <button
           onClick={(e) => { e.stopPropagation(); rollFogBack(); }}
-          className="font-mono text-[10px] text-muted-foreground/50 hover:text-primary transition-colors uppercase tracking-widest"
+          className="font-mono text-[10px] text-gray-600 hover:text-gray-900 transition-colors uppercase tracking-widest"
         >
           we&apos;re so back
         </button>
-        <span className="text-muted-foreground/20">·</span>
+        <span className="text-gray-400">·</span>
         <button
           onClick={(e) => { e.stopPropagation(); clearAllFog(); }}
-          className="font-mono text-[10px] text-muted-foreground/50 hover:text-secondary transition-colors uppercase tracking-widest"
+          className="font-mono text-[10px] text-gray-600 hover:text-gray-900 transition-colors uppercase tracking-widest"
         >
           it&apos;s so over
         </button>
