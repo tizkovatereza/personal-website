@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export function SFFogHero() {
-  const [isHovered, setIsHovered] = useState(false)
   const [displayText, setDisplayText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
@@ -39,15 +38,9 @@ export function SFFogHero() {
   }, [])
 
   // Handle hover animation
-  useEffect(() => {
-    if (!isTypingComplete) return
+  const runAnimation = (targetPhrase: string) => {
     if (isAnimatingRef.current) return
-
-    const targetPhrase = isHovered ? alternatePhrase : primaryPhrase
     
-    // Don't animate if already showing target
-    if (displayText === targetPhrase) return
-
     isAnimatingRef.current = true
 
     // Clear any existing animation
@@ -55,7 +48,7 @@ export function SFFogHero() {
       clearTimeout(animationRef.current)
     }
 
-    const currentText = displayText
+    let currentText = displayText
     let step = 0
     const totalEraseSteps = currentText.length
     const totalTypeSteps = targetPhrase.length
@@ -63,7 +56,8 @@ export function SFFogHero() {
     const animate = () => {
       if (step < totalEraseSteps) {
         // Erasing
-        setDisplayText(currentText.slice(0, totalEraseSteps - step - 1))
+        const newText = currentText.slice(0, totalEraseSteps - step - 1)
+        setDisplayText(newText)
         step++
         animationRef.current = setTimeout(animate, 25)
       } else if (step < totalEraseSteps + totalTypeSteps) {
@@ -79,13 +73,21 @@ export function SFFogHero() {
     }
 
     animate()
+  }
 
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current)
-      }
+  const handleMouseEnter = () => {
+    console.log("[v0] Mouse enter, isTypingComplete:", isTypingComplete, "isAnimating:", isAnimatingRef.current)
+    if (isTypingComplete) {
+      runAnimation(alternatePhrase)
     }
-  }, [isHovered, isTypingComplete])
+  }
+
+  const handleMouseLeave = () => {
+    console.log("[v0] Mouse leave, isTypingComplete:", isTypingComplete, "isAnimating:", isAnimatingRef.current)
+    if (isTypingComplete) {
+      runAnimation(primaryPhrase)
+    }
+  }
 
   // Split displayText for line breaks - find "things" to split there
   const thingsIndex = displayText.indexOf('things')
@@ -98,18 +100,6 @@ export function SFFogHero() {
   } else {
     line2Text = displayText
     line3Text = ''
-  }
-
-  const handleMouseEnter = () => {
-    if (isTypingComplete && !isAnimatingRef.current) {
-      setIsHovered(true)
-    }
-  }
-
-  const handleMouseLeave = () => {
-    if (isTypingComplete) {
-      setIsHovered(false)
-    }
   }
 
   return (
