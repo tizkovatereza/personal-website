@@ -1,17 +1,20 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export function SFFogHero() {
   const [isHovered, setIsHovered] = useState(false)
   const [displayText, setDisplayText] = useState('')
   const [isTypingComplete, setIsTypingComplete] = useState(false)
+  const [showCursor, setShowCursor] = useState(true)
+  const animationRef = useRef<NodeJS.Timeout | null>(null)
+  const isAnimatingRef = useRef(false)
   
   const primaryPhrase = 'complicated things simply.'
   const alternatePhrase = 'simple things complicatedly.'
 
-  // Typewriter effect on mount
+  // Typewriter effect on mount only
   useEffect(() => {
     let currentIndex = 0
     const typeInterval = setInterval(() => {
@@ -27,59 +30,87 @@ export function SFFogHero() {
     return () => clearInterval(typeInterval)
   }, [])
 
-  // Handle hover animation - erase then type alternate
+  // Cursor blink
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev)
+    }, 530)
+    return () => clearInterval(cursorInterval)
+  }, [])
+
+  // Handle hover animation
   useEffect(() => {
     if (!isTypingComplete) return
+    if (isAnimatingRef.current) return
 
-    if (isHovered) {
-      // Erase current text
-      let currentText = primaryPhrase
-      const eraseInterval = setInterval(() => {
-        if (currentText.length > 0) {
-          currentText = currentText.slice(0, -1)
-          setDisplayText(currentText)
-        } else {
-          clearInterval(eraseInterval)
-          // Type alternate phrase
-          let altIndex = 0
-          const typeAltInterval = setInterval(() => {
-            if (altIndex <= alternatePhrase.length) {
-              setDisplayText(alternatePhrase.slice(0, altIndex))
-              altIndex++
-            } else {
-              clearInterval(typeAltInterval)
-            }
-          }, 40)
-        }
-      }, 30)
-    } else {
-      // Erase alternate and type primary
-      let currentText = displayText
-      const eraseInterval = setInterval(() => {
-        if (currentText.length > 0) {
-          currentText = currentText.slice(0, -1)
-          setDisplayText(currentText)
-        } else {
-          clearInterval(eraseInterval)
-          // Type primary phrase
-          let primIndex = 0
-          const typePrimInterval = setInterval(() => {
-            if (primIndex <= primaryPhrase.length) {
-              setDisplayText(primaryPhrase.slice(0, primIndex))
-              primIndex++
-            } else {
-              clearInterval(typePrimInterval)
-            }
-          }, 40)
-        }
-      }, 30)
+    const targetPhrase = isHovered ? alternatePhrase : primaryPhrase
+    
+    // Don't animate if already showing target
+    if (displayText === targetPhrase) return
+
+    isAnimatingRef.current = true
+
+    // Clear any existing animation
+    if (animationRef.current) {
+      clearTimeout(animationRef.current)
+    }
+
+    const currentText = displayText
+    let step = 0
+    const totalEraseSteps = currentText.length
+    const totalTypeSteps = targetPhrase.length
+
+    const animate = () => {
+      if (step < totalEraseSteps) {
+        // Erasing
+        setDisplayText(currentText.slice(0, totalEraseSteps - step - 1))
+        step++
+        animationRef.current = setTimeout(animate, 25)
+      } else if (step < totalEraseSteps + totalTypeSteps) {
+        // Typing
+        const typeIndex = step - totalEraseSteps + 1
+        setDisplayText(targetPhrase.slice(0, typeIndex))
+        step++
+        animationRef.current = setTimeout(animate, 35)
+      } else {
+        // Done
+        isAnimatingRef.current = false
+      }
+    }
+
+    animate()
+
+    return () => {
+      if (animationRef.current) {
+        clearTimeout(animationRef.current)
+      }
     }
   }, [isHovered, isTypingComplete])
 
-  // Split displayText into two lines
-  const splitIndex = displayText.indexOf(' things')
-  const line2Part1 = splitIndex >= 0 ? displayText.slice(0, splitIndex + 1) : displayText // "complicated " or "simple "
-  const line3 = splitIndex >= 0 ? displayText.slice(splitIndex + 1) : '' // "things simply." or "things complicatedly."
+  // Split displayText for line breaks - find "things" to split there
+  const thingsIndex = displayText.indexOf('things')
+  let line2Text = ''
+  let line3Text = ''
+  
+  if (thingsIndex > 0) {
+    line2Text = displayText.slice(0, thingsIndex).trim()
+    line3Text = displayText.slice(thingsIndex)
+  } else {
+    line2Text = displayText
+    line3Text = ''
+  }
+
+  const handleMouseEnter = () => {
+    if (isTypingComplete && !isAnimatingRef.current) {
+      setIsHovered(true)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (isTypingComplete) {
+      setIsHovered(false)
+    }
+  }
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]">
@@ -111,20 +142,24 @@ export function SFFogHero() {
           <span>I explain </span>
           <span 
             className="text-primary italic cursor-default"
-            onMouseEnter={() => setIsTypingComplete && setIsHovered(true)}
-            onMouseLeave={() => setIsTypingComplete && setIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            {line2Part1}
+            {line2Text}
           </span>
-          <br />
-          <span 
-            className="text-primary italic cursor-default"
-            onMouseEnter={() => setIsTypingComplete && setIsHovered(true)}
-            onMouseLeave={() => setIsTypingComplete && setIsHovered(false)}
-          >
-            {line3}
-          </span>
-          <span className="text-primary animate-pulse">|</span>
+          {line3Text && (
+            <>
+              <br />
+              <span 
+                className="text-primary italic cursor-default"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                {line3Text}
+              </span>
+            </>
+          )}
+          <span className={`text-primary ${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
         </h1>
         
         {/* Description */}
