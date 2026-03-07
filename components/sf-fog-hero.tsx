@@ -9,6 +9,7 @@ export function SFFogHero() {
   const [showCursor, setShowCursor] = useState(true)
   const animationRef = useRef<NodeJS.Timeout | null>(null)
   const isAnimatingRef = useRef(false)
+  const showingAlternateRef = useRef(false)
   
   const primaryPhrase = 'complicated things simply.'
   const alternatePhrase = 'simple things complicatedly.'
@@ -76,15 +77,13 @@ export function SFFogHero() {
   }
 
   const handleMouseEnter = () => {
-    if (isTypingComplete) {
-      runAnimation(alternatePhrase)
-    }
-  }
-
-  const handleMouseLeave = () => {
-    if (isTypingComplete) {
-      runAnimation(primaryPhrase)
-    }
+    // Only trigger on mouseenter, ignore if animation in progress
+    if (!isTypingComplete || isAnimatingRef.current) return
+    
+    // Toggle to the opposite phrase
+    const targetPhrase = showingAlternateRef.current ? primaryPhrase : alternatePhrase
+    showingAlternateRef.current = !showingAlternateRef.current
+    runAnimation(targetPhrase)
   }
 
   // Split displayText for line breaks - find "things" to split there
@@ -132,7 +131,6 @@ export function SFFogHero() {
           <span 
             className="text-primary italic cursor-default"
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             {line2Text}
           </span>
@@ -142,7 +140,6 @@ export function SFFogHero() {
               <span 
                 className="text-primary italic cursor-default"
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 {line3Text}
               </span>
