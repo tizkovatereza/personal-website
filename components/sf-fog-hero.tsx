@@ -199,7 +199,7 @@ export function SFFogHero() {
         
         {/* Description */}
         <p className="text-secondary font-light text-[17px] leading-[1.7] max-w-[520px] mb-10">
-          Growth at E2B — the open-source cloud infrastructure for AI agents. I write about what happens when you let autonomous software loose on real problems.
+          I like math, my content has grown a company from scratch and defined new market category, and I like cheese because<Link href="/about" className="text-primary hover:underline">...</Link>
         </p>
 
         {/* CTA Link */}
