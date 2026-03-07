@@ -12,13 +12,13 @@ export function SFFogHero() {
   }, [])
 
   if (!mounted) {
-    return <div className="w-full h-screen bg-[#0a0e17]" />
+    return <div className="w-full min-h-screen bg-[#0a0e17]" />
   }
 
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-[#0a0e17]"
+      className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]"
     >
       {/* === FULL-BLEED BACKGROUND IMAGE === */}
       <div 
@@ -40,13 +40,13 @@ export function SFFogHero() {
       />
 
       {/* === MAIN CONTENT === */}
-      <div className="absolute inset-0 flex flex-col justify-center z-20 px-12 md:px-16 lg:px-20 max-w-[700px]" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-20 lg:py-24 max-w-[700px]">
         {/* Main headline */}
-        <h1 className="font-serif text-[44px] md:text-[56px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.1] mb-8">
+        <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.15] mb-6 sm:mb-8">
           Hi, I'm Tereza.
           <br />
-          <span className="whitespace-nowrap">
-            I explain{' '}
+          <span className="block sm:inline">
+            <span className="whitespace-nowrap">I explain </span>
             <span className="relative inline-block group cursor-default">
               <span 
                 className="text-primary italic transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:translate-y-2"
@@ -64,7 +64,7 @@ export function SFFogHero() {
         </h1>
         
         {/* Description */}
-        <p className="text-secondary font-light text-[17px] leading-[1.7] max-w-[520px] mb-10">
+        <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
           I like math, my content has grown a company from scratch and defined new market category, and I like cheese because<Link href="/about" className="text-primary hover:underline">...</Link>
         </p>
 
@@ -78,8 +78,8 @@ export function SFFogHero() {
         </Link>
       </div>
 
-      {/* === SCROLL INDICATOR (right side) === */}
-      <div className="absolute right-8 bottom-8 flex flex-col items-center z-30">
+      {/* === SCROLL INDICATOR (right side) - hidden on mobile === */}
+      <div className="hidden sm:flex absolute right-6 md:right-8 bottom-8 flex-col items-center z-30">
         <span 
           className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase mb-3"
           style={{ writingMode: 'vertical-rl' }}
@@ -95,14 +95,14 @@ export function SFFogHero() {
       </div>
 
       {/* === STATUS BAR (bottom) === */}
-      <div className="absolute bottom-8 left-12 md:left-16 lg:left-20 right-24 z-30 flex items-center">
-        <div className="flex items-center gap-3">
-          <div className="w-[5px] h-[5px] bg-primary rounded-full pulse-dot" />
-          <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
+      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 md:left-12 lg:left-16 xl:left-20 right-6 sm:right-20 z-30 flex items-center">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="w-[5px] h-[5px] bg-primary rounded-full pulse-dot flex-shrink-0" />
+          <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
             Currently building at E2B
           </span>
         </div>
-        <div className="flex-1 mx-6">
+        <div className="flex-1 mx-4 sm:mx-6">
           {/* Spacer line could go here */}
         </div>
         <span className="font-mono text-[11px] font-light text-[#4a4f5a] tracking-[0.05em] hidden md:block">

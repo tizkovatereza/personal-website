@@ -2,17 +2,15 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
-  { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/blog", label: "LOG" },
-  { href: "/advisory", label: "ADVISORY" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Writing" },
+  { href: "/advisory", label: "Advisory" },
 ]
 
 const socialLinks = [
@@ -29,20 +27,14 @@ export function MobileNav() {
   return (
     <div className="lg:hidden">
       {/* Mobile Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/images/tereza-photo.jpg"
-            alt="Tereza Tizkova"
-            width={32}
-            height={32}
-            className="object-cover grayscale"
-          />
-          <span className="font-display text-sm font-bold tracking-wider uppercase">TEREZA</span>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0e17]/95 backdrop-blur-sm border-b border-[rgba(255,255,255,0.06)] px-5 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <span className="w-4 h-px bg-primary" />
+          <span className="font-serif text-base tracking-[-0.02em] text-foreground">Tereza Tizkova</span>
         </Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 border border-border text-foreground hover:border-primary hover:text-primary transition-colors"
+          className="p-2 text-foreground hover:text-primary transition-colors"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -51,9 +43,17 @@ export function MobileNav() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-background pt-14">
+        <div className="fixed inset-0 z-40 bg-[#0a0e17] pt-16">
           <nav className="p-6 h-full flex flex-col">
-            <ul className="space-y-2">
+            {/* Location */}
+            <div className="flex items-center gap-2 mb-8">
+              <span className="w-4 h-px bg-primary" />
+              <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                San Francisco / Prague
+              </span>
+            </div>
+            
+            <ul className="space-y-1">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== "/" && pathname.startsWith(item.href))
@@ -63,13 +63,12 @@ export function MobileNav() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 font-mono text-sm tracking-widest transition-colors border ${
+                      className={`block py-3 text-[17px] font-light transition-colors ${
                         isActive 
-                          ? "border-primary text-primary bg-primary/5" 
-                          : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+                          ? "text-primary" 
+                          : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      <span className={`w-1.5 h-1.5 ${isActive ? 'bg-primary signal-dot' : 'bg-muted-foreground'}`} />
                       {item.label}
                     </Link>
                   </li>
@@ -77,28 +76,28 @@ export function MobileNav() {
               })}
             </ul>
 
-            <div className="mt-auto pt-8 border-t border-border space-y-6">
+            <div className="mt-auto pt-8 border-t border-[rgba(255,255,255,0.06)] space-y-6">
               {/* Social Links */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-5">
                 {socialLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 border border-border font-mono text-xs text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                    className="font-mono text-[11px] font-light tracking-[0.05em] uppercase text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </a>
                 ))}
               </div>
               
-              <ThemeToggle />
-              
               {/* Status */}
-              <div className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 bg-primary signal-dot" />
-                <span>online</span>
+              <div className="flex items-center gap-3">
+                <div className="w-[5px] h-[5px] bg-primary rounded-full pulse-dot" />
+                <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
+                  Currently building at E2B
+                </span>
               </div>
             </div>
           </nav>
@@ -106,7 +105,7 @@ export function MobileNav() {
       )}
 
       {/* Spacer for fixed header */}
-      <div className="h-14" />
+      <div className="h-16" />
     </div>
   )
 }
