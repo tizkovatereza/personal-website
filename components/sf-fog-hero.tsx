@@ -185,9 +185,24 @@ export function SFFogHero() {
 
         {/* Main headline */}
         <h1 className="font-serif text-[44px] md:text-[56px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.1] mb-8">
-          Building the future
+          Hi, I'm Tereza.
           <br />
-          with <em className="text-primary italic">machines</em>
+          <span className="whitespace-nowrap">
+            I like explaining{' '}
+            <span className="relative inline-block group cursor-default">
+              <span 
+                className="text-primary italic transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:translate-y-2"
+                style={{ display: 'inline-block' }}
+              >
+                complicated things simply.
+              </span>
+              <span 
+                className="text-primary italic absolute left-0 top-0 opacity-0 -translate-y-2 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap"
+              >
+                simple things complicatedly.
+              </span>
+            </span>
+          </span>
         </h1>
         
         {/* Description */}
