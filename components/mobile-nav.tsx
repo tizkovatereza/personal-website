@@ -14,10 +14,10 @@ const navItems = [
 ]
 
 const socialLinks = [
-  { href: "https://twitter.com/tereza_tizkova", label: "X" },
-  { href: "https://linkedin.com/in/tereza-tizkova", label: "LI" },
-  { href: "https://github.com/tereza-org", label: "GH" },
-  { href: "https://terezatizkova.substack.com", label: "SS" },
+  { href: "https://x.com/tereza_tizkova", label: "X" },
+  { href: "https://www.linkedin.com/in/tereza-tizkova-568439174/", label: "LI" },
+  { href: "https://github.com/tizkovatereza", label: "GH" },
+  { href: "https://terezatizkova.substack.com/", label: "SS" },
 ]
 
 export function MobileNav() {
