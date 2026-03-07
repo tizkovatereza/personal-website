@@ -76,14 +76,12 @@ export function SFFogHero() {
   }
 
   const handleMouseEnter = () => {
-    console.log("[v0] Mouse enter, isTypingComplete:", isTypingComplete, "isAnimating:", isAnimatingRef.current)
     if (isTypingComplete) {
       runAnimation(alternatePhrase)
     }
   }
 
   const handleMouseLeave = () => {
-    console.log("[v0] Mouse leave, isTypingComplete:", isTypingComplete, "isAnimating:", isAnimatingRef.current)
     if (isTypingComplete) {
       runAnimation(primaryPhrase)
     }
@@ -113,14 +111,6 @@ export function SFFogHero() {
           backgroundPosition: 'center bottom',
           opacity: 0.2,
           filter: 'grayscale(100%)',
-        }}
-      />
-      
-      {/* === VIGNETTE OVERLAY (spotlight on text area) === */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at 40% 50%, transparent 30%, rgba(0,0,0,0.6) 100%)',
         }}
       />
       
