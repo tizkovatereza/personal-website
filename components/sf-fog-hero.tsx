@@ -193,7 +193,7 @@ export function SFFogHero() {
           Hi, I'm Tereza.
           <br />
           <span className="whitespace-nowrap">
-            I like explaining{' '}
+            I explain{' '}
             <span className="relative inline-block group cursor-default">
               <span 
                 className="text-primary italic transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:translate-y-2"
