@@ -117,7 +117,7 @@ export default function ProjectsPage() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-xl hover:border-primary/30 transition-all duration-300"
+              className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
             >
               {/* Category with diamond */}
               <div className="flex items-center gap-2 mb-4">

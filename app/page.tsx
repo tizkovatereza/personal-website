@@ -129,7 +129,7 @@ export default function HomePage() {
                 href={project.href}
                 target={project.href.startsWith('http') ? "_blank" : undefined}
                 rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl card-hover"
+                className="group block p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover"
               >
                 {/* Category with diamond */}
                 <div className="flex items-center gap-2 mb-3">

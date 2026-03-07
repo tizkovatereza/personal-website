@@ -72,7 +72,7 @@ export default function AboutPage() {
         {/* Photo + Bio Section */}
         <section className="flex flex-col md:flex-row gap-12 mb-20">
           {/* Photo */}
-          <div className="w-64 h-80 md:w-72 md:h-96 flex-shrink-0 relative overflow-hidden rounded-lg border border-[rgba(255,255,255,0.06)]">
+          <div className="w-64 h-80 md:w-72 md:h-96 flex-shrink-0 relative overflow-hidden border border-[rgba(255,255,255,0.06)]">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-V4mrDoldfMzg3b62GNbHm05511hB3V.jpeg"
               alt="Tereza Tizkova"
@@ -149,7 +149,7 @@ export default function AboutPage() {
             {interests.map((interest) => (
               <div
                 key={interest.label}
-                className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-lg"
+                className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]"
               >
                 <h3 className="font-serif text-[18px] tracking-[-0.01em] mb-2">{interest.label}</h3>
                 <p className="text-[13px] font-light text-muted-foreground">{interest.description}</p>
@@ -162,7 +162,7 @@ export default function AboutPage() {
         <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-20" />
 
         {/* CTA */}
-        <section className="p-10 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
+        <section className="p-10 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
           <h2 className="font-serif text-[28px] tracking-[-0.02em] mb-4">Get in touch</h2>
           <p className="font-light text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             I love meeting new people. Whether you want to collaborate, 
@@ -171,14 +171,14 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="mailto:tereza.tizkova@gmail.com"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase rounded-lg hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:bg-primary/90 transition-colors"
             >
               Send email
               <ArrowRight className="h-3 w-3" />
             </Link>
             <Link
               href="/advisory"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase rounded-lg hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
             >
               Work with me
             </Link>
