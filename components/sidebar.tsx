@@ -23,7 +23,7 @@ export function Sidebar() {
             Tereza Tizkova
           </h1>
           <p className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase mt-1.5">
-            San Francisco
+            San Francisco / Prague
           </p>
         </Link>
       </div>
