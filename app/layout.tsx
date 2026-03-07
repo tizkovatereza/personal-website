@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Mono } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Sidebar } from '@/components/sidebar'
@@ -7,9 +7,20 @@ import { MobileNav } from '@/components/mobile-nav'
 import { MessageBubble } from '@/components/message-bubble'
 import './globals.css'
 
-const ibmPlexMono = IBM_Plex_Mono({ 
+const inter = Inter({ 
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans-display',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-serif-display',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ['latin'],
   variable: '--font-mono-display',
   display: 'swap',
 })
@@ -19,11 +30,11 @@ export const metadata: Metadata = {
     default: 'Tereza Tizkova',
     template: '%s | Tereza Tizkova',
   },
-  description: 'Growth, AI, Writing. San Francisco & Prague.',
+  description: 'Building the future with machines. Growth, AI, Writing. San Francisco & Prague.',
   metadataBase: new URL('https://tereza.dev'),
   openGraph: {
     title: 'Tereza Tizkova',
-    description: 'Growth, AI, Writing.',
+    description: 'Building the future with machines.',
     url: 'https://tereza.dev',
     siteName: 'Tereza Tizkova',
     locale: 'en_US',
@@ -32,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Tereza Tizkova',
-    description: 'Growth, AI, Writing.',
+    description: 'Building the future with machines.',
   },
   robots: {
     index: true,
@@ -47,8 +58,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f0f0f0' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0c10' },
   ],
 }
 
@@ -58,8 +69,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={ibmPlexMono.variable}>
-      <body className="font-mono antialiased">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -72,7 +83,7 @@ export default function RootLayout({
           {/* Desktop Layout with Fixed Sidebar */}
           <div className="lg:flex">
             <Sidebar />
-            <main className="flex-1 lg:ml-[280px] min-h-screen">
+            <main className="flex-1 lg:ml-[260px] min-h-screen">
               {children}
             </main>
           </div>

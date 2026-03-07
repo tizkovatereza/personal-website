@@ -6,59 +6,54 @@ import { usePathname } from "next/navigation"
 import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
-  { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/blog", label: "LOG" },
-  { href: "/advisory", label: "ADVISORY" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Writing" },
+  { href: "/advisory", label: "Advisory" },
 ]
 
 const socialLinks = [
-  { href: "https://twitter.com/tereza_tizkova", label: "X" },
-  { href: "https://linkedin.com/in/tereza-tizkova", label: "LI" },
-  { href: "https://github.com/tereza-org", label: "GH" },
-  { href: "https://terezatizkova.substack.com", label: "SS" },
+  { href: "https://twitter.com/tereza_tizkova", label: "Twitter" },
+  { href: "https://linkedin.com/in/tereza-tizkova", label: "LinkedIn" },
+  { href: "https://github.com/tereza-org", label: "GitHub" },
+  { href: "https://terezatizkova.substack.com", label: "Substack" },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-[280px] bg-background border-r border-border">
-      {/* Profile Photo */}
-      <Link href="/" className="block relative">
-        <div className="aspect-square w-full overflow-hidden relative">
-          <Image
-            src="/images/tereza-photo.jpg"
-            alt="Tereza Tizkova"
-            width={280}
-            height={280}
-            className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-            priority
-          />
-          {/* Scanlines overlay */}
-          <div 
-            className="absolute inset-0 pointer-events-none opacity-30"
-            style={{
-              background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 4px)',
-            }}
-          />
-        </div>
-        {/* Corner brackets */}
-        <div className="absolute top-2 left-2 w-4 h-4 border-l border-t border-foreground/30" />
-        <div className="absolute top-2 right-2 w-4 h-4 border-r border-t border-foreground/30" />
-        <div className="absolute bottom-2 left-2 w-4 h-4 border-l border-b border-foreground/30" />
-        <div className="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-foreground/30" />
-      </Link>
+    <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-[260px] bg-background border-r border-border">
+      {/* Header with name */}
+      <div className="p-6 border-b border-border">
+        <Link href="/" className="block group">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-border">
+              <Image
+                src="/images/tereza-photo.jpg"
+                alt="Tereza Tizkova"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="font-serif text-lg font-medium group-hover:text-primary transition-colors">
+                Tereza Tizkova
+              </h1>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-wide">
+                Growth · E2B · SF
+              </p>
+            </div>
+          </div>
+        </Link>
+      </div>
 
       {/* Navigation */}
       <nav className="flex-1 p-4">
-        <div className="mb-4 flex items-center gap-2">
-          <div className="w-8 h-[1px] bg-border" />
-          <span className="text-[8px] tracking-[0.2em] text-muted-foreground uppercase">Navigation</span>
-          <div className="flex-1 h-[1px] bg-border" />
-        </div>
-        <ul className="space-y-0">
+        <ul className="space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href || 
               (item.href !== "/" && pathname.startsWith(item.href))
@@ -67,13 +62,12 @@ export function Sidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-2 px-3 py-2 text-[11px] tracking-[0.2em] transition-colors border-l-2 ${
+                  className={`block px-3 py-2 text-sm transition-colors ${
                     isActive 
-                      ? "border-foreground text-foreground bg-muted" 
-                      : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      ? "text-primary bg-primary/5 border-l-2 border-primary -ml-[2px] pl-[14px]" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   }`}
                 >
-                  <span className="opacity-40">{'>'}</span>
                   {item.label}
                 </Link>
               </li>
@@ -85,30 +79,30 @@ export function Sidebar() {
       {/* Footer */}
       <div className="p-4 border-t border-border space-y-4">
         {/* Social Links */}
-        <div className="flex items-center gap-2">
+        <div className="space-y-1">
           {socialLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2 py-1 border border-border text-[10px] tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+              className="block px-3 py-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
             >
-              {link.label}
+              {link.label} →
             </a>
           ))}
         </div>
         
-        {/* Theme Toggle */}
-        <ThemeToggle />
+        <div className="pt-2 border-t border-border">
+          <ThemeToggle />
+        </div>
         
         {/* Status */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[9px] text-muted-foreground uppercase tracking-[0.15em]">
-            <span className="w-1 h-1 bg-foreground" />
-            <span>Online</span>
-          </div>
-          <span className="text-[9px] text-muted-foreground tracking-wider">//////</span>
+        <div className="flex items-center gap-2 px-3">
+          <div className="w-1.5 h-1.5 bg-green-500 rounded-full pulse-dot" />
+          <span className="font-mono text-[10px] text-muted-foreground">
+            Available for advisory
+          </span>
         </div>
       </div>
     </aside>
