@@ -112,14 +112,6 @@ export function SFFogHero() {
           filter: 'grayscale(100%)',
         }}
       />
-      
-      {/* === GRADIENT OVERLAY (dark at top, transparent at bottom) === */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(10, 14, 23, 0.6) 0%, rgba(10, 14, 23, 0.6) 40%, transparent 100%)',
-        }}
-      />
 
       {/* === MAIN CONTENT === */}
       <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-20 lg:py-24 max-w-[700px]">
