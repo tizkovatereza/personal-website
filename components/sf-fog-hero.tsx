@@ -7,22 +7,20 @@ export function SFFogHero() {
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   
-  // Typewriter state
-  const [phase, setPhase] = useState<'idle' | 'typing-static' | 'typing-dynamic' | 'complete'>('idle')
-  const [staticText, setStaticText] = useState('')
+  // Typewriter state - only for the dynamic phrase
   const [dynamicText, setDynamicText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
   const [isErasing, setIsErasing] = useState(false)
+  const [isReady, setIsReady] = useState(false)
   
-  const staticPart = "I explain "
   const phrase1 = "complicated things simply."
   const phrase2 = "simple things complicatedly."
   const [currentPhrase, setCurrentPhrase] = useState(phrase1)
 
   // Cursor blink effect
   useEffect(() => {
-    if (phase === 'complete' && !isErasing) {
+    if (isReady && !isErasing) {
       const interval = setInterval(() => {
         setShowCursor(prev => !prev)
       }, 530)
@@ -30,31 +28,22 @@ export function SFFogHero() {
     } else {
       setShowCursor(true)
     }
-  }, [phase, isErasing])
+  }, [isReady, isErasing])
 
-  // Typewriter effect on mount
+  // Type initial phrase on mount
   useEffect(() => {
     setMounted(true)
     
     const startTyping = async () => {
       await new Promise(r => setTimeout(r, 500))
-      setPhase('typing-static')
       
-      // Type static part
-      for (let i = 0; i <= staticPart.length; i++) {
-        setStaticText(staticPart.slice(0, i))
-        await new Promise(r => setTimeout(r, 80))
-      }
-      
-      setPhase('typing-dynamic')
-      
-      // Type dynamic part
+      // Type dynamic part only
       for (let i = 0; i <= phrase1.length; i++) {
         setDynamicText(phrase1.slice(0, i))
         await new Promise(r => setTimeout(r, 80))
       }
       
-      setPhase('complete')
+      setIsReady(true)
     }
     
     startTyping()
@@ -62,7 +51,7 @@ export function SFFogHero() {
 
   // Handle hover swap with typewriter effect
   const handleMouseEnter = useCallback(async () => {
-    if (phase !== 'complete' || isErasing) return
+    if (!isReady || isErasing) return
     setIsHovered(true)
     setIsErasing(true)
     
@@ -83,10 +72,10 @@ export function SFFogHero() {
     
     setCurrentPhrase(newPhrase)
     setIsErasing(false)
-  }, [phase, isErasing, currentPhrase])
+  }, [isReady, isErasing, currentPhrase])
 
   const handleMouseLeave = useCallback(async () => {
-    if (phase !== 'complete' || isErasing) return
+    if (!isReady || isErasing) return
     setIsHovered(false)
     setIsErasing(true)
     
@@ -107,7 +96,7 @@ export function SFFogHero() {
     
     setCurrentPhrase(newPhrase)
     setIsErasing(false)
-  }, [phase, isErasing, currentPhrase])
+  }, [isReady, isErasing, currentPhrase])
 
   if (!mounted) {
     return <div className="w-full min-h-screen bg-[#0a0e17]" />
@@ -144,7 +133,7 @@ export function SFFogHero() {
           Hi, I'm Tereza.
           <br />
           <span className="block sm:inline">
-            <span>{staticText}</span>
+            <span>I explain </span>
             <span 
               className="text-primary italic cursor-default"
               onMouseEnter={handleMouseEnter}
