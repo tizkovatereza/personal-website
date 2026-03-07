@@ -13,7 +13,7 @@
     "@neondatabase/serverless": "^0.10.4",
     "@vercel/analytics": "1.6.1",
     "gray-matter": "^4.0.3",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "reading-time": "^1.5.0",
     "rss": "^1.2.2",
     "rehype-highlight": "^7.0.0",
