@@ -33,23 +33,38 @@ export function SFFogHero() {
         <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.15] mb-6 sm:mb-8">
           Hi, I'm Tereza.
           <br />
-          <span className="block sm:inline">
-            <span>I explain </span>
+          <span>I explain </span>
+          <span 
+            className="relative inline cursor-default"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <span 
-              className="relative inline-block cursor-default"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
             >
-              <span 
-                className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-              >
-                complicated things simply.
-              </span>
-              <span 
-                className={`text-primary italic absolute left-0 top-0 whitespace-nowrap transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-              >
-                simple things complicatedly.
-              </span>
+              complicated
+            </span>
+            <span 
+              className={`text-primary italic absolute left-0 top-0 transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            >
+              simple
+            </span>
+          </span>
+          <br />
+          <span 
+            className="relative inline cursor-default"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <span 
+              className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            >
+              things simply.
+            </span>
+            <span 
+              className={`text-primary italic absolute left-0 top-0 whitespace-nowrap transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            >
+              things complicatedly.
             </span>
           </span>
         </h1>
