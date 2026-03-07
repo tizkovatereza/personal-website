@@ -46,15 +46,63 @@ export function SFFogHero() {
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-[#0a0e17]"
     >
-      {/* Blue glow - positioned top-right area */}
+      {/* === BACKGROUND TEXTURE LAYERS === */}
+      
+      {/* Layer 1: Dense dot grid pattern */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)`,
+          backgroundSize: '22px 22px',
+        }}
+      />
+      
+      {/* Layer 2: Subtle grid lines (blueprint feel) */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}
+      />
+      
+      {/* Layer 3: Enhanced noise texture */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none">
+        <filter id="heroNoise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+          <feColorMatrix type="saturate" values="0"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#heroNoise)"/>
+      </svg>
+      
+      {/* Layer 4: Scanlines */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.04) 2px, rgba(255,255,255,0.04) 4px)',
+        }}
+      />
+      
+      {/* Layer 5: Radial vignette */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
+      
+      {/* Layer 6: Blue accent glow - larger and more diffuse */}
       <div 
         className="absolute pointer-events-none"
         style={{
-          top: '10%',
-          right: '10%',
-          width: '500px',
-          height: '500px',
-          background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
+          top: '5%',
+          right: '5%',
+          width: '700px',
+          height: '700px',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(59,130,246,0.05) 40%, transparent 70%)',
         }}
       />
 
