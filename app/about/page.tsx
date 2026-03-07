@@ -74,7 +74,7 @@ export default function AboutPage() {
           {/* Photo */}
           <div className="w-64 h-80 md:w-72 md:h-96 flex-shrink-0 relative overflow-hidden rounded-lg border border-[rgba(255,255,255,0.06)]">
             <Image
-              src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6a36e07e-59d5-4087-b68c-71e82a4f50c0_1179x2556.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-V4mrDoldfMzg3b62GNbHm05511hB3V.jpeg"
               alt="Tereza Tizkova"
               fill
               className="object-cover object-top"
