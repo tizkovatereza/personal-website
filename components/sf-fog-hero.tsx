@@ -1,10 +1,85 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export function SFFogHero() {
   const [isHovered, setIsHovered] = useState(false)
+  const [displayText, setDisplayText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
+  
+  const primaryPhrase = 'complicated things simply.'
+  const alternatePhrase = 'simple things complicatedly.'
+
+  // Typewriter effect on mount
+  useEffect(() => {
+    let currentIndex = 0
+    const typeInterval = setInterval(() => {
+      if (currentIndex <= primaryPhrase.length) {
+        setDisplayText(primaryPhrase.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        clearInterval(typeInterval)
+        setIsTypingComplete(true)
+      }
+    }, 60)
+
+    return () => clearInterval(typeInterval)
+  }, [])
+
+  // Handle hover animation - erase then type alternate
+  useEffect(() => {
+    if (!isTypingComplete) return
+
+    if (isHovered) {
+      // Erase current text
+      let currentText = primaryPhrase
+      const eraseInterval = setInterval(() => {
+        if (currentText.length > 0) {
+          currentText = currentText.slice(0, -1)
+          setDisplayText(currentText)
+        } else {
+          clearInterval(eraseInterval)
+          // Type alternate phrase
+          let altIndex = 0
+          const typeAltInterval = setInterval(() => {
+            if (altIndex <= alternatePhrase.length) {
+              setDisplayText(alternatePhrase.slice(0, altIndex))
+              altIndex++
+            } else {
+              clearInterval(typeAltInterval)
+            }
+          }, 40)
+        }
+      }, 30)
+    } else {
+      // Erase alternate and type primary
+      let currentText = displayText
+      const eraseInterval = setInterval(() => {
+        if (currentText.length > 0) {
+          currentText = currentText.slice(0, -1)
+          setDisplayText(currentText)
+        } else {
+          clearInterval(eraseInterval)
+          // Type primary phrase
+          let primIndex = 0
+          const typePrimInterval = setInterval(() => {
+            if (primIndex <= primaryPhrase.length) {
+              setDisplayText(primaryPhrase.slice(0, primIndex))
+              primIndex++
+            } else {
+              clearInterval(typePrimInterval)
+            }
+          }, 40)
+        }
+      }, 30)
+    }
+  }, [isHovered, isTypingComplete])
+
+  // Split displayText into two lines
+  const splitIndex = displayText.indexOf(' things')
+  const line2Part1 = splitIndex >= 0 ? displayText.slice(0, splitIndex + 1) : displayText // "complicated " or "simple "
+  const line3 = splitIndex >= 0 ? displayText.slice(splitIndex + 1) : '' // "things simply." or "things complicatedly."
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]">
@@ -35,38 +110,21 @@ export function SFFogHero() {
           <br />
           <span>I explain </span>
           <span 
-            className="relative inline cursor-default"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="text-primary italic cursor-default"
+            onMouseEnter={() => setIsTypingComplete && setIsHovered(true)}
+            onMouseLeave={() => setIsTypingComplete && setIsHovered(false)}
           >
-            <span 
-              className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-            >
-              complicated
-            </span>
-            <span 
-              className={`text-primary italic absolute left-0 top-0 transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            >
-              simple
-            </span>
+            {line2Part1}
           </span>
           <br />
           <span 
-            className="relative inline cursor-default"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="text-primary italic cursor-default"
+            onMouseEnter={() => setIsTypingComplete && setIsHovered(true)}
+            onMouseLeave={() => setIsTypingComplete && setIsHovered(false)}
           >
-            <span 
-              className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-            >
-              things simply.
-            </span>
-            <span 
-              className={`text-primary italic absolute left-0 top-0 whitespace-nowrap transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            >
-              things complicatedly.
-            </span>
+            {line3}
           </span>
+          <span className="text-primary animate-pulse">|</span>
         </h1>
         
         {/* Description */}
