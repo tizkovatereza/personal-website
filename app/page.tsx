@@ -6,28 +6,28 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
-    title: "AI Agents in the Wild",
+    title: "Self-Fulfilling Prophecies, Recursion in Technology & How to Actually Change",
     date: "Mar 2026",
-    source: "E2B Blog",
-    href: "https://e2b.dev/blog/ai-agents-in-the-wild",
+    source: "Substack",
+    href: "https://terezatizkova.substack.com/p/self-fulfilling-prophecies",
   },
   {
-    title: "How Manus Uses E2B to Provide Agents With Virtual Computers",
+    title: "We Need More Influencers.",
     date: "Feb 2026",
-    source: "E2B Blog",
-    href: "https://e2b.dev/blog/how-manus-uses-e2b-to-provide-agents-with-virtual-computers",
+    source: "Substack",
+    href: "https://terezatizkova.substack.com/p/we-need-more-influencers",
+  },
+  {
+    title: "Gödel's Incompleteness Theorems Explained Simply — Part 1",
+    date: "Jan 2026",
+    source: "Substack",
+    href: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-part-1",
   },
   {
     title: "What I Actually Do At My Job",
-    date: "Jan 2026",
-    source: "Substack",
-    href: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job",
-  },
-  {
-    title: "The State & Future of AI Agents",
     date: "Dec 2025",
     source: "Substack",
-    href: "https://terezatizkova.substack.com/p/the-state-and-future-of-ai-agents",
+    href: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job",
   },
 ]
 

@@ -114,7 +114,7 @@ export function SFFogHero() {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]">
-      {/* === FULL-BLEED BACKGROUND IMAGE === */}
+      {/* === FULL-BLEED BACKGROUND IMAGE (grayscale) === */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -122,6 +122,15 @@ export function SFFogHero() {
           backgroundSize: 'cover',
           backgroundPosition: 'center bottom',
           opacity: 0.2,
+          filter: 'grayscale(100%)',
+        }}
+      />
+      
+      {/* === VIGNETTE OVERLAY (spotlight on text area) === */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 40% 50%, transparent 30%, rgba(0,0,0,0.6) 100%)',
         }}
       />
       
