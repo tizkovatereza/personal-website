@@ -1,112 +1,13 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
 export function SFFogHero() {
-  const [mounted, setMounted] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  
-  // Typewriter state - only for the dynamic phrase
-  const [dynamicText, setDynamicText] = useState('')
-  const [showCursor, setShowCursor] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
-  const [isErasing, setIsErasing] = useState(false)
-  const [isReady, setIsReady] = useState(false)
-  
-  const phrase1 = "complicated things simply."
-  const phrase2 = "simple things complicatedly."
-  const [currentPhrase, setCurrentPhrase] = useState(phrase1)
-
-  // Cursor blink effect
-  useEffect(() => {
-    if (isReady && !isErasing) {
-      const interval = setInterval(() => {
-        setShowCursor(prev => !prev)
-      }, 530)
-      return () => clearInterval(interval)
-    } else {
-      setShowCursor(true)
-    }
-  }, [isReady, isErasing])
-
-  // Type initial phrase on mount
-  useEffect(() => {
-    setMounted(true)
-    
-    const startTyping = async () => {
-      await new Promise(r => setTimeout(r, 500))
-      
-      // Type dynamic part only
-      for (let i = 0; i <= phrase1.length; i++) {
-        setDynamicText(phrase1.slice(0, i))
-        await new Promise(r => setTimeout(r, 80))
-      }
-      
-      setIsReady(true)
-    }
-    
-    startTyping()
-  }, [])
-
-  // Handle hover swap with typewriter effect
-  const handleMouseEnter = useCallback(async () => {
-    if (!isReady || isErasing) return
-    setIsHovered(true)
-    setIsErasing(true)
-    
-    const currentText = currentPhrase
-    const newPhrase = currentPhrase === phrase1 ? phrase2 : phrase1
-    
-    // Erase current phrase
-    for (let i = currentText.length; i >= 0; i--) {
-      setDynamicText(currentText.slice(0, i))
-      await new Promise(r => setTimeout(r, 40))
-    }
-    
-    // Type new phrase
-    for (let i = 0; i <= newPhrase.length; i++) {
-      setDynamicText(newPhrase.slice(0, i))
-      await new Promise(r => setTimeout(r, 80))
-    }
-    
-    setCurrentPhrase(newPhrase)
-    setIsErasing(false)
-  }, [isReady, isErasing, currentPhrase])
-
-  const handleMouseLeave = useCallback(async () => {
-    if (!isReady || isErasing) return
-    setIsHovered(false)
-    setIsErasing(true)
-    
-    const currentText = currentPhrase
-    const newPhrase = currentPhrase === phrase1 ? phrase2 : phrase1
-    
-    // Erase current phrase
-    for (let i = currentText.length; i >= 0; i--) {
-      setDynamicText(currentText.slice(0, i))
-      await new Promise(r => setTimeout(r, 40))
-    }
-    
-    // Type new phrase
-    for (let i = 0; i <= newPhrase.length; i++) {
-      setDynamicText(newPhrase.slice(0, i))
-      await new Promise(r => setTimeout(r, 80))
-    }
-    
-    setCurrentPhrase(newPhrase)
-    setIsErasing(false)
-  }, [isReady, isErasing, currentPhrase])
-
-  if (!mounted) {
-    return <div className="w-full min-h-screen bg-[#0a0e17]" />
-  }
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]"
-    >
+    <div className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]">
       {/* === FULL-BLEED BACKGROUND IMAGE === */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -135,15 +36,21 @@ export function SFFogHero() {
           <span className="block sm:inline">
             <span>I explain </span>
             <span 
-              className="text-primary italic cursor-default"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              className="relative inline-block cursor-default"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              {dynamicText}
+              <span 
+                className={`text-primary italic transition-all duration-500 ease-in-out ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+              >
+                complicated things simply.
+              </span>
+              <span 
+                className={`text-primary italic absolute left-0 top-0 whitespace-nowrap transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+              >
+                simple things complicatedly.
+              </span>
             </span>
-            <span 
-              className={`inline-block w-[2px] h-[0.9em] bg-primary ml-[2px] align-middle transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`}
-            />
           </span>
         </h1>
         
