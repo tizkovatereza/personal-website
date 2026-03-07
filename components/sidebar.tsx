@@ -65,7 +65,7 @@ export function Sidebar() {
       <div className="px-8 pb-10">
         <div className="flex items-center gap-5 text-muted-foreground">
           <a
-            href="https://twitter.com/tereza_tizkova"
+            href="https://x.com/tereza_tizkova"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:text-foreground transition-colors"
@@ -73,7 +73,7 @@ export function Sidebar() {
             X
           </a>
           <a
-            href="https://linkedin.com/in/tereza-tizkova"
+            href="https://www.linkedin.com/in/tereza-tizkova-568439174/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:text-foreground transition-colors"
@@ -81,7 +81,7 @@ export function Sidebar() {
             LI
           </a>
           <a
-            href="https://github.com/tereza-org"
+            href="https://github.com/tizkovatereza"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:text-foreground transition-colors"
@@ -89,7 +89,7 @@ export function Sidebar() {
             GH
           </a>
           <a
-            href="https://terezatizkova.substack.com"
+            href="https://terezatizkova.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:text-foreground transition-colors"

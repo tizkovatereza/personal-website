@@ -2,33 +2,32 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { blogPosts } from "@/lib/blog-posts"
 import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
-    title: "AI Agents Are Eating Software First — Everything Else Is Next",
+    title: "AI Agents in the Wild",
     date: "Mar 2026",
     source: "E2B Blog",
-    href: "https://e2b.dev/blog",
+    href: "https://e2b.dev/blog/ai-agents-in-the-wild",
   },
   {
-    title: "Where AI Agents Are Heading: What We Learned from Recent YC Startups",
-    date: "Mar 2026",
-    source: "E2B Blog",
-    href: "https://e2b.dev/blog",
-  },
-  {
-    title: "Let Your Company Stop Growing",
+    title: "How Manus Uses E2B to Provide Agents With Virtual Computers",
     date: "Feb 2026",
-    source: "Substack",
-    href: "https://terezatizkova.substack.com",
+    source: "E2B Blog",
+    href: "https://e2b.dev/blog/how-manus-uses-e2b-to-provide-agents-with-virtual-computers",
   },
   {
-    title: "Distribution Is the Only Moat Left",
+    title: "What I Actually Do At My Job",
     date: "Jan 2026",
     source: "Substack",
-    href: "https://terezatizkova.substack.com",
+    href: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job",
+  },
+  {
+    title: "The State & Future of AI Agents",
+    date: "Dec 2025",
+    source: "Substack",
+    href: "https://terezatizkova.substack.com/p/the-state-and-future-of-ai-agents",
   },
 ]
 
@@ -43,19 +42,25 @@ const projects = [
     category: "Writing",
     title: "Substack", 
     description: "Notes on growth, AI, and building things that matter. No marketing fluff.",
-    href: "https://terezatizkova.substack.com",
+    href: "https://terezatizkova.substack.com/",
   },
   { 
     category: "Program",
+    title: "E2B Startup Program", 
+    description: "Credits and support for startups building on AI agents. YC, a16z speedrun, and more.",
+    href: "https://e2b.dev/startups",
+  },
+  { 
+    category: "Advisory",
     title: "Startup Advisory", 
     description: "Helping early-stage founders with growth strategy, positioning, and go-to-market.",
     href: "/advisory",
   },
   { 
-    category: "Community",
-    title: "E2B Startup Program", 
-    description: "Credits and support for startups building on AI agents. YC, a16z speedrun, and more.",
-    href: "https://e2b.dev/startup-program",
+    category: "Course",
+    title: "DeepLearning.ai", 
+    description: "Building Coding Agents with Tool Execution — a short course on building AI coding agents with sandboxed environments.",
+    href: "https://learn.deeplearning.ai/courses/building-coding-agents-with-tool-execution/information",
   },
 ]
 
@@ -66,12 +71,12 @@ export default function HomePage() {
       <SFFogHero />
 
       {/* Content sections */}
-      <div className="px-12 md:px-16 lg:px-20 py-24 max-w-4xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-24 max-w-5xl">
         
         {/* === WRITING SECTION === */}
         <section className="mb-24">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-[32px] tracking-[-0.02em]">Writing</h2>
+            <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em]">Writing</h2>
             <Link
               href="/blog"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors flex items-center gap-1"
@@ -80,7 +85,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Editorial list with gaps showing through */}
+          {/* Editorial list */}
           <div className="flex flex-col gap-px bg-[rgba(255,255,255,0.03)]">
             {writingItems.map((item, index) => (
               <a
@@ -88,12 +93,12 @@ export default function HomePage() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-baseline justify-between py-5 px-4 bg-[#0a0e17] editorial-item group"
+                className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-[#0a0e17] editorial-item group gap-2"
               >
-                <h3 className="font-serif text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors pr-8">
+                <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors">
                   {item.title}
                 </h3>
-                <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
+                <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
                   {item.date} · {item.source}
                 </span>
               </a>
@@ -107,7 +112,7 @@ export default function HomePage() {
         {/* === PROJECTS SECTION === */}
         <section className="mb-24">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-[32px] tracking-[-0.02em]">Projects</h2>
+            <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em]">Projects</h2>
             <Link
               href="/projects"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors flex items-center gap-1"
@@ -116,27 +121,27 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 2x2 Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* 3-column Grid (2 on tablet, 1 on mobile) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {projects.map((project) => (
               <Link
                 key={project.title}
                 href={project.href}
                 target={project.href.startsWith('http') ? "_blank" : undefined}
                 rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block p-9 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl card-hover"
+                className="group block p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl card-hover"
               >
                 {/* Category with diamond */}
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                  <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                  <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
                     {project.category}
                   </span>
                 </div>
-                <h3 className="font-serif text-[22px] tracking-[-0.01em] mb-3">
+                <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
                   {project.title}
                 </h3>
-                <p className="font-light text-[14px] text-secondary leading-relaxed">
+                <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
                   {project.description}
                 </p>
               </Link>
@@ -148,13 +153,13 @@ export default function HomePage() {
         <div className="section-divider mb-24" />
 
         {/* === FOOTER === */}
-        <footer className="flex items-center justify-between py-12 border-t border-[rgba(255,255,255,0.06)]">
+        <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-12 border-t border-[rgba(255,255,255,0.06)]">
           <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
             © 2026 Tereza Tizkova
           </span>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a
-              href="https://twitter.com/tereza_tizkova"
+              href="https://x.com/tereza_tizkova"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
@@ -162,7 +167,7 @@ export default function HomePage() {
               X/Twitter
             </a>
             <a
-              href="https://linkedin.com/in/tereza-tizkova"
+              href="https://www.linkedin.com/in/tereza-tizkova-568439174/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
@@ -170,7 +175,7 @@ export default function HomePage() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/tereza-org"
+              href="https://github.com/tizkovatereza"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
@@ -178,7 +183,7 @@ export default function HomePage() {
               GitHub
             </a>
             <a
-              href="https://terezatizkova.substack.com"
+              href="https://terezatizkova.substack.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
