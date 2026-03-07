@@ -178,8 +178,13 @@ export function SFFogHero() {
         {/* Location label with line */}
         <div className="flex items-center gap-4 mb-8">
           <span className="w-6 h-px bg-primary" />
-          <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-            San Francisco
+          <span className="relative inline-block group cursor-default">
+            <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:translate-y-1">
+              San Francisco
+            </span>
+            <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase absolute left-0 top-0 opacity-0 -translate-y-1 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+              sometimes Prague
+            </span>
           </span>
         </div>
 
