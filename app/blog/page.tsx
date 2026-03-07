@@ -11,19 +11,42 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#0a0e17]">
-      <div className="px-12 md:px-16 lg:px-20 py-24 max-w-4xl">
+      {/* Hero Header Section with Background */}
+      <div className="relative">
+        {/* Background Image - only for header */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_Wide_panoramic_detailed_comics_illustration_of_Sa_8211bc00-2534-4128-a7e5-c4f534aa9ca9_1-ibJGoG1szulC5Mn1rXDXUYtG8TdjdT.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center bottom',
+            opacity: 0.15,
+          }}
+        />
         
-        {/* Header */}
-        <header className="mb-16">
-          <h1 className="font-serif text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
-            Writing
-          </h1>
-          <p className="font-light text-[17px] text-secondary leading-relaxed max-w-xl">
-            Notes on AI, growth, startups, and life. No marketing fluff.
-          </p>
-        </header>
+        {/* Gradient overlay - fades to solid bg at bottom */}
+        <div 
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(10,14,23,0.6) 0%, rgba(10,14,23,0.8) 60%, rgba(10,14,23,1) 100%)',
+          }}
+        />
 
-        {/* Posts List - Editorial style */}
+        {/* Header content */}
+        <div className="relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-16 max-w-4xl">
+          <header>
+            <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+              Writing
+            </h1>
+            <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
+              Notes on AI, growth, startups, and life. No marketing fluff.
+            </p>
+          </header>
+        </div>
+      </div>
+
+      {/* Posts List - solid background, no image */}
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-4xl">
         <div className="flex flex-col">
           {blogPosts.map((post, index) => (
             <a
@@ -31,26 +54,25 @@ export default function BlogPage() {
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-baseline justify-between gap-8 py-6 border-b border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-colors"
+              className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8 py-6 border-b border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <h2 className="font-serif text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
+                <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
                   {post.title}
                 </h2>
-                <p className="text-[14px] font-light text-muted-foreground line-clamp-1">
+                <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
                   {post.subtitle}
                 </p>
               </div>
               <div className="flex items-center gap-4 flex-shrink-0">
-                <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
+                <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
                   {post.date.replace(/-/g, '.')}
                 </span>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block" />
               </div>
             </a>
           ))}
         </div>
-
       </div>
     </div>
   )

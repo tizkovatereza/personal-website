@@ -43,15 +43,34 @@ const stats = [
 
 export default function AdvisoryPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e17]">
-      <div className="px-12 md:px-16 lg:px-20 py-24 max-w-4xl">
+    <div className="min-h-screen bg-[#0a0e17] relative">
+      {/* Background Image - full bleed */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_Wide_panoramic_detailed_comics_illustration_of_Sa_8211bc00-2534-4128-a7e5-c4f534aa9ca9_0-j6dl7nbMWWPPhhBov4NLb2w5we7n35.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
+          opacity: 0.15,
+        }}
+      />
+      
+      {/* Gradient overlay - fades from bg color at top to transparent at bottom */}
+      <div 
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(10,14,23,0.8) 0%, rgba(10,14,23,0.6) 30%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-4xl">
         
         {/* Header */}
         <header className="mb-16">
-          <h1 className="font-serif text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Advisory
           </h1>
-          <p className="font-light text-[17px] text-secondary leading-relaxed max-w-xl mb-10">
+          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-10">
             I help startups figure out growth, developer tools positioning, and go-to-market strategy. Let's build something together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -76,19 +95,19 @@ export default function AdvisoryPage() {
 
         {/* Services Grid */}
         <section className="mb-20">
-          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Services</h2>
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Services</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((service) => (
               <div
                 key={service.title}
-                className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-lg"
+                className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-lg"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 bg-primary rotate-45" />
                   <h3 className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">{service.title}</h3>
                 </div>
-                <p className="text-[14px] font-light text-secondary leading-relaxed">{service.description}</p>
+                <p className="text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">{service.description}</p>
               </div>
             ))}
           </div>
@@ -99,15 +118,15 @@ export default function AdvisoryPage() {
 
         {/* Stats */}
         <section className="mb-20">
-          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Audience</h2>
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Audience</h2>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-lg text-center">
-                <p className="font-serif text-[36px] tracking-[-0.02em] text-primary mb-1">
+              <div key={stat.label} className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-lg text-center">
+                <p className="font-serif text-[28px] sm:text-[36px] tracking-[-0.02em] text-primary mb-1">
                   {stat.value}
                 </p>
-                <p className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{stat.label}</p>
+                <p className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -118,9 +137,9 @@ export default function AdvisoryPage() {
 
         {/* How it works + Location */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-          <div className="p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
-            <h3 className="font-serif text-[22px] tracking-[-0.01em] mb-4">How it works</h3>
-            <div className="space-y-4 text-[14px] font-light text-secondary leading-relaxed">
+          <div className="p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-xl">
+            <h3 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] mb-4">How it works</h3>
+            <div className="space-y-4 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
               <p>
                 I typically work on a project basis. We start with a discovery call 
                 to understand your challenges, then I put together a proposal.
@@ -132,9 +151,9 @@ export default function AdvisoryPage() {
             </div>
           </div>
           
-          <div className="p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
-            <h3 className="font-serif text-[22px] tracking-[-0.01em] mb-4">Location</h3>
-            <div className="space-y-4 text-[14px] font-light text-secondary leading-relaxed">
+          <div className="p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-xl">
+            <h3 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] mb-4">Location</h3>
+            <div className="space-y-4 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
               <p>
                 I split my time between <span className="text-foreground">San Francisco</span>, 
                 <span className="text-foreground"> Prague</span>, and 
@@ -150,9 +169,9 @@ export default function AdvisoryPage() {
         </section>
 
         {/* CTA */}
-        <section className="p-10 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
-          <h2 className="font-serif text-[28px] tracking-[-0.02em] mb-4">Ready to connect?</h2>
-          <p className="font-light text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
+        <section className="p-8 sm:p-10 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] rounded-xl">
+          <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mb-4">Ready to connect?</h2>
+          <p className="font-light text-[14px] sm:text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             Drop me a message with a bit about what you're working on. 
             No formal pitch deck needed — just tell me what's on your mind.
           </p>
