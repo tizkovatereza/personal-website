@@ -65,7 +65,7 @@ export function SFFogHero() {
         
         {/* Description */}
         <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
-          I like math, my content has grown a company from scratch and defined new market category, and I like cheese because<Link href="/about" className="text-primary hover:underline">...</Link>
+          I like math, my content has grown a <Link href="/projects" className="text-primary hover:underline">company</Link> from scratch and defined new market category, and I like cheese because<Link href="/about" className="text-primary hover:underline">...</Link>
         </p>
 
         {/* CTA Link */}
