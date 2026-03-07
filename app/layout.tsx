@@ -83,7 +83,7 @@ export default function RootLayout({
           {/* Desktop Layout with Fixed Sidebar */}
           <div className="lg:flex">
             <Sidebar />
-            <main className="flex-1 lg:ml-[260px] min-h-screen">
+            <main className="flex-1 lg:ml-[200px] min-h-screen">
               {children}
             </main>
           </div>
