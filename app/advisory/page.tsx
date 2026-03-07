@@ -1,186 +1,171 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Users, Megaphone, Target, MessageSquare, BarChart3, Lightbulb } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Advisory',
+  title: 'Advisory | Tereza Tizkova',
   description: 'Let\'s build something together',
 }
 
 const services = [
   {
-    icon: Target,
-    title: 'GROWTH STRATEGY',
+    title: 'Growth Strategy',
     description: 'Figure out what channels work for your product and how to scale them.',
   },
   {
-    icon: Megaphone,
-    title: 'DEVTOOLS POSITIONING',
+    title: 'DevTools Positioning',
     description: 'Craft messaging that resonates with developers without feeling salesy.',
   },
   {
-    icon: Users,
-    title: 'COMMUNITY BUILDING',
+    title: 'Community Building',
     description: 'Build authentic communities around your product that drive growth.',
   },
   {
-    icon: BarChart3,
-    title: 'GO-TO-MARKET',
+    title: 'Go-to-Market',
     description: 'Plan and execute launches that get attention and convert users.',
   },
   {
-    icon: MessageSquare,
-    title: 'DEVELOPER RELATIONS',
+    title: 'Developer Relations',
     description: 'Set up DevRel programs that build trust and drive adoption.',
   },
   {
-    icon: Lightbulb,
-    title: 'CONTENT STRATEGY',
+    title: 'Content Strategy',
     description: 'Create content that educates, builds authority, and generates leads.',
   },
 ]
 
 const stats = [
-  { value: '40K+', label: 'NEWSLETTER' },
-  { value: '11K+', label: 'X/TWITTER' },
-  { value: '8K+', label: 'LINKEDIN' },
-  { value: '20K+', label: 'GITHUB STARS' },
+  { value: '40K+', label: 'Newsletter' },
+  { value: '11K+', label: 'X/Twitter' },
+  { value: '8K+', label: 'LinkedIn' },
+  { value: '20K+', label: 'GitHub Stars' },
 ]
 
 export default function AdvisoryPage() {
   return (
-    <div className="px-6 py-12 lg:px-12 lg:py-16 max-w-5xl dot-grid">
-      {/* Header */}
-      <header className="mb-12">
-        <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wider uppercase mb-4">
-          ADVISORY
-        </h1>
-        <p className="text-muted-foreground max-w-2xl text-sm mb-8">
-          Let&apos;s build something together. I help startups figure out growth, developer tools positioning, and go-to-market strategy.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
+    <div className="min-h-screen bg-[#0a0e17]">
+      <div className="px-12 md:px-16 lg:px-20 py-24 max-w-4xl">
+        
+        {/* Header */}
+        <header className="mb-16">
+          <h1 className="font-serif text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+            Advisory
+          </h1>
+          <p className="font-light text-[17px] text-secondary leading-relaxed max-w-xl mb-10">
+            I help startups figure out growth, developer tools positioning, and go-to-market strategy. Let's build something together.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="mailto:tereza.tizkova@gmail.com?subject=Advisory%20Inquiry"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Get in touch
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase rounded-lg hover:border-primary hover:text-primary transition-colors"
+            >
+              About me
+            </Link>
+          </div>
+        </header>
+
+        {/* Section divider */}
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+
+        {/* Services Grid */}
+        <section className="mb-20">
+          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Services</h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-lg"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                  <h3 className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">{service.title}</h3>
+                </div>
+                <p className="text-[14px] font-light text-secondary leading-relaxed">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section divider */}
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+
+        {/* Stats */}
+        <section className="mb-20">
+          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Audience</h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-lg text-center">
+                <p className="font-serif text-[36px] tracking-[-0.02em] text-primary mb-1">
+                  {stat.value}
+                </p>
+                <p className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section divider */}
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+
+        {/* How it works + Location */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+          <div className="p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
+            <h3 className="font-serif text-[22px] tracking-[-0.01em] mb-4">How it works</h3>
+            <div className="space-y-4 text-[14px] font-light text-secondary leading-relaxed">
+              <p>
+                I typically work on a project basis. We start with a discovery call 
+                to understand your challenges, then I put together a proposal.
+              </p>
+              <p>
+                <span className="text-primary">Packages start at $500</span> for 
+                focused consulting sessions. Longer engagements available for ongoing advisory work.
+              </p>
+            </div>
+          </div>
+          
+          <div className="p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
+            <h3 className="font-serif text-[22px] tracking-[-0.01em] mb-4">Location</h3>
+            <div className="space-y-4 text-[14px] font-light text-secondary leading-relaxed">
+              <p>
+                I split my time between <span className="text-foreground">San Francisco</span>, 
+                <span className="text-foreground"> Prague</span>, and 
+                <span className="text-foreground"> Berlin</span>. Happy to meet 
+                in person or work async.
+              </p>
+              <p>
+                Most clients are US or EU-based tech companies building developer tools, 
+                AI products, or technical B2B SaaS.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="p-10 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] rounded-xl">
+          <h2 className="font-serif text-[28px] tracking-[-0.02em] mb-4">Ready to connect?</h2>
+          <p className="font-light text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
+            Drop me a message with a bit about what you're working on. 
+            No formal pitch deck needed — just tell me what's on your mind.
+          </p>
           <Link
             href="mailto:tereza.tizkova@gmail.com?subject=Advisory%20Inquiry"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-mono text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase rounded-lg hover:bg-primary/90 transition-colors"
           >
-            GET IN TOUCH
+            Send message
             <ArrowRight className="h-3 w-3" />
           </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-border text-foreground font-mono text-xs tracking-widest uppercase hover:border-primary hover:text-primary transition-colors"
-          >
-            ABOUT ME
-          </Link>
-        </div>
-      </header>
+        </section>
 
-      {/* Dashed Divider */}
-      <div className="dashed-divider mb-12" />
-
-      {/* Services Grid */}
-      <section className="mb-16">
-        <div className="flex items-center gap-3 mb-8">
-          <span className="w-2 h-2 bg-secondary signal-dot" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">SERVICES</h2>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="p-6 bg-card border border-border project-card-hover"
-            >
-              <service.icon className="h-5 w-5 text-primary mb-4" />
-              <h3 className="font-mono text-xs tracking-widest uppercase mb-3">{service.title}</h3>
-              <p className="text-sm text-muted-foreground">{service.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Dashed Divider */}
-      <div className="dashed-divider mb-12" />
-
-      {/* Stats - Dashboard readouts */}
-      <section className="mb-16">
-        <div className="flex items-center gap-3 mb-8">
-          <span className="w-2 h-2 bg-primary signal-dot" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">AUDIENCE</h2>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="p-4 border border-border bg-card text-center">
-              <p className="font-display text-3xl md:text-4xl font-bold text-primary mb-1">
-                {stat.value}
-              </p>
-              <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Dashed Divider */}
-      <div className="dashed-divider mb-12" />
-
-      {/* How it works + Location */}
-      <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-6 bg-card border border-border">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-2 h-2 bg-secondary" />
-            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">HOW IT WORKS</h3>
-          </div>
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <p>
-              I typically work on a project basis. We start with a discovery call 
-              to understand your challenges, then I put together a proposal.
-            </p>
-            <p>
-              <span className="text-primary font-mono text-xs">PACKAGES START AT $500</span> for 
-              focused consulting sessions. Longer engagements available for ongoing advisory work.
-            </p>
-          </div>
-        </div>
-        
-        <div className="p-6 bg-card border border-border">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-2 h-2 bg-primary" />
-            <h3 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">LOCATION</h3>
-          </div>
-          <div className="space-y-4 text-sm text-muted-foreground">
-            <p>
-              I split my time between <span className="text-foreground">San Francisco</span>, 
-              <span className="text-foreground"> Prague</span>, and 
-              <span className="text-foreground"> Berlin</span>. Happy to meet 
-              in person or work async.
-            </p>
-            <p>
-              Most clients are US or EU-based tech companies building developer tools, 
-              AI products, or technical B2B SaaS.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="p-8 bg-card border border-border">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-2 h-2 bg-primary blink" />
-          <h2 className="font-mono text-xs tracking-widest uppercase text-muted-foreground">READY TO CONNECT?</h2>
-        </div>
-        <p className="text-muted-foreground mb-6 max-w-lg">
-          Drop me a message with a bit about what you&apos;re working on. 
-          No formal pitch deck needed — just tell me what&apos;s on your mind.
-        </p>
-        <Link
-          href="mailto:tereza.tizkova@gmail.com?subject=Advisory%20Inquiry"
-          className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-mono text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
-        >
-          SEND MESSAGE
-          <ArrowRight className="h-3 w-3" />
-        </Link>
-      </section>
+      </div>
     </div>
   )
 }
