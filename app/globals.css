@@ -5,52 +5,31 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Dark SF skyline aesthetic with blue accents */
+/* Design system from v0-prompt */
 :root {
-  --background: #0a0c10;
-  --foreground: #e8eaed;
-  --card: #0f1218;
-  --card-foreground: #e8eaed;
-  --popover: #0f1218;
-  --popover-foreground: #e8eaed;
+  --background: #0a0e17;
+  --surface: #0f1420;
+  --foreground: #e8e6e3;
+  --card: #0f1420;
+  --card-foreground: #e8e6e3;
+  --popover: #0f1420;
+  --popover-foreground: #e8e6e3;
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  --secondary: #64748b;
+  --secondary: #8a8f98;
   --secondary-foreground: #ffffff;
-  --muted: #151922;
-  --muted-foreground: #6b7280;
+  --muted: #0f1420;
+  --muted-foreground: #8a8f98;
   --accent: #3b82f6;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #1e2530;
-  --input: #151922;
+  --border: rgba(255, 255, 255, 0.06);
+  --input: #0f1420;
   --ring: #3b82f6;
-  --radius: 0px;
-  --sidebar-width: 200px;
-}
-
-/* Light mode */
-.light {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #64748b;
-  --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #f1f5f9;
-  --ring: #2563eb;
+  --radius: 12px;
+  --sidebar-width: 220px;
+  --text-muted: #4a4f5a;
 }
 
 @theme inline {
@@ -76,20 +55,141 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    border-radius: 0 !important;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle noise texture */
+.noise-texture::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 101;
+}
+
+/* Pulsing status dot */
+@keyframes pulse-dot {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% { 
+    opacity: 0.8; 
+    box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+/* Floating particles animation */
+@keyframes float-particle {
+  0% { 
+    transform: translateY(0); 
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% { 
+    transform: translateY(-20px); 
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+/* Section divider gradient */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.06) 80%,
+    transparent
+  );
+}
+
+/* Card hover with blue accent */
+.card-hover {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.card-hover:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background-color: rgba(59, 130, 246, 0.03);
+}
+
+/* Editorial list item */
+.editorial-item {
+  transition: background-color 0.2s ease;
+}
+.editorial-item:hover {
+  background-color: var(--surface);
+}
+.editorial-item:hover h3 {
+  color: var(--primary);
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--primary);
 }
 
 /* Prose styling for MDX content */
@@ -116,85 +216,6 @@
   text-underline-offset: 4px;
 }
 
-/* Selection styling */
-::selection {
-  background: rgba(59, 130, 246, 0.3);
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Subtle noise texture */
-.noise-texture {
-  position: relative;
-}
-.noise-texture::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-/* Scanline overlay */
-.scanlines {
-  position: relative;
-}
-.scanlines::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.05) 2px,
-    rgba(0, 0, 0, 0.05) 4px
-  );
-  pointer-events: none;
-}
-
-/* Blue glow effect */
-.blue-glow {
-  box-shadow: 0 0 60px rgba(59, 130, 246, 0.15), 0 0 120px rgba(59, 130, 246, 0.1);
-}
-
-/* Pulsing status dot */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-/* Floating particles animation */
-@keyframes float-particle {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-  25% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
-  50% { transform: translateY(-10px) translateX(-5px); opacity: 0.4; }
-  75% { transform: translateY(-30px) translateX(5px); opacity: 0.5; }
-}
-
-.animate-float {
-  animation: float-particle 8s ease-in-out infinite;
-}
-
-/* Binary watermark scroll */
-@keyframes scroll-binary {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-
-.animate-binary {
-  animation: scroll-binary 30s linear infinite;
-}
-
 /* Hide scrollbar but keep functionality */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -205,74 +226,12 @@ html {
   display: none;
 }
 
-/* Sidebar layout */
-@media (min-width: 1024px) {
-  .sidebar-layout {
-    display: grid;
-    grid-template-columns: var(--sidebar-width) 1fr;
-    min-height: 100vh;
-  }
-  
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: var(--sidebar-width);
-    overflow-y: auto;
-  }
-  
-  .main-content {
-    margin-left: var(--sidebar-width);
-  }
+/* Binary watermark scroll */
+@keyframes scroll-binary {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 
-/* Horizontal scroll for project cards */
-.horizontal-scroll {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 1rem;
-}
-
-.horizontal-scroll > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
-
-/* Card hover with blue accent */
-.card-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.card-hover:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-}
-
-/* Link underline animation */
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* Editorial list item */
-.editorial-item {
-  transition: background-color 0.2s ease;
-}
-.editorial-item:hover {
-  background-color: var(--muted);
+.animate-binary {
+  animation: scroll-binary 30s linear infinite;
 }

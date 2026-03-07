@@ -1,12 +1,22 @@
 "use client"
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
 
 export function SFFogHero() {
   const [mounted, setMounted] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
   const containerRef = useRef<HTMLDivElement>(null)
+
+  // Generate random particles on mount
+  const particles = useMemo(() => {
+    return Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${30 + Math.random() * 50}%`,
+      delay: Math.random() * 8,
+    }))
+  }, [])
 
   useEffect(() => {
     setMounted(true)
@@ -28,164 +38,201 @@ export function SFFogHero() {
   }, [])
 
   if (!mounted) {
-    return <div className="w-full h-screen bg-background" />
+    return <div className="w-full h-screen bg-[#0a0e17]" />
   }
 
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-[#0a0c10]"
+      className="relative w-full h-screen overflow-hidden bg-[#0a0e17]"
     >
-      {/* Blue glow behind skyline */}
+      {/* Blue glow - positioned top-right area */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center bottom, rgba(59,130,246,0.12) 0%, rgba(59,130,246,0.04) 40%, transparent 70%)',
+          top: '10%',
+          right: '10%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
         }}
       />
 
+      {/* Floating particles */}
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="absolute w-0.5 h-0.5 bg-primary rounded-full animate-float"
+          style={{
+            left: particle.left,
+            top: particle.top,
+            animationDelay: `${particle.delay}s`,
+          }}
+        />
+      ))}
+
       {/* === SVG SF SKYLINE === */}
       <svg 
-        className="absolute bottom-0 left-0 right-0 w-full h-[50%]"
+        className="absolute bottom-0 left-0 right-0 w-full h-[45%] opacity-60"
         viewBox="0 0 1400 400"
         preserveAspectRatio="xMidYMax slice"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          transform: `translateX(${(mousePos.x - 0.5) * -20}px)`,
-          transition: 'transform 0.3s ease-out',
+          transform: `translateX(${(mousePos.x - 0.5) * -15}px)`,
+          transition: 'transform 0.5s ease-out',
         }}
       >
         {/* Golden Gate Bridge */}
-        <g className="text-primary/25">
-          {/* Main cables */}
+        <g stroke="rgba(59,130,246,0.12)" fill="none">
+          {/* Main cables - quadratic curves */}
           <path 
-            d="M100 300 Q250 180 400 300 Q550 180 700 300" 
-            stroke="currentColor" 
-            strokeWidth="1.5" 
-            fill="none"
+            d="M50 320 Q200 180 350 320" 
+            strokeWidth="1.5"
+          />
+          <path 
+            d="M350 320 Q500 180 650 320" 
+            strokeWidth="1.5"
           />
           {/* Towers */}
-          <line x1="250" y1="180" x2="250" y2="400" stroke="currentColor" strokeWidth="2" />
-          <line x1="550" y1="180" x2="550" y2="400" stroke="currentColor" strokeWidth="2" />
+          <line x1="200" y1="180" x2="200" y2="400" strokeWidth="2" />
+          <line x1="500" y1="180" x2="500" y2="400" strokeWidth="2" />
           {/* Tower cross beams */}
-          <line x1="245" y1="200" x2="255" y2="200" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="245" y1="240" x2="255" y2="240" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="545" y1="200" x2="555" y2="200" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="545" y1="240" x2="555" y2="240" stroke="currentColor" strokeWidth="1.5" />
-          {/* Vertical cables */}
-          {[130, 170, 210, 290, 330, 370, 430, 470, 510, 590, 630, 670].map((x, i) => (
+          <line x1="195" y1="200" x2="205" y2="200" strokeWidth="1.5" />
+          <line x1="195" y1="240" x2="205" y2="240" strokeWidth="1.5" />
+          <line x1="195" y1="280" x2="205" y2="280" strokeWidth="1.5" />
+          <line x1="495" y1="200" x2="505" y2="200" strokeWidth="1.5" />
+          <line x1="495" y1="240" x2="505" y2="240" strokeWidth="1.5" />
+          <line x1="495" y1="280" x2="505" y2="280" strokeWidth="1.5" />
+          {/* Suspender cables */}
+          {[80, 120, 160, 240, 280, 320, 380, 420, 460, 540, 580, 620].map((x, i) => (
             <line 
               key={i} 
               x1={x} 
-              y1={220 + Math.abs(400 - x) * 0.15} 
+              y1={200 + Math.abs(350 - x) * 0.2} 
               x2={x} 
               y2="400" 
-              stroke="currentColor" 
-              strokeWidth="0.3" 
-              opacity="0.5"
+              strokeWidth="0.5" 
+              opacity="0.6"
             />
           ))}
           {/* Road deck */}
-          <line x1="100" y1="295" x2="700" y2="295" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+          <line x1="50" y1="315" x2="650" y2="315" strokeWidth="1" opacity="0.8" />
         </g>
 
         {/* Downtown Skyline */}
-        <g className="text-primary/20">
+        <g stroke="rgba(59,130,246,0.12)" fill="none">
           {/* Transamerica Pyramid */}
-          <path d="M800 400 L800 400 L830 140 L860 400 Z" stroke="currentColor" strokeWidth="1" fill="none" />
+          <path d="M750 400 L780 120 L810 400" strokeWidth="1" />
           
-          {/* Salesforce Tower */}
-          <rect x="900" y="160" width="35" height="240" stroke="currentColor" strokeWidth="1" fill="none" />
-          <ellipse cx="917" cy="160" rx="17" ry="5" stroke="currentColor" strokeWidth="0.5" fill="none" />
+          {/* Salesforce Tower - rounded top */}
+          <path d="M860 400 L860 150 Q877 130 894 150 L894 400" strokeWidth="1" />
           
-          {/* Various buildings */}
-          <rect x="950" y="220" width="25" height="180" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="985" y="250" width="20" height="150" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1015" y="200" width="30" height="200" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1055" y="270" width="22" height="130" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1085" y="240" width="28" height="160" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1125" y="280" width="20" height="120" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1155" y="260" width="25" height="140" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1190" y="290" width="18" height="110" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1220" y="300" width="30" height="100" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1260" y="320" width="22" height="80" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1295" y="330" width="28" height="70" stroke="currentColor" strokeWidth="0.5" fill="none" />
-          <rect x="1335" y="340" width="20" height="60" stroke="currentColor" strokeWidth="0.5" fill="none" />
+          {/* Various rectangular buildings */}
+          <rect x="920" y="200" width="30" height="200" strokeWidth="0.8" />
+          <rect x="960" y="240" width="25" height="160" strokeWidth="0.8" />
+          <rect x="995" y="180" width="35" height="220" strokeWidth="0.8" />
+          <rect x="1040" y="260" width="28" height="140" strokeWidth="0.8" />
+          <rect x="1080" y="220" width="32" height="180" strokeWidth="0.8" />
+          <rect x="1125" y="280" width="24" height="120" strokeWidth="0.8" />
+          <rect x="1160" y="250" width="30" height="150" strokeWidth="0.8" />
+          <rect x="1200" y="290" width="22" height="110" strokeWidth="0.8" />
+          <rect x="1235" y="310" width="35" height="90" strokeWidth="0.8" />
+          <rect x="1285" y="330" width="28" height="70" strokeWidth="0.8" />
+          <rect x="1330" y="350" width="24" height="50" strokeWidth="0.8" />
+          
+          {/* Window dots on buildings */}
+          {[925, 935, 945].map((x) => 
+            [220, 240, 260, 280, 300, 320, 340, 360, 380].map((y, i) => (
+              <circle key={`w1-${x}-${i}`} cx={x} cy={y} r="1" fill="rgba(59,130,246,0.08)" />
+            ))
+          )}
+          {[1000, 1010, 1020].map((x) => 
+            [200, 220, 240, 260, 280, 300, 320, 340, 360, 380].map((y, i) => (
+              <circle key={`w2-${x}-${i}`} cx={x} cy={y} r="1" fill="rgba(59,130,246,0.08)" />
+            ))
+          )}
         </g>
 
-        {/* Water/Bay reflection lines */}
-        <g className="text-primary/10">
-          <line x1="0" y1="385" x2="1400" y2="385" stroke="currentColor" strokeWidth="0.5" />
-          <line x1="0" y1="395" x2="1400" y2="395" stroke="currentColor" strokeWidth="0.3" strokeDasharray="30 60" />
+        {/* Water line and reflections */}
+        <g stroke="rgba(59,130,246,0.08)" fill="none">
+          <line x1="0" y1="390" x2="1400" y2="390" strokeWidth="0.5" />
+          <line x1="100" y1="398" x2="200" y2="398" strokeWidth="0.3" strokeDasharray="10 20" />
+          <line x1="400" y1="396" x2="550" y2="396" strokeWidth="0.3" strokeDasharray="15 30" />
+          <line x1="800" y1="398" x2="950" y2="398" strokeWidth="0.3" strokeDasharray="8 25" />
+          <line x1="1100" y1="396" x2="1300" y2="396" strokeWidth="0.3" strokeDasharray="12 35" />
         </g>
+
+        {/* Fog gradient at bottom */}
+        <defs>
+          <linearGradient id="fogFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#0a0e17" stopOpacity="0" />
+            <stop offset="100%" stopColor="#0a0e17" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="360" width="1400" height="40" fill="url(#fogFade)" />
       </svg>
 
-      {/* Noise texture overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Scanlines */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px)',
-        }}
-      />
-
       {/* === MAIN CONTENT === */}
-      <div className="absolute inset-0 flex flex-col justify-center z-20 px-8 md:px-16 lg:px-24 max-w-3xl">
-        {/* Location tag */}
-        <div className="flex items-center gap-3 mb-6">
+      <div className="absolute inset-0 flex flex-col justify-center z-20 px-12 md:px-16 lg:px-20 max-w-[700px]" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        {/* Location label with line */}
+        <div className="flex items-center gap-4 mb-8">
           <span className="w-6 h-px bg-primary" />
-          <span className="font-mono text-xs text-primary tracking-[0.2em]">
-            SAN FRANCISCO
+          <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+            San Francisco
           </span>
         </div>
 
         {/* Main headline */}
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-6">
+        <h1 className="font-serif text-[44px] md:text-[56px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.1] mb-8">
           Building the future
           <br />
-          with <em className="text-primary">machines</em>
+          with <em className="text-primary italic">machines</em>
         </h1>
         
         {/* Description */}
-        <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg mb-8">
+        <p className="text-secondary font-light text-[17px] leading-[1.7] max-w-[520px] mb-10">
           Growth at E2B — the open-source cloud infrastructure for AI agents. I write about what happens when you let autonomous software loose on real problems.
         </p>
 
         {/* CTA Link */}
         <Link 
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-sm text-foreground group"
+          className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.05em] uppercase text-foreground group w-fit"
         >
-          <span className="border-b border-primary pb-1">Read my writing</span>
+          <span className="link-underline pb-1">Read my writing</span>
           <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
         </Link>
       </div>
 
       {/* === SCROLL INDICATOR (right side) === */}
-      <div className="absolute right-6 bottom-8 top-8 flex flex-col items-center justify-end z-30">
-        <span className="font-mono text-[10px] text-muted-foreground tracking-widest writing-mode-vertical rotate-180" style={{ writingMode: 'vertical-rl' }}>
+      <div className="absolute right-8 bottom-8 flex flex-col items-center z-30">
+        <span 
+          className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase mb-3"
+          style={{ writingMode: 'vertical-rl' }}
+        >
           scroll
         </span>
-        <div className="w-px h-16 bg-primary/50 mt-3" />
+        <div 
+          className="w-px h-12"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(59,130,246,0.6), transparent)',
+          }}
+        />
       </div>
 
       {/* === STATUS BAR (bottom) === */}
-      <div className="absolute bottom-6 left-8 md:left-16 lg:left-24 right-24 z-30 flex items-center justify-between">
+      <div className="absolute bottom-8 left-12 md:left-16 lg:left-20 right-24 z-30 flex items-center">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 bg-primary rounded-full pulse-dot" />
-          <span className="font-mono text-[11px] text-muted-foreground tracking-wide">
+          <div className="w-[5px] h-[5px] bg-primary rounded-full pulse-dot" />
+          <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
             Currently building at E2B
           </span>
         </div>
-        <span className="font-mono text-[11px] text-muted-foreground/50 hidden md:block">
+        <div className="flex-1 mx-6">
+          {/* Spacer line could go here */}
+        </div>
+        <span className="font-mono text-[11px] font-light text-[#4a4f5a] tracking-[0.05em] hidden md:block">
           37.7749° N, 122.4194° W
         </span>
       </div>
