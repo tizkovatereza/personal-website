@@ -86,19 +86,6 @@ export function SFFogHero() {
     runAnimation(targetPhrase)
   }
 
-  // Split displayText for line breaks - find "things" to split there
-  const thingsIndex = displayText.indexOf('things')
-  let line2Text = ''
-  let line3Text = ''
-  
-  if (thingsIndex > 0) {
-    line2Text = displayText.slice(0, thingsIndex).trim()
-    line3Text = displayText.slice(thingsIndex)
-  } else {
-    line2Text = displayText
-    line3Text = ''
-  }
-
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* === MAIN CONTENT === */}
@@ -106,27 +93,19 @@ export function SFFogHero() {
         {/* Main headline */}
         <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] tracking-[-0.02em] text-foreground leading-[1.15] mb-6 sm:mb-8">
           Hi, I'm Tereza.
-          <br />
+        </h1>
+        
+        {/* Animated tagline - same size as description */}
+        <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-4">
           <span>I explain </span>
           <span 
             className="text-primary italic cursor-default"
             onMouseEnter={handleMouseEnter}
           >
-            {line2Text}
+            {displayText}
           </span>
-          {line3Text && (
-            <>
-              <br />
-              <span 
-                className="text-primary italic cursor-default"
-                onMouseEnter={handleMouseEnter}
-              >
-                {line3Text}
-              </span>
-            </>
-          )}
           <span className={`text-primary ${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
-        </h1>
+        </p>
         
         {/* Description */}
         <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
