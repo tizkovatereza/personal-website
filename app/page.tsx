@@ -1,7 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
@@ -29,6 +30,13 @@ const writingItems = [
     source: "Substack",
     href: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job",
   },
+]
+
+const promptChips = [
+  "I want to collaborate on...",
+  "I think what's missing on your website is...",
+  "My favorite kind of cheese is...",
+  "You should write about...",
 ]
 
 const projects = [
@@ -65,6 +73,30 @@ const projects = [
 ]
 
 export default function HomePage() {
+  const [message, setMessage] = useState("")
+  const [contact, setContact] = useState("")
+  const [isSent, setIsSent] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+
+  const handleChipClick = (prompt: string) => {
+    setMessage(prompt)
+  }
+
+  const handleSend = async () => {
+    if (!message.trim()) return
+    setIsSending(true)
+    // Simulate sending (replace with actual API call)
+    await new Promise(resolve => setTimeout(resolve, 500))
+    setIsSent(true)
+    setIsSending(false)
+    // Reset after a few seconds
+    setTimeout(() => {
+      setIsSent(false)
+      setMessage("")
+      setContact("")
+    }, 3000)
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0e17]">
       {/* Hero */}
@@ -146,6 +178,69 @@ export default function HomePage() {
                 </p>
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* Section divider */}
+        <div className="section-divider mb-24" />
+
+        {/* === WRITE ME SOMETHING SECTION === */}
+        <section className="mb-24">
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-8">Write me something</h2>
+          
+          <div className="p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+            {isSent ? (
+              <div className="text-center py-8">
+                <p className="font-serif text-[18px] text-primary">Sent! Thanks.</p>
+              </div>
+            ) : (
+              <>
+                {/* Prompt chips */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {promptChips.map((prompt, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleChipClick(prompt)}
+                      className={`px-3 py-1.5 font-mono text-[10px] sm:text-[11px] font-light tracking-[0.05em] uppercase border transition-colors ${
+                        message === prompt
+                          ? 'border-primary text-primary bg-primary/10'
+                          : 'border-[rgba(255,255,255,0.1)] text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                      }`}
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Text area */}
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Write something..."
+                  rows={3}
+                  className="w-full bg-transparent border border-[rgba(255,255,255,0.1)] px-4 py-3 font-light text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 resize-none mb-4"
+                />
+
+                {/* Contact and send row */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                  <input
+                    type="text"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                    placeholder="Leave your contact (optional)"
+                    className="flex-1 bg-transparent border border-[rgba(255,255,255,0.1)] px-4 py-2 font-mono text-[12px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50"
+                  />
+                  <button
+                    onClick={handleSend}
+                    disabled={!message.trim() || isSending}
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2 bg-primary text-primary-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSending ? 'Sending...' : 'Send'}
+                    <Send className="w-3 h-3" />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </section>
 
