@@ -1,137 +1,182 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About | Tereza Tizkova',
-  description: 'About Tereza Tizkova',
+  description: 'About Tereza Tizkova - Founding team member and Head of Growth at E2B',
 }
 
-const timeline = [
+const jobs = [
   {
-    year: '2024',
-    title: 'O-1 Visa Holder',
-    description: 'Recognized for extraordinary ability in technology and business.',
-    location: 'USA',
+    role: 'Founding Member & Head of Growth',
+    company: 'E2B',
+    location: 'San Francisco',
+    date: 'Jun 2023 – Present',
+    description: 'First hire at an AI infrastructure startup. Built all of growth, content, developer relations, and community from zero.',
   },
   {
-    year: '2021',
-    title: 'E2B - Growth & DevRel',
-    description: 'Founding team member. Built growth from zero, established developer relations, shaped product positioning.',
-    location: 'SF / Prague',
+    role: 'Created Awesome AI Agents',
+    company: 'E2B / Open Source',
+    location: '',
+    date: '2023 – Present',
+    description: 'Built and maintain the most popular open-source list of AI agents. 26K+ GitHub stars and growing.',
   },
   {
-    year: '2023',
-    title: 'DeepLearning.AI',
-    description: 'Co-created AI course reaching thousands of developers worldwide.',
-    location: 'Remote',
+    role: 'DeepLearning.AI Course Instructor',
+    company: "with Andrew Ng's team",
+    location: '',
+    date: '2024',
+    description: 'Co-created and taught "Building Coding Agents with Tool Execution" — a short course on the DeepLearning.AI platform.',
   },
   {
-    year: '2020',
-    title: 'McKinsey & Company',
-    description: 'Management consultant advising on growth strategy in banking, energy, and telecom.',
+    role: 'Organized AI Hackathons',
+    company: 'E2B',
+    location: 'San Francisco & Prague',
+    date: '2024 – 2025',
+    description: 'Organized multiple hackathons including the first E2B hackathon in Prague (50+ hackers) and Code Interpreting hackathons in SF with partners like Fireworks AI.',
+  },
+  {
+    role: 'Grew E2B from pre-seed to Series A',
+    company: 'E2B',
+    location: '',
+    date: '2023 – 2025',
+    description: 'Shaped product positioning, ran partnerships with Groq, Mistral, LangChain. Managed launches, billboard campaigns, and got E2B into AWS Marketplace.',
+  },
+  {
+    role: 'Built developer community',
+    company: 'E2B',
+    location: '',
+    date: '2023 – Present',
+    description: 'Grew community across X, LinkedIn, Discord, and newsletter. Organized offline events in San Francisco and Prague (100-200 attendees). Ran workshops and ambassador programs.',
+  },
+  {
+    role: 'Management Consultant',
+    company: 'McKinsey & Company',
     location: 'Prague',
+    date: '2022 – 2023',
+    description: 'Strategy and operations consulting. Worked on AI in early-stage pharma R&D and drug discovery.',
   },
   {
-    year: '2019',
-    title: 'Math Graduate',
-    description: 'Master\'s in pure mathematics. Bachelor\'s in marketing & economics.',
-    location: 'Prague',
-  },
-  {
-    year: '2017—',
-    title: 'Discover Academy',
-    description: 'Lecturer at non-profit summer school for talented Czech and Slovak high schoolers. Teaching graduate-level math in interactive, debate-based lessons to 400+ students annually.',
-    location: 'Slovakia',
+    role: 'President & Founder',
+    company: 'IAESTE Czech Republic (local branch)',
+    location: '',
+    date: '~2020 – 2022',
+    description: 'Founded a local IAESTE branch during COVID. Organized international student technical internships.',
   },
 ]
 
-const interests = [
-  { label: 'Snowflakes', description: 'Endlessly fascinating fractals' },
-  { label: 'Reading', description: 'Quality over quantity' },
-  { label: 'Writing', description: 'Thinking in public' },
-  { label: 'Cheese', description: 'The good kind' },
+const education = [
+  {
+    degree: 'MSc Mathematical Structures',
+    school: 'Charles University, Prague',
+    description: 'Faculty of Mathematics and Physics.',
+  },
+  {
+    degree: 'Economics & Finance',
+    school: 'Charles University, Prague',
+    description: 'Institute of Economic Studies.',
+  },
+  {
+    degree: 'Marketing Communications & PR',
+    school: '',
+    description: 'Undergraduate studies.',
+  },
+]
+
+const talks = [
+  {
+    title: 'Building Coding Agents with Tool Execution',
+    platform: 'DeepLearning.AI',
+    description: "Co-taught a course on building agents that write and execute code, on Andrew Ng's platform.",
+    link: 'https://learn.deeplearning.ai/courses/building-coding-agents-with-tool-execution',
+  },
+  {
+    title: 'Creating Safe Playgrounds for AI Agents',
+    platform: 'Building with AI Podcast',
+    description: 'On the journey from McKinsey to E2B and how sandboxed code execution works.',
+    link: 'https://buildingwith.ai/episode/creating-safe-playgrounds-for-ai-agents-tereza-tizkova-founding-member-head-of-growth-at-e2b',
+  },
+  {
+    title: 'Running AI Generated Code',
+    platform: 'Agents at Work Podcast (Ep. 11)',
+    description: 'On challenges around executing AI-generated code safely and efficiently.',
+    link: 'https://podcasts.apple.com/us/podcast/agents-at-work-11-running-ai-generated-code-w-tereza-from-e2b/id1799165303?i=1000704023233',
+  },
+  {
+    title: 'Giving LLMs Their Own Computers',
+    platform: 'AI Tinkerers Prague',
+    description: "Talk on E2B's open-source runtime that gives LLMs sandboxed cloud computers.",
+    link: 'https://prague.aitinkerers.org/talks/rsvp_SynbeA_no1s',
+  },
+  {
+    title: 'Budoucnost nepráce #8',
+    platform: 'Czech podcast (Future of Work)',
+    description: 'On building secure sandbox environments for AI agents and startup life in Silicon Valley.',
+    link: 'https://www.aidatabaze.cz/podcast-budoucnost-neprace-8-tereza-tizkova-v-silicon-valley-se-neresi-jestli-to-pujde-ale-jak-to-udelat-10x-vetsi/',
+  },
+  {
+    title: 'Data Talk #107',
+    platform: 'Data Talk Podcast (Czech)',
+    description: 'On AI agents, open-source startups, and building from San Francisco.',
+    link: 'https://open.spotify.com/episode/2iT3fLa7s4A3bmTrbQO3fq',
+  },
+  {
+    title: 'Days of AI Prague',
+    platform: 'Panel Discussion',
+    description: 'Panel on AI and developer tools at the Days of AI conference in Prague.',
+    link: '',
+  },
 ]
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e17]">
-      <div className="px-12 md:px-16 lg:px-20 py-24 max-w-4xl">
+    <div className="min-h-screen">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-4xl">
         
         {/* Header */}
         <header className="mb-16">
-          <h1 className="font-serif text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-8">
             About
           </h1>
-          <p className="font-light text-[17px] text-secondary leading-relaxed max-w-xl">
-            Math graduate turned growth person. Building the future with machines.
+          
+          {/* Intro paragraph */}
+          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-[1.8] max-w-2xl">
+            I'm Tereza — founding team member and Head of Growth at{' '}
+            <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>, 
+            where I've been building since day one. Originally from Prague, now based in San Francisco 
+            as an O-1 visa holder. I studied mathematics at Charles University and somehow ended up 
+            in AI infrastructure. I explain complicated things simply — through writing, talks, courses, 
+            and developer content that has helped define a new market category around AI agent infrastructure.
           </p>
         </header>
 
-        {/* Photo + Bio Section */}
-        <section className="flex flex-col md:flex-row gap-12 mb-20">
-          {/* Photo */}
-          <div className="w-64 h-80 md:w-72 md:h-96 flex-shrink-0 relative overflow-hidden border border-[rgba(255,255,255,0.06)]">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-V4mrDoldfMzg3b62GNbHm05511hB3V.jpeg"
-              alt="Tereza Tizkova"
-              fill
-              className="object-cover object-top"
-              priority
-            />
-          </div>
-
-          {/* Bio */}
-          <div className="flex-1 space-y-6">
-            <div className="space-y-5 text-secondary font-light text-[16px] leading-[1.8]">
-              <p>
-                Hi! I'm Tereza, a math graduate turned growth person. I spent 2.5 years 
-                as a founding member at <span className="text-primary">E2B</span>, 
-                where I built and led growth and developer relations from scratch.
-              </p>
-              <p>
-                These days, I work on growth for developer tools, teach AI courses 
-                (including a collaboration with <span className="text-foreground">DeepLearning.AI</span>), 
-                and write about tech, startups, and life.
-              </p>
-              <p>
-                I'm an <span className="text-primary">O-1 visa holder</span> based 
-                between San Francisco, Prague, and Berlin. I like building things that 
-                help people learn and create.
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-2 pt-4">
-              <span className="w-4 h-px bg-primary" />
-              <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
-                SF / Prague / Berlin
-              </span>
-            </div>
-          </div>
-        </section>
-
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-20" />
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
 
-        {/* Timeline */}
+        {/* Experience Section */}
         <section className="mb-20">
-          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Timeline</h2>
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Experience</h2>
           
-          <div className="relative pl-8 border-l border-[rgba(255,255,255,0.1)]">
-            {timeline.map((item, index) => (
-              <div key={index} className="relative pb-12 last:pb-0">
+          <div className="relative pl-6 sm:pl-8 border-l border-[rgba(255,255,255,0.1)]">
+            {jobs.map((job, index) => (
+              <div key={index} className="relative pb-10 last:pb-0">
                 {/* Node */}
                 <div className="absolute left-0 -translate-x-[calc(50%+0.5px)] w-2 h-2 bg-primary rounded-full" />
                 
                 {/* Content */}
-                <div className="pl-8">
-                  <div className="flex items-center gap-4 mb-2">
-                    <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">{item.year}</span>
-                    <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{item.location}</span>
+                <div className="pl-6 sm:pl-8">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
+                    <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">{job.date}</span>
+                    {job.location && (
+                      <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{job.location}</span>
+                    )}
                   </div>
-                  <h3 className="font-serif text-[20px] tracking-[-0.01em] mb-2">{item.title}</h3>
-                  <p className="text-[14px] font-light text-secondary leading-relaxed">{item.description}</p>
+                  <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-1">
+                    <span className="font-semibold">{job.role}</span>
+                    <span className="text-secondary"> — {job.company}</span>
+                  </h3>
+                  <p className="text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">{job.description}</p>
                 </div>
               </div>
             ))}
@@ -139,32 +184,104 @@ export default function AboutPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-20" />
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
 
-        {/* Interests */}
+        {/* Education Section */}
         <section className="mb-20">
-          <h2 className="font-serif text-[32px] tracking-[-0.02em] mb-10">Interests</h2>
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Education</h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {interests.map((interest) => (
-              <div
-                key={interest.label}
-                className="p-6 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]"
-              >
-                <h3 className="font-serif text-[18px] tracking-[-0.01em] mb-2">{interest.label}</h3>
-                <p className="text-[13px] font-light text-muted-foreground">{interest.description}</p>
+          <div className="relative pl-6 sm:pl-8 border-l border-[rgba(255,255,255,0.1)]">
+            {education.map((edu, index) => (
+              <div key={index} className="relative pb-8 last:pb-0">
+                {/* Node */}
+                <div className="absolute left-0 -translate-x-[calc(50%+0.5px)] w-2 h-2 bg-primary rounded-full" />
+                
+                {/* Content */}
+                <div className="pl-6 sm:pl-8">
+                  <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-1">
+                    <span className="font-semibold">{edu.degree}</span>
+                    {edu.school && <span className="text-secondary"> — {edu.school}</span>}
+                  </h3>
+                  <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground">{edu.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-20" />
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+
+        {/* Talks & Podcasts Section */}
+        <section className="mb-20">
+          <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Talks & Podcasts</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {talks.map((talk, index) => (
+              talk.link ? (
+                <a
+                  key={index}
+                  href={talk.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
+                >
+                  {/* Platform with diamond */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                    <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                      {talk.platform}
+                    </span>
+                  </div>
+                  
+                  {/* Title */}
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h3 className="font-serif text-[17px] sm:text-[18px] tracking-[-0.01em] group-hover:text-primary transition-colors">
+                      {talk.title}
+                    </h3>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  
+                  {/* Description */}
+                  <p className="font-light text-[13px] text-secondary leading-relaxed">
+                    {talk.description}
+                  </p>
+                </a>
+              ) : (
+                <div
+                  key={index}
+                  className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]"
+                >
+                  {/* Platform with diamond */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                    <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                      {talk.platform}
+                    </span>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="font-serif text-[17px] sm:text-[18px] tracking-[-0.01em] mb-2">
+                    {talk.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="font-light text-[13px] text-secondary leading-relaxed">
+                    {talk.description}
+                  </p>
+                </div>
+              )
+            ))}
+          </div>
+        </section>
+
+        {/* Section divider */}
+        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
 
         {/* CTA */}
-        <section className="p-10 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
-          <h2 className="font-serif text-[28px] tracking-[-0.02em] mb-4">Get in touch</h2>
-          <p className="font-light text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
+        <section className="p-8 sm:p-10 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+          <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mb-4">Get in touch</h2>
+          <p className="font-light text-[14px] sm:text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             I love meeting new people. Whether you want to collaborate, 
             ask questions, or just say hi — my inbox is open.
           </p>
@@ -177,7 +294,7 @@ export default function AboutPage() {
               <ArrowRight className="h-3 w-3" />
             </Link>
             <Link
-              href="/advisory"
+              href="/work-with-me"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
             >
               Work with me
