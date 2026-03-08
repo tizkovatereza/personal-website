@@ -4,16 +4,16 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About | Tereza Tizkova',
-  description: 'About Tereza Tizkova - Founding team member and Head of Growth at E2B',
+  description: 'About Tereza Tizkova - Founding team member at E2B, leading marketing and growth',
 }
 
 const jobs = [
   {
-    role: 'Founding Member & Head of Growth',
+    role: 'Founding Member',
     company: 'E2B',
     location: 'San Francisco',
     date: 'Jun 2023 – Present',
-    description: 'First hire at an AI infrastructure startup. Built all of growth, content, developer relations, and community from zero.',
+    description: 'First hire at an AI infrastructure startup. Leading marketing and growth activities. Built content, developer relations, and community from zero.',
   },
   {
     role: 'Created Awesome AI Agents',
@@ -142,9 +142,9 @@ export default function AboutPage() {
           
           {/* Intro paragraph */}
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-[1.8] max-w-2xl">
-            I'm Tereza — founding team member and Head of Growth at{' '}
+            I'm Tereza — founding team member at{' '}
             <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>, 
-            where I've been building since day one. Originally from Prague, now based in San Francisco 
+            leading marketing and growth activities since day one. Originally from Prague, now based in San Francisco 
             as an O-1 visa holder. I studied mathematics at Charles University and somehow ended up 
             in AI infrastructure. I explain complicated things simply — through writing, talks, courses, 
             and developer content that has helped define a new market category around AI agent infrastructure.
