@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
-import Image from 'next/image'
+import { TopicsWaitlistForm } from '@/components/topics-waitlist-form'
 
 export const metadata: Metadata = {
   title: 'Projects | Tereza Tizkova',
@@ -36,9 +36,10 @@ const projects = [
     id: 'topics',
     title: 'Topics',
     description: 'A curated reading app that helps you discover and save the best articles on the internet. Built for thoughtful people who want to read more intentionally.',
-    link: 'https://apps.apple.com/app/topics',
-    tag: 'App',
+    link: '#',
+    tag: 'App — Coming Soon',
     image: '/images/project-topics.jpg',
+    isWaitlist: true,
   },
   {
     id: 'events',
@@ -91,37 +92,68 @@ export default function ProjectsPage() {
 
         {/* Projects Grid - 2x2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {projects.map((project) => (
-            <a
-              key={project.id}
-              id={project.id}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
-            >
-              {/* Category with diamond */}
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-                  {project.tag}
-                </span>
-              </div>
-              
-              {/* Title */}
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] group-hover:text-primary transition-colors">
-                  {project.title}
-                </h2>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              
-              {/* Description */}
-              <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
-                {project.description}
-              </p>
-            </a>
-          ))}
+          {projects.map((project) => {
+            // Special handling for waitlist projects
+            if (project.isWaitlist) {
+              return (
+                <div
+                  key={project.id}
+                  id={project.id}
+                  className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] transition-all duration-300"
+                >
+                  {/* Category with diamond */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                    <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                      {project.tag}
+                    </span>
+                  </div>
+                  
+                  {/* Title */}
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em]">
+                      {project.title}
+                    </h2>
+                  </div>
+                  
+                  {/* Waitlist Form */}
+                  <TopicsWaitlistForm />
+                </div>
+              )
+            }
+
+            return (
+              <a
+                key={project.id}
+                id={project.id}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
+              >
+                {/* Category with diamond */}
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                  <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                    {project.tag}
+                  </span>
+                </div>
+                
+                {/* Title */}
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h2>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                
+                {/* Description */}
+                <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
+                  {project.description}
+                </p>
+              </a>
+            )
+          })}
         </div>
 
       </div>
