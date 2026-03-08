@@ -70,12 +70,13 @@
   }
 }
 
-/* Global SF pattern background */
+/* Global SF pattern background - subliminal watermark effect */
 .global-bg-pattern {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  background-color: #0a0f1a;
 }
 
 .global-bg-pattern::before {
@@ -87,14 +88,8 @@
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  filter: brightness(0.3) saturate(0);
-}
-
-.global-bg-pattern::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 15, 26, 0.75);
+  filter: saturate(0) brightness(0.5);
+  opacity: 0.06;
 }
 
 /* Selection styling */
