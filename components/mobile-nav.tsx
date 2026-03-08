@@ -18,19 +18,15 @@ const socialLinks = [
     href: "https://x.com/tereza_tizkova", 
     label: "X", 
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 24c4-1 8 0 12-1s8-2 14-1" />
-        <path d="M22 22c1 1 2 1.5 3 1" />
-        <ellipse cx="14" cy="16" rx="6" ry="5" />
-        <circle cx="19" cy="12" r="3.5" />
-        <circle cx="20" cy="11.5" r="0.8" fill="currentColor" />
-        <path d="M22.5 12.5l3 0.5-2.5 1" />
-        <path d="M8 15c-2-1-4-0.5-5 1" />
-        <path d="M8 17c-2 0-4 1-5 2" />
-        <path d="M8 16c-3 0-5 0.5-6 1" />
-        <path d="M11 14c1-1 3-1 4 0" />
-        <path d="M12 21v3" />
-        <path d="M15 21v2.5" />
+      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="14" cy="18" rx="8" ry="6" />
+        <circle cx="22" cy="14" r="5" />
+        <circle cx="24" cy="13" r="1" fill="currentColor" />
+        <path d="M27 14l4-1-4-1" />
+        <path d="M10 14c2-3 6-3 8 0" />
+        <path d="M6 17l-4-2" />
+        <path d="M6 19l-5 0" />
+        <path d="M6 21l-4 2" />
       </svg>
     )
   },
@@ -38,19 +34,14 @@ const socialLinks = [
     href: "https://www.linkedin.com/in/tereza-tizkova-568439174/", 
     label: "LI", 
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 17c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10" />
-        <path d="M10 8l6-6 6 6" />
-        <path d="M12 6l4-3" />
-        <path d="M16 3c0.5-1 1-1.5 1.5-1" />
-        <circle cx="12" cy="15" r="2" />
-        <circle cx="20" cy="15" r="1.5" />
-        <circle cx="12.5" cy="14.5" r="0.5" fill="currentColor" />
-        <circle cx="20.2" cy="14.5" r="0.5" fill="currentColor" />
-        <circle cx="16" cy="18" r="2.5" />
-        <path d="M10 22c2 3 4 4 6 4s4-1 6-4" />
-        <circle cx="8" cy="18" r="1.5" />
-        <circle cx="24" cy="18" r="1.5" />
+      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="16" cy="18" r="10" />
+        <path d="M10 10l6-8 6 8" />
+        <circle cx="16" cy="2" r="2" fill="currentColor" />
+        <circle cx="12" cy="16" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="16" r="1.5" fill="currentColor" />
+        <circle cx="16" cy="20" r="3" />
+        <path d="M10 24c2 2 4 3 6 3s4-1 6-3" />
       </svg>
     )
   },
@@ -58,21 +49,12 @@ const socialLinks = [
     href: "https://terezatizkova.substack.com/", 
     label: "SS", 
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 28l6-14" />
-        <path d="M14 14c2-4 6-8 12-12" />
-        <path d="M14 14c4-2 10-4 12-12" />
-        <path d="M15 12c-1-1-1.5-0.5-2 0" />
-        <path d="M17 9c-1.5-1-2 0-2.5 0.5" />
-        <path d="M19 6c-1-1-2-0.5-2.5 0" />
-        <path d="M21 4c-1-0.5-1.5 0-2 0.5" />
-        <path d="M16 13c0.5-1.5 1.5-1.5 2-1" />
-        <path d="M18 10c1-1.5 2-1 2.5-0.5" />
-        <path d="M20 7c1-1 2-0.5 2.5 0" />
-        <path d="M23 4c0.5-0.5 1.5-0.5 2 0" />
-        <path d="M8 28l-1 2" />
-        <path d="M10 26l1 0.5" />
-        <circle cx="6" cy="30" r="1" fill="currentColor" />
+      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 30l10-20" />
+        <path d="M16 10c4-6 10-8 12-8-2 4-4 10-12 12-4-1-4-1 0-4" />
+        <path d="M18 8c2-2 4-3 6-3" />
+        <path d="M17 11c2-1 4-2 5-2" />
+        <path d="M6 30l-2 1" />
       </svg>
     )
   },
@@ -80,16 +62,10 @@ const socialLinks = [
     href: "https://github.com/tizkovatereza", 
     label: "GH", 
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 6c0-1 1-2 2-2h20c1 0 2 1 2 2v20c0 1-1 2-2 2H6c-1 0-2-1-2-2V6z" />
-        <path d="M4 10h24" />
-        <circle cx="8" cy="8" r="1" />
-        <circle cx="12" cy="8" r="1" />
-        <circle cx="16" cy="8" r="1" />
-        <path d="M9 16l-2 3 2 3" />
-        <path d="M23 16l2 3-2 3" />
-        <path d="M17 15l-3 8" />
-        <path d="M19 22v2" />
+      <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 8L2 16l8 8" />
+        <path d="M22 8l8 8-8 8" />
+        <path d="M19 6l-6 20" />
       </svg>
     )
   },

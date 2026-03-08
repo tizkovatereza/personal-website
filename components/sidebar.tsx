@@ -73,29 +73,22 @@ export function Sidebar() {
             aria-label="X (Twitter)"
             title="X"
           >
-            {/* Hand-drawn bird on branch */}
-            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              {/* Branch */}
-              <path d="M2 24c4-1 8 0 12-1s8-2 14-1" />
-              <path d="M22 22c1 1 2 1.5 3 1" />
-              {/* Bird body - round, sketchy */}
-              <ellipse cx="14" cy="16" rx="6" ry="5" />
-              {/* Bird head */}
-              <circle cx="19" cy="12" r="3.5" />
+            {/* Bird - simple side profile sparrow */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {/* Body - round */}
+              <ellipse cx="14" cy="18" rx="8" ry="6" />
+              {/* Head - overlapping circle */}
+              <circle cx="22" cy="14" r="5" />
               {/* Eye */}
-              <circle cx="20" cy="11.5" r="0.8" fill="currentColor" />
-              {/* Beak */}
-              <path d="M22.5 12.5l3 0.5-2.5 1" />
-              {/* Tail feathers */}
-              <path d="M8 15c-2-1-4-0.5-5 1" />
-              <path d="M8 17c-2 0-4 1-5 2" />
-              <path d="M8 16c-3 0-5 0.5-6 1" />
-              {/* Wing detail */}
-              <path d="M11 14c1-1 3-1 4 0" />
-              <path d="M12 16c1 0 2 0 3 0" />
-              {/* Legs */}
-              <path d="M12 21v3" />
-              <path d="M15 21v2.5" />
+              <circle cx="24" cy="13" r="1" fill="currentColor" />
+              {/* Beak - pointed triangle */}
+              <path d="M27 14l4-1-4-1" />
+              {/* Wing bump on top */}
+              <path d="M10 14c2-3 6-3 8 0" />
+              {/* Tail feathers - left side */}
+              <path d="M6 17l-4-2" />
+              <path d="M6 19l-5 0" />
+              <path d="M6 21l-4 2" />
             </svg>
           </a>
           <a
@@ -106,26 +99,21 @@ export function Sidebar() {
             aria-label="LinkedIn"
             title="LinkedIn"
           >
-            {/* Hand-drawn clown face */}
-            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              {/* Face outline - slightly wobbly */}
-              <path d="M6 17c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10" />
-              {/* Party hat */}
-              <path d="M10 8l6-6 6 6" />
-              <path d="M12 6l4-3" />
-              <path d="M16 3c0.5-1 1-1.5 1.5-1" />
-              {/* Eyes - different sizes for silliness */}
-              <circle cx="12" cy="15" r="2" />
-              <circle cx="20" cy="15" r="1.5" />
-              <circle cx="12.5" cy="14.5" r="0.5" fill="currentColor" />
-              <circle cx="20.2" cy="14.5" r="0.5" fill="currentColor" />
-              {/* Big round nose */}
-              <circle cx="16" cy="18" r="2.5" />
-              {/* Big smile */}
-              <path d="M10 22c2 3 4 4 6 4s4-1 6-4" />
-              {/* Rosy cheeks */}
-              <circle cx="8" cy="18" r="1.5" />
-              <circle cx="24" cy="18" r="1.5" />
+            {/* Clown face - clear round head, big nose, smile, party hat */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {/* Face - round */}
+              <circle cx="16" cy="18" r="10" />
+              {/* Party hat triangle on top */}
+              <path d="M10 10l6-8 6 8" />
+              {/* Pom pom on hat */}
+              <circle cx="16" cy="2" r="2" fill="currentColor" />
+              {/* Eyes - dots */}
+              <circle cx="12" cy="16" r="1.5" fill="currentColor" />
+              <circle cx="20" cy="16" r="1.5" fill="currentColor" />
+              {/* Big round nose - the key feature */}
+              <circle cx="16" cy="20" r="3" />
+              {/* Wide smile curve */}
+              <path d="M10 24c2 2 4 3 6 3s4-1 6-3" />
             </svg>
           </a>
           <a
@@ -136,28 +124,17 @@ export function Sidebar() {
             aria-label="Substack"
             title="Substack"
           >
-            {/* Hand-drawn feather quill */}
-            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              {/* Quill shaft */}
-              <path d="M8 28l6-14" />
-              {/* Feather outline */}
-              <path d="M14 14c2-4 6-8 12-12" />
-              <path d="M14 14c4-2 10-4 12-12" />
-              {/* Feather barbs - left side */}
-              <path d="M15 12c-1-1-1.5-0.5-2 0" />
-              <path d="M17 9c-1.5-1-2 0-2.5 0.5" />
-              <path d="M19 6c-1-1-2-0.5-2.5 0" />
-              <path d="M21 4c-1-0.5-1.5 0-2 0.5" />
-              {/* Feather barbs - right side */}
-              <path d="M16 13c0.5-1.5 1.5-1.5 2-1" />
-              <path d="M18 10c1-1.5 2-1 2.5-0.5" />
-              <path d="M20 7c1-1 2-0.5 2.5 0" />
-              <path d="M23 4c0.5-0.5 1.5-0.5 2 0" />
-              {/* Nib detail */}
-              <path d="M8 28l-1 2" />
-              <path d="M10 26l1 0.5" />
-              {/* Ink drop */}
-              <circle cx="6" cy="30" r="1" fill="currentColor" />
+            {/* Feather quill - prominent feather shape */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {/* Shaft - diagonal line */}
+              <path d="M6 30l10-20" />
+              {/* Feather shape - large teardrop/leaf tilted */}
+              <path d="M16 10c4-6 10-8 12-8-2 4-4 10-12 12-4-1-4-1 0-4" />
+              {/* Barb lines inside feather */}
+              <path d="M18 8c2-2 4-3 6-3" />
+              <path d="M17 11c2-1 4-2 5-2" />
+              {/* Nib at bottom */}
+              <path d="M6 30l-2 1" />
             </svg>
           </a>
           <a
@@ -168,23 +145,14 @@ export function Sidebar() {
             aria-label="GitHub"
             title="GitHub"
           >
-            {/* Hand-drawn terminal/code window */}
-            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              {/* Window frame - slightly wobbly */}
-              <path d="M4 6c0-1 1-2 2-2h20c1 0 2 1 2 2v20c0 1-1 2-2 2H6c-1 0-2-1-2-2V6z" />
-              {/* Title bar */}
-              <path d="M4 10h24" />
-              {/* Window buttons */}
-              <circle cx="8" cy="8" r="1" />
-              <circle cx="12" cy="8" r="1" />
-              <circle cx="16" cy="8" r="1" />
-              {/* Code brackets */}
-              <path d="M9 16l-2 3 2 3" />
-              <path d="M23 16l2 3-2 3" />
-              {/* Slash in middle */}
-              <path d="M17 15l-3 8" />
-              {/* Cursor blink */}
-              <path d="M19 22v2" />
+            {/* Code brackets - bold and clear */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Left bracket < */}
+              <path d="M10 8L2 16l8 8" />
+              {/* Right bracket > */}
+              <path d="M22 8l8 8-8 8" />
+              {/* Forward slash / in middle */}
+              <path d="M19 6l-6 20" />
             </svg>
           </a>
         </div>
