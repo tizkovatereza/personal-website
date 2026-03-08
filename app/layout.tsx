@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Sidebar } from '@/components/sidebar'
 import { MobileNav } from '@/components/mobile-nav'
+import { DontClickHere } from '@/components/dont-click-here'
 import './globals.css'
 
 const inter = Inter({ 
@@ -78,6 +79,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          {/* Easter Egg */}
+          <DontClickHere />
+          
           {/* Mobile Navigation */}
           <MobileNav />
           
