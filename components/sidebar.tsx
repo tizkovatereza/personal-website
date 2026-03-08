@@ -113,13 +113,14 @@ export function Sidebar() {
             aria-label="Substack"
             title="Substack"
           >
-            {/* Feather quill pen - thicker */}
-            <svg className="w-6 h-6" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 38l12-24" />
-              <path d="M20 14c2-4 6-8 10-10 2-1 4-1 5 0 0 2-1 4-3 7-3 5-8 9-14 10" />
-              <path d="M20 14l10-10" />
-              <path d="M8 38l-2 1.5" />
-              <circle cx="5" cy="38" r="1.5" fill="currentColor" />
+            {/* Pen writing - angled with line */}
+            <svg className="w-6 h-6" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {/* Pen body - angled */}
+              <path d="M28 4l8 8-20 20H8v-8L28 4z" />
+              {/* Pen tip divider */}
+              <path d="M24 8l8 8" />
+              {/* Writing line underneath */}
+              <path d="M12 36h20" />
             </svg>
           </a>
           <a
