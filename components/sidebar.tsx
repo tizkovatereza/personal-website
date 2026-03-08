@@ -69,70 +69,122 @@ export function Sidebar() {
             href="https://x.com/tereza_tizkova"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
             aria-label="X (Twitter)"
             title="X"
           >
-            {/* Bird with Elon head */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 19c2-1 5-2 7-1s3 0 5-2c1-1 2-2 2-4s-1-3-3-3c-1 0-2 1-2 2s0 2-1 2-2-1-2-2 1-4 3-5" />
-              <ellipse cx="17" cy="5" rx="3" ry="2.5" />
-              <circle cx="16" cy="4.5" r="0.5" fill="currentColor" />
-              <path d="M19 5.5c.5.5 1 .5 1.5 0" />
-              <path d="M5 16c-1 1-1 2.5 0 3s2 0 2-1" />
+            {/* Hand-drawn bird on branch */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Branch */}
+              <path d="M2 24c4-1 8 0 12-1s8-2 14-1" />
+              <path d="M22 22c1 1 2 1.5 3 1" />
+              {/* Bird body - round, sketchy */}
+              <ellipse cx="14" cy="16" rx="6" ry="5" />
+              {/* Bird head */}
+              <circle cx="19" cy="12" r="3.5" />
+              {/* Eye */}
+              <circle cx="20" cy="11.5" r="0.8" fill="currentColor" />
+              {/* Beak */}
+              <path d="M22.5 12.5l3 0.5-2.5 1" />
+              {/* Tail feathers */}
+              <path d="M8 15c-2-1-4-0.5-5 1" />
+              <path d="M8 17c-2 0-4 1-5 2" />
+              <path d="M8 16c-3 0-5 0.5-6 1" />
+              {/* Wing detail */}
+              <path d="M11 14c1-1 3-1 4 0" />
+              <path d="M12 16c1 0 2 0 3 0" />
+              {/* Legs */}
+              <path d="M12 21v3" />
+              <path d="M15 21v2.5" />
             </svg>
           </a>
           <a
             href="https://www.linkedin.com/in/tereza-tizkova-568439174/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
             aria-label="LinkedIn"
             title="LinkedIn"
           >
-            {/* Clown head */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="13" r="8" />
-              <circle cx="9" cy="11" r="1" fill="currentColor" />
-              <circle cx="15" cy="11" r="1" fill="currentColor" />
-              <circle cx="12" cy="13" r="2.5" fill="currentColor" />
-              <path d="M8 17c1.5 1.5 2.5 2 4 2s2.5-.5 4-2" />
-              <path d="M7 5c0-1 1-2 2-2s2 1 2 2" />
-              <path d="M13 5c0-1 1-2 2-2s2 1 2 2" />
-              <circle cx="8" cy="5" r="1.5" fill="currentColor" />
-              <circle cx="16" cy="5" r="1.5" fill="currentColor" />
+            {/* Hand-drawn clown face */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Face outline - slightly wobbly */}
+              <path d="M6 17c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10" />
+              {/* Party hat */}
+              <path d="M10 8l6-6 6 6" />
+              <path d="M12 6l4-3" />
+              <path d="M16 3c0.5-1 1-1.5 1.5-1" />
+              {/* Eyes - different sizes for silliness */}
+              <circle cx="12" cy="15" r="2" />
+              <circle cx="20" cy="15" r="1.5" />
+              <circle cx="12.5" cy="14.5" r="0.5" fill="currentColor" />
+              <circle cx="20.2" cy="14.5" r="0.5" fill="currentColor" />
+              {/* Big round nose */}
+              <circle cx="16" cy="18" r="2.5" />
+              {/* Big smile */}
+              <path d="M10 22c2 3 4 4 6 4s4-1 6-4" />
+              {/* Rosy cheeks */}
+              <circle cx="8" cy="18" r="1.5" />
+              <circle cx="24" cy="18" r="1.5" />
             </svg>
           </a>
           <a
             href="https://terezatizkova.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
             aria-label="Substack"
             title="Substack"
           >
-            {/* Vintage feather pen */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 2c-3 3-6 7-8 12l-6 8 1 1 8-6c5-2 9-5 12-8-2-2-5-5-7-7z" />
-              <path d="M6 22l-3 1 1-3" />
-              <path d="M15 5c-2 1-3 2-4 4" />
-              <path d="M17 7c-1 1-2 2-3 3" />
-              <path d="M12 9c2-3 4-5 8-7" />
+            {/* Hand-drawn feather quill */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Quill shaft */}
+              <path d="M8 28l6-14" />
+              {/* Feather outline */}
+              <path d="M14 14c2-4 6-8 12-12" />
+              <path d="M14 14c4-2 10-4 12-12" />
+              {/* Feather barbs - left side */}
+              <path d="M15 12c-1-1-1.5-0.5-2 0" />
+              <path d="M17 9c-1.5-1-2 0-2.5 0.5" />
+              <path d="M19 6c-1-1-2-0.5-2.5 0" />
+              <path d="M21 4c-1-0.5-1.5 0-2 0.5" />
+              {/* Feather barbs - right side */}
+              <path d="M16 13c0.5-1.5 1.5-1.5 2-1" />
+              <path d="M18 10c1-1.5 2-1 2.5-0.5" />
+              <path d="M20 7c1-1 2-0.5 2.5 0" />
+              <path d="M23 4c0.5-0.5 1.5-0.5 2 0" />
+              {/* Nib detail */}
+              <path d="M8 28l-1 2" />
+              <path d="M10 26l1 0.5" />
+              {/* Ink drop */}
+              <circle cx="6" cy="30" r="1" fill="currentColor" />
             </svg>
           </a>
           <a
             href="https://github.com/tizkovatereza"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
             aria-label="GitHub"
             title="GitHub"
           >
-            {/* Code brackets */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 4L2 12l6 8" />
-              <path d="M16 4l6 8-6 8" />
-              <path d="M14 4l-4 16" />
+            {/* Hand-drawn terminal/code window */}
+            <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Window frame - slightly wobbly */}
+              <path d="M4 6c0-1 1-2 2-2h20c1 0 2 1 2 2v20c0 1-1 2-2 2H6c-1 0-2-1-2-2V6z" />
+              {/* Title bar */}
+              <path d="M4 10h24" />
+              {/* Window buttons */}
+              <circle cx="8" cy="8" r="1" />
+              <circle cx="12" cy="8" r="1" />
+              <circle cx="16" cy="8" r="1" />
+              {/* Code brackets */}
+              <path d="M9 16l-2 3 2 3" />
+              <path d="M23 16l2 3-2 3" />
+              {/* Slash in middle */}
+              <path d="M17 15l-3 8" />
+              {/* Cursor blink */}
+              <path d="M19 22v2" />
             </svg>
           </a>
         </div>
