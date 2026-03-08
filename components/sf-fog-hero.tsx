@@ -100,19 +100,7 @@ export function SFFogHero() {
   }
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-[#0a0e17]">
-      {/* === FULL-BLEED BACKGROUND IMAGE (grayscale) === */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_Wide_panoramic_detailed_comics_illustration_of_Sa_8211bc00-2534-4128-a7e5-c4f534aa9ca9_2-AefoccmOBLR3YI9bRUbEQZysd5JjYj.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
-          opacity: 0.2,
-          filter: 'grayscale(100%)',
-        }}
-      />
-
+    <div className="relative w-full min-h-screen overflow-hidden">
       {/* === MAIN CONTENT === */}
       <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-20 lg:py-24 max-w-[700px]">
         {/* Main headline */}

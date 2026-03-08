@@ -76,27 +76,8 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e17] relative">
-      {/* Background Image - full bleed */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_Wide_panoramic_detailed_comics_illustration_of_Sa_8211bc00-2534-4128-a7e5-c4f534aa9ca9_2-wAYtYsDAA3zooUvHaF0gv3lKQ8S20p.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
-          opacity: 0.15,
-        }}
-      />
-      
-      {/* Gradient overlay - fades from bg color at top to transparent at bottom */}
-      <div 
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(10,14,23,0.8) 0%, rgba(10,14,23,0.6) 30%, transparent 70%)',
-        }}
-      />
-
-      <div className="relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl">
+    <div className="min-h-screen relative">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl">
         
         {/* Header */}
         <header className="mb-16">

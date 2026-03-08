@@ -10,39 +10,17 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e17]">
-      {/* Hero Header Section with Background */}
-      <div className="relative">
-        {/* Background Image - only for header */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_Wide_panoramic_detailed_comics_illustration_of_Sa_8211bc00-2534-4128-a7e5-c4f534aa9ca9_1-ibJGoG1szulC5Mn1rXDXUYtG8TdjdT.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center bottom',
-            opacity: 0.15,
-          }}
-        />
-        
-        {/* Gradient overlay - fades to solid bg at bottom */}
-        <div 
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(10,14,23,0.6) 0%, rgba(10,14,23,0.8) 60%, rgba(10,14,23,1) 100%)',
-          }}
-        />
-
-        {/* Header content */}
-        <div className="relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-16 max-w-4xl">
-          <header>
-            <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
-              Writing
-            </h1>
-            <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
-              Notes on AI, growth, startups, and life. No marketing fluff.
-            </p>
-          </header>
-        </div>
+    <div className="min-h-screen">
+      {/* Header */}
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-16 max-w-4xl">
+        <header>
+          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+            Writing
+          </h1>
+          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
+            Notes on AI, growth, startups, and life. No marketing fluff.
+          </p>
+        </header>
       </div>
 
       {/* Posts List - solid background, no image */}

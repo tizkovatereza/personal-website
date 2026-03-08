@@ -70,6 +70,33 @@
   }
 }
 
+/* Global SF pattern background */
+.global-bg-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.global-bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_seamless_tileable_pattern_aerial_view_of_San_Fran_0a18abb0-0870-47f1-b0a6-d8221ec54a03_0-9NAMITUuDEMsKpl6t1iZBGAMM6qNTy.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  filter: brightness(0.3) saturate(0);
+}
+
+.global-bg-pattern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 26, 0.75);
+}
+
 /* Selection styling */
 ::selection {
   background: rgba(59, 130, 246, 0.3);
