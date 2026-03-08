@@ -14,19 +14,19 @@
   --card-foreground: #e8e6e3;
   --popover: #0f1420;
   --popover-foreground: #e8e6e3;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
+  --primary: #8b9bb5;
+  --primary-foreground: #0a0e17;
   --secondary: #8a8f98;
   --secondary-foreground: #ffffff;
   --muted: #0f1420;
   --muted-foreground: #8a8f98;
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
+  --accent: #8b9bb5;
+  --accent-foreground: #0a0e17;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.06);
   --input: #0f1420;
-  --ring: #3b82f6;
+  --ring: #8b9bb5;
   --radius: 12px;
   --sidebar-width: 220px;
   --text-muted: #4a4f5a;
@@ -99,7 +99,7 @@
 
 /* Selection styling */
 ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(139, 155, 181, 0.3);
 }
 
 /* Smooth scrolling */
@@ -138,11 +138,11 @@ html {
 @keyframes pulse-dot {
   0%, 100% { 
     opacity: 1; 
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 0 0 rgba(139, 155, 181, 0.4);
   }
   50% { 
     opacity: 0.8; 
-    box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 8px 2px rgba(139, 155, 181, 0.3);
   }
 }
 
@@ -184,13 +184,13 @@ html {
   );
 }
 
-/* Card hover with blue accent */
+/* Card hover with muted blue accent */
 .card-hover {
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 .card-hover:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  background-color: rgba(59, 130, 246, 0.03);
+  border-color: rgba(139, 155, 181, 0.3);
+  background-color: rgba(139, 155, 181, 0.03);
 }
 
 /* Editorial list item */
