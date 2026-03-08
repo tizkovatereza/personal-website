@@ -142,7 +142,7 @@ export function SFFogHero() {
         
         {/* Description */}
         <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
-          My content has grown <Link href="/about" className="text-primary hover:underline">E2B</Link> from scratch and defined new market category, I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
+          My content has grown <Link href="/about" className="text-primary hover:underline">E2B</Link> from scratch and defined new market category. I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
         </p>
 
         {/* CTA Link */}
