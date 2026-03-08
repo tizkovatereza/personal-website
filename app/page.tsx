@@ -98,7 +98,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0e17]">
+    <div className="min-h-screen">
       {/* Hero */}
       <SFFogHero />
 
@@ -125,7 +125,7 @@ export default function HomePage() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-[#0a0e17] editorial-item group gap-2"
+                className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2"
               >
                 <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors">
                   {item.title}

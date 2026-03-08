@@ -84,12 +84,12 @@
   position: absolute;
   inset: 0;
   background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_seamless_tileable_pattern_aerial_view_of_San_Fran_0a18abb0-0870-47f1-b0a6-d8221ec54a03_0-9NAMITUuDEMsKpl6t1iZBGAMM6qNTy.png');
-  background-size: cover;
+  background-size: 800px auto;
   background-position: center;
   background-attachment: fixed;
-  background-repeat: no-repeat;
-  filter: saturate(0) brightness(0.5);
-  opacity: 0.03;
+  background-repeat: repeat;
+  filter: saturate(0) brightness(0.4);
+  opacity: 0.02;
 }
 
 /* Selection styling */
