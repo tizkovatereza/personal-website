@@ -238,19 +238,34 @@ export function DontClickHere() {
             <circle cx="25" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
             <circle cx="45" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
             
-            {/* Mouth - animates open/closed */}
+            {/* Mouth - animates open/closed with teeth */}
             <rect 
-              x="20" 
-              y={mouthOpen ? 27 : 29} 
-              width="30" 
-              height={mouthOpen ? 8 : 4} 
-              rx="1" 
+              x="18" 
+              y={mouthOpen ? 25 : 30} 
+              width="34" 
+              height={mouthOpen ? 12 : 4} 
+              rx="2" 
               fill="#0a0e17" 
               stroke="#8b9bb5" 
-              strokeWidth="1" 
+              strokeWidth="1.5" 
             />
+            {/* Top teeth - always visible when open */}
             {mouthOpen && (
-              <path d="M22 31 L25 28 L28 31 L31 28 L34 31 L37 28 L40 31 L43 28 L46 31" stroke="#8b9bb5" strokeWidth="1" fill="none" />
+              <>
+                <path d="M20 25 L20 29 L24 29 L24 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M25 25 L25 30 L29 30 L29 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M30 25 L30 29 L34 29 L34 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M35 25 L35 30 L39 30 L39 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M40 25 L40 29 L44 29 L44 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M45 25 L45 30 L50 30 L50 25" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                {/* Bottom teeth */}
+                <path d="M20 37 L20 33 L24 33 L24 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M25 37 L25 32 L29 32 L29 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M30 37 L30 33 L34 33 L34 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M35 37 L35 32 L39 32 L39 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M40 37 L40 33 L44 33 L44 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+                <path d="M45 37 L45 32 L50 32 L50 37" fill="#e5e7eb" stroke="#8b9bb5" strokeWidth="0.5" />
+              </>
             )}
             
             {/* Body */}
