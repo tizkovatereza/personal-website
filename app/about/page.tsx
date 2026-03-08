@@ -146,8 +146,7 @@ export default function AboutPage() {
             <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>, 
             leading marketing and growth activities since day one. Originally from Prague, now based in San Francisco 
             as an O-1 visa holder. I studied mathematics at Charles University and somehow ended up 
-            in AI infrastructure. I explain complicated things simply — through writing, talks, courses, 
-            and developer content that has helped define a new market category around AI agent infrastructure.
+            in AI infrastructure. I do a lot of writing, talks, courses, and developer content that has helped define a new market category around AI sandboxes, and AI agent infrastructure.
           </p>
         </header>
 
