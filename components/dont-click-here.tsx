@@ -23,6 +23,7 @@ export function DontClickHere() {
   const [isPoofing, setIsPoofing] = useState(false)
   const [walkFrame, setWalkFrame] = useState(0)
   const [mouthOpen, setMouthOpen] = useState(false)
+  const mouthCounterRef = useRef(0)
   
   const animationRef = useRef<number | null>(null)
   const hiddenSpansRef = useRef<CharSpan[]>([])
@@ -136,8 +137,12 @@ export function DontClickHere() {
       // Walk frame animation
       setWalkFrame(prev => (prev + 1) % 20)
       
-      // Mouth open/close animation
-      setMouthOpen(prev => !prev)
+      // Mouth open/close animation - slower, every 8 frames
+      mouthCounterRef.current++
+      if (mouthCounterRef.current >= 8) {
+        mouthCounterRef.current = 0
+        setMouthOpen(prev => !prev)
+      }
 
       // Move robot toward next character
       const chars = charQueueRef.current
@@ -234,9 +239,9 @@ export function DontClickHere() {
             {/* Head */}
             <rect x="15" y="8" width="40" height="28" rx="4" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" />
             
-            {/* Eyes */}
-            <circle cx="25" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
-            <circle cx="45" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
+            {/* Eyes - smaller */}
+            <circle cx="25" cy="20" r="3.5" fill="#8b9bb5" className="animate-pulse" />
+            <circle cx="45" cy="20" r="3.5" fill="#8b9bb5" className="animate-pulse" />
             
             {/* Mouth - animates open/closed with teeth */}
             <rect 
