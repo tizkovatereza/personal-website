@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Advisory | Tereza Tizkova',
-  description: 'Let\'s build something together',
+  title: 'Work With Me | Tereza Tizkova',
+  description: 'I help startups with growth, developer tools positioning, and go-to-market strategy.',
 }
 
 const services = [
@@ -13,32 +13,24 @@ const services = [
     description: 'Figure out what channels work for your product and how to scale them.',
   },
   {
-    title: 'DevTools Positioning',
+    title: 'Devtools Positioning',
     description: 'Craft messaging that resonates with developers without feeling salesy.',
   },
   {
-    title: 'Community Building',
-    description: 'Build authentic communities around your product that drive growth.',
+    title: 'Talks & Panels',
+    description: 'Conference talks, podcast appearances, and panel discussions on AI agents, developer tools, and growth.',
   },
   {
-    title: 'Go-to-Market',
-    description: 'Plan and execute launches that get attention and convert users.',
-  },
-  {
-    title: 'Developer Relations',
-    description: 'Set up DevRel programs that build trust and drive adoption.',
-  },
-  {
-    title: 'Content Strategy',
-    description: 'Create content that educates, builds authority, and generates leads.',
+    title: 'Paid Promotion',
+    description: 'Sponsored content, product reviews, and audience access across my channels.',
   },
 ]
 
 const stats = [
   { value: '40K+', label: 'Newsletter' },
-  { value: '11K+', label: 'X/Twitter' },
+  { value: '7K+', label: 'X/Twitter' },
   { value: '8K+', label: 'LinkedIn' },
-  { value: '20K+', label: 'GitHub Stars' },
+  { value: '26K+', label: 'GitHub Stars' },
 ]
 
 export default function AdvisoryPage() {
@@ -49,10 +41,10 @@ export default function AdvisoryPage() {
         {/* Header */}
         <header className="mb-16">
           <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
-            Advisory
+            Work With Me
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-10">
-            I help startups figure out growth, developer tools positioning, and go-to-market strategy. Let's build something together.
+            I help startups with growth, developer tools positioning, and go-to-market strategy. I also do talks and paid promotions. Let's build something together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
@@ -78,7 +70,7 @@ export default function AdvisoryPage() {
         <section className="mb-20">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Services</h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {services.map((service) => (
               <div
                 key={service.title}
@@ -122,12 +114,7 @@ export default function AdvisoryPage() {
             <h3 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] mb-4">How it works</h3>
             <div className="space-y-4 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
               <p>
-                I typically work on a project basis. We start with a discovery call 
-                to understand your challenges, then I put together a proposal.
-              </p>
-              <p>
-                <span className="text-primary">Packages start at $500</span> for 
-                focused consulting sessions. Longer engagements available for ongoing advisory work.
+                I work on a project basis or one-off engagements. We start with a discovery call to understand your needs, then I put together a proposal. For talks and promotions, reach out with details about your event or product.
               </p>
             </div>
           </div>
