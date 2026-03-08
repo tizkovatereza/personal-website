@@ -142,7 +142,7 @@ export function SFFogHero() {
         
         {/* Description */}
         <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
-          My content has grown <Link href="/about" className="text-primary hover:underline">E2B</Link> from scratch and defined new market category, I like math, and I also like cheese because<Link href="/about" className="text-primary hover:underline">...</Link>
+          My content has grown <Link href="/about" className="text-primary hover:underline">E2B</Link> from scratch and defined new market category, I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
         </p>
 
         {/* CTA Link */}
@@ -172,14 +172,7 @@ export function SFFogHero() {
       </div>
 
       {/* === STATUS BAR (bottom) === */}
-      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 md:left-12 lg:left-16 xl:left-20 right-6 sm:right-20 z-30 flex items-center">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="w-[5px] h-[5px] bg-primary rounded-full pulse-dot flex-shrink-0" />
-          <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
-            Currently building at E2B
-          </span>
-        </div>
-        <div className="flex-1 mx-4 sm:mx-6" />
+      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 md:left-12 lg:left-16 xl:left-20 right-6 sm:right-20 z-30 flex items-center justify-end">
         <span className="font-mono text-[11px] font-light text-[#4a4f5a] tracking-[0.05em] hidden md:block">
           37.7749° N, 122.4194° W
         </span>
