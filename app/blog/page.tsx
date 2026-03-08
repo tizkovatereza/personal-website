@@ -18,7 +18,7 @@ export default function BlogPage() {
             Writing
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
-            Notes on AI, growth, startups, and life. No marketing fluff.
+            Thoughts on AI, math, growth, startups, and life. Written by human (me).
           </p>
         </header>
       </div>
