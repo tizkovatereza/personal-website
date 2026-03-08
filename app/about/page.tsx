@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description: 'About Tereza Tizkova - Founding team member at E2B, leading marketing and growth',
 }
 
+const e2bAchievements = [
+  'Built and maintain Awesome AI Agents — the most popular open-source list of AI agents (26K+ GitHub stars)',
+  'Co-created and taught "Building Coding Agents with Tool Execution" course on DeepLearning.AI with Andrew Ng\'s team',
+  'Organized multiple AI hackathons including the first E2B hackathon in Prague (50+ hackers) and Code Interpreting hackathons in SF with partners like Fireworks AI',
+  'Grew E2B from pre-seed to Series A — shaped product positioning, ran partnerships with Groq, Mistral, LangChain, managed launches, billboard campaigns, and got E2B into AWS Marketplace',
+  'Built developer community across X, LinkedIn, Discord, and newsletter. Organized offline events in San Francisco and Prague (100-200 attendees). Ran workshops and ambassador programs',
+]
+
 const jobs = [
   {
     role: 'Founding Member',
@@ -14,41 +22,7 @@ const jobs = [
     location: 'San Francisco',
     date: 'Jun 2023 – Present',
     description: 'First hire at an AI infrastructure startup. Leading marketing and growth activities. Built content, developer relations, and community from zero.',
-  },
-  {
-    role: 'Created Awesome AI Agents',
-    company: 'E2B / Open Source',
-    location: '',
-    date: '2023 – Present',
-    description: 'Built and maintain the most popular open-source list of AI agents. 26K+ GitHub stars and growing.',
-  },
-  {
-    role: 'DeepLearning.AI Course Instructor',
-    company: "with Andrew Ng's team",
-    location: '',
-    date: '2024',
-    description: 'Co-created and taught "Building Coding Agents with Tool Execution" — a short course on the DeepLearning.AI platform.',
-  },
-  {
-    role: 'Organized AI Hackathons',
-    company: 'E2B',
-    location: 'San Francisco & Prague',
-    date: '2024 – 2025',
-    description: 'Organized multiple hackathons including the first E2B hackathon in Prague (50+ hackers) and Code Interpreting hackathons in SF with partners like Fireworks AI.',
-  },
-  {
-    role: 'Grew E2B from pre-seed to Series A',
-    company: 'E2B',
-    location: '',
-    date: '2023 – 2025',
-    description: 'Shaped product positioning, ran partnerships with Groq, Mistral, LangChain. Managed launches, billboard campaigns, and got E2B into AWS Marketplace.',
-  },
-  {
-    role: 'Built developer community',
-    company: 'E2B',
-    location: '',
-    date: '2023 – Present',
-    description: 'Grew community across X, LinkedIn, Discord, and newsletter. Organized offline events in San Francisco and Prague (100-200 attendees). Ran workshops and ambassador programs.',
+    achievements: e2bAchievements,
   },
   {
     role: 'Management Consultant',
@@ -176,6 +150,16 @@ export default function AboutPage() {
                     <span className="text-secondary"> — {job.company}</span>
                   </h3>
                   <p className="text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">{job.description}</p>
+                  {job.achievements && (
+                    <ul className="mt-4 space-y-2">
+                      {job.achievements.map((achievement, i) => (
+                        <li key={i} className="flex gap-3 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
+                          <span className="text-primary mt-1.5">•</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ))}
