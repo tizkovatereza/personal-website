@@ -22,6 +22,7 @@ export function DontClickHere() {
   const [particles, setParticles] = useState<Particle[]>([])
   const [isPoofing, setIsPoofing] = useState(false)
   const [walkFrame, setWalkFrame] = useState(0)
+  const [mouthOpen, setMouthOpen] = useState(false)
   
   const animationRef = useRef<number | null>(null)
   const hiddenSpansRef = useRef<CharSpan[]>([])
@@ -134,6 +135,9 @@ export function DontClickHere() {
 
       // Walk frame animation
       setWalkFrame(prev => (prev + 1) % 20)
+      
+      // Mouth open/close animation
+      setMouthOpen(prev => !prev)
 
       // Move robot toward next character
       const chars = charQueueRef.current
@@ -234,9 +238,20 @@ export function DontClickHere() {
             <circle cx="25" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
             <circle cx="45" cy="20" r="5" fill="#8b9bb5" className="animate-pulse" />
             
-            {/* Mouth - open wide */}
-            <rect x="20" y="28" width="30" height="6" rx="1" fill="#0a0e17" stroke="#8b9bb5" strokeWidth="1" />
-            <path d="M22 31 L25 29 L28 31 L31 29 L34 31 L37 29 L40 31 L43 29 L46 31" stroke="#8b9bb5" strokeWidth="1" fill="none" />
+            {/* Mouth - animates open/closed */}
+            <rect 
+              x="20" 
+              y={mouthOpen ? 27 : 29} 
+              width="30" 
+              height={mouthOpen ? 8 : 4} 
+              rx="1" 
+              fill="#0a0e17" 
+              stroke="#8b9bb5" 
+              strokeWidth="1" 
+            />
+            {mouthOpen && (
+              <path d="M22 31 L25 28 L28 31 L31 28 L34 31 L37 28 L40 31 L43 28 L46 31" stroke="#8b9bb5" strokeWidth="1" fill="none" />
+            )}
             
             {/* Body */}
             <rect x="10" y="38" width="50" height="25" rx="3" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" />
