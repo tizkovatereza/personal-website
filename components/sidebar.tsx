@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { ResumeDropdown } from "./resume-dropdown"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -58,6 +59,9 @@ export function Sidebar() {
               </li>
             )
           })}
+          <li>
+            <ResumeDropdown />
+          </li>
         </ul>
       </nav>
 

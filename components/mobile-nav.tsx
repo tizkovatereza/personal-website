@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
+import { ResumeDropdownMobile } from "./resume-dropdown"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -132,6 +133,9 @@ export function MobileNav() {
                   </li>
                 )
               })}
+              <li>
+                <ResumeDropdownMobile onClose={() => setIsOpen(false)} />
+              </li>
             </ul>
 
             <div className="mt-auto pt-8 border-t border-[rgba(255,255,255,0.06)] space-y-6">
