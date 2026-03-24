@@ -85,9 +85,18 @@ export default function ProjectsPage() {
           <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Projects
           </h1>
-          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
+          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-6">
             Things I've built, taught, and organized.
           </p>
+          <a
+            href="mailto:tereza@e2b.dev?subject=Thoughts on your website&body=Hey Tereza, I wanted to share my thoughts on your website..."
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-primary border border-primary/30 hover:bg-primary/10 transition-colors"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            What do you think about my website?
+          </a>
         </header>
 
         {/* Projects Grid - 2x2 */}
