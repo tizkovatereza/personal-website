@@ -85,16 +85,31 @@ export default function HomePage() {
   const handleSend = async () => {
     if (!message.trim()) return
     setIsSending(true)
-    // Simulate sending (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 500))
-    setIsSent(true)
-    setIsSending(false)
-    // Reset after a few seconds
-    setTimeout(() => {
-      setIsSent(false)
-      setMessage("")
-      setContact("")
-    }, 3000)
+    
+    try {
+      const fullMessage = contact.trim() 
+        ? `${message.trim()}\n\n---\nContact: ${contact.trim()}`
+        : message.trim()
+      
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: fullMessage }),
+      })
+      
+      if (response.ok) {
+        setIsSent(true)
+        setTimeout(() => {
+          setIsSent(false)
+          setMessage("")
+          setContact("")
+        }, 3000)
+      }
+    } catch (error) {
+      console.error('Failed to send feedback:', error)
+    } finally {
+      setIsSending(false)
+    }
   }
 
   return (
