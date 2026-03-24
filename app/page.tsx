@@ -7,6 +7,12 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
+    title: "What Is Topology And Why You Should Love It",
+    date: "Jul 2025",
+    source: "Substack",
+    href: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should",
+  },
+  {
     title: "Self-Fulfilling Prophecies, Recursion in Technology & How to Actually Change",
     date: "Mar 2026",
     source: "Substack",
@@ -23,12 +29,6 @@ const writingItems = [
     date: "Jan 2026",
     source: "Substack",
     href: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-part-1",
-  },
-  {
-    title: "What I Actually Do At My Job",
-    date: "Dec 2025",
-    source: "Substack",
-    href: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job",
   },
 ]
 
