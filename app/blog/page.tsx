@@ -17,9 +17,21 @@ export default function BlogPage() {
           <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Writing
           </h1>
-          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
-            Thoughts on AI, math, growth, startups, and life. Written by human (me).
+          <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-6">
+            Thoughts on AI, math, growth, startups, and life. Written by human (me). I've grown a free and paid audience on Substack and Medium, but I'm slowly switching to publish here.
           </p>
+          <a
+            href="https://terezatizkova.substack.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-primary border border-primary/30 hover:bg-primary/10 transition-colors"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Subscribe to newsletter
+          </a>
         </header>
       </div>
 
