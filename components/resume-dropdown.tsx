@@ -21,12 +21,14 @@ export function ResumeDropdown() {
 
   const handlePrint = () => {
     setIsOpen(false)
-    // Open resume page in new tab for printing
-    const printWindow = window.open('/resume', '_blank')
+    // Open resume page in new tab for printing with delay to ensure content loads
+    const printWindow = window.open('/resume?print=true', '_blank')
     if (printWindow) {
-      printWindow.onload = () => {
-        printWindow.print()
-      }
+      printWindow.addEventListener('load', () => {
+        setTimeout(() => {
+          printWindow.print()
+        }, 500)
+      })
     }
   }
 
@@ -69,11 +71,13 @@ export function ResumeDropdownMobile({ onClose }: { onClose: () => void }) {
   const handlePrint = () => {
     setIsOpen(false)
     onClose()
-    const printWindow = window.open('/resume', '_blank')
+    const printWindow = window.open('/resume?print=true', '_blank')
     if (printWindow) {
-      printWindow.onload = () => {
-        printWindow.print()
-      }
+      printWindow.addEventListener('load', () => {
+        setTimeout(() => {
+          printWindow.print()
+        }, 500)
+      })
     }
   }
 

@@ -1,12 +1,9 @@
-import type { Metadata } from 'next'
+"use client"
+
+import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
-import { ResumeDownloadButton } from '@/components/resume-download-button'
-
-export const metadata: Metadata = {
-  title: 'Resume | Tereza Tizkova',
-  description: 'Resume of Tereza Tizkova - Growth leader and founding team member at E2B',
-}
 
 const experience = [
   {
@@ -88,14 +85,20 @@ const audience = [
   { label: 'GitHub Stars', value: '26K+' },
 ]
 
-const links = [
-  { label: 'terezatizkova.com', href: 'https://terezatizkova.com' },
-  { label: 'x.com/tereza_tizkova', href: 'https://x.com/tereza_tizkova' },
-  { label: 'linkedin.com/in/tereza-tizkova', href: 'https://www.linkedin.com/in/tereza-tizkova-568439174/' },
-  { label: 'github.com/tizkovatereza', href: 'https://github.com/tizkovatereza' },
-]
-
 export default function ResumePage() {
+  const searchParams = useSearchParams()
+  const isPrintMode = searchParams.get('print') === 'true'
+
+  useEffect(() => {
+    if (isPrintMode) {
+      // Auto-trigger print after page loads
+      const timer = setTimeout(() => {
+        window.print()
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [isPrintMode])
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Header bar with buttons - hidden when printing */}
@@ -103,7 +106,17 @@ export default function ResumePage() {
         <Link href="/" className="font-mono text-[12px] text-gray-400 hover:text-white transition-colors">
           ← Back
         </Link>
-        <ResumeDownloadButton />
+        <button
+          onClick={() => window.print()}
+          className="flex items-center gap-2 px-4 py-2 text-[13px] font-mono font-light text-blue-400 border border-blue-400/30 hover:bg-blue-400/10 transition-colors"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Save as PDF
+        </button>
       </div>
 
       {/* Resume content - white background */}
