@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
@@ -85,7 +85,7 @@ const audience = [
   { label: 'GitHub Stars', value: '26K+' },
 ]
 
-export default function ResumePage() {
+function ResumeContent() {
   const searchParams = useSearchParams()
   const isPrintMode = searchParams.get('print') === 'true'
 
@@ -254,5 +254,13 @@ export default function ResumePage() {
         </section>
       </div>
     </div>
+  )
+}
+
+export default function ResumePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <ResumeContent />
+    </Suspense>
   )
 }
