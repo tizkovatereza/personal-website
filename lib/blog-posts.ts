@@ -8,6 +8,13 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "What Is Topology And Why You Should Love It",
+    date: "Jul 16, 2025",
+    subtitle: "Examples of topological problems and real-life applications",
+    image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
+    url: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should"
+  },
+  {
     title: "Self-Fulfilling Prophecies, Recursion in Technology & How to Actually Change",
     date: "Feb 1, 2026",
     subtitle: "Thoughts and topics from January 2026",
@@ -111,13 +118,6 @@ export const blogPosts: BlogPost[] = [
     subtitle: "My raw notes — to be updated",
     image: "https://substack-post-media.s3.amazonaws.com/public/images/5c253583-4212-4395-a48e-f350109e77ec_1024x1024.png",
     url: "https://terezatizkova.substack.com/p/notes-on-theory-of-relativity"
-  },
-  {
-    title: "What Is Topology And Why You Should Love It",
-    date: "Jul 16, 2025",
-    subtitle: "Examples of topological problems and real-life applications",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
-    url: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should"
   },
   {
     title: "Book Club: The Art of Doing Science and Engineering",

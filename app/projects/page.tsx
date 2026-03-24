@@ -18,10 +18,10 @@ const projects = [
   },
   {
     id: 'deeplearning',
-    title: 'DeepLearning.AI Course',
-    description: 'Collaborated on an AI course teaching developers how to build with large language models. Reached thousands of learners worldwide.',
-    link: 'https://deeplearning.ai',
-    tag: 'Education',
+    title: 'Building Coding Agents with Tool Execution',
+    description: 'Prepared and co-taught this coding agents course on DeepLearning.AI with Andrew Ng\'s team. Reached thousands of learners worldwide.',
+    link: 'https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/',
+    tag: 'Course',
     image: '/images/project-deeplearning.jpg',
   },
   {
