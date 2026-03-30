@@ -47,22 +47,22 @@ const projects = [
     href: "https://e2b.dev",
   },
   { 
+    category: "Community",
+    title: "The Growth Lab", 
+    description: "A curated community of growth people sharing what actually works — tactics, tools, and real talk.",
+    href: "/growth-lab",
+  },
+  { 
     category: "Writing",
     title: "Substack", 
     description: "Notes on growth, AI, and building things that matter. No marketing fluff.",
     href: "https://terezatizkova.substack.com/",
   },
   { 
-    category: "Program",
-    title: "E2B Startup Program", 
-    description: "Credits and support for startups building on AI agents. YC, a16z speedrun, and more.",
-    href: "https://e2b.dev/startups",
-  },
-  { 
     category: "Advisory",
     title: "Startup Advisory", 
     description: "Helping early-stage founders with growth strategy, positioning, and go-to-market.",
-    href: "/advisory",
+    href: "/work-with-me",
   },
   { 
     category: "Course",
