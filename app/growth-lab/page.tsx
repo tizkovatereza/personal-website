@@ -36,41 +36,111 @@ const APPLY_LINK = "https://forms.gle/fMU4a2UUffHdFt9H9"
 
 // ============================================
 
-// Lab Flask Component with bubbling and explosion animation
+// Lab Flask Component with bubbling and EXPLOSIVE animation
 function LabFlask() {
   const [isExploding, setIsExploding] = useState(false)
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; color: string; size: number; angle: number; distance: number }>>([])
+  const [shakeIntensity, setShakeIntensity] = useState(0)
+  const [particles, setParticles] = useState<Array<{ id: number; color: string; size: number; angle: number; distance: number; delay: number; type: 'circle' | 'shard' | 'droplet' }>>([])
+  const [glassShards, setGlassShards] = useState<Array<{ id: number; rotation: number; x: number; y: number }>>([])
 
   const handleClick = () => {
     if (isExploding) return
-    setIsExploding(true)
     
-    // Generate explosion particles
-    const colors = ['#b85c38', '#d4a574', '#8b7355', '#c9b896', '#a04d2e']
-    const newParticles = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: 40,
-      y: 50,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      size: 4 + Math.random() * 8,
-      angle: (Math.PI * 2 * i) / 20 + Math.random() * 0.5,
-      distance: 60 + Math.random() * 40,
-    }))
-    setParticles(newParticles)
+    // Pre-explosion shake buildup
+    setShakeIntensity(1)
+    setTimeout(() => setShakeIntensity(2), 150)
+    setTimeout(() => setShakeIntensity(3), 300)
+    setTimeout(() => setShakeIntensity(5), 400)
+    
+    // BOOM!
+    setTimeout(() => {
+      setIsExploding(true)
+      setShakeIntensity(0)
+      
+      // Generate lots of explosion particles
+      const colors = ['#b85c38', '#d4a574', '#ff6b35', '#f7931e', '#ffd700', '#ff4444', '#8b7355']
+      const newParticles: typeof particles = []
+      
+      // Main explosion burst - 40 particles
+      for (let i = 0; i < 40; i++) {
+        newParticles.push({
+          id: i,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          size: 6 + Math.random() * 20,
+          angle: (Math.PI * 2 * i) / 40 + (Math.random() - 0.5) * 0.3,
+          distance: 150 + Math.random() * 200,
+          delay: Math.random() * 100,
+          type: 'circle',
+        })
+      }
+      
+      // Liquid droplets - 20 more
+      for (let i = 40; i < 60; i++) {
+        newParticles.push({
+          id: i,
+          color: colors[Math.floor(Math.random() * 3)], // Mostly orange/brown
+          size: 8 + Math.random() * 15,
+          angle: Math.random() * Math.PI * 2,
+          distance: 80 + Math.random() * 150,
+          delay: Math.random() * 50,
+          type: 'droplet',
+        })
+      }
+      
+      // Glass shards - 15
+      for (let i = 60; i < 75; i++) {
+        newParticles.push({
+          id: i,
+          color: 'rgba(200, 200, 200, 0.8)',
+          size: 10 + Math.random() * 20,
+          angle: Math.random() * Math.PI * 2,
+          distance: 100 + Math.random() * 180,
+          delay: Math.random() * 30,
+          type: 'shard',
+        })
+      }
+      
+      setParticles(newParticles)
+      
+      // Glass shards flying
+      setGlassShards(Array.from({ length: 8 }, (_, i) => ({
+        id: i,
+        rotation: Math.random() * 360,
+        x: (Math.random() - 0.5) * 300,
+        y: -50 - Math.random() * 150,
+      })))
+    }, 500)
     
     // Reset after animation
     setTimeout(() => {
       setIsExploding(false)
       setParticles([])
-    }, 2000)
+      setGlassShards([])
+    }, 3000)
   }
 
   return (
-    <div className="relative w-20 h-24 cursor-pointer" onClick={handleClick}>
+    <div 
+      className="relative w-20 h-24 cursor-pointer overflow-visible" 
+      onClick={handleClick}
+      style={{
+        animation: shakeIntensity > 0 ? `shake ${0.1 - shakeIntensity * 0.01}s infinite` : 'none',
+      }}
+    >
+      {/* Flash effect on explosion */}
+      {isExploding && (
+        <div 
+          className="absolute -inset-20 bg-orange-400 rounded-full pointer-events-none"
+          style={{
+            animation: 'flash 0.3s ease-out forwards',
+          }}
+        />
+      )}
+
       {/* Flask SVG */}
       <svg
         viewBox="0 0 80 100"
-        className={`w-full h-full transition-all duration-300 ${isExploding ? 'opacity-0 scale-110' : 'opacity-100'}`}
+        className={`w-full h-full transition-all duration-100 ${isExploding ? 'opacity-0 scale-150' : 'opacity-100'}`}
       >
         {/* Flask body */}
         <path
@@ -82,38 +152,38 @@ function LabFlask() {
         {/* Flask neck */}
         <rect x="25" y="5" width="30" height="8" rx="1" fill="none" stroke="#1a1a1a" strokeWidth="2" />
         
-        {/* Liquid */}
+        {/* Liquid - glowing when about to explode */}
         <path
           d="M15 75 Q20 70 30 72 Q40 74 50 70 Q60 66 65 75 L65 85 Q67 93 58 93 L22 93 Q13 93 15 85 Z"
-          fill="#b85c38"
-          opacity="0.7"
+          fill={shakeIntensity > 3 ? '#ff6b35' : '#b85c38'}
+          opacity={shakeIntensity > 0 ? 0.9 : 0.7}
+          style={{
+            filter: shakeIntensity > 2 ? 'drop-shadow(0 0 8px #ff6b35)' : 'none',
+          }}
         >
           <animate
             attributeName="d"
             values="M15 75 Q20 70 30 72 Q40 74 50 70 Q60 66 65 75 L65 85 Q67 93 58 93 L22 93 Q13 93 15 85 Z;
                     M15 75 Q20 78 30 70 Q40 66 50 74 Q60 72 65 75 L65 85 Q67 93 58 93 L22 93 Q13 93 15 85 Z;
                     M15 75 Q20 70 30 72 Q40 74 50 70 Q60 66 65 75 L65 85 Q67 93 58 93 L22 93 Q13 93 15 85 Z"
-            dur="2s"
+            dur={shakeIntensity > 0 ? '0.3s' : '2s'}
             repeatCount="indefinite"
           />
         </path>
         
-        {/* Bubbles */}
+        {/* Bubbles - more aggressive when shaking */}
         <circle cx="30" cy="82" r="3" fill="#d4a574" opacity="0.6">
-          <animate attributeName="cy" values="85;70;85" dur="1.5s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.6;0;0.6" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="85;70;85" dur={shakeIntensity > 0 ? '0.3s' : '1.5s'} repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.6;0;0.6" dur={shakeIntensity > 0 ? '0.3s' : '1.5s'} repeatCount="indefinite" />
         </circle>
         <circle cx="45" cy="80" r="2" fill="#d4a574" opacity="0.5">
-          <animate attributeName="cy" values="88;65;88" dur="2s" repeatCount="indefinite" begin="0.3s" />
-          <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" begin="0.3s" />
+          <animate attributeName="cy" values="88;65;88" dur={shakeIntensity > 0 ? '0.25s' : '2s'} repeatCount="indefinite" begin="0.1s" />
         </circle>
         <circle cx="38" cy="78" r="2.5" fill="#d4a574" opacity="0.5">
-          <animate attributeName="cy" values="86;68;86" dur="1.8s" repeatCount="indefinite" begin="0.6s" />
-          <animate attributeName="opacity" values="0.5;0;0.5" dur="1.8s" repeatCount="indefinite" begin="0.6s" />
+          <animate attributeName="cy" values="86;68;86" dur={shakeIntensity > 0 ? '0.2s' : '1.8s'} repeatCount="indefinite" begin="0.2s" />
         </circle>
         <circle cx="52" cy="84" r="1.5" fill="#d4a574" opacity="0.4">
-          <animate attributeName="cy" values="84;72;84" dur="1.3s" repeatCount="indefinite" begin="0.9s" />
-          <animate attributeName="opacity" values="0.4;0;0.4" dur="1.3s" repeatCount="indefinite" begin="0.9s" />
+          <animate attributeName="cy" values="84;72;84" dur={shakeIntensity > 0 ? '0.15s' : '1.3s'} repeatCount="indefinite" begin="0.15s" />
         </circle>
       </svg>
 
@@ -121,53 +191,98 @@ function LabFlask() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full"
+          className={`absolute pointer-events-none ${p.type === 'shard' ? 'bg-gradient-to-br from-gray-200 to-gray-400' : ''}`}
           style={{
             width: p.size,
-            height: p.size,
-            backgroundColor: p.color,
+            height: p.type === 'shard' ? p.size * 0.4 : p.size,
+            backgroundColor: p.type !== 'shard' ? p.color : undefined,
+            borderRadius: p.type === 'circle' ? '50%' : p.type === 'droplet' ? '50% 50% 50% 0' : '2px',
             left: '50%',
             top: '50%',
-            transform: 'translate(-50%, -50%)',
-            animation: isExploding ? `explode-${p.id} 0.8s ease-out forwards` : 'none',
+            transform: `translate(-50%, -50%) rotate(${p.type === 'droplet' ? p.angle * 57.3 + 135 : 0}deg)`,
+            boxShadow: p.type !== 'shard' ? `0 0 ${p.size / 2}px ${p.color}` : 'none',
+            animation: `explode-particle 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`,
+            animationDelay: `${p.delay}ms`,
+            ['--angle' as string]: `${p.angle}rad`,
+            ['--distance' as string]: `${p.distance}px`,
           }}
         />
       ))}
 
-      {/* Crack overlay during explosion */}
+      {/* Flying glass shards */}
+      {glassShards.map((shard) => (
+        <div
+          key={`shard-${shard.id}`}
+          className="absolute w-6 h-3 bg-gradient-to-br from-gray-100 to-gray-300 pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            clipPath: 'polygon(0% 50%, 30% 0%, 100% 20%, 70% 100%, 20% 80%)',
+            animation: `fly-shard 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`,
+            ['--x' as string]: `${shard.x}px`,
+            ['--y' as string]: `${shard.y}px`,
+            ['--rot' as string]: `${shard.rotation}deg`,
+          }}
+        />
+      ))}
+
+      {/* Smoke puffs */}
       {isExploding && (
-        <svg viewBox="0 0 80 100" className="absolute inset-0 w-full h-full animate-crack">
-          <path d="M30 20 L35 50 L25 70 L40 95" stroke="#1a1a1a" strokeWidth="2" fill="none" />
-          <path d="M50 15 L45 45 L55 75 L45 90" stroke="#1a1a1a" strokeWidth="2" fill="none" />
-          <path d="M35 50 L55 55" stroke="#1a1a1a" strokeWidth="2" fill="none" />
-        </svg>
+        <>
+          <div className="absolute left-1/2 top-1/2 w-32 h-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-400/30 pointer-events-none" style={{ animation: 'smoke 1.5s ease-out forwards' }} />
+          <div className="absolute left-1/2 top-1/2 w-24 h-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-500/20 pointer-events-none" style={{ animation: 'smoke 1.2s ease-out forwards', animationDelay: '0.1s' }} />
+        </>
       )}
 
-      {/* Inline keyframes for particles */}
       <style jsx>{`
-        ${particles.map((p) => `
-          @keyframes explode-${p.id} {
-            0% {
-              transform: translate(-50%, -50%) scale(1);
-              opacity: 1;
-            }
-            100% {
-              transform: translate(
-                calc(-50% + ${Math.cos(p.angle) * p.distance}px),
-                calc(-50% + ${Math.sin(p.angle) * p.distance}px)
-              ) scale(0.3);
-              opacity: 0;
-            }
-          }
-        `).join('\n')}
-        @keyframes crack {
-          0% { opacity: 0; }
-          10% { opacity: 1; }
-          50% { opacity: 1; }
-          100% { opacity: 0; }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-3px) rotate(-1deg); }
+          75% { transform: translateX(3px) rotate(1deg); }
         }
-        .animate-crack {
-          animation: crack 0.8s ease-out forwards;
+        @keyframes flash {
+          0% { opacity: 0.8; transform: scale(0.5); }
+          50% { opacity: 0.6; }
+          100% { opacity: 0; transform: scale(3); }
+        }
+        @keyframes explode-particle {
+          0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+          70% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translate(
+              calc(-50% + cos(var(--angle)) * var(--distance)),
+              calc(-50% + sin(var(--angle)) * var(--distance))
+            ) scale(0.2);
+            opacity: 0;
+          }
+        }
+        @keyframes fly-shard {
+          0% {
+            transform: translate(-50%, -50%) rotate(0deg) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(
+              calc(-50% + var(--x)),
+              calc(-50% + var(--y))
+            ) rotate(var(--rot)) scale(0.5);
+            opacity: 0;
+          }
+        }
+        @keyframes smoke {
+          0% {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0.5;
+          }
+          100% {
+            transform: translate(-50%, -70%) scale(3);
+            opacity: 0;
+          }
         }
       `}</style>
     </div>
