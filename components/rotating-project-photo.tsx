@@ -41,26 +41,26 @@ export function RotatingProjectPhoto({ projectName, className = '' }: RotatingPr
   
   const [currentPhoto, setCurrentPhoto] = useState(defaultPhoto)
   const [isHovering, setIsHovering] = useState(false)
-  const [shownIndices, setShownIndices] = useState<Set<number>>(new Set())
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const usedIndicesRef = useRef<Set<number>>(new Set())
 
   const getNextRandomPhoto = useCallback(() => {
     if (photos.length <= 1) return defaultPhoto
     
-    let availableIndices = photos
-      .map((_, i) => i)
-      .filter(i => i !== 0 && !shownIndices.has(i))
-    
-    // If all photos shown, reset
-    if (availableIndices.length === 0) {
-      setShownIndices(new Set())
-      availableIndices = photos.map((_, i) => i).filter(i => i !== 0)
+    // If we've used all photos, reset
+    if (usedIndicesRef.current.size >= photos.length - 1) {
+      usedIndicesRef.current.clear()
     }
     
-    const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)]
-    setShownIndices(prev => new Set([...prev, randomIndex]))
+    // Get a random index that we haven't used yet (excluding default at index 0)
+    let randomIndex: number
+    do {
+      randomIndex = Math.floor(Math.random() * (photos.length - 1)) + 1
+    } while (usedIndicesRef.current.has(randomIndex))
+    
+    usedIndicesRef.current.add(randomIndex)
     return photos[randomIndex]
-  }, [photos, defaultPhoto, shownIndices])
+  }, [photos, defaultPhoto])
 
   useEffect(() => {
     if (isHovering && photos.length > 1) {
@@ -74,7 +74,7 @@ export function RotatingProjectPhoto({ projectName, className = '' }: RotatingPr
     } else {
       // Return to default
       setCurrentPhoto(defaultPhoto)
-      setShownIndices(new Set())
+      usedIndicesRef.current.clear()
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
         intervalRef.current = null
