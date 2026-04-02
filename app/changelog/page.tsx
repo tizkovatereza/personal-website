@@ -9,28 +9,12 @@ const PASSWORD = "tereza123"
 const changelog: Record<string, { range: string; items: string[] }[]> = {
   '2026': [
     {
-      range: "31 Mar – 06 Apr",
+      range: "30 Mar – 05 Apr",
       items: [
         "Signed new job",
-        "Published new blog post",
         "Sent Topics app for approval to App Store",
-        "Got first 50 members in The Growth Lab",
         "Pushed SF billboard campaign live with 19 customers",
         "Prepared everything for E2B booth at HumanX (our first conference!)",
-      ],
-    },
-    {
-      range: "24–30 Mar",
-      items: [
-        "Finalized DeepLearning.ai course launch prep",
-        "Set up Growth Lab community infrastructure",
-      ],
-    },
-    {
-      range: "17–23 Mar",
-      items: [
-        "Filmed DeepLearning.ai course in studio",
-        "Updated E2B startups program",
       ],
     },
   ],
