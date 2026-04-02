@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
 import { TopicsWaitlistForm } from '@/components/topics-waitlist-form'
+import { RotatingProjectPhoto } from '@/components/rotating-project-photo'
 
 export const metadata: Metadata = {
   title: 'Projects | Tereza Tizkova',
@@ -108,8 +109,47 @@ export default function ProjectsPage() {
                 <div
                   key={project.id}
                   id={project.id}
-                  className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] transition-all duration-300"
+                  className="group block bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] transition-all duration-300 overflow-hidden"
                 >
+                  {/* Rotating Photo Preview */}
+                  <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                  
+                  <div className="p-6 sm:p-8">
+                    {/* Category with diamond */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                      <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                        {project.tag}
+                      </span>
+                    </div>
+                    
+                    {/* Title */}
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em]">
+                        {project.title}
+                      </h2>
+                    </div>
+                    
+                    {/* Waitlist Form */}
+                    <TopicsWaitlistForm />
+                  </div>
+                </div>
+              )
+            }
+
+            return (
+              <a
+                key={project.id}
+                id={project.id}
+                href={project.link}
+                target={project.link.startsWith('http') ? "_blank" : undefined}
+                rel={project.link.startsWith('http') ? "noopener noreferrer" : undefined}
+                className="group block bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300 overflow-hidden"
+              >
+                {/* Rotating Photo Preview */}
+                <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                
+                <div className="p-6 sm:p-8">
                   {/* Category with diamond */}
                   <div className="flex items-center gap-2 mb-4">
                     <span className="w-1.5 h-1.5 bg-primary rotate-45" />
@@ -120,46 +160,17 @@ export default function ProjectsPage() {
                   
                   {/* Title */}
                   <div className="flex items-start justify-between gap-4 mb-3">
-                    <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em]">
+                    <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] group-hover:text-primary transition-colors">
                       {project.title}
                     </h2>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   
-                  {/* Waitlist Form */}
-                  <TopicsWaitlistForm />
+                  {/* Description */}
+                  <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
-              )
-            }
-
-            return (
-              <a
-                key={project.id}
-                id={project.id}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
-              >
-                {/* Category with diamond */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                  <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-                    {project.tag}
-                  </span>
-                </div>
-                
-                {/* Title */}
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h2>
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                
-                {/* Description */}
-                <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
-                  {project.description}
-                </p>
               </a>
             )
           })}
