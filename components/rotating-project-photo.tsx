@@ -17,9 +17,11 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1714405276619-NBmAYs5aJ5hFxA46RVNmWutH1pSsBA.jpeg', // E2B swag - stickers, socks, t-shirts
   ],
   'Building Coding Agents with Tool Execution': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/maxresdefault-hBX2bwSgTyBbKelAqHgPeXk27On9wb.jpg', // Safe playgrounds thumbnail
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2825%29-AZcQw72crZ6vdAc77cjF8CRli1DRDF.jpeg', // World of AI Agents thumbnail
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2826%29-13TbJ99ToDaAC8QikHPwLTel0KhcJB.jpeg', // Data Talk thumbnail
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2831%29-eos1Z0bmYjzWuq9NvAsQcnTrNWgJJx.jpeg', // Video thumbnail with Andrew Ng intro
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1764774990669-DbPLsrAjHVTTlGoa9ctnSA4tZUydbH.jpeg', // DeepLearning.AI course page screenshot
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875821-jhXiJ1aeihJVlQGqEk4CSE9Qftnvx5.jpeg', // Studio photo with Andrew Ng and team
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875671-rtle4NGY7NCYZgm1GZeBZHBo4ojbJM.jpeg', // Selfie with instructors
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875904-uNZZb5uRTRiBxkpcKWdVDIVjfVfYy7.jpeg', // Multi-monitor desk setup showing course
   ],
   'Awesome AI Agents': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e2b%20yc%20deal-L0nLWrAjjzB075xTiE4wcOLtOCioiC.png', // E2B promo - reuse
@@ -56,8 +58,11 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1712150060654-p0r9wbxohe3O23CIodQ15dt7LOqz8t.jpeg', // Crossed arms professional
   ],
   'DeepLearning.ai': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/maxresdefault-hBX2bwSgTyBbKelAqHgPeXk27On9wb.jpg', // Safe playgrounds thumbnail
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2826%29-13TbJ99ToDaAC8QikHPwLTel0KhcJB.jpeg', // Data Talk thumbnail
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2831%29-eos1Z0bmYjzWuq9NvAsQcnTrNWgJJx.jpeg', // Video thumbnail with Andrew Ng intro
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1764774990669-DbPLsrAjHVTTlGoa9ctnSA4tZUydbH.jpeg', // DeepLearning.AI course page screenshot
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875821-jhXiJ1aeihJVlQGqEk4CSE9Qftnvx5.jpeg', // Studio photo with Andrew Ng and team
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875671-rtle4NGY7NCYZgm1GZeBZHBo4ojbJM.jpeg', // Selfie with instructors
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875904-uNZZb5uRTRiBxkpcKWdVDIVjfVfYy7.jpeg', // Multi-monitor desk setup showing course
   ],
 }
 
