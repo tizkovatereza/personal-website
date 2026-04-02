@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
+import { RotatingProjectPhoto } from "@/components/rotating-project-photo"
 
 const writingItems = [
   {
@@ -176,21 +177,26 @@ export default function HomePage() {
                 href={project.href}
                 target={project.href.startsWith('http') ? "_blank" : undefined}
                 rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover"
+                className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover overflow-hidden"
               >
-                {/* Category with diamond */}
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                  <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-                    {project.category}
-                  </span>
+                {/* Rotating Photo Preview */}
+                <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                
+                <div className="p-6 sm:p-8">
+                  {/* Category with diamond */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                    <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
-                <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
-                  {project.title}
-                </h3>
-                <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
-                  {project.description}
-                </p>
               </Link>
             ))}
           </div>
