@@ -14,6 +14,7 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI_crunch_group_photo-g9MSmPTpreqg1vIz2PeB5ljeMFq93u.jpg', // Golden Gate Bridge team selfie
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Discord_format-9z34q3e16p6aItAFrwjVAE0CCegwMM.png', // Community Townhall promo
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Changelog-2023-12-01-q7tDcXCmvaMcu5jhem2UH9pehLHVuA.png', // Changelog screenshot
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1714405276619-NBmAYs5aJ5hFxA46RVNmWutH1pSsBA.jpeg', // E2B swag - stickers, socks, t-shirts
   ],
   'The Growth Lab': [
     // Will add photos later
