@@ -10,7 +10,6 @@ const rotatingPhotos = [
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2823%29-m4DLiRHqtxjsEqDXxqcM9045yrQNne.jpeg', // plane selfie
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/135881365-Hp8yE9pwcA9sbXzYNnOqnTGQR1P7zL.jpeg', // rock climbing
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2825%29-AZcQw72crZ6vdAc77cjF8CRli1DRDF.jpeg', // World of AI Agents thumbnail
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/canva%20random.png-OphqdX2PvCpa8jN0yBVqLEnQB2o9tP.jpeg', // E2B hiring meme
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Nov%207%2C%202025%2C%2004_36_51%20PM-bO1BRz2J864WgIlFaIsOETAeyp9Lmf.png', // cartoon cat
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ab6772ab000015bef5193906e1cb8c8e8e1349cd%20%281%29-rzi9p9yA6dVxk44TTsic0h5dHAeXWO.jpeg', // podcast
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/d0dc39e3-7be5-410c-b2a5-cec72688f2d4-ke15zBopCMgzjH22kBH0HL3sGcfmTx.jpeg', // restaurant dinner
