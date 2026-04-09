@@ -39,8 +39,9 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI_crunch_group_photo-g9MSmPTpreqg1vIz2PeB5ljeMFq93u.jpg', // Golden Gate Bridge selfie
   ],
   'Discover Academy': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1712150060654-p0r9wbxohe3O23CIodQ15dt7LOqz8t.jpeg', // Crossed arms professional
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0572b94e500c4fa0b09e970ab8979be0-BZLxrq7N5EFh3rKcn4ZEfzWsoey3Wb.jpg', // SF professional
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.25.46-k9QOSnSID4Px33o0UP2KIHpWe6TS1j.png', // Homepage hero - students playing outdoors
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.26.09-57WNXsNPPij20DHyThoUNdpb9B60Qf.png', // What is DSA page with circular activity photos
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.26.23-Ac33XhoVsNxbeFj3e7smf5Wf9D42zf.png', // Tutorg Team page with group photo
   ],
   'The Growth Lab': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0116%20%282%29-IAaznP4p0SURXDb6suLlN6MvNJvvt7.jpg', // Office desk working
