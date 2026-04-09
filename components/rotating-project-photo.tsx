@@ -28,8 +28,10 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Discord_format-9z34q3e16p6aItAFrwjVAE0CCegwMM.png', // Community Townhall
   ],
   'Topics': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-LQBYVeUzTqQaf5BU7elPy0QgYPmM6S.jpeg', // Pearl necklace selfie - creative work
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3fc7bc11-54d4-4753-b7b7-a2fc69f6024a-nb9LRKmXVvK7odqD8ZR3OX57BYiBmU.jpeg', // Philz coffee
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.13.20-TxqiZX8XIXYx52bT3c5UC1JUyUde0y.png', // Paul Graham - How to Do Great Work
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.11.29-bFxrZiuhrDPQPBkIbIKGdEHfnTtZ31.png', // Aeon - How plagues really work
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.12.20-JvT6ngIhhAWKUdcEvuB1PSU8XZZoaZ.png', // Aeon - The psychology of torture
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.11.56-uFUnNmAOx10evmhwrwWF5gv0Hiddnl.png', // Not Boring - The Electric Slide
   ],
   'Developer Events & Hackathons': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1087-flv7wjvgGNVYSsmszJRCcQ78IoJgjQ.jpg', // Team photo on steps
