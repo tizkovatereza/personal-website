@@ -329,54 +329,86 @@ function LabFlask() {
   )
 }
 
-// Floating Quote Component
-function FloatingQuote({ quote, index, totalQuotes }: { quote: string; index: number; totalQuotes: number }) {
+// Draggable Quote Component with different shades
+function DraggableQuote({ quote, index, totalQuotes }: { quote: string; index: number; totalQuotes: number }) {
   const [isHovered, setIsHovered] = useState(false)
-  const baseRotation = (Math.random() - 0.5) * 6 // -3 to 3 degrees
+  const [isDragging, setIsDragging] = useState(false)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [hasBeenDragged, setHasBeenDragged] = useState(false)
+  const dragRef = useRef<{ startX: number; startY: number; offsetX: number; offsetY: number } | null>(null)
   
-  // Calculate position in a grid-like scattered pattern
+  // Different shades of gray/brown for variety
+  const shades = [
+    'text-[#2a2a2a]', // darkest
+    'text-[#3a3a3a]',
+    'text-[#4a4a4a]',
+    'text-[#5a5a5a]',
+    'text-[#6a6a6a]',
+    'text-[#7a7a7a]', // lightest
+  ]
+  const shade = shades[index % shades.length]
+  
+  const baseRotation = ((index * 17) % 7) - 3 // deterministic rotation -3 to 3 degrees
+  
+  // Calculate initial position in a grid-like scattered pattern
   const cols = 3
   const row = Math.floor(index / cols)
   const col = index % cols
-  const baseX = (col / cols) * 80 + 10 + (Math.random() - 0.5) * 15
-  const baseY = (row / Math.ceil(totalQuotes / cols)) * 80 + 10 + (Math.random() - 0.5) * 10
-  
-  // Random animation parameters for floating
-  const duration = 15 + Math.random() * 10
-  const delay = Math.random() * -20
+  const baseX = (col / cols) * 70 + 15 + ((index * 13) % 15) - 7
+  const baseY = (row / Math.ceil(totalQuotes / cols)) * 75 + 12 + ((index * 11) % 10) - 5
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true)
+    setHasBeenDragged(true)
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      offsetX: position.x,
+      offsetY: position.y,
+    }
+  }
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging || !dragRef.current) return
+      const dx = e.clientX - dragRef.current.startX
+      const dy = e.clientY - dragRef.current.startY
+      setPosition({
+        x: dragRef.current.offsetX + dx,
+        y: dragRef.current.offsetY + dy,
+      })
+    }
+
+    const handleMouseUp = () => {
+      setIsDragging(false)
+    }
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('mouseup', handleMouseUp)
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [isDragging])
 
   return (
     <div
-      className={`absolute text-sm text-[#4a4a4a] bg-[#faf9f7]/80 px-3 py-2 max-w-[280px] transition-all duration-300 cursor-default select-none ${
-        isHovered ? 'z-10 scale-110 shadow-lg' : 'z-0'
-      }`}
+      className={`absolute text-sm bg-[#faf9f7]/90 px-3 py-2 max-w-[280px] transition-all select-none ${shade} ${
+        isHovered ? 'z-20 font-semibold shadow-md' : hasBeenDragged ? 'z-10' : 'z-0'
+      } ${isDragging ? 'cursor-grabbing scale-105' : 'cursor-grab'}`}
       style={{
         left: `${baseX}%`,
         top: `${baseY}%`,
-        transform: `rotate(${baseRotation}deg)`,
-        animation: isHovered ? 'none' : `float-${index} ${duration}s ease-in-out infinite`,
-        animationDelay: `${delay}s`,
+        transform: `translate(${position.x}px, ${position.y}px) rotate(${baseRotation}deg)`,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={handleMouseDown}
     >
       &ldquo;{quote}&rdquo;
-      <style jsx>{`
-        @keyframes float-${index} {
-          0%, 100% {
-            transform: rotate(${baseRotation}deg) translate(0, 0);
-          }
-          25% {
-            transform: rotate(${baseRotation + 1}deg) translate(${5 + Math.random() * 10}px, ${-5 - Math.random() * 10}px);
-          }
-          50% {
-            transform: rotate(${baseRotation - 1}deg) translate(${-5 - Math.random() * 5}px, ${5 + Math.random() * 5}px);
-          }
-          75% {
-            transform: rotate(${baseRotation + 0.5}deg) translate(${-3 - Math.random() * 8}px, ${-3 - Math.random() * 8}px);
-          }
-        }
-      `}</style>
     </div>
   )
 }
@@ -439,7 +471,7 @@ export default function GrowthLabPage() {
         </p>
         <div className="relative h-[500px] md:h-[600px] border border-[#e5e3df] bg-[#faf9f7] overflow-hidden">
           {QUOTES.map((quote, i) => (
-            <FloatingQuote key={i} quote={quote} index={i} totalQuotes={QUOTES.length} />
+            <DraggableQuote key={i} quote={quote} index={i} totalQuotes={QUOTES.length} />
           ))}
         </div>
         <p className="mt-8 text-sm text-[#666]">
