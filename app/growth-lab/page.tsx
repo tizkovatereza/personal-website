@@ -30,6 +30,46 @@ const QUOTES = [
   "I use Wispr Flow to dump all my thoughts into Claude and ask it to summarize into pointers.",
   "Networking on Twitter and a few cold DMs.",
   "I sent free leads to a nonprofit — one person connected me to a referral partner within days.",
+  "Do not let AI write your prose unless you have some kind of wizardly skill file that makes it not sound like AI at all — this is a grail.",
+  "Her trick is to do simple content but totally overthink the titles of the content.",
+  "Good .COM domains — LLMs, like humans, value them a lot. I don't have proof, but I don't have doubt either.",
+  "My one substack post from December is still being read now.",
+  "I sold my last company and now I'm building my own agent harness for GTM and growth using Claude Agent SDK and virtual sandboxes.",
+  "Spent few hours writing a personal article and just had 6 views and 0 likes — you publish in the void for a while but at least it exists.",
+  "Focus on who can deliver specific pain points and what you can control.",
+]
+
+const RESOURCES = {
+  "Content & Writing": [
+    { label: "Deep South Ventures Essays", url: "https://www.deepsouthventures.com/essays/" },
+    { label: "Reddit: Job Search Advice", url: "https://www.reddit.com/r/jobs/comments/7y8k6p/" },
+    { label: "MIT OpenCourseWare Playlist", url: "https://youtube.com/playlist?list=PLUl4u3cNGP63EUNfnwrkgO2xxwYxNwRdI" },
+    { label: "All About Growth YouTube", url: "https://youtube.com/@allaboutgrowth1" },
+  ],
+  "Growth & Strategy": [
+    { label: "@zachlloydtweets thread", url: "https://x.com/zachlloydtweets/status/2037539902448161067" },
+    { label: "@searchbound", url: "https://x.com/searchbound" },
+    { label: "Old North Whale: Chinese AI", url: "https://www.oldnorthwhale.com/p/the-chinese-are-enthroning-themselves" },
+  ],
+  "Communities": [
+    { label: "Join The Eden", url: "https://jointheden.co" },
+  ],
+}
+
+const TOOLS = [
+  "Claude Code + Factory AI",
+  "Claude Agent SDK",
+  "Gumloop",
+  "Wispr Flow",
+  "n8n",
+  "Cursor",
+  "Nano Banana",
+]
+
+const BOOKS = [
+  { title: "Zero to One", author: "Peter Thiel" },
+  { title: "Fall in Love with the Problem", author: "Uri Levine" },
+  { title: "Product Marketing Simplified", author: "Srini Potluri" },
 ]
 
 const APPLY_LINK = "https://forms.gle/fMU4a2UUffHdFt9H9"
@@ -404,6 +444,67 @@ export default function GrowthLabPage() {
         </div>
         <p className="mt-8 text-sm text-[#666]">
           50+ members across 12 countries.
+        </p>
+      </section>
+
+      {/* Resources Section */}
+      <section className="px-6 py-20 md:py-24 max-w-3xl mx-auto">
+        <p className="font-mono text-xs tracking-[0.2em] text-[#888] uppercase mb-10">
+          Resources from the Community
+        </p>
+        
+        <div className="space-y-10">
+          {Object.entries(RESOURCES).map(([category, links]) => (
+            <div key={category}>
+              <h3 className="text-sm font-medium text-[#2a2a2a] mb-4">{category}</h3>
+              <ul className="space-y-2">
+                {links.map((link, i) => (
+                  <li key={i}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#b85c38] hover:underline text-sm"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          
+          {/* Tools */}
+          <div>
+            <h3 className="text-sm font-medium text-[#2a2a2a] mb-4">Tools Members Use</h3>
+            <div className="flex flex-wrap gap-2">
+              {TOOLS.map((tool, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1 text-xs text-[#4a4a4a] border border-[#e5e3df] bg-white"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          {/* Books */}
+          <div>
+            <h3 className="text-sm font-medium text-[#2a2a2a] mb-4">Books</h3>
+            <ul className="space-y-2">
+              {BOOKS.map((book, i) => (
+                <li key={i} className="text-sm text-[#4a4a4a]">
+                  <span className="italic">&ldquo;{book.title}&rdquo;</span>
+                  <span className="text-[#888]"> — {book.author}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        
+        <p className="mt-12 text-xs text-[#aaa]">
+          Dedicated website coming soon.
         </p>
       </section>
 
