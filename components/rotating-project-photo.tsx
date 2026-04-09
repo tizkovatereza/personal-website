@@ -24,8 +24,8 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875904-uNZZb5uRTRiBxkpcKWdVDIVjfVfYy7.jpeg', // Multi-monitor desk setup showing course
   ],
   'Awesome AI Agents': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e2b%20yc%20deal-L0nLWrAjjzB075xTiE4wcOLtOCioiC.png', // E2B promo - reuse
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Discord_format-9z34q3e16p6aItAFrwjVAE0CCegwMM.png', // Community Townhall
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.22.55-AgABix1IirC6crdIWCzOTnCjcavqk1.png', // README with AI Agents Landscape
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.22.32-RrZUbhosQtE9edHbTKu22rq5hV7hyT.png', // Full GitHub repo page with 27.2k stars
   ],
   'Topics': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.13.20-TxqiZX8XIXYx52bT3c5UC1JUyUde0y.png', // Paul Graham - How to Do Great Work

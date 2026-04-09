@@ -28,7 +28,7 @@ const projects = [
   {
     id: 'awesome-agents',
     title: 'Awesome AI Agents',
-    description: 'Open source repository cataloging the best AI agent frameworks and tools. Over 20,000 GitHub stars and growing.',
+    description: 'Open source list of AI agents. 27k+ GitHub stars, went viral across social media, newsletters, conferences, and talks.',
     link: 'https://github.com/e2b-dev/awesome-ai-agents',
     tag: 'Open Source',
     image: '/images/project-topics.jpg',
