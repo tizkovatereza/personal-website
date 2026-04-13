@@ -4,9 +4,20 @@ export interface BlogPost {
   subtitle: string
   image: string
   url: string
+  isNew?: boolean
+  isInternal?: boolean
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "A guide to not wasting money on conference booths",
+    date: "Apr 13, 2026",
+    subtitle: "My learnings from sponsoring a conference as a dev tool startup",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.48%E2%80%AFPM-4vf9FV47GTISQYpAital8GMf3TXlm3.png",
+    url: "/writing/conference-booths",
+    isNew: true,
+    isInternal: true
+  },
   {
     title: "What Is Topology And Why You Should Love It",
     date: "Jul 16, 2025",
