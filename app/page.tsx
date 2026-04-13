@@ -74,9 +74,9 @@ const projects = [
   },
   { 
     category: "Course",
-    title: "DeepLearning.ai", 
-    description: "Building Coding Agents with Tool Execution — a short course on building AI coding agents with sandboxed environments.",
-    href: "https://learn.deeplearning.ai/courses/building-coding-agents-with-tool-execution/information",
+    title: "Building Coding Agents with Tool Execution", 
+    description: "Prepared and co-taught this coding agents course on DeepLearning.AI with Andrew Ng's team. Reached thousands of learners worldwide.",
+    href: "https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/",
   },
 ]
 
