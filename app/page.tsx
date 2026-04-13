@@ -8,6 +8,13 @@ import { RotatingProjectPhoto } from "@/components/rotating-project-photo"
 
 const writingItems = [
   {
+    title: "A guide to not wasting money on conference booths",
+    date: "Apr 2026",
+    source: "New",
+    href: "/writing/conference-booths",
+    isNew: true,
+  },
+  {
     title: "What Is Topology And Why You Should Love It",
     date: "Jul 2025",
     source: "Substack",
@@ -135,22 +142,33 @@ export default function HomePage() {
 
           {/* Editorial list */}
           <div className="flex flex-col gap-px bg-[rgba(255,255,255,0.03)]">
-            {writingItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2"
-              >
-                <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors">
-                  {item.title}
-                </h3>
-                <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
-                  {item.date} · {item.source}
-                </span>
-              </a>
-            ))}
+            {writingItems.map((item, index) => {
+              const isExternal = item.href.startsWith('http')
+              const LinkComponent = isExternal ? 'a' : Link
+              const linkProps = isExternal 
+                ? { href: item.href, target: "_blank", rel: "noopener noreferrer" }
+                : { href: item.href }
+              
+              return (
+                <LinkComponent
+                  key={index}
+                  {...linkProps}
+                  className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2"
+                >
+                  <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
+                    {item.title}
+                    {'isNew' in item && item.isNew && (
+                      <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[9px] font-mono uppercase tracking-wider">
+                        New
+                      </span>
+                    )}
+                  </h3>
+                  <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
+                    {item.date} · {item.source}
+                  </span>
+                </LinkComponent>
+              )
+            })}
           </div>
         </section>
 
