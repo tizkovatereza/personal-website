@@ -44,21 +44,17 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.26.23-Ac33XhoVsNxbeFj3e7smf5Wf9D42zf.png', // Tutorg Team page with group photo
   ],
   'The Growth Lab': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0116%20%282%29-IAaznP4p0SURXDb6suLlN6MvNJvvt7.jpg', // Office desk working
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/d0dc39e3-7be5-410c-b2a5-cec72688f2d4-ke15zBopCMgzjH22kBH0HL3sGcfmTx.jpeg', // Restaurant dinner
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/24a85868-41b7-4d2d-8acb-a2fdefe849a1-W3isYUAxdbMpGZTTZwfh0bWvcCJbYC.jpeg', // Laptop "Sandbox Company"
+    '/images/placeholder-growth-lab.jpg', // Placeholder illustration
   ],
   'Advent of Writing': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0bdaa24-591a-45cc-a36b-3c5942a9ef9f-4gRdi3CIRka25jFRuiU6qmhJcUqk5A.jpeg', // Flowers selfie
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-LQBYVeUzTqQaf5BU7elPy0QgYPmM6S.jpeg', // Pearl necklace selfie
   ],
   'Substack': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2824%29-Pv23LBYnDxYm0A01HN4GHyw1yPvpNX.jpeg', // Burgundy fleece
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0bdaa24-591a-45cc-a36b-3c5942a9ef9f-4gRdi3CIRka25jFRuiU6qmhJcUqk5A.jpeg', // Flowers selfie
+    '/images/placeholder-substack.jpg', // Placeholder illustration
   ],
   'Startup Advisory': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03a0d8c531e94a3eb562cf978ef1e3d8-lwF1bKm02tBxxupq0qruBUDNo7sLWq.jpg', // SF professional smiling
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1712150060654-p0r9wbxohe3O23CIodQ15dt7LOqz8t.jpeg', // Crossed arms professional
+    '/images/placeholder-advisory.jpg', // Placeholder illustration
   ],
   'DeepLearning.ai': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images%20%2831%29-eos1Z0bmYjzWuq9NvAsQcnTrNWgJJx.jpeg', // Video thumbnail with Andrew Ng intro
