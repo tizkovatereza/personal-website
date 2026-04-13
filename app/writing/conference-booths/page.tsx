@@ -12,12 +12,14 @@ export const metadata: Metadata = {
 function ArticleImage({ src, alt, caption, sourceUrl }: { src: string; alt: string; caption?: string; sourceUrl?: string }) {
   return (
     <figure className="my-8">
-      <div className="relative w-full aspect-[16/10] bg-[#0f1420]">
+      <div className="relative w-full">
         <Image
           src={src}
           alt={alt}
-          fill
-          className="object-cover"
+          width={1200}
+          height={900}
+          className="w-full h-auto"
+          unoptimized
         />
       </div>
       {(caption || sourceUrl) && (
