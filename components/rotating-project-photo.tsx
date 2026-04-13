@@ -34,9 +34,7 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.11.56-uFUnNmAOx10evmhwrwWF5gv0Hiddnl.png', // Not Boring - The Electric Slide
   ],
   'Developer Events & Hackathons': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1087-flv7wjvgGNVYSsmszJRCcQ78IoJgjQ.jpg', // Team photo on steps
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_6735-UvsfBrzmmRlOpO3YzNntGjbEZaP746.jpg', // Team at Golden Gate Park
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI_crunch_group_photo-g9MSmPTpreqg1vIz2PeB5ljeMFq93u.jpg', // Golden Gate Bridge selfie
+    '/images/placeholder-events.jpg', // Placeholder illustration
   ],
   'Discover Academy': [
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.25.46-k9QOSnSID4Px33o0UP2KIHpWe6TS1j.png', // Homepage hero - students playing outdoors
