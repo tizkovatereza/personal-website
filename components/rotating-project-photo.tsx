@@ -45,8 +45,7 @@ const projectPhotos: Record<string, string[]> = {
     '/images/placeholder-growth-lab.jpg', // Placeholder illustration
   ],
   'Advent of Writing': [
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0bdaa24-591a-45cc-a36b-3c5942a9ef9f-4gRdi3CIRka25jFRuiU6qmhJcUqk5A.jpeg', // Flowers selfie
-    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-LQBYVeUzTqQaf5BU7elPy0QgYPmM6S.jpeg', // Pearl necklace selfie
+    '/images/placeholder-advent.jpg', // Placeholder illustration
   ],
   'Substack': [
     '/images/placeholder-substack.jpg', // Placeholder illustration
