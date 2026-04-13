@@ -101,7 +101,7 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.48%E2%80%AFPM-4vf9FV47GTISQYpAital8GMf3TXlm3.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fed483b9-95a3-45a1-82bf-5d5d29e42075-MWXCNfj3n9dpOdU1QivffpYlKzrxVz.webp"
             alt="HumanX conference badge - Tereza Tizkova, E2B, Growth"
           />
 
@@ -120,8 +120,8 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.51%E2%80%AFPM-szZE2NyFmE9oXdLbRMxLNvzJEx7Y17.png"
-            alt="Oracle/NVIDIA robot at conference"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dd8c2a9b-ba19-46c2-927d-9d4e7b4a9fe6-bne3hcUIgVVtkG4PEvFnpEHkwqpKDI.webp"
+            alt="Oracle/NVIDIA delivery robot at conference"
           />
 
           <SecretTip number={1}>
@@ -139,8 +139,13 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.55%E2%80%AFPM-k8bBoI4SLuYa8eBWmIwzY5MTcKFLiO.png"
-            alt="Boring conference booth examples"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/d6475354-177e-4889-bbf2-41821c174706_2560x1920-2mruNzsh5EzVzfYu23M9cuuh4fbs3a.webp"
+            alt="Generic corporate booth - Flight Display Systems"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/be43ace8-d627-4a12-89be-ef0d8f624095_600x562-EmTrk4KQSV7Bbk8bQUkkrqyZrCzhvn.webp"
+            alt="Boring corporate booth with banners"
           />
 
           <p className="mb-6">
@@ -150,18 +155,23 @@ export default function ConferenceBoothsArticle() {
           <p className="mb-6">Adding some examples of booths that feel alive and warm:</p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.57%E2%80%AFPM-ejDSRkcM5dL2sNHZk0Ay379ggZOLaV.png"
-            alt="Impala.ai booth with safari theme"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9febc983-b8c5-4374-a054-c54650177556-M7xCMxOo3ya13nQq8eoqlJs3H6rDqt.webp"
+            alt="Impala.ai booth with safari theme, real tree and antelope"
           />
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.04%E2%80%AFPM-ESS4hNHuRn0TTOSnKOvgaO1xXJ9L1e.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b9d103d7-d76f-4da8-ae49-e7741ccc9d58-AMwGyIVuNcGSPbgvbiK6gxY10FlElw.webp"
             alt="Obviously NYC bodega booth"
           />
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.05%E2%80%AFPM-n2fVipUTwHGqEd2u8d4O23gvDZvPuA.png"
-            alt="Alice.io tea time booth and Instacart booth"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8268f9fa-2ef0-450f-b581-7d29fbf8999e-hez6fWTijbUwjv18ihmjr4YYs5U0s2.webp"
+            alt="Alice.io Wonderland-themed tea time booth"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0687518b-de3f-4d82-9dc0-d4deb3f9e6fb_1280x848-veC1Td6ycFRU2rvRL4xYvEInmcMYvj.webp"
+            alt="Instacart Caper green checkered grocery store booth"
           />
 
           <SecretTip number={3}>
@@ -169,8 +179,8 @@ export default function ConferenceBoothsArticle() {
           </SecretTip>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.11%E2%80%AFPM-WhtuunMtO2x0VgtJONZMpCeNlgz4lO.png"
-            alt="E2B booth - Agents are humans too"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6abf09ce-e7d1-4868-8436-64c1795ed711_2048x1536-aKMuZrA3z8zxaTr3oCCR3WyY1LKKYa.webp"
+            alt="E2B booth - Agents are Humans Too"
           />
 
           <SecretTip number={4}>
@@ -193,8 +203,8 @@ export default function ConferenceBoothsArticle() {
           </ul>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.01%E2%80%AFPM-YpanGuWEJk2CdmmO4nYpk4iA544JKE.png"
-            alt="Conference booth arcade games"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/610279d6-747a-4aec-a09d-5cb4c71d5723_1452x822-kQtTwtWHxC8HzzsMtIldig5O1S4ttT.webp"
+            alt="Symplr booth with interactive game and leaderboard"
           />
 
           <SecretTip number={5}>
@@ -228,12 +238,12 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.03%E2%80%AFPM-6CeyRt6NJYOtrDKlly9GyWEhAKkUdg.png"
-            alt="JupiterOne booth with alien mascot"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
+            alt="JupiterOne booth with green alien mascot"
           />
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.58%E2%80%AFPM-L5emmT3t2O7yFCvqnASj72B0IJAHSp.png"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b4ac665f-3477-4022-b458-c5a18ec99d04-ANGcblU3bR9IvwAw7kykF4hhMxiuP3.webp"
             alt="Obviously NYC bodega booth full view"
           />
 
@@ -256,8 +266,8 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.07%E2%80%AFPM-ELxBIwFcvPUh567cZXSoQLwXLW3DZB.png"
-            alt="Der Hamsterkauf meme"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/838c57b6-46bd-468a-b4b3-55e21c3e2e9a_940x788-KWfAdKHD2NPLlK0dVHCs8ZjIBMfVxl.webp"
+            alt="Der Hamsterkauf - German word for panic buying"
           />
 
           <p className="mb-6">
@@ -275,8 +285,8 @@ export default function ConferenceBoothsArticle() {
           <p className="mb-6">You can also invest in external ads:</p>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.08%E2%80%AFPM-QwPRliXQXYRrGWO6frySf97mE1S1pp.png"
-            alt="Kong mobile billboard ad truck"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8eb5527a-2fe7-4427-a686-4d68c069d25b-ijUL1LA0i2n5dxFzD99unmtx2gnPXW.webp"
+            alt="Kong mobile billboard ad truck outside conference"
           />
 
           <SectionHeader number={6}>Be strategic about getting your leads</SectionHeader>
@@ -340,8 +350,23 @@ export default function ConferenceBoothsArticle() {
           </ul>
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.09.10%E2%80%AFPM-Yth5u63uikoQVvXsav5Sx4w4emJnxb.png"
-            alt="HumanX conference floor"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2980f703-b2f4-4efd-8821-9c8545acacdd-mWuSGPowzCKNFK5RiyLeZFWut2QnGv.webp"
+            alt="E2B booth in action - team talking to visitors"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b91f3a10-9fc2-4ebe-b5eb-fead3443ee47-cu5GXc9RY5algpDBZCtK3zU4J4a2mq.webp"
+            alt="Vasek explaining E2B to conference attendee"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/504a4b01-3327-4b27-b41b-60b2fa979f3b-IIWOvVSphw4idAKfHI0CJMtKCZj00h.webp"
+            alt="HumanX conference entrance with floral displays"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cd2b31ac-6b0c-4664-a520-3725f2ad505a-A5ApxACpzS4VeY4ADxaVdlhYORXBld.webp"
+            alt="HumanX main stage"
           />
         </div>
       </article>
