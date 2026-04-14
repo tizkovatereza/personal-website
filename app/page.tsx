@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
 import { RotatingProjectPhoto } from "@/components/rotating-project-photo"
+import { TopicsWaitlistForm } from "@/components/topics-waitlist-form"
 
 const writingItems = [
   {
@@ -49,34 +50,53 @@ const promptChips = [
 
 const projects = [
   { 
-    category: "Infrastructure",
+    category: "Startup",
     title: "E2B", 
-    description: "Open-source cloud infrastructure for AI agents. Secure sandboxes that spin up in milliseconds.",
+    description: "Founding team member. Built growth from zero, established developer relations, shaped product positioning. Zero to Series A.",
     href: "https://e2b.dev",
-  },
-  { 
-    category: "Community",
-    title: "The Growth Lab", 
-    description: "A curated community of growth people sharing what actually works — tactics, tools, and real talk.",
-    href: "/growth-lab",
-  },
-  { 
-    category: "Writing",
-    title: "Substack", 
-    description: "Notes on growth, AI, and building things that matter. No marketing fluff.",
-    href: "https://terezatizkova.substack.com/",
-  },
-  { 
-    category: "Advisory",
-    title: "Startup Advisory", 
-    description: "Helping early-stage founders with growth strategy, positioning, and go-to-market.",
-    href: "/work-with-me",
   },
   { 
     category: "Course",
     title: "Building Coding Agents with Tool Execution", 
     description: "Prepared and co-taught this coding agents course on DeepLearning.AI with Andrew Ng's team. Reached thousands of learners worldwide.",
     href: "https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/",
+  },
+  { 
+    category: "Open Source",
+    title: "Awesome AI Agents", 
+    description: "Open source list of AI agents. 27k+ GitHub stars, went viral across social media, newsletters, conferences, and talks.",
+    href: "https://github.com/e2b-dev/awesome-ai-agents",
+  },
+  { 
+    category: "Launching Soon",
+    title: "Topics", 
+    description: "A curated reading app for writers and learners who want to read more intentionally. Looking for beta testers!",
+    href: "#",
+    isWaitlist: true,
+  },
+  { 
+    category: "Events",
+    title: "Developer Events & Hackathons", 
+    description: "Organized AI hackathons and developer events in San Francisco, Prague, and online through E2B. Including the first AI hackathon in Czech Republic with 50+ builders.",
+    href: "https://lu.ma/e2b",
+  },
+  { 
+    category: "Teaching",
+    title: "Discover Academy", 
+    description: "Lecturer at Discover Summer Academy, a non-profit summer school for talented Czech and Slovak high school students. Taught graduate-level mathematics to teenagers.",
+    href: "https://discover.sk/en/",
+  },
+  { 
+    category: "Community",
+    title: "The Growth Lab", 
+    description: "A curated community of growth people sharing what actually works — tactics, tools, and real talk. 50+ members from startups, dev platforms, and AI companies.",
+    href: "/growth-lab",
+  },
+  { 
+    category: "Writing",
+    title: "Advent of Writing", 
+    description: "A 24-day writing challenge that helped hundreds of creators develop a consistent writing habit during the holiday season.",
+    href: "https://adventofwriting.com/",
   },
 ]
 
@@ -187,36 +207,66 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 3-column Grid (2 on tablet, 1 on mobile) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {projects.map((project) => (
-              <Link
-                key={project.title}
-                href={project.href}
-                target={project.href.startsWith('http') ? "_blank" : undefined}
-                rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover overflow-hidden"
-              >
-                {/* Rotating Photo Preview */}
-                <RotatingProjectPhoto projectName={project.title} className="w-full" />
-                
-                <div className="p-6 sm:p-8">
-                  {/* Category with diamond */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                    <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-                      {project.category}
-                    </span>
+          {/* 2-column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {projects.map((project) => {
+              // Special handling for waitlist projects
+              if ('isWaitlist' in project && project.isWaitlist) {
+                return (
+                  <div
+                    key={project.title}
+                    className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] overflow-hidden"
+                  >
+                    {/* Rotating Photo Preview */}
+                    <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                    
+                    <div className="p-6 sm:p-8">
+                      {/* Category with diamond */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                        <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                          {project.category}
+                        </span>
+                      </div>
+                      <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
+                        {project.title}
+                      </h3>
+                      {/* Waitlist Form */}
+                      <TopicsWaitlistForm />
+                    </div>
                   </div>
-                  <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
+                )
+              }
+
+              return (
+                <Link
+                  key={project.title}
+                  href={project.href}
+                  target={project.href.startsWith('http') ? "_blank" : undefined}
+                  rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                  className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover overflow-hidden"
+                >
+                  {/* Rotating Photo Preview */}
+                  <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                  
+                  <div className="p-6 sm:p-8">
+                    {/* Category with diamond */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-1.5 h-1.5 bg-primary rotate-45" />
+                      <span className="font-mono text-[10px] sm:text-[11px] font-light text-primary tracking-[0.05em] uppercase">
+                        {project.category}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] mb-2 sm:mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="font-light text-[13px] sm:text-[14px] text-secondary leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </section>
 
