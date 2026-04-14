@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Sidebar } from '@/components/sidebar'
 import { MobileNav } from '@/components/mobile-nav'
 import { DontClickHere } from '@/components/dont-click-here'
+import { PageViewTracker } from '@/components/page-view-tracker'
 import './globals.css'
 
 const inter = Inter({ 
@@ -94,6 +95,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <Analytics />
+        <PageViewTracker />
       </body>
     </html>
   )
