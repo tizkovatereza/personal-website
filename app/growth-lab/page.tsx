@@ -27,16 +27,16 @@ const QUOTES = [
   "How far can two people scale using AI as a multiplier rather than a shortcut?",
   "Built a sneaker customisation business purely on X — no paid marketing — scaled to $150k.",
   "Feature gating: users unlock features by referring friends. They can't even pay for it.",
-  "I use Wispr Flow to dump all my thoughts into Claude and ask it to summarize into pointers.",
-  "Networking on Twitter and a few cold DMs.",
+  "I prepare account briefs using deep research and custom skills aligned with company strategy — output is a PDF ready for outreach.",
+  "After a decade in sales at Google and Salesforce, I pivoted to build my own startup in the bay area.",
   "I sent free leads to a nonprofit — one person connected me to a referral partner within days.",
   "Do not let AI write your prose unless you have some kind of wizardly skill file that makes it not sound like AI at all — this is a grail.",
   "Her trick is to do simple content but totally overthink the titles of the content.",
   "Good .COM domains — LLMs, like humans, value them a lot. I don't have proof, but I don't have doubt either.",
-  "My one substack post from December is still being read now.",
+  "I don't automate in the traditional sense — I orchestrate. Full automation feels too robotic and lacks human input.",
   "I sold my last company and now I'm building my own agent harness for GTM and growth using Claude Agent SDK and virtual sandboxes.",
-  "Spent few hours writing a personal article and just had 6 views and 0 likes — you publish in the void for a while but at least it exists.",
-  "Focus on who can deliver specific pain points and what you can control.",
+  "Building an event ROI agent that summarizes how successful your event was and prepares follow-ups automatically.",
+  "Eric Ries exported agile management from Japan to SF — MVP metrics, Lean. His exploration of Toyota is paradigmatic.",
 ]
 
 const RESOURCES = {
