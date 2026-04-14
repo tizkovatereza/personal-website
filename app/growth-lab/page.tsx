@@ -418,26 +418,46 @@ export default function GrowthLabPage() {
     <div className="min-h-screen bg-[#faf9f7] text-[#1a1a1a]">
       {/* Hero Section */}
       <section className="px-6 py-24 md:py-32 max-w-3xl mx-auto">
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-6 mb-6">
           <LabFlask />
-          <h1 className="font-serif text-5xl md:text-7xl tracking-tight text-[#1a1a1a]">
-            The Growth Lab
-          </h1>
+          <div>
+            <p className="font-mono text-xs tracking-[0.2em] text-[#b85c38] uppercase mb-2">
+              Private Community
+            </p>
+            <h1 className="font-serif text-5xl md:text-7xl tracking-tight text-[#1a1a1a]">
+              The Growth Lab
+            </h1>
+          </div>
         </div>
-        <p className="text-lg md:text-xl text-[#4a4a4a] mb-12 max-w-xl leading-relaxed">
-          A curated group of people who do growth every day — sharing tactics, tools, and real talk.
+        
+        <p className="text-2xl md:text-3xl text-[#2a2a2a] mb-6 max-w-2xl leading-snug font-light">
+          Where growth people share what <em className="font-serif">actually</em> works.
         </p>
-        <a
-          href={APPLY_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-8 py-4 bg-[#b85c38] hover:bg-[#a04d2e] text-white text-base tracking-wide transition-colors duration-200"
-        >
-          Apply to Join
-        </a>
-        <p className="mt-5 text-xs tracking-wide text-[#888] uppercase">
-          Curated. Applications reviewed manually.
+        
+        <p className="text-base md:text-lg text-[#5a5a5a] mb-12 max-w-xl leading-relaxed">
+          50+ operators from startups, dev tools, and AI companies. No fluff, no courses to sell — just tactics, tools, and real talk from people in the trenches.
         </p>
+        
+        <div className="flex flex-wrap items-center gap-4 mb-6">
+          <a
+            href={APPLY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-[#b85c38] hover:bg-[#a04d2e] text-white text-base tracking-wide transition-colors duration-200"
+          >
+            Apply to Join
+          </a>
+          <span className="text-sm text-[#888]">
+            Free to join. Curated membership.
+          </span>
+        </div>
+        
+        <div className="flex flex-wrap gap-3 text-xs text-[#666]">
+          <span className="px-3 py-1 border border-[#e5e3df] bg-white/50">AI-native growth</span>
+          <span className="px-3 py-1 border border-[#e5e3df] bg-white/50">Developer marketing</span>
+          <span className="px-3 py-1 border border-[#e5e3df] bg-white/50">B2B SaaS</span>
+          <span className="px-3 py-1 border border-[#e5e3df] bg-white/50">Content & distribution</span>
+        </div>
       </section>
 
       {/* Thin accent line */}
@@ -466,16 +486,26 @@ export default function GrowthLabPage() {
 
       {/* Quotes Section - Floating Cloud */}
       <section className="px-6 py-20 md:py-24 max-w-4xl mx-auto">
-        <p className="font-mono text-xs tracking-[0.2em] text-[#888] uppercase mb-10">
-          From The Inside
-        </p>
-        <div className="relative h-[500px] md:h-[600px] border border-[#e5e3df] bg-[#faf9f7] overflow-hidden">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="font-mono text-xs tracking-[0.2em] text-[#888] uppercase mb-2">
+              From The Inside
+            </p>
+            <p className="text-lg text-[#4a4a4a]">
+              Real conversations. Drag to explore.
+            </p>
+          </div>
+        </div>
+        <div className="relative h-[500px] md:h-[600px] border border-[#e5e3df] bg-gradient-to-br from-[#faf9f7] to-[#f5f3ef] overflow-hidden shadow-inner">
           {QUOTES.map((quote, i) => (
             <DraggableQuote key={i} quote={quote} index={i} totalQuotes={QUOTES.length} />
           ))}
+          {/* Subtle corner accents */}
+          <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[#b85c38]/20" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#b85c38]/20" />
         </div>
-        <p className="mt-8 text-sm text-[#666]">
-          50+ members across 12 countries.
+        <p className="mt-6 text-xs text-[#888] text-center">
+          Snippets from 50+ members across 12 countries
         </p>
       </section>
 
