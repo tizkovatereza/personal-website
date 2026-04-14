@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans font-light antialiased noise-texture scanlines">
-        <div className="global-bg-pattern" aria-hidden="true" />
+        <div className="global-bg-pattern print:hidden" aria-hidden="true" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -81,15 +81,21 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Easter Egg */}
-          <DontClickHere />
+          <div className="print:hidden">
+            <DontClickHere />
+          </div>
           
           {/* Mobile Navigation */}
-          <MobileNav />
+          <div className="print:hidden">
+            <MobileNav />
+          </div>
           
           {/* Desktop Layout with Fixed Sidebar */}
           <div className="lg:flex">
-            <Sidebar />
-            <main className="flex-1 lg:ml-[220px] min-h-screen">
+            <div className="print:hidden">
+              <Sidebar />
+            </div>
+            <main className="flex-1 lg:ml-[220px] print:ml-0 min-h-screen print:min-h-0">
               {children}
             </main>
           </div>

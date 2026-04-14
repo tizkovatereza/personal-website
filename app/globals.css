@@ -257,3 +257,25 @@ html {
 .animate-binary {
   animation: scroll-binary 30s linear infinite;
 }
+
+/* Print styles for resume */
+@media print {
+  html, body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .noise-texture::before,
+  .scanlines::after,
+  .global-bg-pattern,
+  .global-bg-pattern::before {
+    display: none !important;
+  }
+  
+  @page {
+    size: letter;
+    margin: 0;
+  }
+}
