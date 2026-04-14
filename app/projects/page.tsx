@@ -74,6 +74,14 @@ const projects = [
     tag: 'Writing',
     image: '/images/project-advent.jpg',
   },
+  {
+    id: 'talks',
+    title: 'Talks & Podcasts',
+    description: 'Conference talks, podcast appearances, and interviews on AI agents, developer tools, and growth.',
+    link: '/about#talks',
+    tag: 'Speaking',
+    image: '/images/project-advent.jpg',
+  },
 ]
 
 export default function ProjectsPage() {

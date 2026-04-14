@@ -52,7 +52,9 @@ const projectPhotos: Record<string, string[]> = {
   'Startup Advisory': [
     '/images/placeholder-advisory.jpg', // Placeholder illustration
   ],
-  
+  'Talks & Podcasts': [
+    '/images/placeholder-talks.jpg', // Placeholder illustration
+  ],
 }
 
 interface RotatingProjectPhotoProps {

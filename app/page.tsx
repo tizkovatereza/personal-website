@@ -98,6 +98,12 @@ const projects = [
     description: "A 24-day writing challenge that helped hundreds of creators develop a consistent writing habit during the holiday season.",
     href: "https://adventofwriting.com/",
   },
+  { 
+    category: "Speaking",
+    title: "Talks & Podcasts", 
+    description: "Conference talks, podcast appearances, and interviews on AI agents, developer tools, and growth.",
+    href: "/about#talks",
+  },
 ]
 
 export default function HomePage() {
