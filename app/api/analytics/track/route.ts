@@ -8,17 +8,14 @@ export async function POST(request: NextRequest) {
     const { path, referrer } = await request.json()
     
     const userAgent = request.headers.get('user-agent') || null
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 
-               request.headers.get('x-real-ip') || 
-               null
     
     // Get country from Vercel's geo headers
     const country = request.headers.get('x-vercel-ip-country') || null
     const city = request.headers.get('x-vercel-ip-city') || null
     
     await sql`
-      INSERT INTO page_views (path, referrer, user_agent, ip_address, country, city)
-      VALUES (${path}, ${referrer}, ${userAgent}, ${ip}, ${country}, ${city})
+      INSERT INTO page_views (path, referrer, user_agent, country, city)
+      VALUES (${path}, ${referrer}, ${userAgent}, ${country}, ${city})
     `
     
     return NextResponse.json({ success: true })

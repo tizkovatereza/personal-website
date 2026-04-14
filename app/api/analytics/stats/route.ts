@@ -21,17 +21,17 @@ export async function GET(request: NextRequest) {
     const todayViews = await sql`
       SELECT COUNT(*) as count 
       FROM page_views 
-      WHERE viewed_at >= CURRENT_DATE
+      WHERE created_at >= CURRENT_DATE
     `
     
     // Get views last 7 days by day
     const last7Days = await sql`
       SELECT 
-        DATE(viewed_at) as date,
+        DATE(created_at) as date,
         COUNT(*) as views
       FROM page_views
-      WHERE viewed_at >= CURRENT_DATE - INTERVAL '7 days'
-      GROUP BY DATE(viewed_at)
+      WHERE created_at >= CURRENT_DATE - INTERVAL '7 days'
+      GROUP BY DATE(created_at)
       ORDER BY date DESC
     `
     
