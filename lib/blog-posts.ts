@@ -102,13 +102,7 @@ export const blogPosts: BlogPost[] = [
     image: "https://substack-post-media.s3.amazonaws.com/public/images/3a1208b3-afed-49a9-949b-a9cb5ad55668_1024x1024.png",
     url: "https://terezatizkova.substack.com/p/answering-anonymous-questions"
   },
-  {
-    title: "No. 001 of my not-a-newsletter",
-    date: "Jul 3, 2025",
-    subtitle: "tereza is typing...001",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/8a645c5a-1c9c-4a5d-8732-730108203b0f_572x423.jpeg",
-    url: "https://terezatizkova.substack.com/p/tereza-is-typing"
-  },
+  
   {
     title: "Agents Were LLMs All Along.",
     date: "Jun 30, 2025",
