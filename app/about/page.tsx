@@ -48,14 +48,9 @@ const education = [
     description: 'Faculty of Mathematics and Physics.',
   },
   {
-    degree: 'Economics & Finance',
+    degree: 'Economics & Finance + Marketing Communications & PR',
     school: 'Charles University, Prague',
-    description: 'Institute of Economic Studies.',
-  },
-  {
-    degree: 'Marketing Communications & PR',
-    school: '',
-    description: 'Undergraduate studies.',
+    description: 'Studied simultaneously at Institute of Economic Studies and Faculty of Social Sciences.',
   },
 ]
 
