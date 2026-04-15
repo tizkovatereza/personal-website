@@ -206,20 +206,7 @@ function ResumeContent() {
         </section>
       </div>
 
-      {/* Print styles */}
-      <style jsx global>{`
-        @media print {
-          @page {
-            size: letter;
-            margin: 0;
-          }
-          body {
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
-        }
-      `}</style>
-    </div>
+      </div>
   )
 }
 
