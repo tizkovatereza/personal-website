@@ -95,7 +95,7 @@ const talks = [
     title: 'Days of AI Prague',
     platform: 'Panel Discussion',
     description: 'Panel on AI and developer tools at the Days of AI conference in Prague.',
-    link: '',
+    link: 'https://www.youtube.com/watch?v=NKrbCbjLyqA',
   },
 ]
 
