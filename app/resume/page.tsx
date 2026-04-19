@@ -41,12 +41,12 @@ const education = [
   {
     degree: 'MSc Mathematical Structures',
     school: 'Charles University — Faculty of Mathematics and Physics',
-    years: '2020 – 2022',
+    years: '2019 – 2022',
   },
   {
     degree: 'Economics & Finance + Marketing Communications',
     school: 'Charles University — studied simultaneously',
-    years: '2016 – 2020',
+    years: '2016 – 2019',
   },
 ]
 
