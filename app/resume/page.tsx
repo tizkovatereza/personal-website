@@ -64,6 +64,12 @@ const audience = [
   { label: 'GitHub', value: '26K+' },
 ]
 
+const awards = [
+  'AI Awards 2025 & Kristalova Lupa 2025 — E2B recognized for brand, content, and achievements (Czech Republic\'s most prestigious tech awards)',
+  '4th Place, Rotman European Trading Challenge 2021 — Algorithmic trading competition',
+  'DevRel Collective Member — Exclusive global community of 1,800+ developer relations professionals',
+]
+
 function ResumeContent() {
   const searchParams = useSearchParams()
   const isPrintMode = searchParams.get('print') === 'true'
@@ -190,20 +196,38 @@ function ResumeContent() {
           </section>
         </div>
 
-        {/* Audience - compact row */}
-        <section>
-          <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-            Audience
-          </h2>
-          <div className="flex gap-8">
-            {audience.map((item, i) => (
-              <div key={i} className="flex items-baseline gap-1.5">
-                <span className="text-[14px] font-bold text-gray-900">{item.value}</span>
-                <span className="text-[9px] text-gray-500 uppercase">{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Two columns: Audience + Awards */}
+        <div className="grid grid-cols-2 gap-6">
+          {/* Audience - compact row */}
+          <section>
+            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+              Audience
+            </h2>
+            <div className="flex flex-wrap gap-x-6 gap-y-1">
+              {audience.map((item, i) => (
+                <div key={i} className="flex items-baseline gap-1.5">
+                  <span className="text-[12px] font-bold text-gray-900">{item.value}</span>
+                  <span className="text-[8px] text-gray-500 uppercase">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Awards & Memberships */}
+          <section>
+            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+              Awards & Memberships
+            </h2>
+            <ul className="space-y-0.5">
+              {awards.map((item, i) => (
+                <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
+                  <span className="absolute left-0 text-gray-400">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
 
       </div>
