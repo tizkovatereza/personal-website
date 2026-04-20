@@ -230,7 +230,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <p className="mb-6">
-            The job as we know it… a salary, a desk, a mix of important and mundane tasks… that structure exists because companies needed warm bodies for the mundane parts. When AI handles the mundane, what&apos;s left is the judgment. And judgment doesn&apos;t need to be full-time. It doesn&apos;t even need to be employed. It can be an agency of one.
+            The job as we know it… a salary, a desk, a mix of important and mundane tasks… that structure exists because companies needed warm bodies for the mundane parts. When AI handles the mundane, what&apos;s left is the judgment, brand, proven track record, experience, and network. And judgment doesn&apos;t need to be full-time. It doesn&apos;t even need to be employed. It can be an agency of one.
           </p>
 
           <SectionHeader>…So what do you do?</SectionHeader>
