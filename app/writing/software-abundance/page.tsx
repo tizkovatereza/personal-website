@@ -105,11 +105,15 @@ export default function SoftwareAbundanceArticle() {
           />
 
           <p className="mb-6">
-            In mathematics, a non-mathematician can&apos;t even speak the language. But in a lot of fields, people can evaluate your work with their own senses. They don&apos;t need any other apparatus.
+            A non-mathematician can&apos;t even speak the language of mathematics. But in a lot of fields, people can evaluate your work with their own senses. They don&apos;t need any other apparatus.
           </p>
 
           <p className="mb-6">
-            I see how software is turning more from what I experience with math to what I experience with marketing. The barriers of entry gets low as code is now being created mostly with AI prompts. It is now possible to vibecode your own SaaS instead of paying someone $50/month for theirs.
+            I see how software is turning more from what I experience with math to what I experience with marketing. It is now possible to vibecode your own SaaS instead of paying someone $50/month for theirs. And once anyone can build software, software becomes something everyone feels qualified to judge.
+          </p>
+
+          <p className="mb-6">
+            This is where two variables interact: how hard it is to enter a field, and how easily outsiders can evaluate the work. When both shift — barrier drops, visibility rises — respect collapses.
           </p>
 
           <p className="mb-6">
