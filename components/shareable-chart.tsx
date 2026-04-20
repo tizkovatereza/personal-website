@@ -17,22 +17,30 @@ export function ShareableChart({
   alt, 
   caption,
   articleUrl = "https://terezatizkova.com/writing/software-abundance",
-  articleTitle = "Lower Entry Barrier Makes Software a Lower-Respect Field"
+  articleTitle = "Software is becoming marketing"
 }: ShareableChartProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const shareText = caption || alt
   const fullUrl = articleUrl
+  
+  // Get full image URL for sharing
+  const imageUrl = src.startsWith('http') ? src : `https://terezatizkova.com${src}`
 
   const shareOnTwitter = () => {
-    const text = encodeURIComponent(`${shareText}\n\nFrom "${articleTitle}" by @teaborine\n${fullUrl}`)
-    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank')
+    // Twitter will automatically show image preview from the URL's og:image
+    const text = encodeURIComponent(`${shareText}\n\nFrom "${articleTitle}" by @tereza_tizkova`)
+    const url = encodeURIComponent(fullUrl)
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank')
   }
 
   const shareOnLinkedIn = () => {
+    // LinkedIn sharing with proper parameters
     const url = encodeURIComponent(fullUrl)
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank')
+    const title = encodeURIComponent(articleTitle)
+    const summary = encodeURIComponent(shareText)
+    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank')
   }
 
   const copyLink = async () => {
