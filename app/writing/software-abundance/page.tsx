@@ -196,7 +196,7 @@ export default function SoftwareAbundanceArticle() {
           <SubSection>3.1) The death of the &quot;good enough&quot; vendor</SubSection>
 
           <p className="mb-6">
-            When software was hard to build, companies thrived by being &quot;the only ones who can do X.&quot; When anyone can vibecode a solution, the mid-sized company charging $50/month for a simple tool loses its moat. Their product becomes a commodity. And their last defense — vendor lock-in, the switching cost of migrating your data — gets eaten by AI too, which can replicate integrations and rewrite adapters overnight.
+            When software was hard to build, companies survived by being the only ones who could do X. When anyone can vibecode an alternative over a weekend, the mid-sized company charging $50/month for a simple tool has no moat left. The product becomes a commodity. And the last defense, vendor lock-in, gets eaten by AI too: migrating data, replicating integrations, rewriting adapters. All overnight.
           </p>
 
           <SubSection>3.2) The rise of the long tail</SubSection>
