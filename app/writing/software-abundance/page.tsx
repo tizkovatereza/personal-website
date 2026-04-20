@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react'
 import { ShareableChart } from '@/components/shareable-chart'
 
 export const metadata: Metadata = {
-  title: 'Lower Entry Barrier Makes Software a Lower-Respect Field | Tereza Tizkova',
+  title: 'Software is becoming marketing | Tereza Tizkova',
   description: 'Four implications of AI making software abundant — and what to do about it',
 }
 
@@ -53,7 +53,7 @@ export default function SoftwareAbundanceArticle() {
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">
-            Lower Entry Barrier Makes Software a Lower-Respect Field
+            Software is becoming marketing
           </h1>
           <p className="text-[18px] sm:text-[20px] text-muted-foreground mb-6">
             Four implications of AI making software abundant — and what to do about it

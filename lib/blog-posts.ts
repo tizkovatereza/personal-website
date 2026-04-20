@@ -10,7 +10,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "Lower Entry Barrier Makes Software a Lower-Respect Field",
+    title: "Software is becoming marketing",
     date: "Apr 19, 2026",
     subtitle: "Four implications of AI making software abundant — and what to do about it",
     image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
