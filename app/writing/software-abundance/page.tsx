@@ -132,18 +132,11 @@ export default function SoftwareAbundanceArticle() {
           />
 
           <p className="mb-6">
-            Lower respect means that:
+            Lower respect means lower pay. As software moves into &quot;everyone&apos;s a critic&quot; territory, pay will compress toward what other creative fields already look like. Writers, designers, and marketers all have wider pay distributions because the barrier to entry is low and the work is visible: anyone can try, everyone has an opinion, and only the proven best command a premium.
           </p>
 
-          <ol className="list-decimal pl-6 mb-6 space-y-3">
-            <li>You need something on top of being just a software engineer. It can be specialization (e.g., growth engineer), an excellent track record.</li>
-            <li>Trust, reputation, and personal brand matters more than ever.</li>
-            <li>There will be more bullshitters because of the point two. Maybe someone has a good brand. Since the work is visible they will try to cover it or enhance it or add more brand and confidence. You need to be more careful.</li>
-            <li>The real experts or &quot;quality people&quot; suddenly are valued much more.</li>
-          </ol>
-
           <p className="mb-6">
-            I am working in fields marketing, media, developer relations, and we all know marketing is not paid that well compared to software.
+            To stand out, you need something beyond &quot;software engineer&quot; on your resume: a specialization, a track record, a reputation. The bullshitters will multiply, but so will the premium on genuinely excellent work.
           </p>
 
           <ShareableChart 
