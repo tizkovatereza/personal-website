@@ -74,7 +74,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <p className="mb-6">
-            There are some interesting implications of the abundance of software products. I think this is what has been already happening:
+            Software being mostly written by AI changes the job market, but also the software products landscape. This is how:
           </p>
 
           <ol className="list-decimal pl-6 mb-6 space-y-2 font-semibold">
