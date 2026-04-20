@@ -12,14 +12,10 @@ const rotatingPhotos = [
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Nov%207%2C%202025%2C%2004_36_51%20PM-bO1BRz2J864WgIlFaIsOETAeyp9Lmf.png', // cartoon cat
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03a0d8c531e94a3eb562cf978ef1e3d8-lwF1bKm02tBxxupq0qruBUDNo7sLWq.jpg', // SF professional smiling
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e9adb116-0350-4793-b648-729f9aa43eba-eEhKVJEGPEoN2PYqaujDec9oLG6qiv.jpeg', // this is fine dog
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1712150060654-p0r9wbxohe3O23CIodQ15dt7LOqz8t.jpeg', // crossed arms professional
-  
-  
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0bdaa24-591a-45cc-a36b-3c5942a9ef9f-4gRdi3CIRka25jFRuiU6qmhJcUqk5A.jpeg', // flowers selfie
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/zSjtnkEP_400x400-LHYV4ZxIX8F3BYlwVeoqEyqnzIMgEA.jpg', // AI awards mirror
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/252e96bc6613207ee425b8cdf5c2d2e9-3kqUvxhonnNnT2CtCn0A6ASw6LmLAb.jpg', // cat on scooter
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/terezatizkova-LQBYVeUzTqQaf5BU7elPy0QgYPmM6S.jpeg', // pearl necklace selfie
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1087-flv7wjvgGNVYSsmszJRCcQ78IoJgjQ.jpg', // team photo on steps
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0116%20%282%29-IAaznP4p0SURXDb6suLlN6MvNJvvt7.jpg', // office desk working
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3b199472eaf808d5%20%281%29-T6u1IezTQwmqERzSBHWOgV4kHQzwyR.png', // sunglasses side profile
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3fc7bc11-54d4-4753-b7b7-a2fc69f6024a-nb9LRKmXVvK7odqD8ZR3OX57BYiBmU.jpeg', // Philz Coffee selfie
