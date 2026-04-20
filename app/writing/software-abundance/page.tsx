@@ -101,7 +101,7 @@ export default function SoftwareAbundanceArticle() {
           {/* Evaluability chart */}
           <figure className="my-10">
             <Image 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-vFx0pA8c83t3aA0w9qNsAhbc40hx0W.svg"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-92g039qW90nImkEmP4yFBODDVDWRIw.svg"
               alt="Barrier to entry vs. evaluability - comparing Yoneda Lemma proof with SaaS landing page"
               width={1000}
               height={520}
