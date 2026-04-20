@@ -13,7 +13,7 @@ const experience = [
     date: 'Jun 2023 – Present',
     bullets: [
       'First hire at AI infrastructure startup; led growth from pre-seed to Series A',
-      'Built Awesome AI Agents repo (26K+ GitHub stars), co-taught DeepLearning.AI course with Andrew Ng',
+      'Built Awesome AI Agents repo (31K+ GitHub stars), co-taught DeepLearning.AI course with Andrew Ng',
       'Drove product launches, partnerships (Groq, Mistral, LangChain), developer community, and events',
     ],
   },
@@ -52,7 +52,7 @@ const education = [
 
 const highlights = [
   'Co-taught "Building Coding Agents" course on DeepLearning.AI with Andrew Ng\'s team',
-  'Built Awesome AI Agents — most popular open-source list of AI agents (26K+ stars)',
+  'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)',
   'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
 ]
@@ -61,7 +61,7 @@ const audience = [
   { label: 'Newsletter', value: '40K+' },
   { label: 'Twitter', value: '7K+' },
   { label: 'LinkedIn', value: '8K+' },
-  { label: 'GitHub', value: '26K+' },
+  { label: 'GitHub Stars', value: '31K+' },
 ]
 
 const awards = [
