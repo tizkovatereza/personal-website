@@ -184,11 +184,7 @@ export default function SoftwareAbundanceArticle() {
           <SectionHeader>Implication 3: The middle class of software products will disappear</SectionHeader>
 
           <p className="mb-6">
-            The previous leads to something interesting.
-          </p>
-
-          <p className="mb-6">
-            SaaS is about to get the App Store treatment.
+            The previous leads to something interesting. SaaS is about to get the App Store treatment and it will start to resemble a power law system.
           </p>
 
           <ShareableChart 
