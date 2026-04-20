@@ -99,7 +99,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-92g039qW90nImkEmP4yFBODDVDWRIw.svg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-VJsZSp22OcB4lgjUv9qrRfA9cNnrwE.svg"
             alt="Barrier to entry vs. evaluability - comparing Yoneda Lemma proof with SaaS landing page"
             caption="No-one argues about Yoneda lemma proofs, but everyone has opinions on landing page colors"
           />
