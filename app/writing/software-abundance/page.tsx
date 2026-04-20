@@ -196,7 +196,7 @@ export default function SoftwareAbundanceArticle() {
           <SubSection>3.1) The death of the &quot;good enough&quot; vendor</SubSection>
 
           <p className="mb-6">
-            When software was hard to build, companies survived by being the only ones who could do X. When anyone can vibecode an alternative over a weekend, the mid-sized company charging $50/month for a simple tool has no moat left. The product becomes a commodity. And the last defense, vendor lock-in, gets eaten by AI too: migrating data, replicating integrations, rewriting adapters. All overnight.
+            When software was hard to build, companies survived by being the only ones who could do X. When anyone can vibecode an alternative over a weekend, the mid-sized company charging $50/month for a simple tool has no moat left. The product becomes a commodity. The companies in the middle — those with high overhead but no unique aggregator power — get squeezed from both sides. They are too expensive to compete with a free AI-generated tool and too small to compete with the network effects of a giant.
           </p>
 
           <SubSection>3.2) The rise of the long tail</SubSection>
@@ -209,12 +209,6 @@ export default function SoftwareAbundanceArticle() {
 
           <p className="mb-6">
             In a sea of infinite vibecoded apps, the only things that matter are trust, distribution, and identity. Users will flock to a few mega-aggregators because these platforms provide the infrastructure and the verified ecosystem that individual apps lack. You might vibecode your own note-taking app, but you still need it to run on someone&apos;s cloud, authenticate through someone&apos;s identity layer, and be discoverable through someone&apos;s ecosystem.
-          </p>
-
-          <SubSection>The fat middle collapses</SubSection>
-
-          <p className="mb-6">
-            The companies in the middle — those with high overhead but no unique aggregator power — get squeezed from both sides. They are too expensive to compete with a free AI-generated tool and too small to compete with the network effects of a giant.
           </p>
 
           <SectionHeader>Implication 4: If you want to win, sell services, not products</SectionHeader>
