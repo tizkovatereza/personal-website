@@ -1,7 +1,8 @@
 import { neon } from '@neondatabase/serverless'
 import { NextRequest, NextResponse } from 'next/server'
 
-const sql = neon(process.env.DATABASE_URL!)
+const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_T8wOCM4fVHcY@ep-lucky-shape-aip8rknx-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require'
+const sql = neon(DATABASE_URL)
 
 export async function GET(request: NextRequest) {
   try {
