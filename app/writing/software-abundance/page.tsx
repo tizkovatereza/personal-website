@@ -70,7 +70,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <p className="mb-6">
-            And even in the Czech Republic, a small country in Europe where I&apos;m from, a local insurance group called Direct announced that firing a third of its 1,200 employees. Their CEO commented &quot;The time of playing around with AI is over.&quot;
+            And even in the Czech Republic, a small country in Europe where I&apos;m from, a local insurance group called Direct announced it is firing a third of its 1,200 employees. Their CEO commented: &quot;The time of playing around with AI is over.&quot;
           </p>
 
           <p className="mb-6">
