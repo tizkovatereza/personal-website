@@ -9,23 +9,23 @@ import { TopicsWaitlistForm } from "@/components/topics-waitlist-form"
 
 const writingItems = [
   {
-    title: "A guide to not wasting money on conference booths",
+    title: "Software is becoming marketing",
     date: "Apr 2026",
     source: "New",
-    href: "/writing/conference-booths",
+    href: "/writing/software-abundance",
     isNew: true,
+  },
+  {
+    title: "A guide to not wasting money on conference booths",
+    date: "Apr 2026",
+    source: "Essay",
+    href: "/writing/conference-booths",
   },
   {
     title: "What Is Topology And Why You Should Love It",
     date: "Jul 2025",
     source: "Substack",
     href: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should",
-  },
-  {
-    title: "Self-Fulfilling Prophecies, Recursion in Technology & How to Actually Change",
-    date: "Mar 2026",
-    source: "Substack",
-    href: "https://terezatizkova.substack.com/p/self-fulfilling-prophecies",
   },
   {
     title: "We Need More Influencers.",
