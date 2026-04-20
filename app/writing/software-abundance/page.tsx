@@ -226,10 +226,6 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <p className="mb-6">
-            Not &quot;AI for accountants.&quot; The AI accounting firm. Not &quot;AI for lawyers.&quot; The AI law firm. Not &quot;AI for recruiters.&quot; The AI recruiting agency.
-          </p>
-
-          <p className="mb-6">
             This changes what it means to be an expert too. A brilliant tax specialist doesn&apos;t need to be &quot;hired&quot; by one company anymore. They can sell their specific expertise to 200 clients, because AI handles everything except the judgment calls. You don&apos;t need to do the junior tasks. You don&apos;t need to be in an office. You just need to be the best at one specific thing and package that as an outcome.
           </p>
 
