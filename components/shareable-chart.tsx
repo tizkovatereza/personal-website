@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { X, Twitter, Linkedin, Link2, Check } from 'lucide-react'
 
 interface ShareableChartProps {
@@ -57,13 +56,12 @@ export function ShareableChart({
           className="cursor-zoom-in relative"
           onClick={() => setIsOpen(true)}
         >
-          <Image 
+          <img 
             src={src}
             alt={alt}
             width={1000}
-            height={600}
-            className="w-full h-auto rounded transition-transform group-hover:scale-[1.01]"
-            unoptimized
+            style={{ maxWidth: '100%', height: 'auto' }}
+            className="rounded transition-transform group-hover:scale-[1.01]"
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors rounded flex items-center justify-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-mono bg-black/70 text-white px-3 py-1.5 rounded">
@@ -120,13 +118,12 @@ export function ShareableChart({
             className="max-w-[95vw] max-h-[90vh] relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image 
+            <img 
               src={src}
               alt={alt}
-              width={1600}
-              height={1000}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-              unoptimized
+              width={1000}
+              style={{ maxWidth: '100%', height: 'auto', maxHeight: '80vh', objectFit: 'contain' }}
+              className="rounded-lg"
             />
             
             {/* Share buttons in lightbox */}
