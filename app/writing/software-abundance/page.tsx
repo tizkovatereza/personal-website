@@ -184,11 +184,7 @@ export default function SoftwareAbundanceArticle() {
           <SectionHeader>Implication 3: The middle class of software products will disappear</SectionHeader>
 
           <p className="mb-6">
-            When creation is free, attention becomes scarce. And attention always follows a power law.
-          </p>
-
-          <p className="mb-6">
-            This is the mechanism that reshapes the market. In a world of infinite vibecoded tools, there are only two sustainable positions: lowest cost or highest trust. Everything in between gets squeezed.
+            The previous leads to something interesting.
           </p>
 
           <p className="mb-6">
