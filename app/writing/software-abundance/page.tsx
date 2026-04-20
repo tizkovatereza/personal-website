@@ -217,10 +217,6 @@ export default function SoftwareAbundanceArticle() {
             The companies in the middle — those with high overhead but no unique aggregator power — get squeezed from both sides. They are too expensive to compete with a free AI-generated tool and too small to compete with the network effects of a giant.
           </p>
 
-          <p className="mb-6">
-            This is not speculation. The App Store has been a power law system for over a decade. The top 1% of apps capture roughly 95% of revenue. The median app earns almost nothing. Vibecoding does to all software what the App Store already did to mobile apps.
-          </p>
-
           <SectionHeader>Implication 4: If you want to win, sell services, not products</SectionHeader>
 
           <Callout>
