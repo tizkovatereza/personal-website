@@ -30,7 +30,7 @@ export function ShareableChart({
 
   const shareOnTwitter = () => {
     // Twitter will automatically show image preview from the URL's og:image
-    const text = encodeURIComponent(`${shareText}\n\nFrom "${articleTitle}" by @tereza_tizkova`)
+    const text = encodeURIComponent(`"${shareText}"\n\nFrom "${articleTitle}" by @tereza_tizkova`)
     const url = encodeURIComponent(fullUrl)
     window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank')
   }
@@ -39,7 +39,7 @@ export function ShareableChart({
     // LinkedIn sharing with proper parameters
     const url = encodeURIComponent(fullUrl)
     const title = encodeURIComponent(articleTitle)
-    const summary = encodeURIComponent(shareText)
+    const summary = encodeURIComponent(`"${shareText}"`)
     window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank')
   }
 
