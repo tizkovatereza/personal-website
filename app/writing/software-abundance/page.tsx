@@ -208,7 +208,7 @@ export default function SoftwareAbundanceArticle() {
           <SubSection>3.3) The power of the aggregators</SubSection>
 
           <p className="mb-6">
-            In a sea of infinite vibecoded apps, the only things that matter are trust, distribution, and identity. Users will flock to a few mega-aggregators — OpenAI, Apple, Microsoft, Google — because these platforms provide the infrastructure and the verified ecosystem that individual apps lack. You might vibecode your own note-taking app, but you still need it to run on someone&apos;s cloud, authenticate through someone&apos;s identity layer, and be discoverable through someone&apos;s ecosystem.
+            In a sea of infinite vibecoded apps, the only things that matter are trust, distribution, and identity. Users will flock to a few mega-aggregators because these platforms provide the infrastructure and the verified ecosystem that individual apps lack. You might vibecode your own note-taking app, but you still need it to run on someone&apos;s cloud, authenticate through someone&apos;s identity layer, and be discoverable through someone&apos;s ecosystem.
           </p>
 
           <SubSection>The fat middle collapses</SubSection>
