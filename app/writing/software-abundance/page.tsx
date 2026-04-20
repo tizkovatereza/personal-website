@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -97,6 +98,18 @@ export default function SoftwareAbundanceArticle() {
             No-one will argue with you about how you are proving Yoneda lemma, but everyone will have opinion on what colors you put on your landing page.
           </p>
 
+          {/* Evaluability chart */}
+          <figure className="my-10">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-vFx0pA8c83t3aA0w9qNsAhbc40hx0W.svg"
+              alt="Barrier to entry vs. evaluability - comparing Yoneda Lemma proof with SaaS landing page"
+              width={1000}
+              height={520}
+              className="w-full h-auto rounded"
+              unoptimized
+            />
+          </figure>
+
           <p className="mb-6">
             In mathematics, a non-mathematician can&apos;t even speak the language. But in a lot of fields, people can evaluate your work with their own senses. They don&apos;t need any other apparatus.
           </p>
@@ -114,6 +127,18 @@ export default function SoftwareAbundanceArticle() {
             <li>How much people can externally judge your work</li>
           </ol>
 
+          {/* Quadrant map chart */}
+          <figure className="my-10">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart1-quadrant-map-B5Eu0EabEKYZuP1OUNu45UNRbn3ib1.svg"
+              alt="How the general public judges your profession - quadrant map showing software moving toward lower barrier, higher evaluability"
+              width={800}
+              height={550}
+              className="w-full h-auto rounded"
+              unoptimized
+            />
+          </figure>
+
           <p className="mb-6">
             Lower respect means that:
           </p>
@@ -128,6 +153,18 @@ export default function SoftwareAbundanceArticle() {
           <p className="mb-6">
             I am working in fields marketing, media, developer relations, and we all know marketing is not paid that well compared to software.
           </p>
+
+          {/* Wage ratio chart */}
+          <figure className="my-10">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart7-wage-ratio-CWNpd9YU3wm6R5dRhrhki7MuMdoofs.svg"
+              alt="Software has the tightest pay distribution of any creative field - 90/10 wage ratio comparison"
+              width={800}
+              height={450}
+              className="w-full h-auto rounded"
+              unoptimized
+            />
+          </figure>
 
           <p className="mb-6">
             Good enough marketers in San Francisco really get paid A LOT. When you look at any job portal or public data, marketing always shows less paid. But me and my friends from growth/marketing fields in top companies have different experience.
@@ -158,6 +195,18 @@ export default function SoftwareAbundanceArticle() {
           <p className="mb-6">
             Barry Schwartz called this the paradox of choice. More options, less satisfaction. The sweet spot was somewhere around ten alternatives. We are heading toward infinite.
           </p>
+
+          {/* Paradox of choice chart */}
+          <figure className="my-10">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg"
+              alt="The Paradox of Choice in Software - more options, less commitment"
+              width={980}
+              height={620}
+              className="w-full h-auto rounded"
+              unoptimized
+            />
+          </figure>
 
           <SectionHeader>Implication 3: The middle class of software products will disappear</SectionHeader>
 
@@ -200,6 +249,18 @@ export default function SoftwareAbundanceArticle() {
           <p className="mb-6">
             This is not speculation. The App Store has been a power law system for over a decade. The top 1% of apps capture roughly 95% of revenue. The median app earns almost nothing. Vibecoding does to all software what the App Store already did to mobile apps.
           </p>
+
+          {/* App store revenue chart */}
+          <figure className="my-10">
+            <Image 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-app-store-revenue-r2lLXMRNt6lW6atm18Rf98gCjivJXm.svg"
+              alt="App Store Revenue Distribution - Top 1% of apps capture 95% of all revenue"
+              width={800}
+              height={400}
+              className="w-full h-auto rounded"
+              unoptimized
+            />
+          </figure>
 
           <SectionHeader>Implication 4: If you want to win, sell services, not products</SectionHeader>
 
