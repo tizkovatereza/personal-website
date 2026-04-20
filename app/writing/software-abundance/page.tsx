@@ -156,15 +156,15 @@ export default function SoftwareAbundanceArticle() {
           <SectionHeader>Implication 2: Optionality changes the commitment to software products</SectionHeader>
 
           <p className="mb-6">
-            This has already happened to other industries with low barriers to entry. When creation becomes easy, optionality explodes. And optionality does specific things to markets — mainly, it makes people stop settling.
+            Optionality does specific things to markets, and that is, it makes people stop settling. And there is one example we all hear way too much about: dating market.
           </p>
 
           <p className="mb-6">
-            When dating apps appeared, people quickly realized how many options they had. We can argue whether this has contributed to the crisis of dating that has been permeating different countries. I use it as the simplest example of optionality. Why would you settle for something good enough if you know there are thousands of other options, and one might be the perfect match?
+            When dating apps appeared, people swiping around quickly realized how many options they had. I hear people saying they swiped through thousands of people on the apps but haven&apos;t found anyone they would like. Or anyone who would like them. Why would you settle for something good enough if you know there are thousands of other options, and one might be the perfect match?
           </p>
 
           <p className="mb-6">
-            The same psychology applies to software. When there were three project management tools, you picked one and committed. When there are three hundred, and you can vibecode your own in an afternoon, commitment evaporates. Switching costs collapse. Loyalty disappears.
+            The same psychology applies to software. When there were three project management tools, you picked one and committed. When there are three hundred, and you can vibecode your own in an afternoon, commitment evaporates.
           </p>
 
           <Callout>
@@ -172,13 +172,13 @@ export default function SoftwareAbundanceArticle() {
           </Callout>
 
           <p className="mb-6">
-            Barry Schwartz called this the paradox of choice. More options, less satisfaction. The sweet spot was somewhere around ten alternatives. We are heading toward infinite.
+            Barry Schwartz called this the paradox of choice. More options, less satisfaction.
           </p>
 
           <ShareableChart 
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg"
             alt="The Paradox of Choice in Software"
-            caption="Barry Schwartz's paradox of choice: more options, less satisfaction. The sweet spot was ~10 alternatives. We're heading toward infinite."
+            caption="Barry Schwartz's paradox of choice: more options, less satisfaction."
           />
 
           <SectionHeader>Implication 3: The middle class of software products will disappear</SectionHeader>
