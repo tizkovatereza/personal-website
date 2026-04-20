@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: "Software is becoming marketing",
     date: "Apr 19, 2026",
-    subtitle: "Four implications of AI making software abundant — and what to do about it",
+    subtitle: "Four ways software products and jobs change in the age of abundance",
     image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
     url: "/writing/software-abundance",
     isNew: true,

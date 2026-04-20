@@ -5,7 +5,7 @@ import { ShareableChart } from '@/components/shareable-chart'
 
 export const metadata: Metadata = {
   title: 'Software is becoming marketing | Tereza Tizkova',
-  description: 'Four implications of AI making software abundant — and what to do about it',
+  description: 'Four ways software products and jobs change in the age of abundance',
 }
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
@@ -56,7 +56,7 @@ export default function SoftwareAbundanceArticle() {
             Software is becoming marketing
           </h1>
           <p className="text-[18px] sm:text-[20px] text-muted-foreground mb-6">
-            Four implications of AI making software abundant — and what to do about it
+            Four ways software products and jobs change in the age of abundance
           </p>
           <time className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
             April 2026
