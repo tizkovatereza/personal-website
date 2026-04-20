@@ -172,7 +172,7 @@ export default function SoftwareAbundanceArticle() {
           </Callout>
 
           <p className="mb-6">
-            Barry Schwartz called this the paradox of choice. More options, less satisfaction.
+            Barry Schwartz called this the paradox of choice. It&apos;s human nature that more options lead to less satisfaction. I believe there is an ideal range of number of software alternatives that makes you commit the most. If there&apos;s only one solution, you might find it suspicious or it can be because the market is too early and the solution might not be good yet. A few alternatives are ideal, but if there are too many, you may start looking for something that is &quot;just for you&quot; and have more difficulty finding it.
           </p>
 
           <ShareableChart 
