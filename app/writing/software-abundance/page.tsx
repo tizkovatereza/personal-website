@@ -230,10 +230,6 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <p className="mb-6">
-            Sequoia recently made a similar argument: the next trillion-dollar company will be a software company masquerading as a services firm. If you sell the tool, every new model release threatens you. If you sell the work, every AI improvement makes your margins better.
-          </p>
-
-          <p className="mb-6">
             This changes what it means to be an expert too. A brilliant tax specialist doesn&apos;t need to be &quot;hired&quot; by one company anymore. They can sell their specific expertise to 200 clients, because AI handles everything except the judgment calls. You don&apos;t need to do the junior tasks. You don&apos;t need to be in an office. You just need to be the best at one specific thing and package that as an outcome.
           </p>
 
