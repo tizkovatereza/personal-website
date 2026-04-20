@@ -10,12 +10,20 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Lower Entry Barrier Makes Software a Lower-Respect Field",
+    date: "Apr 19, 2026",
+    subtitle: "Four implications of AI making software abundant — and what to do about it",
+    image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
+    url: "/writing/software-abundance",
+    isNew: true,
+    isInternal: true
+  },
+  {
     title: "A guide to not wasting money on conference booths",
     date: "Apr 13, 2026",
     subtitle: "My learnings from sponsoring a conference as a dev tool startup",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-13%20at%203.08.48%E2%80%AFPM-4vf9FV47GTISQYpAital8GMf3TXlm3.png",
     url: "/writing/conference-booths",
-    isNew: true,
     isInternal: true
   },
   {
@@ -24,13 +32,6 @@ export const blogPosts: BlogPost[] = [
     subtitle: "Examples of topological problems and real-life applications",
     image: "https://substack-post-media.s3.amazonaws.com/public/images/83caa4dc-e50f-4434-b850-ae14234b99ea_1024x1024.jpeg",
     url: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should"
-  },
-  {
-    title: "Self-Fulfilling Prophecies, Recursion in Technology & How to Actually Change",
-    date: "Feb 1, 2026",
-    subtitle: "Thoughts and topics from January 2026",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/93015246-7b75-4537-9ba3-4cf02d70cb8d_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/self-fulfilling-prophecies-recursion"
   },
   {
     title: "How to Become a Better Writer",
@@ -53,13 +54,7 @@ export const blogPosts: BlogPost[] = [
     image: "https://substack-post-media.s3.amazonaws.com/public/images/e4574ba2-237c-4e15-97f7-6218a1292bad_1536x2048.jpeg",
     url: "https://terezatizkova.substack.com/p/the-most-iconic-tech-ads-and-campaigns"
   },
-  {
-    title: "Can't Code? Read This.",
-    date: "Dec 7, 2025",
-    subtitle: "Easy guide to your own website in one hour without a line of code",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/fdba47a8-3e3c-4d28-a1d0-69c87f14a22a_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/cant-code-read-this"
-  },
+  
   {
     title: "The State & Future of AI Agents",
     date: "Dec 5, 2024",
@@ -95,13 +90,7 @@ export const blogPosts: BlogPost[] = [
     image: "https://substack-post-media.s3.amazonaws.com/public/images/b6d90ce6-60b1-4f40-9d9c-00a9adfd7df3_1024x1024.png",
     url: "https://terezatizkova.substack.com/p/we-need-more-influencers"
   },
-  {
-    title: "Answering anonymous questions; where I think AI agents are going & our $21M round",
-    date: "Sep 2, 2025",
-    subtitle: "life and work update no.002",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/3a1208b3-afed-49a9-949b-a9cb5ad55668_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/answering-anonymous-questions"
-  },
+  
   
   {
     title: "Agents Were LLMs All Along.",
