@@ -126,7 +126,7 @@ export default function SoftwareAbundanceArticle() {
           </ol>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart1-quadrant-map-B5Eu0EabEKYZuP1OUNu45UNRbn3ib1.svg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart1-quadrant-map-qV6ruQ2ymh9EAYHNdhq2KPu1OPTMfm.svg"
             alt="How the general public judges your profession - quadrant map"
             caption="Software is moving from high-barrier/low-evaluability toward low-barrier/high-evaluability"
           />
