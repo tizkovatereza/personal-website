@@ -191,6 +191,12 @@ export default function SoftwareAbundanceArticle() {
             SaaS is about to get the App Store treatment.
           </p>
 
+          <ShareableChart 
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-app-store-revenue-r2lLXMRNt6lW6atm18Rf98gCjivJXm.svg"
+            alt="App Store Revenue Distribution"
+            caption="Top 1% of apps capture 95% of all App Store revenue. Vibecoding does to all software what the App Store already did to mobile apps."
+          />
+
           <SubSection>3.1) The death of the &quot;good enough&quot; vendor</SubSection>
 
           <p className="mb-6">
@@ -218,12 +224,6 @@ export default function SoftwareAbundanceArticle() {
           <p className="mb-6">
             This is not speculation. The App Store has been a power law system for over a decade. The top 1% of apps capture roughly 95% of revenue. The median app earns almost nothing. Vibecoding does to all software what the App Store already did to mobile apps.
           </p>
-
-          <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-app-store-revenue-r2lLXMRNt6lW6atm18Rf98gCjivJXm.svg"
-            alt="App Store Revenue Distribution"
-            caption="Top 1% of apps capture 95% of all App Store revenue. Vibecoding does to all software what the App Store already did to mobile apps."
-          />
 
           <SectionHeader>Implication 4: If you want to win, sell services, not products</SectionHeader>
 
