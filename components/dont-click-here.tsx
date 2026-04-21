@@ -112,14 +112,29 @@ export function DontClickHere() {
         setParticles([])
       }, 300)
     } else {
-      // Activate robot - start from top right corner of viewport
-      const startX = window.innerWidth - 80
-      const startY = 100
+      // Prepare text first to find where to start
+      const chars = prepareTextForEating()
+      charQueueRef.current = chars
+      currentTargetRef.current = 0
+      
+      // Start robot near the first character, or at a reasonable default
+      let startX = window.innerWidth / 2
+      let startY = 150
+      
+      if (chars.length > 0) {
+        const firstChar = chars[0]
+        const rect = firstChar.getBoundingClientRect()
+        // Start slightly above and to the right of the first character
+        startX = rect.left + 100
+        startY = rect.top - 50
+      }
+      
+      // Ensure robot starts within viewport bounds
+      startX = Math.max(50, Math.min(startX, window.innerWidth - 50))
+      startY = Math.max(50, Math.min(startY, window.innerHeight - 50))
       
       setRobotPos({ x: startX, y: startY })
       setIsActive(true)
-      charQueueRef.current = prepareTextForEating()
-      currentTargetRef.current = 0
     }
   }
 
@@ -176,9 +191,13 @@ export function DontClickHere() {
           const moveX = (dx / dist) * speed * deltaTime
           const moveY = (dy / dist) * speed * deltaTime
 
+          // Keep robot within viewport bounds
+          const newX = Math.max(40, Math.min(prev.x + moveX, window.innerWidth - 40))
+          const newY = Math.max(40, Math.min(prev.y + moveY, window.innerHeight - 40))
+
           return {
-            x: prev.x + moveX,
-            y: prev.y + moveY,
+            x: newX,
+            y: newY,
           }
         })
       }
