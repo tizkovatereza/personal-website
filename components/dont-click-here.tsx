@@ -163,6 +163,7 @@ export function DontClickHere() {
         // Skip if element is no longer in DOM or not visible
         if (!targetChar || !targetChar.isConnected) {
           currentTargetRef.current++
+          animationRef.current = requestAnimationFrame(animate)
           return
         }
         
@@ -171,6 +172,7 @@ export function DontClickHere() {
         // Skip characters with zero dimensions (not rendered)
         if (rect.width === 0 && rect.height === 0) {
           currentTargetRef.current++
+          animationRef.current = requestAnimationFrame(animate)
           return
         }
         
