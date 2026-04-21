@@ -197,7 +197,7 @@ export default function AboutPage() {
         <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
 
         {/* Talks & Podcasts Section */}
-        <section className="mb-20">
+        <section id="talks" className="mb-20 scroll-mt-8">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Talks & Podcasts</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
