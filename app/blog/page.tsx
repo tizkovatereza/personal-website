@@ -19,7 +19,7 @@ export default function BlogPage() {
             Writing
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-6">
-            Thoughts on AI, math, growth, startups, and life. Written by human (me). I've grown a free and paid audience on Substack and Medium, but I'm slowly switching to publish here.
+            I want your constructive criticism and debate. Would love to co-author too. <a href="mailto:tereza.tizkova@gmail.com" className="text-primary hover:underline">Pitch me an idea.</a>
           </p>
           <a
             href="https://terezatizkova.substack.com/"
