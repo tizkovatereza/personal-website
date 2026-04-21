@@ -59,27 +59,18 @@ export function DontClickHere() {
         const parent = textNode.parentNode
         if (!parent || !(parent instanceof HTMLElement)) return
 
-        // Get computed font size to preserve it
-        const computedStyle = window.getComputedStyle(parent)
-        const fontSize = computedStyle.fontSize
-        const letterSpacing = computedStyle.letterSpacing
-        
-        // Create a wrapper span to keep text together
-        const wrapper = document.createElement('span')
-        wrapper.className = 'robot-text-wrapper'
-        // Use font-size: 0 to eliminate whitespace, then restore on children
-        wrapper.style.cssText = `display: inline; font-size: 0; letter-spacing: 0;`
+        // Create document fragment to hold all character spans
+        const fragment = document.createDocumentFragment()
         
         for (let i = 0; i < text.length; i++) {
           const span = document.createElement('span')
           span.textContent = text[i]
           span.className = 'robot-char'
-          // Restore the font size and letter spacing on each character span
-          span.style.cssText = `display: inline; font-size: ${fontSize}; letter-spacing: ${letterSpacing}; transition: opacity 0.05s;`
-          wrapper.appendChild(span)
+          span.style.cssText = 'transition: opacity 0.05s;'
+          fragment.appendChild(span)
           chars.push(span)
         }
-        parent.replaceChild(wrapper, textNode)
+        parent.replaceChild(fragment, textNode)
       })
     })
 

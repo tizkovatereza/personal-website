@@ -295,6 +295,18 @@ html {
   animation: scroll-binary 30s linear infinite;
 }
 
+/* Robot text-eating character spans - prevent spacing issues */
+.robot-char {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
 /* Print styles for resume */
 @media print {
   html, body {
