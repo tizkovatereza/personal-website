@@ -27,6 +27,13 @@ export const blogPosts: BlogPost[] = [
     isInternal: true
   },
   {
+    title: "Gödel's Incompleteness Theorems Explained Simply",
+    date: "Jul 19, 2025",
+    subtitle: "Why Math Will Always Be Broken — Part 2",
+    image: "https://substack-post-media.s3.amazonaws.com/public/images/df08e947-8758-4b7d-af33-bfb36d02b1b0_1024x1024.png",
+    url: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained"
+  },
+  {
     title: "What Is Topology And Why You Should Love It",
     date: "Jul 16, 2025",
     subtitle: "Examples of topological problems and real-life applications",
@@ -34,18 +41,18 @@ export const blogPosts: BlogPost[] = [
     url: "https://terezatizkova.substack.com/p/what-is-topology-and-why-you-should"
   },
   {
-    title: "How to Become a Better Writer",
-    date: "Jan 4, 2026",
-    subtitle: "Core problems I identified in my writing & how to be better",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/f10342c2-919c-42d6-ad09-595a87a0bc93_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/how-to-become-a-better-writer"
+    title: "What I Actually Do At My Job",
+    date: "Dec 1, 2025",
+    subtitle: "If you are interested in Growth or Marketing roles in tech — read about my experience",
+    image: "https://substack-post-media.s3.amazonaws.com/public/images/fa8e9e19-f996-42b3-a91b-f9f7d1f898e8_1024x1024.png",
+    url: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job"
   },
   {
-    title: "My 2025 Wrapped",
-    date: "Jan 4, 2026",
-    subtitle: "Reflections on 2025, looking at my mistakes, and what's coming in 2026",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/d39bc203-5d59-431d-a670-ae983225a5b9_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/my-2025-wrapped"
+    title: "Agents Were LLMs All Along.",
+    date: "Jun 30, 2025",
+    subtitle: "How GPT-5 shows the dissolving line between LLMs and AI agents",
+    image: "https://substack-post-media.s3.amazonaws.com/public/images/725d1a33-29f1-4f06-9029-d142e882a9c5_1024x1024.png",
+    url: "https://terezatizkova.substack.com/p/agents-were-llms-all-along"
   },
   {
     title: "The Most Iconic Tech Ads & Campaigns of 2025",
@@ -54,7 +61,6 @@ export const blogPosts: BlogPost[] = [
     image: "https://substack-post-media.s3.amazonaws.com/public/images/e4574ba2-237c-4e15-97f7-6218a1292bad_1536x2048.jpeg",
     url: "https://terezatizkova.substack.com/p/the-most-iconic-tech-ads-and-campaigns"
   },
-  
   {
     title: "The State & Future of AI Agents",
     date: "Dec 5, 2024",
@@ -77,34 +83,11 @@ export const blogPosts: BlogPost[] = [
     url: "https://terezatizkova.substack.com/p/mirrors-sun-and-three-body-problem"
   },
   {
-    title: "What I Actually Do At My Job",
-    date: "Dec 1, 2025",
-    subtitle: "If you are interested in Growth or Marketing roles in tech — read about my experience",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/fa8e9e19-f996-42b3-a91b-f9f7d1f898e8_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/what-i-actually-do-at-my-job"
-  },
-  {
     title: "We Need More Influencers.",
     date: "Oct 25, 2025",
     subtitle: "How 'Accidental Influencers' Will Replace Internet Search",
     image: "https://substack-post-media.s3.amazonaws.com/public/images/b6d90ce6-60b1-4f40-9d9c-00a9adfd7df3_1024x1024.png",
     url: "https://terezatizkova.substack.com/p/we-need-more-influencers"
-  },
-  
-  
-  {
-    title: "Agents Were LLMs All Along.",
-    date: "Jun 30, 2025",
-    subtitle: "How GPT-5 shows the dissolving line between LLMs and AI agents",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/725d1a33-29f1-4f06-9029-d142e882a9c5_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/agents-were-llms-all-along"
-  },
-  {
-    title: "Gödel's Incompleteness Theorems Explained Simply",
-    date: "Jul 19, 2025",
-    subtitle: "Why Math Will Always Be Broken — Part 2",
-    image: "https://substack-post-media.s3.amazonaws.com/public/images/df08e947-8758-4b7d-af33-bfb36d02b1b0_1024x1024.png",
-    url: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained"
   },
   {
     title: "Notes on Theory of Relativity",
