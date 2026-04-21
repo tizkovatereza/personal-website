@@ -50,7 +50,7 @@ const projectPhotos: Record<string, string[]> = {
     '/images/placeholder-substack.jpg', // Placeholder illustration
   ],
   'Startup Advisory': [
-    '/images/placeholder-advisory.jpg', // Placeholder illustration
+    'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1776473175136-i526ZKpHYcOvzMGQITZzKa2PHehoF3.jpeg', // Coffee meeting with founders
   ],
   'Talks & Podcasts': [
     '/images/placeholder-talks.jpg', // Placeholder illustration
