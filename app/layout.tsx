@@ -80,7 +80,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {/* Easter Egg */}
+          {/* Easter Egg & Theme Toggle */}
           <div className="print:hidden">
             <DontClickHere />
           </div>

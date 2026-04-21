@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
+import { ThemeToggle } from "./theme-toggle"
 
 interface Particle {
   id: number
@@ -111,10 +112,9 @@ export function DontClickHere() {
         setParticles([])
       }, 300)
     } else {
-      // Activate robot
-      const buttonRect = document.querySelector('button.robot-trigger')?.getBoundingClientRect()
-      const startX = buttonRect ? buttonRect.left : window.innerWidth - 100
-      const startY = buttonRect ? buttonRect.bottom + 20 : 80
+      // Activate robot - start from top right corner of viewport
+      const startX = window.innerWidth - 80
+      const startY = 100
       
       setRobotPos({ x: startX, y: startY })
       setIsActive(true)
@@ -211,13 +211,16 @@ export function DontClickHere() {
 
   return (
     <>
-      {/* The button */}
-      <button
-        onClick={handleClick}
-        className="robot-trigger fixed top-5 right-5 z-50 font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
-      >
-        don't click here
-      </button>
+      {/* The button and theme toggle */}
+      <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-2">
+        <button
+          onClick={handleClick}
+          className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
+        >
+          don&apos;t click here
+        </button>
+        <ThemeToggle />
+      </div>
 
       {/* Robot */}
       {isActive && (

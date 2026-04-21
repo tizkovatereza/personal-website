@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ResumeDropdown } from "./resume-dropdown"
-import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -66,12 +65,9 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      {/* Social Links at bottom */}
+{/* Social Links at bottom */}
       <div className="px-8 pb-10">
-        <div className="flex items-center justify-between mb-3">
-          <span className="font-mono text-[10px] font-light text-muted-foreground tracking-[0.1em] uppercase">Links</span>
-          <ThemeToggle />
-        </div>
+        <span className="font-mono text-[10px] font-light text-muted-foreground tracking-[0.1em] uppercase mb-3 block">Links</span>
         <div className="flex items-center gap-3 text-muted-foreground">
           <a
             href="https://x.com/tereza_tizkova"
