@@ -6,6 +6,24 @@ import { ShareableChart } from '@/components/shareable-chart'
 export const metadata: Metadata = {
   title: 'Software is becoming marketing | Tereza Tizkova',
   description: 'Four ways software products and jobs change in the age of abundance',
+  openGraph: {
+    title: 'Software is becoming marketing',
+    description: 'Four ways software products and jobs change in the age of abundance',
+    images: [
+      {
+        url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg',
+        width: 980,
+        height: 620,
+        alt: 'The Paradox of Choice in Software',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Software is becoming marketing',
+    description: 'Four ways software products and jobs change in the age of abundance',
+    images: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg'],
+  },
 }
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
