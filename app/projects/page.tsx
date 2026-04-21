@@ -82,6 +82,14 @@ const projects = [
     tag: 'Speaking',
     image: '/images/project-advent.jpg',
   },
+  {
+    id: 'advisory',
+    title: 'Startup Advisory',
+    description: 'I enjoy helping early-stage teams figure things out — whether it\'s growth, positioning, or just being a sounding board. If you\'re building something and think I could be useful, I\'d love to chat.',
+    link: 'mailto:tereza.tizkova@gmail.com?subject=Advisory chat',
+    tag: 'Advisory',
+    image: '/images/project-growth-talks.jpg',
+  },
 ]
 
 export default function ProjectsPage() {
