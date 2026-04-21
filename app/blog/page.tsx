@@ -19,7 +19,13 @@ export default function BlogPage() {
             Writing
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-6">
-            I want your constructive criticism and debate. Would love to co-author too. <a href="mailto:tereza.tizkova@gmail.com" className="text-primary hover:underline">Pitch me an idea.</a>
+            I want your constructive criticism and debate. Would love to co-author too.{" "}
+            <a 
+              href="mailto:tereza.tizkova@gmail.com" 
+              className="text-primary hover:underline cursor-pointer"
+            >
+              Pitch me an idea.
+            </a>
           </p>
           <a
             href="https://terezatizkova.substack.com/"
