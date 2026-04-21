@@ -35,13 +35,14 @@ export function DontClickHere() {
 
   // Wrap text nodes in character spans for eating
   const prepareTextForEating = useCallback(() => {
-    const selector = 'main h1, main h2, main h3, main p, main span:not(.robot-ignore), main a:not(.robot-ignore), article h1, article h2, article p, section h1, section h2, section p, .font-serif, [class*="text-foreground"]'
+    const selector = 'main h1, main h2, main h3, main p, main span:not(.robot-ignore):not(.robot-char), main a:not(.robot-ignore), article h1, article h2, article p, section h1, section h2, section p, .font-serif, [class*="text-foreground"]'
     const elements = document.querySelectorAll(selector)
     const chars: HTMLSpanElement[] = []
 
     elements.forEach(el => {
-      // Skip nav, footer, button itself
+      // Skip nav, footer, button itself, already processed
       if (el.closest('nav') || el.closest('footer') || el.closest('.sidebar') || el.closest('button') || el.closest('[aria-hidden="true"]')) return
+      if (el.querySelector('.robot-char')) return // Already processed
       
       const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null)
       const textNodes: Text[] = []
@@ -58,16 +59,20 @@ export function DontClickHere() {
         const parent = textNode.parentNode
         if (!parent) return
 
-        const fragment = document.createDocumentFragment()
+        // Create a wrapper span to keep text together
+        const wrapper = document.createElement('span')
+        wrapper.className = 'robot-text-wrapper'
+        wrapper.style.cssText = 'display: inline; white-space: pre-wrap;'
+        
         for (let i = 0; i < text.length; i++) {
           const span = document.createElement('span')
           span.textContent = text[i]
           span.className = 'robot-char'
-          span.style.transition = 'opacity 0.05s'
-          fragment.appendChild(span)
+          span.style.cssText = 'display: inline; transition: opacity 0.05s;'
+          wrapper.appendChild(span)
           chars.push(span)
         }
-        parent.replaceChild(fragment, textNode)
+        parent.replaceChild(wrapper, textNode)
       })
     })
 
