@@ -42,7 +42,7 @@ export function ResumeDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 top-full mt-1 w-48 bg-[#0f1420] border border-[rgba(255,255,255,0.08)] shadow-lg z-50">
+        <div className="absolute left-0 top-full mt-1 w-48 bg-card border border-border shadow-lg z-50">
           <Link
             href="/resume"
             target="_blank"
@@ -91,7 +91,7 @@ export function ResumeDropdownMobile({ onClose }: { onClose: () => void }) {
       </button>
 
       {isOpen && (
-        <div className="ml-4 border-l border-[rgba(255,255,255,0.08)] pl-4 space-y-1">
+        <div className="ml-4 border-l border-border pl-4 space-y-1">
           <Link
             href="/resume"
             target="_blank"

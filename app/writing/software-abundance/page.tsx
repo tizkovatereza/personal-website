@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-[rgba(255,255,255,0.06)]">
+    <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-border">
       {children}
     </h2>
   )
@@ -44,7 +44,7 @@ function SubSection({ children }: { children: React.ReactNode }) {
 
 function Callout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-8 pl-4 border-l-4 border-primary bg-[#0f1420]/50 py-4 pr-4">
+    <div className="my-8 pl-4 border-l-4 border-primary bg-card/50 py-4 pr-4">
       <p className="text-[15px] leading-relaxed italic text-primary/90">
         {children}
       </p>

@@ -86,7 +86,7 @@ function ResumeContent() {
   return (
     <div className="min-h-screen bg-white text-gray-900 print:bg-white">
       {/* Header bar - hidden when printing */}
-      <div className="bg-[#0a0f1a] px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
+      <div className="bg-background px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
         <Link href="/" className="font-mono text-[12px] text-gray-400 hover:text-white transition-colors">
           ← Back
         </Link>

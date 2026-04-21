@@ -71,25 +71,25 @@ export function ShareableChart({
         </div>
         
         {/* Share buttons below chart */}
-        <div className="flex items-center gap-3 mt-4 pt-3 border-t border-[rgba(255,255,255,0.06)]">
+        <div className="flex items-center gap-3 mt-4 pt-3 border-t border-border">
           <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-wide">Share</span>
           <button
             onClick={shareOnTwitter}
-            className="p-2 rounded hover:bg-[rgba(255,255,255,0.06)] transition-colors group/btn"
+            className="p-2 rounded hover:bg-muted transition-colors group/btn"
             title="Share on X/Twitter"
           >
             <Twitter className="w-4 h-4 text-muted-foreground group-hover/btn:text-primary transition-colors" />
           </button>
           <button
             onClick={shareOnLinkedIn}
-            className="p-2 rounded hover:bg-[rgba(255,255,255,0.06)] transition-colors group/btn"
+            className="p-2 rounded hover:bg-muted transition-colors group/btn"
             title="Share on LinkedIn"
           >
             <Linkedin className="w-4 h-4 text-muted-foreground group-hover/btn:text-primary transition-colors" />
           </button>
           <button
             onClick={copyLink}
-            className="p-2 rounded hover:bg-[rgba(255,255,255,0.06)] transition-colors group/btn"
+            className="p-2 rounded hover:bg-muted transition-colors group/btn"
             title="Copy link"
           >
             {copied ? (

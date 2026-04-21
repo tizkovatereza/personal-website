@@ -49,7 +49,7 @@ export default function BlogPage() {
               <LinkComponent
                 key={index}
                 {...linkProps}
-                className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8 py-6 border-b border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-colors"
+                className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8 py-6 border-b border-border hover:border-primary/30 transition-colors"
               >
                 <div className="flex-1 min-w-0">
                   <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2 flex items-center gap-2">

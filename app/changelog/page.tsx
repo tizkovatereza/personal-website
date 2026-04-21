@@ -46,7 +46,7 @@ export default function ChangelogPage() {
             onChange={(e) => setPw(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && login()}
             placeholder="Password"
-            className="px-3 py-2 border border-[rgba(255,255,255,0.1)] bg-[#0f1420] text-sm"
+            className="px-3 py-2 border border-border bg-card text-sm"
             autoFocus
           />
           <button onClick={login} className="px-3 py-2 bg-foreground text-background text-sm">
@@ -69,7 +69,7 @@ export default function ChangelogPage() {
             {weeks.map((entry, i) => {
               const key = `${year}-${i}`
               return (
-                <div key={key} className="border-b border-[rgba(255,255,255,0.06)] last:border-0">
+                <div key={key} className="border-b border-border last:border-0">
                   <button
                     onClick={() => setOpen(open === key ? null : key)}
                     className="w-full flex items-center gap-3 py-3 text-left"

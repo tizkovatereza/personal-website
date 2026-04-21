@@ -43,7 +43,7 @@ function ArticleImage({ src, alt, caption, sourceUrl }: { src: string; alt: stri
 
 function SecretTip({ number, children }: { number: number; children: React.ReactNode }) {
   return (
-    <div className="my-8 pl-4 border-l-4 border-primary bg-[#0f1420]/50 py-4 pr-4">
+    <div className="my-8 pl-4 border-l-4 border-primary bg-card/50 py-4 pr-4">
       <p className="text-[15px] leading-relaxed">
         <strong className="text-primary">Secret tip {number}:</strong> {children}
       </p>
@@ -53,7 +53,7 @@ function SecretTip({ number, children }: { number: number; children: React.React
 
 function SectionHeader({ number, children }: { number: number; children: React.ReactNode }) {
   return (
-    <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-[rgba(255,255,255,0.06)]">
+    <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-border">
       {number}. {children}
     </h2>
   )
@@ -374,7 +374,7 @@ export default function ConferenceBoothsArticle() {
       </article>
 
       {/* Footer */}
-      <footer className="px-6 sm:px-8 pb-12 max-w-[680px] mx-auto border-t border-[rgba(255,255,255,0.06)] pt-8">
+      <footer className="px-6 sm:px-8 pb-12 max-w-[680px] mx-auto border-t border-border pt-8">
         <Link 
           href="/"
           className="inline-flex items-center gap-2 font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"

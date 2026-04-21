@@ -94,7 +94,7 @@ export function RotatingProfilePhoto() {
         unoptimized
       />
       {/* Subtle border overlay */}
-      <div className="absolute inset-0 border border-[rgba(255,255,255,0.1)]" />
+      <div className="absolute inset-0 border border-border" />
     </div>
   )
 }

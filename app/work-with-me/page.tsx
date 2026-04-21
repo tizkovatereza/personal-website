@@ -56,7 +56,7 @@ export default function AdvisoryPage() {
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
             >
               About me
             </Link>
@@ -64,7 +64,7 @@ export default function AdvisoryPage() {
         </header>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* Services Grid */}
         <section className="mb-20">
@@ -74,7 +74,7 @@ export default function AdvisoryPage() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]"
+                className="p-6 bg-card/90 backdrop-blur-sm border border-border"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 bg-primary rotate-45" />
@@ -87,7 +87,7 @@ export default function AdvisoryPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* Stats */}
         <section className="mb-20">
@@ -95,7 +95,7 @@ export default function AdvisoryPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] text-center">
+              <div key={stat.label} className="p-6 bg-card/90 backdrop-blur-sm border border-border text-center">
                 <p className="font-serif text-[28px] sm:text-[36px] tracking-[-0.02em] text-primary mb-1">
                   {stat.value}
                 </p>
@@ -106,11 +106,11 @@ export default function AdvisoryPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* How it works + Location */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-          <div className="p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+          <div className="p-6 sm:p-8 bg-card/90 backdrop-blur-sm border border-border">
             <h3 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] mb-4">How it works</h3>
             <div className="space-y-4 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
               <p>
@@ -119,7 +119,7 @@ export default function AdvisoryPage() {
             </div>
           </div>
           
-          <div className="p-6 sm:p-8 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+          <div className="p-6 sm:p-8 bg-card/90 backdrop-blur-sm border border-border">
             <h3 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em] mb-4">Location</h3>
             <div className="space-y-4 text-[13px] sm:text-[14px] font-light text-secondary leading-relaxed">
               <p>
@@ -137,7 +137,7 @@ export default function AdvisoryPage() {
         </section>
 
         {/* CTA */}
-        <section className="p-8 sm:p-10 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+        <section className="p-8 sm:p-10 bg-card/90 backdrop-blur-sm border border-border">
           <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mb-4">Ready to connect?</h2>
           <p className="font-light text-[14px] sm:text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             Drop me a message with a bit about what you're working on. 

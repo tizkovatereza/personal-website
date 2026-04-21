@@ -85,7 +85,7 @@ const projects = [
   {
     id: 'advisory',
     title: 'Startup Advisory',
-    description: 'I enjoy helping early-stage teams figure things out — whether it\'s growth, positioning, or just being a sounding board. If you\'re building something and think I could be useful, I\'d love to chat.',
+    description: 'I enjoy helping early-stage teams figure things out. If you\'re building something and think I could be useful, I\'d love to chat.',
     link: 'mailto:tereza.tizkova@gmail.com?subject=Advisory chat',
     tag: 'Advisory',
     image: '/images/project-growth-talks.jpg',
@@ -125,7 +125,7 @@ export default function ProjectsPage() {
                 <div
                   key={project.id}
                   id={project.id}
-                  className="group block bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] transition-all duration-300 overflow-hidden"
+                  className="group block bg-card/90 backdrop-blur-sm border border-border transition-all duration-300 overflow-hidden"
                 >
                   {/* Rotating Photo Preview */}
                   <RotatingProjectPhoto projectName={project.title} className="w-full" />
@@ -160,7 +160,7 @@ export default function ProjectsPage() {
                 href={project.link}
                 target={project.link.startsWith('http') ? "_blank" : undefined}
                 rel={project.link.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300 overflow-hidden"
+                className="group block bg-card/90 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300 overflow-hidden"
               >
                 {/* Rotating Photo Preview */}
                 <RotatingProjectPhoto projectName={project.title} className="w-full" />

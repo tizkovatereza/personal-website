@@ -49,7 +49,7 @@ export function TopicsWaitlistForm() {
           placeholder="your@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 px-3 py-2 bg-[#0a0e17] border border-[rgba(255,255,255,0.1)] text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+          className="flex-1 px-3 py-2 bg-background border border-border text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
           required
         />
         <button

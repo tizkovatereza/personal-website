@@ -74,7 +74,7 @@ export default function AnalyticsPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="bg-card border border-border p-6">
             <div className="flex items-center gap-2 mb-2">
               <Eye className="h-4 w-4 text-primary" />
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Total Views</span>
@@ -82,7 +82,7 @@ export default function AnalyticsPage() {
             <div className="font-serif text-[28px]">{Number(data.totalViews).toLocaleString()}</div>
           </div>
           
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="bg-card border border-border p-6">
             <div className="flex items-center gap-2 mb-2">
               <Calendar className="h-4 w-4 text-primary" />
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Today</span>
@@ -90,7 +90,7 @@ export default function AnalyticsPage() {
             <div className="font-serif text-[28px]">{Number(data.todayViews).toLocaleString()}</div>
           </div>
 
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="bg-card border border-border p-6">
             <div className="flex items-center gap-2 mb-2">
               <Globe className="h-4 w-4 text-primary" />
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Countries</span>
@@ -98,7 +98,7 @@ export default function AnalyticsPage() {
             <div className="font-serif text-[28px]">{data.viewsByCountry.length}</div>
           </div>
 
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)] p-6">
+          <div className="bg-card border border-border p-6">
             <div className="flex items-center gap-2 mb-2">
               <Link2 className="h-4 w-4 text-primary" />
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Referrers</span>
@@ -110,7 +110,7 @@ export default function AnalyticsPage() {
         {/* Views by Page */}
         <div className="mb-12">
           <h2 className="font-serif text-[20px] mb-6">Views by Page</h2>
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+          <div className="bg-card border border-border">
             {data.viewsByPage.length === 0 ? (
               <div className="p-6 text-muted-foreground text-[14px]">No page views yet</div>
             ) : (
@@ -118,7 +118,7 @@ export default function AnalyticsPage() {
                 <div 
                   key={page.path}
                   className={`flex items-center justify-between p-4 ${
-                    index !== data.viewsByPage.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''
+                    index !== data.viewsByPage.length - 1 ? 'border-b border-border' : ''
                   }`}
                 >
                   <span className="font-mono text-[13px] text-foreground truncate max-w-[70%]">
@@ -136,7 +136,7 @@ export default function AnalyticsPage() {
         {/* Last 7 Days */}
         <div className="mb-12">
           <h2 className="font-serif text-[20px] mb-6">Last 7 Days</h2>
-          <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+          <div className="bg-card border border-border">
             {data.last7Days.length === 0 ? (
               <div className="p-6 text-muted-foreground text-[14px]">No data yet</div>
             ) : (
@@ -144,7 +144,7 @@ export default function AnalyticsPage() {
                 <div 
                   key={day.date}
                   className={`flex items-center justify-between p-4 ${
-                    index !== data.last7Days.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''
+                    index !== data.last7Days.length - 1 ? 'border-b border-border' : ''
                   }`}
                 >
                   <span className="font-mono text-[13px] text-foreground">
@@ -163,7 +163,7 @@ export default function AnalyticsPage() {
           {/* Top Countries */}
           <div>
             <h2 className="font-serif text-[20px] mb-6">Top Countries</h2>
-            <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+            <div className="bg-card border border-border">
               {data.viewsByCountry.length === 0 ? (
                 <div className="p-6 text-muted-foreground text-[14px]">No data yet</div>
               ) : (
@@ -171,7 +171,7 @@ export default function AnalyticsPage() {
                   <div 
                     key={country.country}
                     className={`flex items-center justify-between p-4 ${
-                      index !== data.viewsByCountry.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''
+                      index !== data.viewsByCountry.length - 1 ? 'border-b border-border' : ''
                     }`}
                   >
                     <span className="font-mono text-[13px] text-foreground">
@@ -189,7 +189,7 @@ export default function AnalyticsPage() {
           {/* Top Referrers */}
           <div>
             <h2 className="font-serif text-[20px] mb-6">Top Referrers</h2>
-            <div className="bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+            <div className="bg-card border border-border">
               {data.topReferrers.length === 0 ? (
                 <div className="p-6 text-muted-foreground text-[14px]">No referrers yet</div>
               ) : (
@@ -197,7 +197,7 @@ export default function AnalyticsPage() {
                   <div 
                     key={ref.referrer}
                     className={`flex items-center justify-between p-4 ${
-                      index !== data.topReferrers.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''
+                      index !== data.topReferrers.length - 1 ? 'border-b border-border' : ''
                     }`}
                   >
                     <span className="font-mono text-[13px] text-foreground truncate max-w-[70%]">

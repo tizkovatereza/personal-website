@@ -126,13 +126,13 @@ export default function AboutPage() {
         </header>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* Experience Section */}
         <section className="mb-20">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Experience</h2>
           
-          <div className="relative pl-6 sm:pl-8 border-l border-[rgba(255,255,255,0.1)]">
+          <div className="relative pl-6 sm:pl-8 border-l border-border">
             {jobs.map((job, index) => (
               <div key={index} className="relative pb-10 last:pb-0">
                 {/* Node */}
@@ -168,13 +168,13 @@ export default function AboutPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* Education Section */}
         <section className="mb-20">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-10">Education</h2>
           
-          <div className="relative pl-6 sm:pl-8 border-l border-[rgba(255,255,255,0.1)]">
+          <div className="relative pl-6 sm:pl-8 border-l border-border">
             {education.map((edu, index) => (
               <div key={index} className="relative pb-8 last:pb-0">
                 {/* Node */}
@@ -194,7 +194,7 @@ export default function AboutPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* Talks & Podcasts Section */}
         <section id="talks" className="mb-20 scroll-mt-8">
@@ -208,7 +208,7 @@ export default function AboutPage() {
                   href={talk.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
+                  className="group block p-6 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
                 >
                   {/* Platform with diamond */}
                   <div className="flex items-center gap-2 mb-3">
@@ -234,7 +234,7 @@ export default function AboutPage() {
               ) : (
                 <div
                   key={index}
-                  className="p-6 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]"
+                  className="p-6 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]"
                 >
                   {/* Platform with diamond */}
                   <div className="flex items-center gap-2 mb-3">
@@ -260,10 +260,10 @@ export default function AboutPage() {
         </section>
 
         {/* Section divider */}
-        <div className="h-px w-full bg-[rgba(255,255,255,0.06)] mb-16" />
+        <div className="h-px w-full bg-border mb-16" />
 
         {/* CTA */}
-        <section className="p-8 sm:p-10 bg-[#0f1420]/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+        <section className="p-8 sm:p-10 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
           <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mb-4">Get in touch</h2>
           <p className="font-light text-[14px] sm:text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             I love meeting new people. Whether you want to collaborate, 
@@ -279,7 +279,7 @@ export default function AboutPage() {
             </Link>
             <Link
               href="/work-with-me"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[rgba(255,255,255,0.1)] text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground font-mono text-[11px] font-light tracking-[0.05em] uppercase hover:border-primary hover:text-primary transition-colors"
             >
               Work with me
             </Link>
