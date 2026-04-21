@@ -32,6 +32,31 @@
   --text-muted: #4a4f5a;
 }
 
+/* Light mode */
+.light {
+  --background: #faf9f7;
+  --surface: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #4a5568;
+  --primary-foreground: #ffffff;
+  --secondary: #6b7280;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #4a5568;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: #ffffff;
+  --ring: #4a5568;
+  --text-muted: #9ca3af;
+}
+
 @theme inline {
   --font-sans: var(--font-sans-display), 'Inter', system-ui, sans-serif;
   --font-serif: var(--font-serif-display), 'Playfair Display', Georgia, serif;
@@ -79,6 +104,10 @@
   background-color: #0a0f1a;
 }
 
+.light .global-bg-pattern {
+  background-color: #faf9f7;
+}
+
 .global-bg-pattern::before {
   content: '';
   position: absolute;
@@ -90,6 +119,10 @@
   background-repeat: repeat;
   filter: saturate(0);
   opacity: 0.05;
+}
+
+.light .global-bg-pattern::before {
+  opacity: 0.03;
 }
 
 /* Selection styling */
@@ -186,6 +219,10 @@ html {
 .card-hover:hover {
   border-color: rgba(139, 155, 181, 0.3);
   background-color: rgba(139, 155, 181, 0.03);
+}
+.light .card-hover:hover {
+  border-color: rgba(74, 85, 104, 0.3);
+  background-color: rgba(74, 85, 104, 0.05);
 }
 
 /* Editorial list item */

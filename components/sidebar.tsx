@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ResumeDropdown } from "./resume-dropdown"
+import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -16,7 +17,7 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-background border-r border-[rgba(255,255,255,0.04)] z-50">
+    <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-background border-r border-border z-50">
       {/* Header with name */}
       <div className="px-8 pt-10 pb-8">
         <Link href="/" className="block">
@@ -67,7 +68,10 @@ export function Sidebar() {
 
       {/* Social Links at bottom */}
       <div className="px-8 pb-10">
-        <span className="font-mono text-[10px] font-light text-muted-foreground tracking-[0.1em] uppercase mb-3 block">Links</span>
+        <div className="flex items-center justify-between mb-3">
+          <span className="font-mono text-[10px] font-light text-muted-foreground tracking-[0.1em] uppercase">Links</span>
+          <ThemeToggle />
+        </div>
         <div className="flex items-center gap-3 text-muted-foreground">
           <a
             href="https://x.com/tereza_tizkova"

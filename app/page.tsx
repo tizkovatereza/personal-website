@@ -173,7 +173,7 @@ export default function HomePage() {
           </div>
 
           {/* Editorial list */}
-          <div className="flex flex-col gap-px bg-[rgba(255,255,255,0.03)]">
+          <div className="flex flex-col gap-px bg-border/30">
             {writingItems.map((item, index) => {
               const isExternal = item.href.startsWith('http')
               const LinkComponent = isExternal ? 'a' : Link
@@ -227,7 +227,7 @@ export default function HomePage() {
                 return (
                   <div
                     key={project.title}
-                    className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] overflow-hidden"
+                    className="group block bg-card border border-border overflow-hidden"
                   >
                     {/* Rotating Photo Preview - smaller */}
                     <RotatingProjectPhoto projectName={project.title} className="w-full h-32" />
@@ -256,7 +256,7 @@ export default function HomePage() {
                   href={project.href}
                   target={project.href.startsWith('http') || project.href.startsWith('mailto') ? "_blank" : undefined}
                   rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                  className="group block bg-[#0f1420] border border-[rgba(255,255,255,0.06)] card-hover overflow-hidden"
+                  className="group block bg-card border border-border card-hover overflow-hidden"
                 >
                   {/* Rotating Photo Preview - smaller */}
                   <RotatingProjectPhoto projectName={project.title} className="w-full h-32" />
@@ -289,7 +289,7 @@ export default function HomePage() {
         <section className="mb-24">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-8">Write me something</h2>
           
-          <div className="p-6 sm:p-8 bg-[#0f1420] border border-[rgba(255,255,255,0.06)]">
+          <div className="p-6 sm:p-8 bg-card border border-border">
             {isSent ? (
               <div className="text-center py-8">
                 <p className="font-serif text-[18px] text-primary">Sent! Thanks.</p>
@@ -305,7 +305,7 @@ export default function HomePage() {
                       className={`px-3 py-1.5 font-mono text-[10px] sm:text-[11px] font-light tracking-[0.05em] uppercase border transition-colors ${
                         message === prompt
                           ? 'border-primary text-primary bg-primary/10'
-                          : 'border-[rgba(255,255,255,0.1)] text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                          : 'border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'
                       }`}
                     >
                       {prompt}
@@ -319,7 +319,7 @@ export default function HomePage() {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write something..."
                   rows={3}
-                  className="w-full bg-transparent border border-[rgba(255,255,255,0.1)] px-4 py-3 font-light text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 resize-none mb-4"
+                  className="w-full bg-transparent border border-border px-4 py-3 font-light text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 resize-none mb-4"
                 />
 
                 {/* Contact and send row */}
@@ -329,7 +329,7 @@ export default function HomePage() {
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     placeholder="Leave your contact (optional)"
-                    className="flex-1 bg-transparent border border-[rgba(255,255,255,0.1)] px-4 py-2 font-mono text-[12px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50"
+                    className="flex-1 bg-transparent border border-border px-4 py-2 font-mono text-[12px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50"
                   />
                   <button
                     onClick={handleSend}
@@ -349,7 +349,7 @@ export default function HomePage() {
         <div className="section-divider mb-24" />
 
         {/* === FOOTER === */}
-        <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-12 border-t border-[rgba(255,255,255,0.06)]">
+        <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-12 border-t border-border">
           <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
             © 2026 Tereza Tizkova
           </span>
