@@ -47,14 +47,14 @@ export function ResumeDropdown() {
             href="/resume"
             target="_blank"
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2 px-4 py-3 text-[13px] font-light text-secondary hover:text-foreground hover:bg-[rgba(255,255,255,0.04)] transition-colors"
+            className="flex items-center gap-2 px-4 py-3 text-[13px] font-light text-secondary hover:text-foreground hover:bg-muted transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             Open in new tab
           </Link>
           <button
             onClick={handlePrint}
-            className="flex items-center gap-2 w-full px-4 py-3 text-[13px] font-light text-secondary hover:text-foreground hover:bg-[rgba(255,255,255,0.04)] transition-colors"
+            className="flex items-center gap-2 w-full px-4 py-3 text-[13px] font-light text-secondary hover:text-foreground hover:bg-muted transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
             Download as PDF
