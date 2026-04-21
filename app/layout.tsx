@@ -71,8 +71,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.className} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-light antialiased noise-texture scanlines">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans font-light antialiased noise-texture scanlines">
         <div className="global-bg-pattern print:hidden" aria-hidden="true" />
         <ThemeProvider
           attribute="class"
