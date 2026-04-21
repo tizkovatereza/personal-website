@@ -112,29 +112,23 @@ export function DontClickHere() {
         setParticles([])
       }, 300)
     } else {
-      // Prepare text first to find where to start
-      const chars = prepareTextForEating()
-      charQueueRef.current = chars
-      currentTargetRef.current = 0
+      // Get the button position to start the robot from there
+      const button = document.querySelector('.robot-trigger')
+      const buttonRect = button?.getBoundingClientRect()
       
-      // Start robot near the first character, or at a reasonable default
-      let startX = window.innerWidth / 2
-      let startY = 150
-      
-      if (chars.length > 0) {
-        const firstChar = chars[0]
-        const rect = firstChar.getBoundingClientRect()
-        // Start slightly above and to the right of the first character
-        startX = rect.left + 100
-        startY = rect.top - 50
-      }
-      
-      // Ensure robot starts within viewport bounds
-      startX = Math.max(50, Math.min(startX, window.innerWidth - 50))
-      startY = Math.max(50, Math.min(startY, window.innerHeight - 50))
+      // Start robot from the button position (top right area)
+      const startX = buttonRect ? buttonRect.left : window.innerWidth - 100
+      const startY = buttonRect ? buttonRect.bottom + 40 : 80
       
       setRobotPos({ x: startX, y: startY })
       setIsActive(true)
+      
+      // Prepare text after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        const chars = prepareTextForEating()
+        charQueueRef.current = chars
+        currentTargetRef.current = 0
+      }, 50)
     }
   }
 
@@ -163,21 +157,41 @@ export function DontClickHere() {
       const chars = charQueueRef.current
       const targetIdx = currentTargetRef.current
 
-      if (targetIdx < chars.length) {
+      if (chars.length > 0 && targetIdx < chars.length) {
         const targetChar = chars[targetIdx]
+        
+        // Skip if element is no longer in DOM or not visible
+        if (!targetChar || !targetChar.isConnected) {
+          currentTargetRef.current++
+          return
+        }
+        
         const rect = targetChar.getBoundingClientRect()
+        
+        // Skip characters with zero dimensions (not rendered)
+        if (rect.width === 0 && rect.height === 0) {
+          currentTargetRef.current++
+          return
+        }
+        
         const targetX = rect.left + rect.width / 2
         const targetY = rect.top + rect.height / 2
+        
+        // If target is off-screen, scroll to it
+        if (targetY < 0 || targetY > window.innerHeight) {
+          const scrollY = window.scrollY + targetY - window.innerHeight / 2
+          window.scrollTo({ top: Math.max(0, scrollY), behavior: 'smooth' })
+        }
 
         setRobotPos(prev => {
           const dx = targetX - prev.x
           const dy = targetY - prev.y
           const dist = Math.sqrt(dx * dx + dy * dy)
 
-          if (dist < 20) {
+          if (dist < 25) {
             // Eat the character
             const now = performance.now()
-            if (now - lastEatTimeRef.current > 40) {
+            if (now - lastEatTimeRef.current > 30) {
               targetChar.style.opacity = '0'
               targetChar.style.visibility = 'hidden'
               hiddenSpansRef.current.push({ span: targetChar, originalParent: targetChar.parentNode! })
@@ -191,13 +205,9 @@ export function DontClickHere() {
           const moveX = (dx / dist) * speed * deltaTime
           const moveY = (dy / dist) * speed * deltaTime
 
-          // Keep robot within viewport bounds
-          const newX = Math.max(40, Math.min(prev.x + moveX, window.innerWidth - 40))
-          const newY = Math.max(40, Math.min(prev.y + moveY, window.innerHeight - 40))
-
           return {
-            x: newX,
-            y: newY,
+            x: prev.x + moveX,
+            y: prev.y + moveY,
           }
         })
       }
