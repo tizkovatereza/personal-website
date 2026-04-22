@@ -41,8 +41,8 @@ export function DontClickHere() {
 
   // Wrap text nodes in character spans for eating
   const prepareTextForEating = useCallback(() => {
-    // Only target homepage sections, not article/blog content
-    const selector = '.home-content p, .home-content .text-secondary'
+    // Only target homepage sections - target the actual text elements
+    const selector = '.home-content h3.font-serif, .home-content section h2, .home-content .text-muted-foreground, .home-content textarea, .home-content .font-mono'
     const elements = document.querySelectorAll(selector)
     const chars: HTMLSpanElement[] = []
 
