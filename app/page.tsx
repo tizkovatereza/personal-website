@@ -48,7 +48,7 @@ const promptChips = [
 
 const projects = [
   { 
-    category: "Startup",
+    category: "Growth of a Startup",
     title: "E2B", 
     description: "Founding team member. Built growth from zero, established developer relations, shaped product positioning. Zero to Series A.",
     href: "https://e2b.dev",

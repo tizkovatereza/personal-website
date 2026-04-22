@@ -14,7 +14,7 @@ const projects = [
     title: 'E2B',
     description: 'Founding team member. Built growth from zero, established developer relations, shaped product positioning. Zero to Series A.',
     link: 'https://e2b.dev',
-    tag: 'Startup',
+    tag: 'Growth of a Startup',
     image: '/images/project-deeplearning.jpg',
   },
   {
