@@ -61,7 +61,7 @@ function SectionHeader({ number, children }: { number: number; children: React.R
 
 export default function ConferenceBoothsArticle() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Navigation */}
       <nav className="px-6 sm:px-12 md:px-16 lg:px-20 py-6">
         <Link 
@@ -89,7 +89,7 @@ export default function ConferenceBoothsArticle() {
         </header>
 
         {/* Content */}
-        <div className="text-[16px] sm:text-[17px] leading-[1.75] text-foreground/90">
+        <div className="text-[16px] sm:text-[17px] leading-[1.75] text-foreground/90 break-words">
           <p className="mb-6">
             You can just do things. But you can&apos;t just spawn at a conference with your company and expect good results.
           </p>
