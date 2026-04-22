@@ -18,6 +18,7 @@ interface CharSpan {
 }
 
 export function DontClickHere() {
+  const [isHomepage, setIsHomepage] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [robotPos, setRobotPos] = useState({ x: 0, y: 0 })
   const [particles, setParticles] = useState<Particle[]>([])
@@ -32,6 +33,11 @@ export function DontClickHere() {
   const currentTargetRef = useRef<number>(0)
   const lastEatTimeRef = useRef<number>(0)
   const particleIdRef = useRef(0)
+
+  // Check if on homepage
+  useEffect(() => {
+    setIsHomepage(window.location.pathname === '/')
+  }, [])
 
   // Wrap text nodes in character spans for eating
   const prepareTextForEating = useCallback(() => {
@@ -106,6 +112,11 @@ export function DontClickHere() {
   }, [])
 
   const handleClick = () => {
+    // Only allow robot on homepage
+    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      return
+    }
+    
     if (isActive) {
       // Dismiss - poof and restore
       setIsPoofing(true)
@@ -248,12 +259,14 @@ export function DontClickHere() {
     <>
       {/* The button and theme toggle */}
       <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-2">
-        <button
-          onClick={handleClick}
-          className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
-        >
-          don&apos;t click here
-        </button>
+        {isHomepage && (
+          <button
+            onClick={handleClick}
+            className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
+          >
+            don&apos;t click here
+          </button>
+        )}
         <ThemeToggle />
       </div>
 
