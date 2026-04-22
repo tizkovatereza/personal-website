@@ -35,7 +35,7 @@ export function DontClickHere() {
 
   // Wrap text nodes in character spans for eating
   const prepareTextForEating = useCallback(() => {
-    const selector = 'main h1, main h2, main h3, main p, main span:not(.robot-ignore):not(.robot-char), main a:not(.robot-ignore), article h1, article h2, article p, section h1, section h2, section p, .font-serif, [class*="text-foreground"]'
+    const selector = 'main h1, main h2, main h3, article h1, article h2, article p, section h1, section h2, section p'
     const elements = document.querySelectorAll(selector)
     const chars: HTMLSpanElement[] = []
 
