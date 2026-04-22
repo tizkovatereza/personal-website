@@ -109,7 +109,7 @@ export function SFFogHero() {
         
         {/* Description */}
         <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-8 sm:mb-10">
-          I enjoy growing companies. I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
+          My work is about growing startups (like <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>). I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
         </p>
 
         {/* CTA Link */}
