@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
-import { TopicsWaitlistForm } from "@/components/topics-waitlist-form"
 
 const writingItems = [
   {
@@ -214,54 +213,31 @@ export default function HomePage() {
               href="/projects"
               className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors flex items-center gap-1"
             >
-              View all <ArrowRight className="w-3 h-3" />
+              View details <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
 
           {/* Compact list */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            {projects.map((project) => {
-              // Special handling for waitlist projects
-              if ('isWaitlist' in project && project.isWaitlist) {
-                return (
-                  <div
-                    key={project.title}
-                    className="group block p-3 bg-card border border-border overflow-hidden"
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="w-1 h-1 bg-primary rotate-45" />
-                      <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-[14px] tracking-[-0.01em] mb-2">
-                      {project.title}
-                    </h3>
-                    <TopicsWaitlistForm />
-                  </div>
-                )
-              }
-
-              return (
-                <Link
-                  key={project.title}
-                  href={project.href}
-                  target={project.href.startsWith('http') || project.href.startsWith('mailto') ? "_blank" : undefined}
-                  rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                  className="group block p-3 bg-card border border-border card-hover"
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-1 h-1 bg-primary rotate-45" />
-                    <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
-                      {project.category}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-[14px] tracking-[-0.01em] group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                </Link>
-              )
-            })}
+            {projects.map((project) => (
+              <Link
+                key={project.title}
+                href={project.href}
+                target={project.href.startsWith('http') || project.href.startsWith('mailto') ? "_blank" : undefined}
+                rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                className="group block p-4 bg-card border border-border card-hover"
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="w-1 h-1 bg-primary rotate-45" />
+                  <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
+                    {project.category}
+                  </span>
+                </div>
+                <h3 className="font-serif text-[16px] sm:text-[17px] tracking-[-0.01em] group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+              </Link>
+            ))}
           </div>
         </section>
 
