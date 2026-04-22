@@ -30,7 +30,6 @@ const stats = [
   { value: '40K+', label: 'Newsletter' },
   { value: '7K+', label: 'X/Twitter' },
   { value: '8K+', label: 'LinkedIn' },
-  { value: '26K+', label: 'GitHub Stars' },
 ]
 
 export default function AdvisoryPage() {

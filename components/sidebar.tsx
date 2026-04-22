@@ -9,7 +9,6 @@ const navItems = [
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Writing" },
-  { href: "/work-with-me", label: "Work With Me" },
 ]
 
 export function Sidebar() {
