@@ -156,7 +156,7 @@ export default function HomePage() {
       <SFFogHero />
 
       {/* Content sections */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-24 max-w-5xl">
+      <div className="home-content px-6 sm:px-12 md:px-16 lg:px-20 py-24 max-w-5xl">
         
         {/* === WRITING SECTION === */}
         <section className="mb-24">
