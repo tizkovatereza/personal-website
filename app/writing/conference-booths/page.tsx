@@ -95,7 +95,7 @@ export default function ConferenceBoothsArticle() {
           </p>
 
           <p className="mb-6">
-            TL;DR conferences are all about how to attract relevant people to your booth and get leads from that. But it all starts months before the conference, which is bad news for us startups. You can&apos;t just vibe-organize a conference, like you do with hackathons or meetups. There will be a long checklist, and a lot of strict deadlines when the whole thing is this massive. You just can&apos;t approve a booth design late, or decide to order something last minute.
+            TL;DR conferences are all about how to attract relevant people to your booth and get leads from that. But it all starts months before the conference, which is bad news for us startups. You can&apos;t just vibe-organize a conference, like you do with hackathons or meetups. There will be a long checklist, and a lot of strict deadlines. You just can&apos;t approve a booth design late, or decide to order something last minute.
           </p>
 
           <p className="mb-6">
