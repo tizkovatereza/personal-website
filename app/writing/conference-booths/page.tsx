@@ -357,11 +357,6 @@ export default function ConferenceBoothsArticle() {
           />
 
           <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b91f3a10-9fc2-4ebe-b5eb-fead3443ee47-cu5GXc9RY5algpDBZCtK3zU4J4a2mq.webp"
-            alt="Vasek explaining E2B to conference attendee"
-          />
-
-          <ArticleImage
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/504a4b01-3327-4b27-b41b-60b2fa979f3b-IIWOvVSphw4idAKfHI0CJMtKCZj00h.webp"
             alt="HumanX conference entrance with floral displays"
           />
