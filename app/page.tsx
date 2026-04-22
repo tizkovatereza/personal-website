@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
-import { RotatingProjectPhoto } from "@/components/rotating-project-photo"
 import { TopicsWaitlistForm } from "@/components/topics-waitlist-form"
 
 const writingItems = [
@@ -219,33 +218,26 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 3-column Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          {/* Compact list */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {projects.map((project) => {
               // Special handling for waitlist projects
               if ('isWaitlist' in project && project.isWaitlist) {
                 return (
                   <div
                     key={project.title}
-                    className="group block bg-card border border-border overflow-hidden"
+                    className="group block p-3 bg-card border border-border overflow-hidden"
                   >
-                    {/* Rotating Photo Preview - smaller */}
-                    <RotatingProjectPhoto projectName={project.title} className="w-full h-32" />
-                    
-                    <div className="p-4 sm:p-5">
-                      {/* Category with diamond */}
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-1 h-1 bg-primary rotate-45" />
-                        <span className="font-mono text-[9px] sm:text-[10px] font-light text-primary tracking-[0.05em] uppercase">
-                          {project.category}
-                        </span>
-                      </div>
-                      <h3 className="font-serif text-[15px] sm:text-[16px] tracking-[-0.01em] mb-2">
-                        {project.title}
-                      </h3>
-                      {/* Waitlist Form */}
-                      <TopicsWaitlistForm />
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-1 h-1 bg-primary rotate-45" />
+                      <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
+                        {project.category}
+                      </span>
                     </div>
+                    <h3 className="font-serif text-[14px] tracking-[-0.01em] mb-2">
+                      {project.title}
+                    </h3>
+                    <TopicsWaitlistForm />
                   </div>
                 )
               }
@@ -256,26 +248,17 @@ export default function HomePage() {
                   href={project.href}
                   target={project.href.startsWith('http') || project.href.startsWith('mailto') ? "_blank" : undefined}
                   rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                  className="group block bg-card border border-border card-hover overflow-hidden"
+                  className="group block p-3 bg-card border border-border card-hover"
                 >
-                  {/* Rotating Photo Preview - smaller */}
-                  <RotatingProjectPhoto projectName={project.title} className="w-full h-32" />
-                  
-                  <div className="p-4 sm:p-5">
-                    {/* Category with diamond */}
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="w-1 h-1 bg-primary rotate-45" />
-                      <span className="font-mono text-[9px] sm:text-[10px] font-light text-primary tracking-[0.05em] uppercase">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-[15px] sm:text-[16px] tracking-[-0.01em] mb-1.5">
-                      {project.title}
-                    </h3>
-                    <p className="font-light text-[11px] sm:text-[12px] text-secondary leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-1 h-1 bg-primary rotate-45" />
+                    <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
+                      {project.category}
+                    </span>
                   </div>
+                  <h3 className="font-serif text-[14px] tracking-[-0.01em] group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
                 </Link>
               )
             })}
