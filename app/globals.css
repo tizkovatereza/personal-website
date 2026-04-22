@@ -296,14 +296,21 @@ html {
 
 /* Robot text-eating character spans - prevent spacing issues */
 .robot-char {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
-  letter-spacing: inherit;
-  word-spacing: inherit;
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font: inherit !important;
+  vertical-align: baseline !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: pre !important;
+}
+
+/* Parent elements containing robot-char should not add spacing */
+*:has(> .robot-char) {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
 /* Print styles for resume */
