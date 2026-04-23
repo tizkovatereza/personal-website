@@ -1,7 +1,17 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { ThemeToggle } from "./theme-toggle"
+
+interface Particle {
+  id: number
+  x: number
+  y: number
+  char: string
+  vx: number
+  vy: number
+  life: number
+}
 
 export function DontClickHere() {
   const [isHomepage, setIsHomepage] = useState(false)
@@ -11,23 +21,108 @@ export function DontClickHere() {
   const [walkFrame, setWalkFrame] = useState(0)
   const [mouthOpen, setMouthOpen] = useState(false)
   const [direction, setDirection] = useState(1) // 1 = right, -1 = left
+  const [particles, setParticles] = useState<Particle[]>([])
   
   const animationRef = useRef<number | null>(null)
-  const targetRef = useRef({ x: 0, y: 0 })
-  const mouthCounterRef = useRef(0)
+  const charQueueRef = useRef<HTMLSpanElement[]>([])
+  const currentTargetRef = useRef(0)
+  const lastEatTimeRef = useRef(0)
+  const hiddenSpansRef = useRef<{span: HTMLSpanElement, originalText: string, parent: Node}[]>([])
+  const particleIdRef = useRef(0)
 
   // Check if on homepage
   useEffect(() => {
     setIsHomepage(window.location.pathname === '/')
   }, [])
 
-  // Pick a random target on the visible page
-  const pickNewTarget = () => {
-    const padding = 100
-    const x = padding + Math.random() * (window.innerWidth - padding * 2)
-    const y = padding + Math.random() * (window.innerHeight - padding * 2)
-    targetRef.current = { x, y }
-  }
+  // Prepare text for eating - ONLY target mono/code text which has no letter-spacing issues
+  const prepareTextForEating = useCallback(() => {
+    // Only target mono text and specific safe elements
+    const selector = '.home-content .font-mono:not(button):not(a), .home-content time, .home-content .tracking-\\[0\\.05em\\]'
+    const elements = document.querySelectorAll(selector)
+    const chars: HTMLSpanElement[] = []
+
+    elements.forEach(el => {
+      // Skip nav, footer, buttons
+      if (el.closest('nav') || el.closest('footer') || el.closest('button') || el.closest('a')) return
+      if (el.querySelector('.robot-char')) return // Already processed
+      
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null)
+      const textNodes: Text[] = []
+      
+      let node
+      while (node = walker.nextNode()) {
+        if (node.textContent && node.textContent.trim()) {
+          textNodes.push(node as Text)
+        }
+      }
+
+      textNodes.forEach(textNode => {
+        const text = textNode.textContent || ''
+        const parent = textNode.parentNode
+        if (!parent || !(parent instanceof HTMLElement)) return
+
+        // Get computed styles to preserve exact appearance
+        const computedStyle = window.getComputedStyle(parent)
+        
+        const fragment = document.createDocumentFragment()
+        
+        for (let i = 0; i < text.length; i++) {
+          const span = document.createElement('span')
+          span.textContent = text[i]
+          span.className = 'robot-char'
+          // Copy essential styles to prevent layout shift
+          span.style.cssText = `
+            font-family: ${computedStyle.fontFamily};
+            font-size: ${computedStyle.fontSize};
+            font-weight: ${computedStyle.fontWeight};
+            letter-spacing: ${computedStyle.letterSpacing};
+            line-height: ${computedStyle.lineHeight};
+            transition: opacity 0.05s;
+          `
+          fragment.appendChild(span)
+          chars.push(span)
+        }
+        parent.replaceChild(fragment, textNode)
+      })
+    })
+
+    return chars
+  }, [])
+
+  // Restore text when robot is dismissed
+  const restoreText = useCallback(() => {
+    // Remove all robot-char spans and restore original text
+    document.querySelectorAll('.robot-char').forEach(span => {
+      const text = span.textContent || ''
+      const textNode = document.createTextNode(text)
+      span.parentNode?.replaceChild(textNode, span)
+    })
+    // Normalize to merge adjacent text nodes
+    document.querySelectorAll('.home-content')?.forEach(el => {
+      (el as HTMLElement).normalize()
+    })
+    hiddenSpansRef.current = []
+    charQueueRef.current = []
+    currentTargetRef.current = 0
+  }, [])
+
+  // Add particles when eating
+  const addParticles = useCallback((x: number, y: number, char: string) => {
+    const newParticles: Particle[] = []
+    for (let i = 0; i < 3; i++) {
+      newParticles.push({
+        id: particleIdRef.current++,
+        x,
+        y,
+        char,
+        vx: (Math.random() - 0.5) * 100,
+        vy: -Math.random() * 80 - 20,
+        life: 1,
+      })
+    }
+    setParticles(prev => [...prev, ...newParticles])
+  }, [])
 
   const handleClick = () => {
     // Only allow robot on homepage
@@ -36,11 +131,13 @@ export function DontClickHere() {
     }
     
     if (isActive) {
-      // Dismiss - poof
+      // Dismiss - poof and restore
       setIsPoofing(true)
       setTimeout(() => {
+        restoreText()
         setIsActive(false)
         setIsPoofing(false)
+        setParticles([])
       }, 300)
     } else {
       // Get the button position to start the robot from there
@@ -52,16 +149,22 @@ export function DontClickHere() {
       const startY = buttonRect ? buttonRect.bottom + 40 : 80
       
       setRobotPos({ x: startX, y: startY })
-      pickNewTarget()
       setIsActive(true)
+      
+      // Prepare text after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        const chars = prepareTextForEating()
+        charQueueRef.current = chars
+        currentTargetRef.current = 0
+      }, 100)
     }
   }
 
-  // Animation loop - robot wanders around
+  // Animation loop - robot moves toward characters and eats them
   useEffect(() => {
     if (!isActive || isPoofing) return
 
-    const speed = 80 // pixels per second
+    const speed = 150 // pixels per second
     let lastTime = performance.now()
 
     const animate = (time: number) => {
@@ -70,37 +173,81 @@ export function DontClickHere() {
 
       // Walk frame animation
       setWalkFrame(prev => (prev + 1) % 20)
-      
-      // Mouth animation
-      mouthCounterRef.current++
-      if (mouthCounterRef.current >= 15) {
-        mouthCounterRef.current = 0
-        setMouthOpen(prev => !prev)
+
+      // Update particles
+      setParticles(prev => 
+        prev
+          .map(p => ({
+            ...p,
+            x: p.x + p.vx * deltaTime,
+            y: p.y + p.vy * deltaTime,
+            vy: p.vy + 200 * deltaTime, // gravity
+            life: p.life - deltaTime * 2,
+          }))
+          .filter(p => p.life > 0)
+      )
+
+      // Move robot toward next character
+      const chars = charQueueRef.current
+      const targetIdx = currentTargetRef.current
+
+      if (chars.length > 0 && targetIdx < chars.length) {
+        const targetChar = chars[targetIdx]
+        
+        // Skip if element is no longer in DOM
+        if (!targetChar || !targetChar.isConnected || targetChar.style.opacity === '0') {
+          currentTargetRef.current++
+          animationRef.current = requestAnimationFrame(animate)
+          return
+        }
+        
+        const rect = targetChar.getBoundingClientRect()
+        
+        // Skip characters with zero dimensions
+        if (rect.width === 0 && rect.height === 0) {
+          currentTargetRef.current++
+          animationRef.current = requestAnimationFrame(animate)
+          return
+        }
+        
+        const targetX = rect.left + rect.width / 2
+        const targetY = rect.top + rect.height / 2
+
+        setRobotPos(prev => {
+          const dx = targetX - prev.x
+          const dy = targetY - prev.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          // Update direction based on movement
+          if (dx > 5) setDirection(1)
+          else if (dx < -5) setDirection(-1)
+
+          if (dist < 30) {
+            // Eat the character!
+            const now = performance.now()
+            if (now - lastEatTimeRef.current > 50) {
+              setMouthOpen(true)
+              setTimeout(() => setMouthOpen(false), 100)
+              
+              const charText = targetChar.textContent || '•'
+              targetChar.style.opacity = '0'
+              targetChar.style.visibility = 'hidden'
+              currentTargetRef.current++
+              lastEatTimeRef.current = now
+              addParticles(prev.x + 30, prev.y + 20, charText)
+            }
+            return prev
+          }
+
+          const moveX = (dx / dist) * speed * deltaTime
+          const moveY = (dy / dist) * speed * deltaTime
+
+          return {
+            x: prev.x + moveX,
+            y: prev.y + moveY,
+          }
+        })
       }
-
-      setRobotPos(prev => {
-        const dx = targetRef.current.x - prev.x
-        const dy = targetRef.current.y - prev.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-
-        // Update direction based on movement
-        if (dx > 0) setDirection(1)
-        else if (dx < 0) setDirection(-1)
-
-        // If close to target, pick a new one
-        if (dist < 30) {
-          pickNewTarget()
-          return prev
-        }
-
-        const moveX = (dx / dist) * speed * deltaTime
-        const moveY = (dy / dist) * speed * deltaTime
-
-        return {
-          x: prev.x + moveX,
-          y: prev.y + moveY,
-        }
-      })
 
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -112,7 +259,7 @@ export function DontClickHere() {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [isActive, isPoofing])
+  }, [isActive, isPoofing, addParticles])
 
   const legOffset = Math.sin(walkFrame * 0.5) * 4
 
@@ -224,6 +371,22 @@ export function DontClickHere() {
           </svg>
         </div>
       )}
+
+      {/* Particles */}
+      {particles.map(p => (
+        <div
+          key={p.id}
+          className="fixed z-[9998] pointer-events-none font-mono text-xs text-primary"
+          style={{
+            left: p.x,
+            top: p.y,
+            opacity: p.life,
+            transform: `scale(${0.5 + p.life * 0.5})`,
+          }}
+        >
+          {p.char}
+        </div>
+      ))}
     </>
   )
 }
