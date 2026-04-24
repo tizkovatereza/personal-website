@@ -221,23 +221,39 @@ export function DontClickHere() {
       let targetY: number
       let hasCharTarget = false
 
-      // Find next valid character target
+      // Find next valid character target that is visible in viewport
       if (chars.length > 0 && targetIdx < chars.length) {
-        const targetChar = chars[targetIdx]
-        
-        // Skip if element is no longer valid
-        if (!targetChar || !targetChar.isConnected || targetChar.style.opacity === '0') {
-          currentTargetRef.current++
-        } else {
+        // Look for next visible character (skip hidden ones)
+        for (let i = targetIdx; i < chars.length && i < targetIdx + 50; i++) {
+          const targetChar = chars[i]
+          
+          // Skip if element is no longer valid
+          if (!targetChar || !targetChar.isConnected || targetChar.style.opacity === '0') {
+            if (i === currentTargetRef.current) currentTargetRef.current++
+            continue
+          }
+          
           const rect = targetChar.getBoundingClientRect()
           
-          // Skip characters with zero dimensions or off-screen
+          // Skip characters with zero dimensions
           if (rect.width === 0 && rect.height === 0) {
-            currentTargetRef.current++
-          } else {
+            if (i === currentTargetRef.current) currentTargetRef.current++
+            continue
+          }
+          
+          // Check if character is in viewport
+          const inViewport = rect.top >= 0 && rect.top <= window.innerHeight && 
+                            rect.left >= 0 && rect.left <= window.innerWidth
+          
+          if (inViewport) {
             targetX = rect.left + rect.width / 2
             targetY = rect.top + rect.height / 2
             hasCharTarget = true
+            currentTargetRef.current = i
+            break
+          } else {
+            // Skip off-screen characters
+            if (i === currentTargetRef.current) currentTargetRef.current++
           }
         }
       }
@@ -289,9 +305,13 @@ export function DontClickHere() {
         const moveX = (dx / dist) * speed * deltaTime
         const moveY = (dy / dist) * speed * deltaTime
 
+        // Clamp position to viewport bounds
+        const newX = Math.max(50, Math.min(window.innerWidth - 50, prev.x + moveX))
+        const newY = Math.max(50, Math.min(window.innerHeight - 50, prev.y + moveY))
+
         return {
-          x: prev.x + moveX,
-          y: prev.y + moveY,
+          x: newX,
+          y: newY,
         }
       })
 
