@@ -29,54 +29,37 @@ export function DontClickHere() {
   const prepareText = useCallback(() => {
     const chars: CharInfo[] = []
     
-    // Find all text in home-content
-    const container = document.querySelector('.home-content')
-    if (!container) return chars
+    // Simple approach: get ALL h2 elements on the page that are not in links
+    const allH2 = document.querySelectorAll('h2')
+    const targets = Array.from(allH2).filter(el => !el.closest('a') && !el.closest('button'))
     
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
-      acceptNode: (node) => {
-        if (!node.textContent?.trim()) return NodeFilter.FILTER_REJECT
-        const parent = node.parentElement
-        if (!parent) return NodeFilter.FILTER_REJECT
-        if (parent.closest('a') || parent.closest('button') || parent.closest('nav')) return NodeFilter.FILTER_REJECT
-        return NodeFilter.FILTER_ACCEPT
-      }
-    })
-    
-    const textNodes: Text[] = []
-    let node
-    while (node = walker.nextNode()) {
-      textNodes.push(node as Text)
-    }
-    
-    textNodes.forEach(textNode => {
-      const text = textNode.textContent || ''
-      const parent = textNode.parentNode as HTMLElement
-      if (!parent) return
+    targets.forEach(el => {
+      if (el.querySelector('.robot-char')) return
       
-      const fragment = document.createDocumentFragment()
+      // Get all text content directly
+      const text = el.textContent || ''
+      if (!text.trim()) return
+      
+      // Clear and rebuild with spans
+      el.innerHTML = ''
       
       for (let i = 0; i < text.length; i++) {
         const span = document.createElement('span')
         span.textContent = text[i]
         span.className = 'robot-char'
-        span.style.transition = 'opacity 0.1s'
-        fragment.appendChild(span)
+        span.style.cssText = 'display:inline;transition:opacity 0.1s;'
+        el.appendChild(span)
+        chars.push({ el: span, x: 0, y: 0 })
       }
-      
-      parent.replaceChild(fragment, textNode)
     })
     
-    // Now collect all spans with their positions
-    document.querySelectorAll('.robot-char').forEach(span => {
-      const rect = span.getBoundingClientRect()
-      if (rect.width > 0 && rect.height > 0) {
-        chars.push({
-          el: span as HTMLSpanElement,
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2
-        })
-      }
+    // Update positions after DOM is ready
+    requestAnimationFrame(() => {
+      chars.forEach(c => {
+        const rect = c.el.getBoundingClientRect()
+        c.x = rect.left + rect.width / 2
+        c.y = rect.top + rect.height / 2
+      })
     })
     
     return chars
@@ -108,10 +91,17 @@ export function DontClickHere() {
       setRobotPos({ x: rect?.left || 100, y: (rect?.bottom || 50) + 50 })
       setIsActive(true)
       
+      // Delay to let page render, then prepare text
       setTimeout(() => {
-        charsRef.current = prepareText()
-        targetIndexRef.current = 0
-      }, 50)
+        const chars = prepareText()
+        // Wait another frame for positions to be accurate
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            charsRef.current = chars
+            targetIndexRef.current = 0
+          })
+        })
+      }, 150)
     }
   }
 
@@ -136,15 +126,28 @@ export function DontClickHere() {
         targetIndexRef.current = idx
       }
 
-      if (idx >= chars.length) {
-        // All done, wander
+      if (idx >= chars.length || chars.length === 0) {
+        // All done or no chars, just animate in place
         animationRef.current = requestAnimationFrame(animate)
         return
       }
 
       const target = chars[idx]
-      // Update target position in case of scroll
+      if (!target || !target.el || !target.el.isConnected) {
+        targetIndexRef.current++
+        animationRef.current = requestAnimationFrame(animate)
+        return
+      }
+      
+      // Always get fresh position from DOM
       const rect = target.el.getBoundingClientRect()
+      if (rect.width === 0 || rect.height === 0) {
+        // Element not visible, skip
+        targetIndexRef.current++
+        animationRef.current = requestAnimationFrame(animate)
+        return
+      }
+      
       const tx = rect.left + rect.width / 2
       const ty = rect.top + rect.height / 2
 
