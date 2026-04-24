@@ -29,9 +29,9 @@ export function DontClickHere() {
   const prepareText = useCallback(() => {
     const chars: CharInfo[] = []
     
-    // Simple approach: get ALL h2 elements on the page that are not in links
-    const allH2 = document.querySelectorAll('h2')
-    const targets = Array.from(allH2).filter(el => !el.closest('a') && !el.closest('button'))
+    // Get h1 and h2 elements on the page that are not in links
+    const allHeadings = document.querySelectorAll('h1, h2')
+    const targets = Array.from(allHeadings).filter(el => !el.closest('a') && !el.closest('button'))
     
     targets.forEach(el => {
       if (el.querySelector('.robot-char')) return
@@ -51,15 +51,6 @@ export function DontClickHere() {
         el.appendChild(span)
         chars.push({ el: span, x: 0, y: 0 })
       }
-    })
-    
-    // Update positions after DOM is ready
-    requestAnimationFrame(() => {
-      chars.forEach(c => {
-        const rect = c.el.getBoundingClientRect()
-        c.x = rect.left + rect.width / 2
-        c.y = rect.top + rect.height / 2
-      })
     })
     
     return chars
@@ -88,20 +79,17 @@ export function DontClickHere() {
     } else {
       const button = document.querySelector('.robot-trigger')
       const rect = button?.getBoundingClientRect()
-      setRobotPos({ x: rect?.left || 100, y: (rect?.bottom || 50) + 50 })
-      setIsActive(true)
+      const startX = rect?.left || 100
+      const startY = (rect?.bottom || 50) + 50
       
-      // Delay to let page render, then prepare text
-      setTimeout(() => {
-        const chars = prepareText()
-        // Wait another frame for positions to be accurate
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            charsRef.current = chars
-            targetIndexRef.current = 0
-          })
-        })
-      }, 150)
+      // First prepare text and get chars
+      const chars = prepareText()
+      charsRef.current = chars
+      targetIndexRef.current = 0
+      
+      // Set position and activate - animation will start
+      setRobotPos({ x: startX, y: startY })
+      setIsActive(true)
     }
   }
 
