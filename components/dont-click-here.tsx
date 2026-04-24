@@ -35,55 +35,81 @@ export function DontClickHere() {
     setIsHomepage(window.location.pathname === '/')
   }, [])
 
-  // Prepare text for eating - ONLY target mono/code text which has no letter-spacing issues
+  // Pick random wandering target
+  const pickRandomTarget = useCallback(() => {
+    const padding = 100
+    return {
+      x: padding + Math.random() * (window.innerWidth - padding * 2),
+      y: padding + Math.random() * (window.innerHeight - padding * 2)
+    }
+  }, [])
+  
+  const wanderTargetRef = useRef({ x: 0, y: 0 })
+
+  // Prepare text for eating - target all visible text on the page
   const prepareTextForEating = useCallback(() => {
-    // Only target mono text and specific safe elements
-    const selector = '.home-content .font-mono:not(button):not(a), .home-content time, .home-content .tracking-\\[0\\.05em\\]'
-    const elements = document.querySelectorAll(selector)
+    // Target multiple types of text elements
+    const selectors = [
+      '.home-content span',
+      '.home-content time', 
+      '.home-content p',
+      '.home-content h2',
+      '.home-content h3',
+    ]
+    
     const chars: HTMLSpanElement[] = []
-
-    elements.forEach(el => {
-      // Skip nav, footer, buttons
-      if (el.closest('nav') || el.closest('footer') || el.closest('button') || el.closest('a')) return
-      if (el.querySelector('.robot-char')) return // Already processed
+    
+    selectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector)
       
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null)
-      const textNodes: Text[] = []
-      
-      let node
-      while (node = walker.nextNode()) {
-        if (node.textContent && node.textContent.trim()) {
-          textNodes.push(node as Text)
-        }
-      }
-
-      textNodes.forEach(textNode => {
-        const text = textNode.textContent || ''
-        const parent = textNode.parentNode
-        if (!parent || !(parent instanceof HTMLElement)) return
-
-        // Get computed styles to preserve exact appearance
-        const computedStyle = window.getComputedStyle(parent)
+      elements.forEach(el => {
+        // Skip nav, footer, buttons, links, already processed
+        if (el.closest('nav') || el.closest('footer') || el.closest('button') || el.closest('a')) return
+        if (el.classList.contains('robot-char') || el.querySelector('.robot-char')) return
+        if (el.closest('.robot-ignore')) return
         
-        const fragment = document.createDocumentFragment()
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null)
+        const textNodes: Text[] = []
         
-        for (let i = 0; i < text.length; i++) {
-          const span = document.createElement('span')
-          span.textContent = text[i]
-          span.className = 'robot-char'
-          // Copy essential styles to prevent layout shift
-          span.style.cssText = `
-            font-family: ${computedStyle.fontFamily};
-            font-size: ${computedStyle.fontSize};
-            font-weight: ${computedStyle.fontWeight};
-            letter-spacing: ${computedStyle.letterSpacing};
-            line-height: ${computedStyle.lineHeight};
-            transition: opacity 0.05s;
-          `
-          fragment.appendChild(span)
-          chars.push(span)
+        let node
+        while (node = walker.nextNode()) {
+          if (node.textContent && node.textContent.trim()) {
+            textNodes.push(node as Text)
+          }
         }
-        parent.replaceChild(fragment, textNode)
+
+        textNodes.forEach(textNode => {
+          const text = textNode.textContent || ''
+          const parent = textNode.parentNode
+          if (!parent || !(parent instanceof HTMLElement)) return
+
+          // Get computed styles to preserve exact appearance
+          const computedStyle = window.getComputedStyle(parent)
+          
+          const fragment = document.createDocumentFragment()
+          
+          for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span')
+            span.textContent = text[i]
+            span.className = 'robot-char'
+            // Copy ALL essential styles to prevent layout shift
+            span.style.cssText = `
+              display: inline;
+              font-family: ${computedStyle.fontFamily};
+              font-size: ${computedStyle.fontSize};
+              font-weight: ${computedStyle.fontWeight};
+              font-style: ${computedStyle.fontStyle};
+              letter-spacing: 0;
+              word-spacing: ${computedStyle.wordSpacing};
+              line-height: ${computedStyle.lineHeight};
+              color: ${computedStyle.color};
+              transition: opacity 0.05s;
+            `
+            fragment.appendChild(span)
+            chars.push(span)
+          }
+          parent.replaceChild(fragment, textNode)
+        })
       })
     })
 
@@ -187,67 +213,87 @@ export function DontClickHere() {
           .filter(p => p.life > 0)
       )
 
-      // Move robot toward next character
+      // Move robot toward next character or wander
       const chars = charQueueRef.current
       const targetIdx = currentTargetRef.current
 
+      let targetX: number
+      let targetY: number
+      let hasCharTarget = false
+
+      // Find next valid character target
       if (chars.length > 0 && targetIdx < chars.length) {
         const targetChar = chars[targetIdx]
         
-        // Skip if element is no longer in DOM
+        // Skip if element is no longer valid
         if (!targetChar || !targetChar.isConnected || targetChar.style.opacity === '0') {
           currentTargetRef.current++
-          animationRef.current = requestAnimationFrame(animate)
-          return
+        } else {
+          const rect = targetChar.getBoundingClientRect()
+          
+          // Skip characters with zero dimensions or off-screen
+          if (rect.width === 0 && rect.height === 0) {
+            currentTargetRef.current++
+          } else {
+            targetX = rect.left + rect.width / 2
+            targetY = rect.top + rect.height / 2
+            hasCharTarget = true
+          }
         }
-        
-        const rect = targetChar.getBoundingClientRect()
-        
-        // Skip characters with zero dimensions
-        if (rect.width === 0 && rect.height === 0) {
-          currentTargetRef.current++
-          animationRef.current = requestAnimationFrame(animate)
-          return
+      }
+      
+      // If no char target, wander randomly
+      if (!hasCharTarget) {
+        if (!wanderTargetRef.current.x || !wanderTargetRef.current.y) {
+          wanderTargetRef.current = pickRandomTarget()
         }
-        
-        const targetX = rect.left + rect.width / 2
-        const targetY = rect.top + rect.height / 2
+        targetX = wanderTargetRef.current.x
+        targetY = wanderTargetRef.current.y
+      }
 
-        setRobotPos(prev => {
-          const dx = targetX - prev.x
-          const dy = targetY - prev.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
+      setRobotPos(prev => {
+        const dx = targetX! - prev.x
+        const dy = targetY! - prev.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
 
-          // Update direction based on movement
-          if (dx > 5) setDirection(1)
-          else if (dx < -5) setDirection(-1)
+        // Update direction based on movement
+        if (dx > 5) setDirection(1)
+        else if (dx < -5) setDirection(-1)
 
-          if (dist < 30) {
-            // Eat the character!
-            const now = performance.now()
-            if (now - lastEatTimeRef.current > 50) {
-              setMouthOpen(true)
-              setTimeout(() => setMouthOpen(false), 100)
-              
-              const charText = targetChar.textContent || '•'
+        // If wandering and reached target, pick new one
+        if (!hasCharTarget && dist < 30) {
+          wanderTargetRef.current = pickRandomTarget()
+          return prev
+        }
+
+        if (hasCharTarget && dist < 30) {
+          // Eat the character!
+          const now = performance.now()
+          if (now - lastEatTimeRef.current > 50) {
+            setMouthOpen(true)
+            setTimeout(() => setMouthOpen(false), 100)
+            
+            const targetChar = chars[targetIdx]
+            const charText = targetChar?.textContent || '•'
+            if (targetChar) {
               targetChar.style.opacity = '0'
               targetChar.style.visibility = 'hidden'
-              currentTargetRef.current++
-              lastEatTimeRef.current = now
-              addParticles(prev.x + 30, prev.y + 20, charText)
             }
-            return prev
+            currentTargetRef.current++
+            lastEatTimeRef.current = now
+            addParticles(prev.x + 30, prev.y + 20, charText)
           }
+          return prev
+        }
 
-          const moveX = (dx / dist) * speed * deltaTime
-          const moveY = (dy / dist) * speed * deltaTime
+        const moveX = (dx / dist) * speed * deltaTime
+        const moveY = (dy / dist) * speed * deltaTime
 
-          return {
-            x: prev.x + moveX,
-            y: prev.y + moveY,
-          }
-        })
-      }
+        return {
+          x: prev.x + moveX,
+          y: prev.y + moveY,
+        }
+      })
 
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -259,7 +305,7 @@ export function DontClickHere() {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [isActive, isPoofing, addParticles])
+  }, [isActive, isPoofing, addParticles, pickRandomTarget])
 
   const legOffset = Math.sin(walkFrame * 0.5) * 4
 
