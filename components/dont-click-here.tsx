@@ -144,7 +144,7 @@ export function DontClickHere() {
     setIsActive(true)
   }
 
-  // Handle clicking on the robot - makes it poop and disappear
+  // Handle clicking on the robot - makes it poop out eaten letters
   const handleRobotClick = () => {
     if (!isActive || isPooping) return
     
@@ -173,24 +173,11 @@ export function DontClickHere() {
         } else {
           clearInterval(poopInterval)
           setIsPooping(false)
-          setIsPoofing(true)
-          setTimeout(() => {
-            restoreText()
-            setIsActive(false)
-            setIsPoofing(false)
-            setIsDone(false)
-          }, 300)
+          // Robot continues eating - doesn't disappear
         }
       }, 20)
-    } else {
-      setIsPoofing(true)
-      setTimeout(() => {
-        restoreText()
-        setIsActive(false)
-        setIsPoofing(false)
-        setIsDone(false)
-      }, 300)
     }
+    // If no letters eaten yet, do nothing - robot keeps eating
   }
 
   useEffect(() => {
