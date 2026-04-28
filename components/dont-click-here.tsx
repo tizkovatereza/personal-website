@@ -88,71 +88,75 @@ export function DontClickHere() {
     currentTargetIdx.current = 0
   }, [])
 
-  const handleClick = () => {
-    if (!isHomepage) return
+  // Handle clicking the "don't click here" button - only starts the robot
+  const handleButtonClick = () => {
+    if (!isHomepage || isActive) return
     
-    if (isActive) {
-      // Robot poops out all eaten letters from its body to the left
-      if (eatenLetters.length > 0) {
-        setIsPooping(true)
-        const lettersToAdd = [...eatenLetters]
-        setEatenLetters([])
-        
-        // Get current robot position for pooping from body
-        const currentX = robotPos.x
-        const currentY = robotPos.y
-        
-        let i = 0
-        const poopInterval = setInterval(() => {
-          if (i < lettersToAdd.length) {
-            // Add letter with position relative to robot, spreading left
-            const offsetX = -50 - (i % 10) * 12 - Math.random() * 20
-            const offsetY = Math.floor(i / 10) * 14 + Math.random() * 10
-            setPoopPile(prev => [...prev, {
-              letter: lettersToAdd[i],
-              x: currentX + offsetX,
-              y: currentY + offsetY
-            }])
-            i++
-          } else {
-            clearInterval(poopInterval)
-            setIsPooping(false)
-            setIsPoofing(true)
-            setTimeout(() => {
-              restoreText()
-              setIsActive(false)
-              setIsPoofing(false)
-              setIsDone(false)
-            }, 300)
-          }
-        }, 20)
-      } else {
-        setIsPoofing(true)
-        setTimeout(() => {
-          restoreText()
-          setIsActive(false)
-          setIsPoofing(false)
-          setIsDone(false)
-        }, 300)
-      }
-    } else {
-      const button = document.querySelector('.robot-trigger')
-      const rect = button?.getBoundingClientRect()
-      const startX = rect?.left || 100
-      const startY = (rect?.bottom || 50) + 50
-      
-      // Prepare targets
-      const targets = prepareTargets()
-      targetsRef.current = targets
-      currentTargetIdx.current = 0
-      
-      // Clear previous state
-      setPoopPile([])
+    const button = document.querySelector('.robot-trigger')
+    const rect = button?.getBoundingClientRect()
+    const startX = rect?.left || 100
+    const startY = (rect?.bottom || 50) + 50
+    
+    // Prepare targets
+    const targets = prepareTargets()
+    targetsRef.current = targets
+    currentTargetIdx.current = 0
+    
+    // Clear previous state
+    setPoopPile([])
+    setEatenLetters([])
+    setIsDone(false)
+    
+    setRobotPos({ x: startX, y: startY })
+    setIsActive(true)
+  }
+
+  // Handle clicking on the robot - makes it poop and disappear
+  const handleRobotClick = () => {
+    if (!isActive || isPooping) return
+    
+    // Robot poops out all eaten letters from its body to the left
+    if (eatenLetters.length > 0) {
+      setIsPooping(true)
+      const lettersToAdd = [...eatenLetters]
       setEatenLetters([])
-      setIsDone(false)
       
-      setRobotPos({ x: startX, y: startY })
-      setIsActive(true)
+      // Get current robot position for pooping from body
+      const currentX = robotPos.x
+      const currentY = robotPos.y
+      
+      let i = 0
+      const poopInterval = setInterval(() => {
+        if (i < lettersToAdd.length) {
+          // Add letter with position relative to robot, spreading left
+          const offsetX = -50 - (i % 10) * 12 - Math.random() * 20
+          const offsetY = Math.floor(i / 10) * 14 + Math.random() * 10
+          setPoopPile(prev => [...prev, {
+            letter: lettersToAdd[i],
+            x: currentX + offsetX,
+            y: currentY + offsetY
+          }])
+          i++
+        } else {
+          clearInterval(poopInterval)
+          setIsPooping(false)
+          setIsPoofing(true)
+          setTimeout(() => {
+            restoreText()
+            setIsActive(false)
+            setIsPoofing(false)
+            setIsDone(false)
+          }, 300)
+        }
+      }, 20)
+    } else {
+      setIsPoofing(true)
+      setTimeout(() => {
+        restoreText()
+        setIsActive(false)
+        setIsPoofing(false)
+        setIsDone(false)
+      }, 300)
     }
   }
 
@@ -291,7 +295,7 @@ export function DontClickHere() {
       <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-2">
         {isHomepage && (
           <button 
-            onClick={handleClick} 
+            onClick={handleButtonClick} 
             className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
           >
             don&apos;t click here
@@ -302,7 +306,8 @@ export function DontClickHere() {
 
       {isActive && (
         <div
-          className="fixed z-[9999] pointer-events-none"
+          onClick={handleRobotClick}
+          className="fixed z-[9999] cursor-pointer"
           style={{
             left: robotPos.x,
             top: robotPos.y,
