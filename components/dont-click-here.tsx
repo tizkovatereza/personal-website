@@ -21,7 +21,8 @@ export function DontClickHere() {
   const [direction, setDirection] = useState(1)
   const [eatenLetters, setEatenLetters] = useState<string[]>([])
   const [isPooping, setIsPooping] = useState(false)
-  const [poopPile, setPoopPile] = useState<string[]>([])
+  const [poopPile, setPoopPile] = useState<{letter: string, x: number, y: number}[]>([])
+  const [isDone, setIsDone] = useState(false)
   
   const animationRef = useRef<number | null>(null)
   const targetsRef = useRef<CharTarget[]>([])
@@ -91,17 +92,27 @@ export function DontClickHere() {
     if (!isHomepage) return
     
     if (isActive) {
-      // Robot poops out all eaten letters
+      // Robot poops out all eaten letters from its body to the left
       if (eatenLetters.length > 0) {
         setIsPooping(true)
-        // Add eaten letters to poop pile one by one
         const lettersToAdd = [...eatenLetters]
         setEatenLetters([])
+        
+        // Get current robot position for pooping from body
+        const currentX = robotPos.x
+        const currentY = robotPos.y
         
         let i = 0
         const poopInterval = setInterval(() => {
           if (i < lettersToAdd.length) {
-            setPoopPile(prev => [...prev, lettersToAdd[i]])
+            // Add letter with position relative to robot, spreading left
+            const offsetX = -50 - (i % 10) * 12 - Math.random() * 20
+            const offsetY = Math.floor(i / 10) * 14 + Math.random() * 10
+            setPoopPile(prev => [...prev, {
+              letter: lettersToAdd[i],
+              x: currentX + offsetX,
+              y: currentY + offsetY
+            }])
             i++
           } else {
             clearInterval(poopInterval)
@@ -111,15 +122,17 @@ export function DontClickHere() {
               restoreText()
               setIsActive(false)
               setIsPoofing(false)
+              setIsDone(false)
             }, 300)
           }
-        }, 30)
+        }, 20)
       } else {
         setIsPoofing(true)
         setTimeout(() => {
           restoreText()
           setIsActive(false)
           setIsPoofing(false)
+          setIsDone(false)
         }, 300)
       }
     } else {
@@ -133,9 +146,10 @@ export function DontClickHere() {
       targetsRef.current = targets
       currentTargetIdx.current = 0
       
-      // Clear previous poop pile
+      // Clear previous state
       setPoopPile([])
       setEatenLetters([])
+      setIsDone(false)
       
       setRobotPos({ x: startX, y: startY })
       setIsActive(true)
@@ -158,8 +172,33 @@ export function DontClickHere() {
       const targets = targetsRef.current
       const idx = currentTargetIdx.current
       
-      // Check if we've eaten all targets
+      // Check if we've eaten all targets - return to top right corner
       if (idx >= targets.length) {
+        // Move to top right corner
+        const cornerX = window.innerWidth - 100
+        const cornerY = 100
+        
+        setRobotPos(prev => {
+          const dx = cornerX - prev.x
+          const dy = cornerY - prev.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          
+          if (dx > 2) setDirection(1)
+          else if (dx < -2) setDirection(-1)
+          
+          // If at corner, mark as done
+          if (dist < 20) {
+            setIsDone(true)
+            return { x: cornerX, y: cornerY }
+          }
+          
+          // Move toward corner
+          return {
+            x: prev.x + (dx / dist) * speed * dt,
+            y: prev.y + (dy / dist) * speed * dt
+          }
+        })
+        
         animationRef.current = requestAnimationFrame(animate)
         return
       }
@@ -337,28 +376,22 @@ export function DontClickHere() {
         </div>
       )}
       
-      {/* Poop pile - accumulated eaten letters */}
-      {poopPile.length > 0 && (
-        <div 
-          className="fixed bottom-4 left-4 z-[9998] p-3 bg-amber-900/20 border border-amber-700/30 rounded-lg max-w-[200px]"
+      {/* Poop pile - letters appear from robot's body to the left */}
+      {poopPile.map((item, i) => (
+        <div
+          key={i}
+          className="fixed z-[9997] text-[11px] font-mono pointer-events-none animate-in fade-in zoom-in duration-150"
+          style={{
+            left: item.x,
+            top: item.y,
+            color: `hsl(30, ${40 + Math.random() * 20}%, ${30 + Math.random() * 15}%)`,
+            transform: `rotate(${Math.random() * 40 - 20}deg)`,
+            textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+          }}
         >
-          <div className="text-[8px] font-mono text-amber-600/60 mb-1 uppercase tracking-wider">Letter Pile</div>
-          <div className="flex flex-wrap gap-[1px] text-[10px] font-mono text-amber-700/80 leading-none">
-            {poopPile.map((letter, i) => (
-              <span 
-                key={i} 
-                className="animate-in fade-in duration-100"
-                style={{ 
-                  transform: `rotate(${Math.random() * 30 - 15}deg)`,
-                  opacity: 0.6 + Math.random() * 0.4
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
+          {item.letter}
         </div>
-      )}
+      ))}
     </>
   )
 }
