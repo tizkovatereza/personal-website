@@ -215,7 +215,7 @@ export function DontClickHere() {
           clearInterval(poopInterval)
           setIsPooping(false)
           
-          // Start fade out after 3 seconds
+          // Start fade out after 2 seconds
           setTimeout(() => {
             setPoopFading(true)
             // Remove pile after fade animation completes
@@ -223,7 +223,7 @@ export function DontClickHere() {
               setPoopPile([])
               setPoopFading(false)
             }, 1500)
-          }, 3000)
+          }, 2000)
         }
       }, 50) // Slower animation - 50ms between letters
     }
