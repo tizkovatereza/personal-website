@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import { usePathname } from "next/navigation"
 import { ThemeToggle } from "./theme-toggle"
 
 interface CharTarget {
@@ -10,7 +11,8 @@ interface CharTarget {
 }
 
 export function DontClickHere() {
-  const [isHomepage, setIsHomepage] = useState(false)
+  const pathname = usePathname()
+  const isHomepage = pathname === '/'
   const [isActive, setIsActive] = useState(false)
   const [robotPos, setRobotPos] = useState({ x: 0, y: 0 })
   const [isPoofing, setIsPoofing] = useState(false)
@@ -23,9 +25,7 @@ export function DontClickHere() {
   const currentTargetIdx = useRef(0)
   const originalTextsRef = useRef<Map<HTMLElement, string>>(new Map())
 
-  useEffect(() => {
-    setIsHomepage(window.location.pathname === '/')
-  }, [])
+  
 
   // Find text elements to eat - store original text, we'll eat char by char
   const prepareTargets = useCallback(() => {
@@ -60,7 +60,7 @@ export function DontClickHere() {
   }, [])
 
   const handleClick = () => {
-    if (typeof window !== 'undefined' && window.location.pathname !== '/') return
+    if (!isHomepage) return
     
     if (isActive) {
       setIsPoofing(true)
