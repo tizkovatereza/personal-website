@@ -27,41 +27,48 @@ export function DontClickHere() {
 
   
 
-  // Find text elements to eat - store original text, we'll eat char by char
+  // Find ALL text elements to eat - no viewport filtering
   const prepareTargets = useCallback(() => {
     const targets: CharTarget[] = []
     
-    // Target the main h1 in hero AND section h2s
-    // The h1 "Hi, I'm Tereza." is in SFFogHero, h2s are in .home-content
+    // Target the main h1 in hero AND ALL h2s and h3s on the page
     const heroH1 = document.querySelector('h1.font-serif')
-    const sectionH2s = document.querySelectorAll('.home-content h2')
+    const allH2s = document.querySelectorAll('h2')
+    const allH3s = document.querySelectorAll('h3')
     
-    // Combine all headings, h1 first
+    // Combine all headings
     const allHeadings: HTMLElement[] = []
     if (heroH1) allHeadings.push(heroH1 as HTMLElement)
-    sectionH2s.forEach(el => allHeadings.push(el as HTMLElement))
+    allH2s.forEach(el => {
+      // Skip if inside a link (article titles)
+      if (!el.closest('a')) {
+        allHeadings.push(el as HTMLElement)
+      }
+    })
+    allH3s.forEach(el => {
+      // Include h3s that are article titles (inside links)
+      if (el.closest('a')) {
+        allHeadings.push(el as HTMLElement)
+      }
+    })
     
-    // Sort by vertical position so robot eats top-to-bottom
+    // Sort by vertical position (using offsetTop for absolute position)
     allHeadings.sort((a, b) => {
       const rectA = a.getBoundingClientRect()
       const rectB = b.getBoundingClientRect()
-      return rectA.top - rectB.top
+      return (rectA.top + window.scrollY) - (rectB.top + window.scrollY)
     })
     
-    // Only include elements currently in viewport or slightly below
+    // Include ALL elements, no viewport filtering
     allHeadings.forEach(htmlEl => {
-      const rect = htmlEl.getBoundingClientRect()
-      // Include if in viewport or within 200px below
-      if (rect.top < window.innerHeight + 200 && rect.bottom > -100) {
-        const text = htmlEl.textContent || ''
-        if (text.trim()) {
-          originalTextsRef.current.set(htmlEl, text)
-          targets.push({
-            el: htmlEl,
-            originalText: text,
-            currentIndex: 0
-          })
-        }
+      const text = htmlEl.textContent || ''
+      if (text.trim()) {
+        originalTextsRef.current.set(htmlEl, text)
+        targets.push({
+          el: htmlEl,
+          originalText: text,
+          currentIndex: 0
+        })
       }
     })
     
@@ -148,9 +155,14 @@ export function DontClickHere() {
         return
       }
       
-      // Target the left edge where first char is, but clamp to viewport
-      const tx = Math.max(50, Math.min(window.innerWidth - 50, rect.left + 20))
-      const ty = Math.max(50, Math.min(window.innerHeight - 50, rect.top + rect.height / 2))
+      // If element is off-screen, scroll to it
+      if (rect.top > window.innerHeight - 100 || rect.bottom < 100) {
+        target.el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      
+      // Target the left edge where first char is
+      const tx = rect.left + 20
+      const ty = rect.top + rect.height / 2
 
       setRobotPos(prev => {
         const dx = tx - prev.x
@@ -178,10 +190,10 @@ export function DontClickHere() {
         if (dist > 5) {
           const newX = prev.x + (dx / dist) * speed * dt
           const newY = prev.y + (dy / dist) * speed * dt
-          // Clamp to viewport
+          // Keep X within viewport, but Y can follow scroll
           return {
             x: Math.max(50, Math.min(window.innerWidth - 50, newX)),
-            y: Math.max(50, Math.min(window.innerHeight - 50, newY))
+            y: newY
           }
         }
         return prev
