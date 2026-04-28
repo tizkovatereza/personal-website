@@ -122,9 +122,23 @@ export function DontClickHere() {
     currentTargetIdx.current = 0
   }, [])
 
-  // Handle clicking the "don't click here" button - only starts the robot
+  // Handle clicking the "don't click here" button - starts or resets the robot
   const handleButtonClick = () => {
-    if (!isHomepage || isActive) return
+    if (!isHomepage) return
+    
+    // If robot is active, reset everything
+    if (isActive) {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      restoreText()
+      setIsActive(false)
+      setIsPoofing(false)
+      setIsPooping(false)
+      setPoopPile([])
+      setPoopFading(false)
+      setEatenLetters([])
+      setIsDone(false)
+      return
+    }
     
     const button = document.querySelector('.robot-trigger')
     const rect = button?.getBoundingClientRect()
