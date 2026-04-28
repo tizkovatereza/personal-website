@@ -188,27 +188,29 @@ export function DontClickHere() {
       const lettersToAdd = [...eatenLetters]
       setEatenLetters([])
       
-      // Get current robot position for pooping from body
+      // Get current robot position for pooping below the robot
       const currentX = robotPos.x
-      const currentY = robotPos.y
+      const currentY = robotPos.y + 60 // Below the robot
       
       let i = 0
       const poopInterval = setInterval(() => {
         if (i < lettersToAdd.length) {
-          // Add letter with position relative to robot, spreading left
+          // Add letter below robot, piling up
           // Pre-calculate all random values so they don't change on re-render
-          const offsetX = -50 - (i % 10) * 12 - Math.random() * 20
-          const offsetY = Math.floor(i / 10) * 14 + Math.random() * 10
+          const col = i % 8
+          const row = Math.floor(i / 8)
+          const offsetX = (col - 4) * 14 + (Math.random() - 0.5) * 6
+          const offsetY = row * 16 + (Math.random() - 0.5) * 4
           setPoopPile(prev => [...prev, {
             letter: lettersToAdd[i],
             x: currentX + offsetX,
             y: currentY + offsetY,
-            rotation: Math.random() * 60 - 30,
-            scale: 0.7 + Math.random() * 0.5,
+            rotation: Math.random() * 30 - 15,
+            scale: 0.9 + Math.random() * 0.3,
             hue: 25 + Math.random() * 15,
-            sat: 35 + Math.random() * 25,
-            light: 35 + Math.random() * 20,
-            fontSize: 10 + Math.random() * 6
+            sat: 40 + Math.random() * 20,
+            light: 35 + Math.random() * 15,
+            fontSize: 12 + Math.random() * 4
           }])
           i++
         } else {
@@ -446,41 +448,31 @@ export function DontClickHere() {
         </div>
       )}
       
-      {/* Poop pile - messy jumbled letters like a mud pile */}
+      {/* Poop pile - letters appearing below robot */}
       {poopPile.length > 0 && (
         <div 
           className="fixed z-[9997] pointer-events-none transition-opacity duration-[1000ms] ease-out"
           style={{
-            left: poopPile[0]?.x - 30,
-            top: poopPile[0]?.y - 20,
             opacity: poopFading ? 0 : 1,
           }}
         >
-          {poopPile.map((item, i) => {
-            // Create organic pile shape - letters cluster together
-            const angle = (i * 137.5) % 360 // Golden angle for natural spread
-            const radius = Math.sqrt(i) * 8 // Spiral outward
-            const offsetX = Math.cos(angle * Math.PI / 180) * radius
-            const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6
-            
-            return (
-              <span
-                key={i}
-                className="absolute font-serif font-bold"
-                style={{
-                  left: offsetX + 50,
-                  top: offsetY + 40,
-                  color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
-                  transform: `rotate(${item.rotation}deg) scale(${item.scale})`,
-                  fontSize: `${item.fontSize}px`,
-                  textShadow: '1px 1px 0 rgba(139,90,43,0.4), -1px -1px 0 rgba(210,180,140,0.3)',
-                  zIndex: 9997 + i,
-                }}
-              >
-                {item.letter}
-              </span>
-            )
-          })}
+          {poopPile.map((item, i) => (
+            <span
+              key={i}
+              className="absolute font-serif font-bold"
+              style={{
+                left: item.x,
+                top: item.y,
+                color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
+                transform: `translate(-50%, -50%) rotate(${item.rotation}deg) scale(${item.scale})`,
+                fontSize: `${item.fontSize}px`,
+                textShadow: '1px 1px 0 rgba(139,90,43,0.5), -1px -1px 0 rgba(210,180,140,0.4)',
+                zIndex: 9997 + i,
+              }}
+            >
+              {item.letter}
+            </span>
+          ))}
         </div>
       )}
     </>
