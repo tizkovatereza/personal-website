@@ -31,42 +31,75 @@ export function DontClickHere() {
 
   
 
-  // Find ALL text elements to eat - no viewport filtering
+  // Find ALL text elements to eat - targets everything with text
   const prepareTargets = useCallback(() => {
     const targets: CharTarget[] = []
+    const processedElements = new Set<HTMLElement>()
     
-    // Target the main h1 in hero AND ALL h2s and h3s on the page
-    const heroH1 = document.querySelector('h1.font-serif')
-    const allH2s = document.querySelectorAll('h2')
-    const allH3s = document.querySelectorAll('h3')
+    // Target ALL text-containing elements on the page
+    const selectors = [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',  // All headings
+      'p',                                   // Paragraphs
+      'span',                                // Spans
+      'a',                                   // Links
+      'li',                                  // List items
+      'time',                                // Dates
+      'label',                               // Labels
+      'td', 'th',                            // Table cells
+      'figcaption',                          // Captions
+      'blockquote',                          // Quotes
+      'cite',                                // Citations
+    ]
     
-    // Combine all headings
-    const allHeadings: HTMLElement[] = []
-    if (heroH1) allHeadings.push(heroH1 as HTMLElement)
-    allH2s.forEach(el => {
-      // Skip if inside a link (article titles)
-      if (!el.closest('a')) {
-        allHeadings.push(el as HTMLElement)
-      }
+    const allElements: HTMLElement[] = []
+    
+    selectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        const htmlEl = el as HTMLElement
+        // Skip navigation, footer utility links, buttons, and already processed
+        if (htmlEl.closest('nav') || 
+            htmlEl.closest('button') || 
+            htmlEl.closest('.robot-trigger') ||
+            htmlEl.closest('[role="navigation"]') ||
+            processedElements.has(htmlEl)) return
+        
+        // Skip if parent is already in list (avoid duplicates)
+        let hasParentInList = false
+        allElements.forEach(existing => {
+          if (existing.contains(htmlEl) && existing !== htmlEl) {
+            hasParentInList = true
+          }
+        })
+        if (hasParentInList) return
+        
+        // Remove children that are now contained by this element
+        const toRemove: HTMLElement[] = []
+        allElements.forEach(existing => {
+          if (htmlEl.contains(existing) && htmlEl !== existing) {
+            toRemove.push(existing)
+          }
+        })
+        toRemove.forEach(el => {
+          const idx = allElements.indexOf(el)
+          if (idx > -1) allElements.splice(idx, 1)
+        })
+        
+        allElements.push(htmlEl)
+        processedElements.add(htmlEl)
+      })
     })
-    allH3s.forEach(el => {
-      // Include h3s that are article titles (inside links)
-      if (el.closest('a')) {
-        allHeadings.push(el as HTMLElement)
-      }
-    })
     
-    // Sort by vertical position (using offsetTop for absolute position)
-    allHeadings.sort((a, b) => {
+    // Sort by vertical position top-to-bottom
+    allElements.sort((a, b) => {
       const rectA = a.getBoundingClientRect()
       const rectB = b.getBoundingClientRect()
       return (rectA.top + window.scrollY) - (rectB.top + window.scrollY)
     })
     
-    // Include ALL elements, no viewport filtering
-    allHeadings.forEach(htmlEl => {
+    // Add all elements with text
+    allElements.forEach(htmlEl => {
       const text = htmlEl.textContent || ''
-      if (text.trim()) {
+      if (text.trim() && text.length > 0) {
         originalTextsRef.current.set(htmlEl, text)
         targets.push({
           el: htmlEl,
