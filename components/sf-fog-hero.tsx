@@ -87,7 +87,7 @@ export function SFFogHero() {
   }
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="sf-fog-hero relative w-full min-h-screen overflow-hidden">
       {/* === MAIN CONTENT === */}
       <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-20 lg:py-24 max-w-[700px]">
         {/* Main headline */}

@@ -57,11 +57,13 @@ export function DontClickHere() {
     selectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
         const htmlEl = el as HTMLElement
-        // Skip navigation, footer utility links, buttons, and already processed
+        // Skip navigation, hero section (has React state animations), buttons, and already processed
+        // The hero section contains typewriter animation that can't be restored via innerHTML
         if (htmlEl.closest('nav') || 
             htmlEl.closest('button') || 
             htmlEl.closest('.robot-trigger') ||
             htmlEl.closest('[role="navigation"]') ||
+            htmlEl.closest('.sf-fog-hero') ||  // Skip hero section (has React state animations)
             processedElements.has(htmlEl)) return
         
         // Skip if parent is already in list (avoid duplicates)
