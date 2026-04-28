@@ -19,6 +19,9 @@ export function DontClickHere() {
   const [walkFrame, setWalkFrame] = useState(0)
   const [mouthOpen, setMouthOpen] = useState(false)
   const [direction, setDirection] = useState(1)
+  const [eatenLetters, setEatenLetters] = useState<string[]>([])
+  const [isPooping, setIsPooping] = useState(false)
+  const [poopPile, setPoopPile] = useState<string[]>([])
   
   const animationRef = useRef<number | null>(null)
   const targetsRef = useRef<CharTarget[]>([])
@@ -88,12 +91,37 @@ export function DontClickHere() {
     if (!isHomepage) return
     
     if (isActive) {
-      setIsPoofing(true)
-      setTimeout(() => {
-        restoreText()
-        setIsActive(false)
-        setIsPoofing(false)
-      }, 300)
+      // Robot poops out all eaten letters
+      if (eatenLetters.length > 0) {
+        setIsPooping(true)
+        // Add eaten letters to poop pile one by one
+        const lettersToAdd = [...eatenLetters]
+        setEatenLetters([])
+        
+        let i = 0
+        const poopInterval = setInterval(() => {
+          if (i < lettersToAdd.length) {
+            setPoopPile(prev => [...prev, lettersToAdd[i]])
+            i++
+          } else {
+            clearInterval(poopInterval)
+            setIsPooping(false)
+            setIsPoofing(true)
+            setTimeout(() => {
+              restoreText()
+              setIsActive(false)
+              setIsPoofing(false)
+            }, 300)
+          }
+        }, 30)
+      } else {
+        setIsPoofing(true)
+        setTimeout(() => {
+          restoreText()
+          setIsActive(false)
+          setIsPoofing(false)
+        }, 300)
+      }
     } else {
       const button = document.querySelector('.robot-trigger')
       const rect = button?.getBoundingClientRect()
@@ -104,6 +132,10 @@ export function DontClickHere() {
       const targets = prepareTargets()
       targetsRef.current = targets
       currentTargetIdx.current = 0
+      
+      // Clear previous poop pile
+      setPoopPile([])
+      setEatenLetters([])
       
       setRobotPos({ x: startX, y: startY })
       setIsActive(true)
@@ -177,10 +209,15 @@ export function DontClickHere() {
           setMouthOpen(true)
           setTimeout(() => setMouthOpen(false), 60)
           
-          // Remove first character
+          // Remove first character and store it
           const text = target.el.textContent || ''
           if (text.length > 0) {
+            const eatenChar = text[0]
             target.el.textContent = text.substring(1)
+            // Store the eaten letter (skip spaces)
+            if (eatenChar.trim()) {
+              setEatenLetters(prev => [...prev, eatenChar])
+            }
           }
           lastEatTime = time
           return prev
@@ -290,6 +327,36 @@ export function DontClickHere() {
             <rect x="15" y="75" width="16" height="5" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="1" style={{ transform: `translateY(${legOffset}px)` }} />
             <rect x="39" y="75" width="16" height="5" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="1" style={{ transform: `translateY(${-legOffset}px)` }} />
           </svg>
+          
+          {/* Pooping animation - letters falling from robot's behind */}
+          {isPooping && (
+            <div className="absolute top-[60px] left-1/2 -translate-x-1/2 text-[10px] font-mono text-amber-700 animate-bounce">
+              {'💩'}
+            </div>
+          )}
+        </div>
+      )}
+      
+      {/* Poop pile - accumulated eaten letters */}
+      {poopPile.length > 0 && (
+        <div 
+          className="fixed bottom-4 left-4 z-[9998] p-3 bg-amber-900/20 border border-amber-700/30 rounded-lg max-w-[200px]"
+        >
+          <div className="text-[8px] font-mono text-amber-600/60 mb-1 uppercase tracking-wider">Letter Pile</div>
+          <div className="flex flex-wrap gap-[1px] text-[10px] font-mono text-amber-700/80 leading-none">
+            {poopPile.map((letter, i) => (
+              <span 
+                key={i} 
+                className="animate-in fade-in duration-100"
+                style={{ 
+                  transform: `rotate(${Math.random() * 30 - 15}deg)`,
+                  opacity: 0.6 + Math.random() * 0.4
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </>
