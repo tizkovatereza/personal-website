@@ -440,12 +440,7 @@ export function DontClickHere() {
             <rect x="39" y="75" width="16" height="5" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="1" style={{ transform: `translateY(${-legOffset}px)` }} />
           </svg>
           
-          {/* Pooping animation - letters falling from robot's behind */}
-          {isPooping && (
-            <div className="absolute top-[60px] left-1/2 -translate-x-1/2 text-[10px] font-mono text-amber-700 animate-bounce">
-              {'💩'}
-            </div>
-          )}
+          
         </div>
       )}
       
