@@ -215,15 +215,15 @@ export function DontClickHere() {
           clearInterval(poopInterval)
           setIsPooping(false)
           
-          // Start fade out after 2 seconds
+          // Start fade out after 1 second
           setTimeout(() => {
             setPoopFading(true)
             // Remove pile after fade animation completes
             setTimeout(() => {
               setPoopPile([])
               setPoopFading(false)
-            }, 1500)
-          }, 2000)
+            }, 1000)
+          }, 1000)
         }
       }, 50) // Slower animation - 50ms between letters
     }
@@ -449,7 +449,7 @@ export function DontClickHere() {
       {/* Poop pile - messy jumbled letters like a mud pile */}
       {poopPile.length > 0 && (
         <div 
-          className="fixed z-[9997] pointer-events-none transition-opacity duration-[1500ms] ease-out"
+          className="fixed z-[9997] pointer-events-none transition-opacity duration-[1000ms] ease-out"
           style={{
             left: poopPile[0]?.x - 30,
             top: poopPile[0]?.y - 20,
@@ -457,22 +457,22 @@ export function DontClickHere() {
           }}
         >
           {poopPile.map((item, i) => {
-            // Create organic pile shape - letters cluster together (smaller radius)
+            // Create organic pile shape - letters cluster together
             const angle = (i * 137.5) % 360 // Golden angle for natural spread
-            const radius = Math.sqrt(i) * 5 // Smaller spiral
+            const radius = Math.sqrt(i) * 8 // Spiral outward
             const offsetX = Math.cos(angle * Math.PI / 180) * radius
             const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6
             
             return (
               <span
                 key={i}
-                className="absolute font-serif"
+                className="absolute font-serif font-bold"
                 style={{
-                  left: offsetX + 30,
-                  top: offsetY + 25,
+                  left: offsetX + 50,
+                  top: offsetY + 40,
                   color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
-                  transform: `rotate(${item.rotation}deg) scale(${item.scale * 0.7})`,
-                  fontSize: `${item.fontSize * 0.8}px`,
+                  transform: `rotate(${item.rotation}deg) scale(${item.scale})`,
+                  fontSize: `${item.fontSize}px`,
                   textShadow: '1px 1px 0 rgba(139,90,43,0.4), -1px -1px 0 rgba(210,180,140,0.3)',
                   zIndex: 9997 + i,
                 }}
