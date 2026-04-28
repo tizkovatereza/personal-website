@@ -376,22 +376,48 @@ export function DontClickHere() {
         </div>
       )}
       
-      {/* Poop pile - letters appear from robot's body to the left */}
-      {poopPile.map((item, i) => (
-        <div
-          key={i}
-          className="fixed z-[9997] text-[11px] font-mono pointer-events-none animate-in fade-in zoom-in duration-150"
+      {/* Poop pile - messy jumbled letters like a mud pile */}
+      {poopPile.length > 0 && (
+        <div 
+          className="fixed z-[9997] pointer-events-none"
           style={{
-            left: item.x,
-            top: item.y,
-            color: `hsl(30, ${40 + Math.random() * 20}%, ${30 + Math.random() * 15}%)`,
-            transform: `rotate(${Math.random() * 40 - 20}deg)`,
-            textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+            left: poopPile[0]?.x - 30,
+            top: poopPile[0]?.y - 20,
           }}
         >
-          {item.letter}
+          {poopPile.map((item, i) => {
+            // Create organic pile shape - letters cluster together
+            const angle = (i * 137.5) % 360 // Golden angle for natural spread
+            const radius = Math.sqrt(i) * 8 // Spiral outward
+            const offsetX = Math.cos(angle * Math.PI / 180) * radius + (Math.random() - 0.5) * 15
+            const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6 + (Math.random() - 0.5) * 10
+            const rotation = Math.random() * 60 - 30
+            const scale = 0.7 + Math.random() * 0.5
+            // Brown/tan colors that work on both light and dark
+            const hue = 25 + Math.random() * 15 // 25-40 range (tan to brown)
+            const sat = 35 + Math.random() * 25 // 35-60%
+            const light = 35 + Math.random() * 20 // 35-55%
+            
+            return (
+              <span
+                key={i}
+                className="absolute font-serif font-bold"
+                style={{
+                  left: offsetX + 50,
+                  top: offsetY + 40,
+                  color: `hsl(${hue}, ${sat}%, ${light}%)`,
+                  transform: `rotate(${rotation}deg) scale(${scale})`,
+                  fontSize: `${10 + Math.random() * 6}px`,
+                  textShadow: '1px 1px 0 rgba(139,90,43,0.4), -1px -1px 0 rgba(210,180,140,0.3)',
+                  zIndex: 9997 + i,
+                }}
+              >
+                {item.letter}
+              </span>
+            )
+          })}
         </div>
-      ))}
+      )}
     </>
   )
 }
