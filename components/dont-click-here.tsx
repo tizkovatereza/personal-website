@@ -21,8 +21,9 @@ export function DontClickHere() {
   const [direction, setDirection] = useState(1)
   const [eatenLetters, setEatenLetters] = useState<string[]>([])
   const [isPooping, setIsPooping] = useState(false)
-  const [poopPile, setPoopPile] = useState<{letter: string, x: number, y: number}[]>([])
+  const [poopPile, setPoopPile] = useState<{letter: string, x: number, y: number, rotation: number, scale: number, hue: number, sat: number, light: number, fontSize: number}[]>([])
   const [isDone, setIsDone] = useState(false)
+  const [poopFading, setPoopFading] = useState(false)
   
   const animationRef = useRef<number | null>(null)
   const targetsRef = useRef<CharTarget[]>([])
@@ -151,6 +152,7 @@ export function DontClickHere() {
     // Robot poops out all eaten letters from its body to the left
     if (eatenLetters.length > 0) {
       setIsPooping(true)
+      setPoopFading(false)
       const lettersToAdd = [...eatenLetters]
       setEatenLetters([])
       
@@ -162,20 +164,36 @@ export function DontClickHere() {
       const poopInterval = setInterval(() => {
         if (i < lettersToAdd.length) {
           // Add letter with position relative to robot, spreading left
+          // Pre-calculate all random values so they don't change on re-render
           const offsetX = -50 - (i % 10) * 12 - Math.random() * 20
           const offsetY = Math.floor(i / 10) * 14 + Math.random() * 10
           setPoopPile(prev => [...prev, {
             letter: lettersToAdd[i],
             x: currentX + offsetX,
-            y: currentY + offsetY
+            y: currentY + offsetY,
+            rotation: Math.random() * 60 - 30,
+            scale: 0.7 + Math.random() * 0.5,
+            hue: 25 + Math.random() * 15,
+            sat: 35 + Math.random() * 25,
+            light: 35 + Math.random() * 20,
+            fontSize: 10 + Math.random() * 6
           }])
           i++
         } else {
           clearInterval(poopInterval)
           setIsPooping(false)
-          // Robot continues eating - doesn't disappear
+          
+          // Start fade out after 3 seconds
+          setTimeout(() => {
+            setPoopFading(true)
+            // Remove pile after fade animation completes
+            setTimeout(() => {
+              setPoopPile([])
+              setPoopFading(false)
+            }, 1500)
+          }, 3000)
         }
-      }, 20)
+      }, 50) // Slower animation - 50ms between letters
     }
     // If no letters eaten yet, do nothing - robot keeps eating
   }
@@ -404,24 +422,19 @@ export function DontClickHere() {
       {/* Poop pile - messy jumbled letters like a mud pile */}
       {poopPile.length > 0 && (
         <div 
-          className="fixed z-[9997] pointer-events-none"
+          className="fixed z-[9997] pointer-events-none transition-opacity duration-[1500ms] ease-out"
           style={{
             left: poopPile[0]?.x - 30,
             top: poopPile[0]?.y - 20,
+            opacity: poopFading ? 0 : 1,
           }}
         >
           {poopPile.map((item, i) => {
             // Create organic pile shape - letters cluster together
             const angle = (i * 137.5) % 360 // Golden angle for natural spread
             const radius = Math.sqrt(i) * 8 // Spiral outward
-            const offsetX = Math.cos(angle * Math.PI / 180) * radius + (Math.random() - 0.5) * 15
-            const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6 + (Math.random() - 0.5) * 10
-            const rotation = Math.random() * 60 - 30
-            const scale = 0.7 + Math.random() * 0.5
-            // Brown/tan colors that work on both light and dark
-            const hue = 25 + Math.random() * 15 // 25-40 range (tan to brown)
-            const sat = 35 + Math.random() * 25 // 35-60%
-            const light = 35 + Math.random() * 20 // 35-55%
+            const offsetX = Math.cos(angle * Math.PI / 180) * radius
+            const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6
             
             return (
               <span
@@ -430,9 +443,9 @@ export function DontClickHere() {
                 style={{
                   left: offsetX + 50,
                   top: offsetY + 40,
-                  color: `hsl(${hue}, ${sat}%, ${light}%)`,
-                  transform: `rotate(${rotation}deg) scale(${scale})`,
-                  fontSize: `${10 + Math.random() * 6}px`,
+                  color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
+                  transform: `rotate(${item.rotation}deg) scale(${item.scale})`,
+                  fontSize: `${item.fontSize}px`,
                   textShadow: '1px 1px 0 rgba(139,90,43,0.4), -1px -1px 0 rgba(210,180,140,0.3)',
                   zIndex: 9997 + i,
                 }}
