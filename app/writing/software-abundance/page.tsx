@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { ShareableChart } from '@/components/shareable-chart'
+import { PageTracker } from '@/components/page-tracker'
 
 export const metadata: Metadata = {
   title: 'Software is becoming marketing | Tereza Tizkova',
@@ -55,6 +56,7 @@ function Callout({ children }: { children: React.ReactNode }) {
 export default function SoftwareAbundanceArticle() {
   return (
     <div className="min-h-screen">
+      <PageTracker />
       {/* Navigation */}
       <nav className="px-6 sm:px-12 md:px-16 lg:px-20 py-6">
         <Link 

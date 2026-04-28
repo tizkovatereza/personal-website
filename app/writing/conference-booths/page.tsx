@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { PageTracker } from '@/components/page-tracker'
 
 export const metadata: Metadata = {
   title: 'A guide to not wasting money on conference booths | Tereza Tizkova',
@@ -62,6 +63,7 @@ function SectionHeader({ number, children }: { number: number; children: React.R
 export default function ConferenceBoothsArticle() {
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <PageTracker />
       {/* Navigation */}
       <nav className="px-6 sm:px-12 md:px-16 lg:px-20 py-6">
         <Link 
