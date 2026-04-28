@@ -6,7 +6,7 @@ import { ThemeToggle } from "./theme-toggle"
 
 interface CharTarget {
   el: HTMLElement
-  originalText: string
+  originalHtml: string
   currentIndex: number
 }
 
@@ -28,7 +28,7 @@ export function DontClickHere() {
   const animationRef = useRef<number | null>(null)
   const targetsRef = useRef<CharTarget[]>([])
   const currentTargetIdx = useRef(0)
-  const originalTextsRef = useRef<Map<HTMLElement, string>>(new Map())
+  const originalHtmlRef = useRef<Map<HTMLElement, string>>(new Map())
 
   
 
@@ -97,14 +97,14 @@ export function DontClickHere() {
       return (rectA.top + window.scrollY) - (rectB.top + window.scrollY)
     })
     
-    // Add all elements with text
+    // Add all elements with text - store innerHTML to preserve structure
     allElements.forEach(htmlEl => {
       const text = htmlEl.textContent || ''
       if (text.trim() && text.length > 0) {
-        originalTextsRef.current.set(htmlEl, text)
+        originalHtmlRef.current.set(htmlEl, htmlEl.innerHTML)
         targets.push({
           el: htmlEl,
-          originalText: text,
+          originalHtml: htmlEl.innerHTML,
           currentIndex: 0
         })
       }
@@ -119,9 +119,39 @@ export function DontClickHere() {
   const handleButtonClick = () => {
     if (!isHomepage) return
     
-    // If robot is active, do a full reset by reloading the page
+    // If robot is active, do a full reset
     if (isActive) {
-      window.location.reload()
+      // Stop animation
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+        animationRef.current = null
+      }
+      
+      // Restore all original HTML (preserves structure, line breaks, etc.)
+      originalHtmlRef.current.forEach((html, el) => {
+        if (el && el.isConnected) {
+          el.innerHTML = html
+        }
+      })
+      originalHtmlRef.current.clear()
+      targetsRef.current = []
+      currentTargetIdx.current = 0
+      
+      // Reset all state
+      setIsActive(false)
+      setIsPoofing(false)
+      setIsPooping(false)
+      setPoopPile([])
+      setPoopFading(false)
+      setEatenLetters([])
+      setIsDone(false)
+      setMouthOpen(false)
+      setWalkFrame(0)
+      setDirection(1)
+      setRobotPos({ x: 0, y: 0 })
+      
+      // Scroll back to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
     
