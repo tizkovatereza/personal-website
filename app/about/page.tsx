@@ -117,7 +117,7 @@ export default function AboutPage() {
           
           {/* Intro paragraph */}
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-[1.8] max-w-2xl">
-            I'm Tereza — founding team member at{' '}
+            Hi, I&apos;m Tereza. Thanks for stopping by here. I&apos;m a founding team member at{' '}
             <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>, 
             leading marketing and growth activities since day one. Originally from Prague, now based in San Francisco 
             as an O-1 visa holder. I studied mathematics at Charles University and somehow ended up 
