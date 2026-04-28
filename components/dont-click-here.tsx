@@ -430,22 +430,22 @@ export function DontClickHere() {
           }}
         >
           {poopPile.map((item, i) => {
-            // Create organic pile shape - letters cluster together
+            // Create organic pile shape - letters cluster together (smaller radius)
             const angle = (i * 137.5) % 360 // Golden angle for natural spread
-            const radius = Math.sqrt(i) * 8 // Spiral outward
+            const radius = Math.sqrt(i) * 5 // Smaller spiral
             const offsetX = Math.cos(angle * Math.PI / 180) * radius
             const offsetY = Math.sin(angle * Math.PI / 180) * radius * 0.6
             
             return (
               <span
                 key={i}
-                className="absolute font-serif font-bold"
+                className="absolute font-serif"
                 style={{
-                  left: offsetX + 50,
-                  top: offsetY + 40,
+                  left: offsetX + 30,
+                  top: offsetY + 25,
                   color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
-                  transform: `rotate(${item.rotation}deg) scale(${item.scale})`,
-                  fontSize: `${item.fontSize}px`,
+                  transform: `rotate(${item.rotation}deg) scale(${item.scale * 0.7})`,
+                  fontSize: `${item.fontSize * 0.8}px`,
                   textShadow: '1px 1px 0 rgba(139,90,43,0.4), -1px -1px 0 rgba(210,180,140,0.3)',
                   zIndex: 9997 + i,
                 }}
