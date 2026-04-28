@@ -113,52 +113,15 @@ export function DontClickHere() {
     return targets
   }, [])
 
-  const restoreText = useCallback(() => {
-    originalTextsRef.current.forEach((text, el) => {
-      el.textContent = text
-    })
-    originalTextsRef.current.clear()
-    targetsRef.current = []
-    currentTargetIdx.current = 0
-  }, [])
+  
 
   // Handle clicking the "don't click here" button - starts or resets the robot
   const handleButtonClick = () => {
     if (!isHomepage) return
     
-    // If robot is active, do a full reset
+    // If robot is active, do a full reset by reloading the page
     if (isActive) {
-      // Stop animation immediately
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-        animationRef.current = null
-      }
-      
-      // Restore ALL text from stored originals
-      originalTextsRef.current.forEach((originalText, el) => {
-        if (el && el.isConnected) {
-          el.textContent = originalText
-        }
-      })
-      originalTextsRef.current.clear()
-      targetsRef.current = []
-      currentTargetIdx.current = 0
-      
-      // Reset all state
-      setIsActive(false)
-      setIsPoofing(false)
-      setIsPooping(false)
-      setPoopPile([])
-      setPoopFading(false)
-      setEatenLetters([])
-      setIsDone(false)
-      setMouthOpen(false)
-      setWalkFrame(0)
-      setDirection(1)
-      setRobotPos({ x: 0, y: 0 })
-      
-      // Scroll back to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.location.reload()
       return
     }
     
