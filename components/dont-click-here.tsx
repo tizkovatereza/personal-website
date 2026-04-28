@@ -31,19 +31,37 @@ export function DontClickHere() {
   const prepareTargets = useCallback(() => {
     const targets: CharTarget[] = []
     
-    // Target the section heading h2s: "Writing", "Projects", "Write me something"
-    const headings = document.querySelectorAll('.home-content h2')
+    // Target the main h1 in hero AND section h2s
+    // The h1 "Hi, I'm Tereza." is in SFFogHero, h2s are in .home-content
+    const heroH1 = document.querySelector('h1.font-serif')
+    const sectionH2s = document.querySelectorAll('.home-content h2')
     
-    headings.forEach(el => {
-      const htmlEl = el as HTMLElement
-      const text = htmlEl.textContent || ''
-      if (text.trim()) {
-        originalTextsRef.current.set(htmlEl, text)
-        targets.push({
-          el: htmlEl,
-          originalText: text,
-          currentIndex: 0
-        })
+    // Combine all headings, h1 first
+    const allHeadings: HTMLElement[] = []
+    if (heroH1) allHeadings.push(heroH1 as HTMLElement)
+    sectionH2s.forEach(el => allHeadings.push(el as HTMLElement))
+    
+    // Sort by vertical position so robot eats top-to-bottom
+    allHeadings.sort((a, b) => {
+      const rectA = a.getBoundingClientRect()
+      const rectB = b.getBoundingClientRect()
+      return rectA.top - rectB.top
+    })
+    
+    // Only include elements currently in viewport or slightly below
+    allHeadings.forEach(htmlEl => {
+      const rect = htmlEl.getBoundingClientRect()
+      // Include if in viewport or within 200px below
+      if (rect.top < window.innerHeight + 200 && rect.bottom > -100) {
+        const text = htmlEl.textContent || ''
+        if (text.trim()) {
+          originalTextsRef.current.set(htmlEl, text)
+          targets.push({
+            el: htmlEl,
+            originalText: text,
+            currentIndex: 0
+          })
+        }
       }
     })
     
@@ -130,9 +148,9 @@ export function DontClickHere() {
         return
       }
       
-      // Target the left edge where first char is
-      const tx = rect.left + 20
-      const ty = rect.top + rect.height / 2
+      // Target the left edge where first char is, but clamp to viewport
+      const tx = Math.max(50, Math.min(window.innerWidth - 50, rect.left + 20))
+      const ty = Math.max(50, Math.min(window.innerHeight - 50, rect.top + rect.height / 2))
 
       setRobotPos(prev => {
         const dx = tx - prev.x
@@ -158,9 +176,12 @@ export function DontClickHere() {
 
         // Move toward target
         if (dist > 5) {
+          const newX = prev.x + (dx / dist) * speed * dt
+          const newY = prev.y + (dy / dist) * speed * dt
+          // Clamp to viewport
           return {
-            x: prev.x + (dx / dist) * speed * dt,
-            y: prev.y + (dy / dist) * speed * dt
+            x: Math.max(50, Math.min(window.innerWidth - 50, newX)),
+            y: Math.max(50, Math.min(window.innerHeight - 50, newY))
           }
         }
         return prev
