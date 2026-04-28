@@ -21,7 +21,6 @@ const rotatingPhotos = [
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3fc7bc11-54d4-4753-b7b7-a2fc69f6024a-nb9LRKmXVvK7odqD8ZR3OX57BYiBmU.jpeg', // Philz Coffee selfie
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/24a85868-41b7-4d2d-8acb-a2fdefe849a1-W3isYUAxdbMpGZTTZwfh0bWvcCJbYC.jpeg', // moody laptop "The Sandbox Company"
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bdc3cd59-de7f-46ba-996b-a51223fedc55-C8NYYhbu7IYwzmfGXQScEQYeohTZa3.jpeg', // resting candid closeup
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-10%20at%2013.24.40-mw7aeXlT1g9JSIeqoYw5diKWOHKHgC.png', // b&w artistic silhouette profile
 ]
 
 const DEFAULT_PHOTO = rotatingPhotos[0]
