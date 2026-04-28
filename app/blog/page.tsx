@@ -1,8 +1,8 @@
 import { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { blogPosts } from "@/lib/blog-posts"
 import { ArrowUpRight } from "lucide-react"
+import { SubscribeForm } from "@/components/subscribe-form"
 
 export const metadata: Metadata = {
   title: "Writing | Tereza Tizkova",
@@ -27,18 +27,20 @@ export default function BlogPage() {
               Pitch me an idea.
             </a>
           </p>
-          <a
-            href="https://terezatizkova.substack.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-primary border border-primary/30 hover:bg-primary/10 transition-colors"
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Subscribe to newsletter
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <SubscribeForm variant="button" />
+            <a
+              href="https://terezatizkova.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+              </svg>
+              See my Substack
+            </a>
+          </div>
         </header>
       </div>
 

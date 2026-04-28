@@ -1,9 +1,5 @@
 import { NextResponse } from 'next/server'
-
-// This is a stub implementation. In production, you would:
-// 1. Validate the email
-// 2. Store it in a database (Neon)
-// 3. Send a confirmation email (Resend, SendGrid, etc.)
+import { neon } from '@neondatabase/serverless'
 
 export async function POST(request: Request) {
   try {
@@ -26,17 +22,41 @@ export async function POST(request: Request) {
       )
     }
 
-    // Log the subscription (for development)
-    console.log('New subscriber:', email)
-
-    // TODO: Add to database
-    // const sql = neon(process.env.DATABASE_URL!)
-    // await sql`INSERT INTO subscribers (email) VALUES (${email}) ON CONFLICT (email) DO NOTHING`
-
-    // TODO: Send confirmation email via Resend/SendGrid
+    // Add to database
+    const sql = neon(process.env.DATABASE_URL!)
+    
+    // Check if already subscribed
+    const existing = await sql`
+      SELECT email, unsubscribed FROM writing_subscribers WHERE email = ${email.toLowerCase()}
+    `
+    
+    if (existing.length > 0) {
+      if (existing[0].unsubscribed) {
+        // Re-subscribe
+        await sql`
+          UPDATE writing_subscribers 
+          SET unsubscribed = false, confirmed = true 
+          WHERE email = ${email.toLowerCase()}
+        `
+        return NextResponse.json(
+          { message: 'Welcome back! You are now re-subscribed.' },
+          { status: 200 }
+        )
+      }
+      return NextResponse.json(
+        { message: 'You are already subscribed!' },
+        { status: 200 }
+      )
+    }
+    
+    // Insert new subscriber
+    await sql`
+      INSERT INTO writing_subscribers (email, confirmed) 
+      VALUES (${email.toLowerCase()}, true)
+    `
 
     return NextResponse.json(
-      { message: 'Thanks for subscribing! You\'ll receive a confirmation email shortly.' },
+      { message: 'You are now subscribed to new articles!' },
       { status: 200 }
     )
   } catch (error) {
