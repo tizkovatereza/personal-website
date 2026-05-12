@@ -442,7 +442,7 @@ export default function ConferenceBoothsArticle() {
 
           <p className="mb-4 font-medium">Anthropic / Claude photo booth</p>
           <p className="mb-6">
-            A photo booth that generates pixel-art portraits with fun stats. People love sharing these online - free marketing.
+            I&apos;ve seen this one on X posted by <a href="https://x.com/_christinacodes" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">@_christinacodes</a>, and loved it. A photo booth that generates pixel-art portraits with fun stats. People love sharing these online - free marketing.
           </p>
 
           <ArticleImage
