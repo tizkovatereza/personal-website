@@ -445,6 +445,77 @@ export default function ConferenceBoothsArticle() {
             src="/images/jonas-booth-2.jpeg"
             alt="Fuago booth with graffiti wall and vintage setup"
           />
+
+          <SectionHeader number={9}>Bonus: My favorite booths</SectionHeader>
+
+          <p className="mb-6">
+            And here are some of my personal favorites - booths that really stood out to me for their creativity, branding, or just genuine authenticity.
+          </p>
+
+          <p className="mb-4 font-medium">Smallest AI</p>
+          <p className="mb-6">
+            Their &quot;Small Language Model Club&quot; swag was a clever play on LLMs, and the neon sign with tote bags made for great photos.
+          </p>
+
+          <ArticleImage
+            src="/images/smallest-ai-booth.jpeg"
+            alt="Smallest AI booth with team members and creative Windows warning dialog display"
+          />
+
+          <ArticleImage
+            src="/images/smallest-ai-swag.jpeg"
+            alt="Smallest AI tote bags with Small Language Model Club branding"
+          />
+
+          <ArticleImage
+            src="/images/smallest-ai-neon.jpeg"
+            alt="Smallest AI neon sign with Small Language Model Club tote bags hanging below"
+          />
+
+          <p className="mb-4 font-medium">Anthropic / Claude photo booth</p>
+          <p className="mb-6">
+            A photo booth that generates pixel-art portraits with fun stats. People love sharing these online - free marketing.
+          </p>
+
+          <ArticleImage
+            src="/images/claude-photobooth.jpeg"
+            alt="Anthropic Claude photo booth setup with pixel art portraits on screens"
+          />
+
+          <ArticleImage
+            src="/images/claude-pixelart.jpeg"
+            alt="Pixel art portrait from Claude photo booth showing character stats"
+          />
+
+          <p className="mb-4 font-medium">Vercel at React Miami</p>
+          <p className="mb-6">
+            Custom pixel-art portraits printed on Polaroid with a Miami Vice / synthwave aesthetic that perfectly matched the conference theme.
+          </p>
+
+          <ArticleImage
+            src="/images/vercel-miami-polaroid.jpeg"
+            alt="Vercel Polaroid printer printing custom pixel art portrait at React Miami"
+          />
+
+          <ArticleImage
+            src="/images/vercel-miami-portrait.jpeg"
+            alt="Synthwave pixel art portrait from Vercel booth at React Miami"
+          />
+
+          <ArticleImage
+            src="/images/vercel-miami-badge.jpeg"
+            alt="React Miami speaker badge with custom pixel art portrait"
+          />
+
+          <p className="mb-4 font-medium">Baseten</p>
+          <p className="mb-6">
+            Sometimes you don&apos;t need gimmicks - just be on brand and genuinely enjoy it. Clean booth, his own book on display, authentic representation.
+          </p>
+
+          <ArticleImage
+            src="/images/baseten-booth.jpeg"
+            alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
+          />
         </div>
       </article>
 
