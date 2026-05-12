@@ -43,17 +43,6 @@ export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
     }
   }
 
-  if (status === 'success') {
-    return (
-      <div className={variant === 'inline' ? '' : 'border border-border bg-card p-6'}>
-        <div className="flex items-center gap-3 text-primary">
-          <CheckCircle className="h-5 w-5" />
-          <p className="font-mono text-sm">{message}</p>
-        </div>
-      </div>
-    )
-  }
-
   if (variant === 'button') {
     if (status === 'success') {
       return (
@@ -114,6 +103,15 @@ export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
   }
 
   if (variant === 'inline') {
+    if (status === 'success') {
+      return (
+        <div className="flex items-center gap-3 text-primary">
+          <CheckCircle className="h-5 w-5" />
+          <p className="font-mono text-sm">{message}</p>
+        </div>
+      )
+    }
+    
     return (
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
@@ -140,6 +138,17 @@ export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
           <p className="text-sm text-destructive mt-2">{message}</p>
         )}
       </form>
+    )
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="border border-border bg-card p-6">
+        <div className="flex items-center gap-3 text-primary">
+          <CheckCircle className="h-5 w-5" />
+          <p className="font-mono text-sm">{message}</p>
+        </div>
+      </div>
     )
   }
 
