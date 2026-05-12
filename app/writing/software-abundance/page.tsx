@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: 'Four ways software products and jobs change in the age of abundance',
     images: [
       {
-        url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg',
+        url: '/images/charts/chart-paradox-of-choice.png',
         width: 980,
         height: 620,
         alt: 'The Paradox of Choice in Software',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Software is becoming marketing',
     description: 'Four ways software products and jobs change in the age of abundance',
-    images: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg'],
+    images: ['/images/charts/chart-paradox-of-choice.png'],
   },
 }
 
@@ -119,7 +119,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-evaluability-VJsZSp22OcB4lgjUv9qrRfA9cNnrwE.svg"
+            src="/images/charts/chart-evaluability.png"
             alt="Barrier to entry vs. evaluability - comparing Yoneda Lemma proof with SaaS landing page"
             caption="No-one argues about Yoneda lemma proofs, but everyone has opinions on landing page colors"
           />
@@ -146,7 +146,7 @@ export default function SoftwareAbundanceArticle() {
           </ol>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart1-quadrant-map-qV6ruQ2ymh9EAYHNdhq2KPu1OPTMfm.svg"
+            src="/images/charts/chart-quadrant-map.png"
             alt="How the general public judges your profession - quadrant map"
             caption="Software is moving from high-barrier/low-evaluability toward low-barrier/high-evaluability"
           />
@@ -160,7 +160,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart7-wage-ratio-CWNpd9YU3wm6R5dRhrhki7MuMdoofs.svg"
+            src="/images/charts/chart-wage-ratio.png"
             alt="Software has the tightest pay distribution of any creative field"
             caption="Software has the tightest pay distribution of any creative field — 90/10 wage ratio comparison"
           />
@@ -196,7 +196,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart2-paradox-of-choice-B1oTPAmdx9hWq5HB59Wkep0h1xerkj.svg"
+            src="/images/charts/chart-paradox-of-choice.png"
             alt="The Paradox of Choice in Software"
             caption="Barry Schwartz's paradox of choice: more options, less satisfaction."
           />
@@ -208,7 +208,7 @@ export default function SoftwareAbundanceArticle() {
           </p>
 
           <ShareableChart 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chart-app-store-revenue-r2lLXMRNt6lW6atm18Rf98gCjivJXm.svg"
+            src="/images/charts/chart-app-store-revenue.png"
             alt="App Store Revenue Distribution"
             caption="Top 1% of apps capture 95% of all App Store revenue. Vibecoding does to all software what the App Store already did to mobile apps."
           />
