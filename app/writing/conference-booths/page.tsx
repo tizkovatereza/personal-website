@@ -258,7 +258,7 @@ export default function ConferenceBoothsArticle() {
           />
 
           <p className="mb-6">
-            But you don&apos;t even need to be super creative. Sometimes you can just be on brand and genuinely enjoy it. Like this guy from Baseten - clean booth, his own book on display, just authentically representing the company. No gimmicks, just genuine enthusiasm.
+            Sometimes you don&apos;t need any crazy tricks - just be on brand and genuinely enjoy it, like this engineer from Baseten, and people will notice.
           </p>
 
           <ArticleImage
