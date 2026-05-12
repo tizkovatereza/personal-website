@@ -241,59 +241,6 @@ export default function ConferenceBoothsArticle() {
             On the other hand, I still have no idea what the product of some of the most creative booths was. But I remember them. And that&apos;s the point.
           </p>
 
-          <p className="mb-6">
-            Another great example is <a href="https://smallest.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Smallest AI</a> with their &quot;Small Language Model Club&quot; swag - a clever play on the ubiquitous &quot;Large Language Model&quot; terminology. The booth also featured a fun Windows-style warning dialog: &quot;You are about to get too free and have loads of time to help your business.&quot;
-          </p>
-
-          <ArticleImage
-            src="/images/smallest-ai-booth.jpeg"
-            alt="Smallest AI booth with team members and creative Windows warning dialog display"
-            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
-          />
-
-<ArticleImage
-            src="/images/vercel-miami-badge.jpeg"
-            alt="React Miami speaker badge with custom pixel art portrait"
-            sourceUrl="https://x.com/paw_lean/status/2047412235702599933?s=20"
-          />
-
-          <p className="mb-6">
-            Sometimes you don&apos;t need any crazy tricks - just be on brand and genuinely enjoy it, like this engineer from Baseten, and people will notice.
-          </p>
-
-          <ArticleImage
-            src="/images/baseten-booth.jpeg"
-            alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
-            sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
-          />
-
-          <ArticleImage
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
-            alt="JupiterOne booth with green alien mascot"
-          />
-
-          <ArticleImage
-            src="/images/smallest-ai-neon.jpeg"
-            alt="Smallest AI neon sign with Small Language Model Club tote bags hanging below"
-            sourceUrl="https://x.com/lilyyang169/status/2033638390646903090?s=20"
-          />
-
-          <p className="mb-6">
-            I&apos;m not sure if this was at a conference, but this photo booth by Anthropic is very cool. It lets people take a photo and generates a pixel-art style portrait with fun stats. People love sharing things like that online - it&apos;s free marketing.
-          </p>
-
-          <ArticleImage
-            src="/images/claude-photobooth.jpeg"
-            alt="Anthropic Claude photo booth setup with pixel art portraits on screens"
-            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
-          />
-
-          <ArticleImage
-            src="/images/claude-pixelart.jpeg"
-            alt="Pixel art portrait from Claude photo booth showing character stats"
-            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
-          />
-
           <ArticleImage
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
             alt="JupiterOne booth with green alien mascot"
