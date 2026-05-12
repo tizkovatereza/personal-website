@@ -460,16 +460,19 @@ export default function ConferenceBoothsArticle() {
           <ArticleImage
             src="/images/smallest-ai-booth.jpeg"
             alt="Smallest AI booth with team members and creative Windows warning dialog display"
+            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
           />
 
           <ArticleImage
             src="/images/smallest-ai-swag.jpeg"
             alt="Smallest AI tote bags with Small Language Model Club branding"
+            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
           />
 
           <ArticleImage
             src="/images/smallest-ai-neon.jpeg"
             alt="Smallest AI neon sign with Small Language Model Club tote bags hanging below"
+            sourceUrl="https://x.com/lilyyang169/status/2033638390646903090?s=20"
           />
 
           <p className="mb-4 font-medium">Anthropic / Claude photo booth</p>
@@ -480,11 +483,13 @@ export default function ConferenceBoothsArticle() {
           <ArticleImage
             src="/images/claude-photobooth.jpeg"
             alt="Anthropic Claude photo booth setup with pixel art portraits on screens"
+            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
           />
 
           <ArticleImage
             src="/images/claude-pixelart.jpeg"
             alt="Pixel art portrait from Claude photo booth showing character stats"
+            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
           />
 
           <p className="mb-4 font-medium">Vercel at React Miami</p>
@@ -495,16 +500,13 @@ export default function ConferenceBoothsArticle() {
           <ArticleImage
             src="/images/vercel-miami-polaroid.jpeg"
             alt="Vercel Polaroid printer printing custom pixel art portrait at React Miami"
-          />
-
-          <ArticleImage
-            src="/images/vercel-miami-portrait.jpeg"
-            alt="Synthwave pixel art portrait from Vercel booth at React Miami"
+            sourceUrl="https://x.com/styfle/status/2047714424249606379?s=20"
           />
 
           <ArticleImage
             src="/images/vercel-miami-badge.jpeg"
             alt="React Miami speaker badge with custom pixel art portrait"
+            sourceUrl="https://x.com/paw_lean/status/2047412235702599933?s=20"
           />
 
           <p className="mb-4 font-medium">Baseten</p>
@@ -515,6 +517,7 @@ export default function ConferenceBoothsArticle() {
           <ArticleImage
             src="/images/baseten-booth.jpeg"
             alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
+            sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
           />
         </div>
       </article>
