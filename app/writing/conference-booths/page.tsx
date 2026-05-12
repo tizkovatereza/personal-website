@@ -251,10 +251,25 @@ export default function ConferenceBoothsArticle() {
             sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
           />
 
+<ArticleImage
+            src="/images/vercel-miami-badge.jpeg"
+            alt="React Miami speaker badge with custom pixel art portrait"
+            sourceUrl="https://x.com/paw_lean/status/2047412235702599933?s=20"
+          />
+
+          <p className="mb-6">
+            But you don&apos;t even need to be super creative. Sometimes you can just be on brand and genuinely enjoy it. Like this guy from Baseten - clean booth, his own book on display, just authentically representing the company. No gimmicks, just genuine enthusiasm.
+          </p>
+
           <ArticleImage
-            src="/images/smallest-ai-swag.jpeg"
-            alt="Smallest AI tote bags with Small Language Model Club branding"
-            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
+            src="/images/baseten-booth.jpeg"
+            alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
+            sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
+          />
+
+          <ArticleImage
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
+            alt="JupiterOne booth with green alien mascot"
           />
 
           <ArticleImage
