@@ -263,6 +263,22 @@ export default function ConferenceBoothsArticle() {
             sourceUrl="https://x.com/lilyyang169/status/2033638390646903090?s=20"
           />
 
+          <p className="mb-6">
+            I&apos;m not sure if this was at a conference, but this photo booth by Anthropic is very cool. It lets people take a photo and generates a pixel-art style portrait with fun stats. People love sharing things like that online - it&apos;s free marketing.
+          </p>
+
+          <ArticleImage
+            src="/images/claude-photobooth.jpeg"
+            alt="Anthropic Claude photo booth setup with pixel art portraits on screens"
+            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
+          />
+
+          <ArticleImage
+            src="/images/claude-pixelart.jpeg"
+            alt="Pixel art portrait from Claude photo booth showing character stats"
+            sourceUrl="https://x.com/_christinacodes/status/2052584937405263952?s=20"
+          />
+
           <ArticleImage
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
             alt="JupiterOne booth with green alien mascot"
