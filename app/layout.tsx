@@ -44,11 +44,20 @@ export const metadata: Metadata = {
     siteName: 'Tereza Tizkova',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines',
+        width: 1200,
+        height: 630,
+        alt: 'Tereza Tizkova',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tereza Tizkova',
     description: 'Building the future with machines.',
+    images: ['/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines'],
   },
   robots: {
     index: true,

@@ -5,6 +5,15 @@ import { ArrowRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Work With Me | Tereza Tizkova',
   description: 'I help startups with growth, developer tools positioning, and go-to-market strategy.',
+  openGraph: {
+    title: 'Work With Me',
+    description: 'Growth, developer tools positioning, and go-to-market strategy',
+    images: [{ url: '/api/og?title=Work%20With%20Me&subtitle=Growth%2C%20devtools%20positioning%2C%20and%20GTM%20strategy', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og?title=Work%20With%20Me&subtitle=Growth%2C%20devtools%20positioning%2C%20and%20GTM%20strategy'],
+  },
 }
 
 const services = [
