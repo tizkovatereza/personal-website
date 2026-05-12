@@ -241,6 +241,22 @@ export default function ConferenceBoothsArticle() {
             On the other hand, I still have no idea what the product of some of the most creative booths was. But I remember them. And that&apos;s the point.
           </p>
 
+          <p className="mb-6">
+            Another great example is <a href="https://smallest.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Smallest AI</a> with their &quot;Small Language Model Club&quot; swag - a clever play on the ubiquitous &quot;Large Language Model&quot; terminology. The booth also featured a fun Windows-style warning dialog: &quot;You are about to get too free and have loads of time to help your business.&quot;
+          </p>
+
+          <ArticleImage
+            src="/images/smallest-ai-booth.jpeg"
+            alt="Smallest AI booth with team members and creative Windows warning dialog display"
+            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
+          />
+
+          <ArticleImage
+            src="/images/smallest-ai-swag.jpeg"
+            alt="Smallest AI tote bags with Small Language Model Club branding"
+            sourceUrl="https://x.com/lilyyang169/status/2033769248108253539?s=20"
+          />
+
           <ArticleImage
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
             alt="JupiterOne booth with green alien mascot"
