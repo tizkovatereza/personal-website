@@ -258,6 +258,12 @@ export default function ConferenceBoothsArticle() {
           />
 
           <ArticleImage
+            src="/images/smallest-ai-neon.jpeg"
+            alt="Smallest AI neon sign with Small Language Model Club tote bags hanging below"
+            sourceUrl="https://x.com/lilyyang169/status/2033638390646903090?s=20"
+          />
+
+          <ArticleImage
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cede5072-5fc5-46c8-b629-3defb0e77cae_1200x1069-wXWSF8i3MVNgFutW83pjfBIqYjvJ9d.webp"
             alt="JupiterOne booth with green alien mascot"
           />
