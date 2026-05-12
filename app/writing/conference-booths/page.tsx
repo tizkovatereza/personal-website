@@ -367,6 +367,31 @@ export default function ConferenceBoothsArticle() {
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cd2b31ac-6b0c-4664-a520-3725f2ad505a-A5ApxACpzS4VeY4ADxaVdlhYORXBld.webp"
             alt="HumanX main stage"
           />
+
+          <SectionHeader number={8}>Bonus: My friend&apos;s favorite booths</SectionHeader>
+
+          <p className="mb-6">
+            These are two favorite conference booths of my friend{' '}
+            <a 
+              href="https://www.linkedin.com/in/jonas-scholz-490274163/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-primary"
+            >
+              Jonas Scholz
+            </a>
+            . The first one (Patchstack) even offered free tattoos at their booth:
+          </p>
+
+          <ArticleImage
+            src="/images/jonas-booth-1.jpeg"
+            alt="Patchstack booth with Painless Security slogan and free tattoo station"
+          />
+
+          <ArticleImage
+            src="/images/jonas-booth-2.jpeg"
+            alt="Fuago booth with graffiti wall and vintage setup"
+          />
         </div>
       </article>
 
