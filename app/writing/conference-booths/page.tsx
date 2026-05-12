@@ -419,7 +419,7 @@ export default function ConferenceBoothsArticle() {
 
           <p className="mb-4 font-medium">Smallest AI</p>
           <p className="mb-6">
-            Their &quot;Small Language Model Club&quot; swag was a clever play on LLMs, and the neon sign with tote bags made for great photos.
+            Smallest AI is among my love brands for how much effort they put into their community. It really shows that this is important for them, and they enjoy what they do.
           </p>
 
           <ArticleImage
