@@ -476,7 +476,7 @@ export default function ConferenceBoothsArticle() {
 
           <p className="mb-4 font-medium">Baseten</p>
           <p className="mb-6">
-            Sometimes you don&apos;t need gimmicks - just be on brand and genuinely enjoy it. Clean booth, his own book on display, authentic representation.
+            Sometimes you don&apos;t need any crazy tricks - just be on brand and genuinely enjoy it, like this engineer from Baseten, and people will notice.
           </p>
 
           <ArticleImage
