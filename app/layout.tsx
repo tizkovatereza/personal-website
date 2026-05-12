@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines',
+        url: 'https://www.terezatizkova.com/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines',
         width: 1200,
         height: 630,
         alt: 'Tereza Tizkova',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tereza Tizkova',
     description: 'Building the future with machines.',
-    images: ['/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines'],
+    images: ['https://www.terezatizkova.com/api/og?title=Tereza%20Tizkova&subtitle=Building%20the%20future%20with%20machines'],
   },
   robots: {
     index: true,

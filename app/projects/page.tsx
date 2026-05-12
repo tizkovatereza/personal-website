@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects',
     description: 'Things I\'ve built, taught, and organized',
-    images: [{ url: '/api/og?title=Projects&subtitle=Things%20I%27ve%20built%2C%20taught%2C%20and%20organized', width: 1200, height: 630 }],
+    images: [{ url: 'https://www.terezatizkova.com/api/og?title=Projects&subtitle=Things%20I%27ve%20built%2C%20taught%2C%20and%20organized', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/api/og?title=Projects&subtitle=Things%20I%27ve%20built%2C%20taught%2C%20and%20organized'],
+    images: ['https://www.terezatizkova.com/api/og?title=Projects&subtitle=Things%20I%27ve%20built%2C%20taught%2C%20and%20organized'],
   },
 }
 

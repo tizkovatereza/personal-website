@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: 'My learnings from sponsoring a conference as a dev tool startup',
     images: [
       {
-        url: '/api/og?title=A%20guide%20to%20not%20wasting%20money%20on%20conference%20booths&subtitle=My%20learnings%20from%20sponsoring%20a%20conference%20as%20a%20dev%20tool%20startup',
+        url: 'https://www.terezatizkova.com/api/og?title=A%20guide%20to%20not%20wasting%20money%20on%20conference%20booths&subtitle=My%20learnings%20from%20sponsoring%20a%20conference%20as%20a%20dev%20tool%20startup',
         width: 1200,
         height: 630,
         alt: 'A guide to not wasting money on conference booths',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'A guide to not wasting money on conference booths',
     description: 'My learnings from sponsoring a conference as a dev tool startup',
-    images: ['/api/og?title=A%20guide%20to%20not%20wasting%20money%20on%20conference%20booths&subtitle=My%20learnings%20from%20sponsoring%20a%20conference%20as%20a%20dev%20tool%20startup'],
+    images: ['https://www.terezatizkova.com/api/og?title=A%20guide%20to%20not%20wasting%20money%20on%20conference%20booths&subtitle=My%20learnings%20from%20sponsoring%20a%20conference%20as%20a%20dev%20tool%20startup'],
   },
 }
 

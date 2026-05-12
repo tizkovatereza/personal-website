@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About',
     description: 'Founding team member at E2B, leading marketing and growth',
-    images: [{ url: '/api/og?title=About&subtitle=Tereza%20Tizkova', width: 1200, height: 630 }],
+    images: [{ url: 'https://www.terezatizkova.com/api/og?title=About&subtitle=Tereza%20Tizkova', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/api/og?title=About&subtitle=Tereza%20Tizkova'],
+    images: ['https://www.terezatizkova.com/api/og?title=About&subtitle=Tereza%20Tizkova'],
   },
 }
 

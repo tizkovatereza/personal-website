@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Writing',
     description: 'Writing about AI, growth, startups, and life',
-    images: [{ url: '/api/og?title=Writing&subtitle=AI%2C%20growth%2C%20startups%2C%20and%20life', width: 1200, height: 630 }],
+    images: [{ url: 'https://www.terezatizkova.com/api/og?title=Writing&subtitle=AI%2C%20growth%2C%20startups%2C%20and%20life', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/api/og?title=Writing&subtitle=AI%2C%20growth%2C%20startups%2C%20and%20life'],
+    images: ['https://www.terezatizkova.com/api/og?title=Writing&subtitle=AI%2C%20growth%2C%20startups%2C%20and%20life'],
   },
 }
 

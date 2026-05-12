@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: 'Four ways software products and jobs change in the age of abundance',
     images: [
       {
-        url: '/api/og?title=Software%20is%20becoming%20marketing&subtitle=Four%20ways%20software%20products%20and%20jobs%20change%20in%20the%20age%20of%20abundance',
+        url: 'https://www.terezatizkova.com/api/og?title=Software%20is%20becoming%20marketing&subtitle=Four%20ways%20software%20products%20and%20jobs%20change%20in%20the%20age%20of%20abundance',
         width: 1200,
         height: 630,
         alt: 'Software is becoming marketing',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Software is becoming marketing',
     description: 'Four ways software products and jobs change in the age of abundance',
-    images: ['/api/og?title=Software%20is%20becoming%20marketing&subtitle=Four%20ways%20software%20products%20and%20jobs%20change%20in%20the%20age%20of%20abundance'],
+    images: ['https://www.terezatizkova.com/api/og?title=Software%20is%20becoming%20marketing&subtitle=Four%20ways%20software%20products%20and%20jobs%20change%20in%20the%20age%20of%20abundance'],
   },
 }
 
