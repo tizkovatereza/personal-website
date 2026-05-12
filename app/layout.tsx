@@ -36,11 +36,11 @@ export const metadata: Metadata = {
     template: '%s | Tereza Tizkova',
   },
   description: 'Building the future with machines. Growth at E2B, San Francisco.',
-  metadataBase: new URL('https://tereza.dev'),
+  metadataBase: new URL('https://www.terezatizkova.com'),
   openGraph: {
     title: 'Tereza Tizkova',
     description: 'Building the future with machines.',
-    url: 'https://tereza.dev',
+    url: 'https://www.terezatizkova.com',
     siteName: 'Tereza Tizkova',
     locale: 'en_US',
     type: 'website',

@@ -60,7 +60,7 @@ export default async function PostPage({ params }: PostPageProps) {
     .filter((p, i) => i !== currentIndex)
     .slice(0, 2)
 
-  const postUrl = `https://tereza.dev/blog/${slug}`
+  const postUrl = `https://www.terezatizkova.com/blog/${slug}`
 
   return (
     <>

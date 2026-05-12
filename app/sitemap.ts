@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/mdx'
 
-const siteUrl = process.env.SITE_URL || 'https://tereza.dev'
+const siteUrl = process.env.SITE_URL || 'https://www.terezatizkova.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()

@@ -1,7 +1,7 @@
 import RSS from 'rss'
 import { getAllPosts } from '@/lib/mdx'
 
-const siteUrl = process.env.SITE_URL || 'https://tereza.dev'
+const siteUrl = process.env.SITE_URL || 'https://www.terezatizkova.com'
 
 export async function GET() {
   const posts = getAllPosts()
