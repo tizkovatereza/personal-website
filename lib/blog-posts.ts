@@ -10,12 +10,20 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Every good date we had in San Francisco",
+    date: "May 12, 2026",
+    subtitle: "A curated list of date spots in SF that were actually worth it",
+    image: "/images/blog/sf-dates.jpg",
+    url: "/writing/sf-dates",
+    isNew: true,
+    isInternal: true
+  },
+  {
     title: "Software is becoming marketing",
     date: "Apr 19, 2026",
     subtitle: "Four ways software products and jobs change in the age of abundance",
     image: "/images/blog/software-abundance.jpg",
     url: "/writing/software-abundance",
-    isNew: true,
     isInternal: true
   },
   {
