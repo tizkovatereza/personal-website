@@ -109,6 +109,18 @@ export default function SFDatesArticle() {
             A hidden boathouse in the middle of Golden Gate Park where they do live jazz nights. When you drive there after dark it honestly looks like they&apos;re about to sink you in the lake... the road narrows, there&apos;s water on both sides, no lights. Great jazz bands, you can get drinks, very cute atmosphere. Wear warm clothes.
           </Venue>
 
+          <ArticleImage
+            src="/images/sf-dates/stow-lake-boathouse.webp"
+            alt="Vintage postcard of Stow Lake Boathouse in Golden Gate Park"
+            sourceUrl="https://themellowsf.com/events/lakehouse-jazz/"
+          />
+
+          <ArticleImage
+            src="/images/sf-dates/lakehouse-jazz.webp"
+            alt="Live jazz performance at Lakehouse Jazz with purple lighting"
+            sourceUrl="https://www.patrickwolffmusic.com/performances-1/lakehouse-jazz"
+          />
+
           <Venue name="NightLife at the California Academy of Sciences" url="https://www.calacademy.org/nightlife">
             One of those things that sounds touristy but is actually great. Cocktails, exhibitions, a fair, dancing... the ticket includes the planetarium. We missed Shroom Night because my partner had to ship some infra, which is a very San Francisco sentence. I love the academy.
           </Venue>
