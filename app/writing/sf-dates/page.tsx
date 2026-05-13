@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
@@ -31,6 +32,38 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
     <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-border">
       {children}
     </h2>
+  )
+}
+
+function ArticleImage({ src, alt, caption, sourceUrl }: { src: string; alt: string; caption?: string; sourceUrl?: string }) {
+  return (
+    <figure className="my-8">
+      <div className="relative w-full">
+        <Image
+          src={src}
+          alt={alt}
+          width={1200}
+          height={900}
+          className="w-full h-auto"
+          unoptimized
+        />
+      </div>
+      {(caption || sourceUrl) && (
+        <figcaption className="text-center mt-3 text-sm text-muted-foreground">
+          {caption}
+          {sourceUrl && (
+            <a 
+              href={sourceUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-primary ml-1"
+            >
+              Source
+            </a>
+          )}
+        </figcaption>
+      )}
+    </figure>
   )
 }
 
@@ -121,9 +154,32 @@ export default function SFDatesArticle() {
             sourceUrl="https://www.patrickwolffmusic.com/performances-1/lakehouse-jazz"
           />
 
+          <ArticleImage
+            src="/images/sf-dates/lakehouse-jazz-own.jpg"
+            alt="Stow Lake Boathouse at night with purple lights glowing through the windows"
+          />
+
           <Venue name="NightLife at the California Academy of Sciences" url="https://www.calacademy.org/nightlife">
             One of those things that sounds touristy but is actually great. Cocktails, exhibitions, a fair, dancing... the ticket includes the planetarium. We missed Shroom Night because my partner had to ship some infra, which is a very San Francisco sentence. I love the academy.
           </Venue>
+
+          <ArticleImage
+            src="/images/sf-dates/calacademy-poster.jpg"
+            alt="Fungus Among Us NightLife event poster with glowing neon mushrooms"
+            sourceUrl="https://www.calacademy.org/nightlife"
+          />
+
+          <ArticleImage
+            src="/images/sf-dates/calacademy-interior.jpg"
+            alt="California Academy of Sciences NightLife interior with blue and pink lights and crowds"
+            sourceUrl="https://www.calacademy.org/nightlife"
+          />
+
+          <ArticleImage
+            src="/images/sf-dates/calacademy-planetarium.jpg"
+            alt="Morrison Planetarium at the California Academy of Sciences with Earth projected on the dome"
+            sourceUrl="https://www.calacademy.org/nightlife"
+          />
 
           <Venue name="Alcatraz Night Tour" url="https://www.cityexperiences.com/san-francisco/city-cruises/alcatraz/tour-options/night/">
             Do the night tour, not the day one. Wear warm clothes, the ship gets windy. The audio tour is really well done, and I&apos;d recommend watching Shawshank Redemption or Green Mile after... the escape was partially inspired by Alcatraz and it hits different when you just walked through those cells.
@@ -147,6 +203,16 @@ export default function SFDatesArticle() {
             Probably the most San Francisco date you can do. Any rental shop around Fisherman&apos;s Wharf works.
           </Venue>
 
+          <ArticleImage
+            src="/images/sf-dates/bike-golden-gate-1.jpg"
+            alt="Golden Gate Bridge from the bike path with green hills and fog"
+          />
+
+          <ArticleImage
+            src="/images/sf-dates/bike-golden-gate-2.jpg"
+            alt="Sausalito waterfront view with bike parked by the water"
+          />
+
           <Venue name="Working out together at a Crunch gym">
             An underrated date. They&apos;re colorful and fun, and the locations are always near good food... the one on Polk Street is close to Harris, the Marina ones have solid dumpling places and Roam Burgers nearby. Gym plus food, easy date.
           </Venue>
@@ -167,6 +233,16 @@ export default function SFDatesArticle() {
             In Castro has really unique perfumes. My boyfriend got me a selection of samples for my birthday that he personally chose, which was already a great gift on its own. You can go there together and pick out a few samples or buy a full bottle... it&apos;s a surprisingly fun experience. When you&apos;ve sniffed too many scents, they have coffee beans so you can reset your nose. Combine it with <a href="https://www.theinfatuation.com/san-francisco/reviews/neighbors-corner" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Neighbor&apos;s Corner Cafe</a> or <a href="https://poesiasf.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">Poesia</a> nearby.
           </Venue>
 
+          <ArticleImage
+            src="/images/sf-dates/zgo-perfumery-1.jpg"
+            alt="Zgo Perfumery interior with rows of perfume bottles on wooden shelves"
+          />
+
+          <ArticleImage
+            src="/images/sf-dates/zgo-perfumery-2.jpg"
+            alt="Zgo Perfumery window display with colorful perfume bottles and Castro street view"
+          />
+
           <Venue name="Haight Street secondhand shopping">
             A must-do. It can get overwhelming so pace yourself.
           </Venue>
@@ -174,6 +250,11 @@ export default function SFDatesArticle() {
           <Venue name="Tartine Manufactory" url="https://www.tartinemanufactory.com/">
             Great bakery, but go on weekdays. Weekends are too busy. There&apos;s a cute stationery/gift/decorations store right next to it, worth browsing.
           </Venue>
+
+          <ArticleImage
+            src="/images/sf-dates/tartine.jpg"
+            alt="Tartine Manufactory interior with paper lanterns and sunlit industrial windows"
+          />
 
           <Venue name="Fume in Marina">
             A cute cafe, good for a low-key afternoon.
