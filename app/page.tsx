@@ -7,11 +7,18 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
+    title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
+    date: "May 2026",
+    source: "New",
+    href: "/writing/agentic-seo-math",
+    isNew: true,
+    label: "Draft done with AI during demo",
+  },
+  {
     title: "Software is becoming marketing",
     date: "Apr 2026",
-    source: "New",
+    source: "Essay",
     href: "/writing/software-abundance",
-    isNew: true,
   },
   {
     title: "A guide to not wasting money on conference booths",
@@ -190,6 +197,11 @@ export default function HomePage() {
                     {'isNew' in item && item.isNew && (
                       <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[9px] font-mono uppercase tracking-wider">
                         New
+                      </span>
+                    )}
+                    {'label' in item && item.label && (
+                      <span className="px-1.5 py-0.5 bg-muted text-muted-foreground text-[9px] font-mono uppercase tracking-wider">
+                        {item.label as string}
                       </span>
                     )}
                   </h3>

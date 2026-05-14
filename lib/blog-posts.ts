@@ -6,9 +6,28 @@ export interface BlogPost {
   url: string
   isNew?: boolean
   isInternal?: boolean
+  label?: string
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
+    date: "May 14, 2026",
+    subtitle: "I did the math on agent SEO benchmarks",
+    image: "/images/blog/agentic-seo.jpg",
+    url: "/writing/agentic-seo-math",
+    isNew: true,
+    isInternal: true,
+    label: "Draft done with AI during demo"
+  },
+  {
+    title: "Every good date we had in San Francisco",
+    date: "May 12, 2026",
+    subtitle: "A curated list of date spots in SF that were actually worth it",
+    image: "/images/blog/sf-dates.jpg",
+    url: "/writing/sf-dates",
+    isInternal: true
+  },
   {
     title: "Software is becoming marketing",
     date: "Apr 19, 2026",

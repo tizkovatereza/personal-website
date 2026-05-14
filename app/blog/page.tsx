@@ -77,9 +77,16 @@ export default function BlogPage() {
                       </span>
                     )}
                   </h2>
-                  <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
-                    {post.subtitle}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
+                      {post.subtitle}
+                    </p>
+                    {post.label && (
+                      <span className="px-1.5 py-0.5 bg-muted text-muted-foreground text-[9px] font-mono uppercase tracking-wider whitespace-nowrap">
+                        {post.label}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="flex items-center gap-4 flex-shrink-0">
                   <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
