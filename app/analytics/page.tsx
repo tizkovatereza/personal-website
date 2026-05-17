@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Eye, Globe, Calendar, Link2, FileText, TrendingUp, MapPin, Clock, Lock } from 'lucide-react'
 
-const ANALYTICS_PASSWORD = process.env.NEXT_PUBLIC_ANALYTICS_PASSWORD || 'tereza2024'
+const ANALYTICS_PASSWORD = process.env.NEXT_PUBLIC_ANALYTICS_PASSWORD || 'tereza'
 
 interface AnalyticsData {
   totalViews: number
