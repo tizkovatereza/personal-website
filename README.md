@@ -19,9 +19,28 @@ Personal website and blog. Built with Next.js, deployed on Vercel.
 
 | Article | Views | Top Source | Days Active |
 |---------|------:|-----------|------------:|
-| [Software is becoming marketing](/writing/software-abundance) | 5,551 | Google (587) | 29 |
-| [A guide to not wasting money on conference booths](/writing/conference-booths) | 984 | Twitter/X (244) | 34 |
-| [Your "30% AI Visibility Score" Is Statistically Meaningless](/writing/agentic-seo-math) | 190 | LinkedIn (42) | 8 |
+| [Software is becoming marketing](https://www.terezatizkova.com/writing/software-abundance) | 5,551 | Google (587) | 29 |
+| [A guide to not wasting money on conference booths](https://www.terezatizkova.com/writing/conference-booths) | 984 | Twitter/X (244) | 34 |
+| [Your "30% AI Visibility Score" Is Statistically Meaningless](https://www.terezatizkova.com/writing/agentic-seo-math) | 190 | LinkedIn (42) | 8 |
+
+#### Where people shared
+
+**Software is becoming marketing** (5,551 views)
+- [Twitter/X](https://x.com/search?q=terezatizkova.com%2Fwriting%2Fsoftware-abundance&f=top) (157) -- [my post](https://x.com/tereza_tizkova/status/1910018564876329231)
+- [LinkedIn](https://www.linkedin.com/search/results/content/?keywords=terezatizkova.com%20software%20abundance) (185)
+- [Google](https://www.google.com/search?q=%22software+is+becoming+marketing%22+terezatizkova) (587)
+- [Hacker News](https://hn.algolia.com/?q=terezatizkova.com+software) (4)
+- [Substack](https://terezatizkova.substack.com/p/software-is-becoming-marketing) (original)
+
+**A guide to not wasting money on conference booths** (984 views)
+- [Twitter/X](https://x.com/search?q=terezatizkova.com%2Fwriting%2Fconference-booths&f=top) (244)
+- [LinkedIn](https://www.linkedin.com/search/results/content/?keywords=terezatizkova.com%20conference%20booths) (75)
+- [Hacker News](https://hn.algolia.com/?q=terezatizkova.com+conference+booths) (29)
+- [Substack](https://terezatizkova.substack.com/p/a-guide-to-not-wasting-money-on-conference) (original)
+
+**Your "30% AI Visibility Score" Is Statistically Meaningless** (190 views)
+- [Twitter/X](https://x.com/search?q=terezatizkova.com%2Fwriting%2Fagentic-seo-math&f=top) (22)
+- [LinkedIn](https://www.linkedin.com/search/results/content/?keywords=terezatizkova.com%20agentic%20seo) (42)
 
 ### Traffic Sources (articles)
 
