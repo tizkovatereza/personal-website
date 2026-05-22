@@ -7,7 +7,7 @@ import Image from 'next/image'
 // First image is always the beige drawing (default), rest are photos shown on hover
 const projectPhotos: Record<string, string[]> = {
   'E2B': [
-    '/images/drawings/e2b.jpg', // Beige drawing - rocket launch
+    '/images/drawings/e2b.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e2b%20yc%20deal-L0nLWrAjjzB075xTiE4wcOLtOCioiC.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_6898%20%281%29.png-IGKMhzXiTINCJ5HaN4WePVWetjD7IZ.jpeg',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HEiF_lqbYAAYtPZ-RNbvrSLcaxY2TNQSoJ6B56TCAIra9Q.jpeg',
@@ -19,45 +19,45 @@ const projectPhotos: Record<string, string[]> = {
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1714405276619-NBmAYs5aJ5hFxA46RVNmWutH1pSsBA.jpeg',
   ],
   'Building Coding Agents with Tool Execution': [
-    '/images/drawings/coding-agents.jpg', // Beige drawing - robot coding
+    '/images/drawings/coding-agents.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1764774990669-DbPLsrAjHVTTlGoa9ctnSA4tZUydbH.jpeg',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875821-jhXiJ1aeihJVlQGqEk4CSE9Qftnvx5.jpeg',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875671-rtle4NGY7NCYZgm1GZeBZHBo4ojbJM.jpeg',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761866875904-uNZZb5uRTRiBxkpcKWdVDIVjfVfYy7.jpeg',
   ],
   'Awesome AI Agents': [
-    '/images/drawings/awesome-agents.jpg', // Beige drawing - robot network
+    '/images/drawings/awesome-agents.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.22.55-AgABix1IirC6crdIWCzOTnCjcavqk1.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.22.32-RrZUbhosQtE9edHbTKu22rq5hV7hyT.png',
   ],
   'Topics': [
-    '/images/drawings/topics.jpg', // Beige drawing - open book
+    '/images/drawings/topics.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.13.20-TxqiZX8XIXYx52bT3c5UC1JUyUde0y.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.11.29-bFxrZiuhrDPQPBkIbIKGdEHfnTtZ31.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.12.20-JvT6ngIhhAWKUdcEvuB1PSU8XZZoaZ.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.11.56-uFUnNmAOx10evmhwrwWF5gv0Hiddnl.png',
   ],
   'Developer Events & Hackathons': [
-    '/images/drawings/events.jpg', // Beige drawing - microphone
+    '/images/drawings/events.png',
   ],
   'Discover Academy': [
-    '/images/drawings/discover.jpg', // Beige drawing - chalkboard
+    '/images/drawings/discover.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.25.46-k9QOSnSID4Px33o0UP2KIHpWe6TS1j.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.26.09-57WNXsNPPij20DHyThoUNdpb9B60Qf.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-09%20at%2014.26.23-Ac33XhoVsNxbeFj3e7smf5Wf9D42zf.png',
   ],
   'The Growth Lab': [
-    '/images/drawings/growth-lab.jpg', // Beige drawing - plant in flask
+    '/images/drawings/growth-lab.png',
   ],
   'Advent of Writing': [
-    '/images/drawings/advent.jpg', // Beige drawing - pen writing
+    '/images/drawings/advent.png',
   ],
   'Startup Advisory': [
-    '/images/drawings/advisory.jpg', // Beige drawing - coffee meeting
+    '/images/drawings/advisory.png',
     'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1776473175136-i526ZKpHYcOvzMGQITZzKa2PHehoF3.jpeg',
   ],
   'Talks & Podcasts': [
-    '/images/drawings/talks.jpg', // Beige drawing - podium
+    '/images/drawings/talks.png',
   ],
 }
 
@@ -123,6 +123,8 @@ export function RotatingProjectPhoto({ projectName, className = '' }: RotatingPr
     return null
   }
 
+  const isDrawing = currentPhoto.includes('/drawings/')
+
   return (
     <div 
       className={`relative aspect-square overflow-hidden ${className}`}
@@ -133,15 +135,19 @@ export function RotatingProjectPhoto({ projectName, className = '' }: RotatingPr
         src={currentPhoto}
         alt={projectName}
         fill
-        className="object-cover transition-opacity duration-300"
+        className={`object-cover transition-all duration-300 ${
+          isDrawing ? 'dark:invert' : ''
+        }`}
         unoptimized
       />
-      {/* Subtle overlay on default state */}
-      <div 
-        className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
-          isHovering ? 'opacity-0' : 'opacity-100'
-        }`}
-      />
+      {/* Subtle overlay on default state (only for photos) */}
+      {!isDrawing && (
+        <div 
+          className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
+            isHovering ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+      )}
     </div>
   )
 }
