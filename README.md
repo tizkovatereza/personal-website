@@ -1,35 +1,95 @@
-# personal-website
+# terezatizkova.com
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Personal website and blog. Built with Next.js, deployed on Vercel.
 
-## Built with v0
+## Analytics
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+> Last updated: May 22, 2026
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_D8WjNeXSzu8NikdXXQX2dgsLMf8f)
+### Overview
 
-## Getting Started
+| Metric | Value |
+|--------|-------|
+| Total page views | 9,480 |
+| Views today | 230 |
+| Countries reached | 10+ |
+| Top country | US (31%) |
 
-First, run the development server:
+### Articles
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+| Article | Views | Top Source | Days Active |
+|---------|------:|-----------|------------:|
+| [Software is becoming marketing](/writing/software-abundance) | 5,551 | Google (587) | 29 |
+| [A guide to not wasting money on conference booths](/writing/conference-booths) | 984 | Twitter/X (244) | 34 |
+| [Your "30% AI Visibility Score" Is Statistically Meaningless](/writing/agentic-seo-math) | 190 | LinkedIn (42) | 8 |
+
+### Traffic Sources (articles)
+
+```
+Direct       ████████████████████████████████████  4,851  (71.5%)
+Google       ████                                    619  ( 9.1%)
+Other        ███                                     498  ( 7.3%)
+Twitter/X    ███                                     423  ( 6.2%)
+LinkedIn     ██                                      303  ( 4.5%)
+Substack     ▏                                        44  ( 0.6%)
+HN           ▏                                        33  ( 0.5%)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Last 7 Days
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+May 16  ████████████████████████████████████████  1,902
+May 17  █████████████████                           825
+May 18  █████████████████████                     1,013
+May 19  ███████████                                 535
+May 20  █████                                       242
+May 21  ██████                                      277
+May 22  █████                                       230
+```
 
-## Learn More
+### Top Pages
 
-To learn more, take a look at the following resources:
+| Page | Views |
+|------|------:|
+| /writing/software-abundance | 5,551 |
+| / (home) | 1,212 |
+| /writing/conference-booths | 984 |
+| /blog | 574 |
+| /about | 317 |
+| /projects | 315 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+### Top Countries
 
-<a href="https://v0.app/chat/api/kiro/clone/tizkovatereza/personal-website" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+```
+US  ████████████████████████████████████████  2,946
+CZ  ███████████████                           1,093
+IN  ██████████                                  721
+GB  ██████                                      469
+DE  ██████                                      425
+FR  █████                                       342
+CA  ███                                         242
+PL  ███                                         234
+NL  ███                                         216
+ES  ██                                          156
+```
+
+### Top Referrers
+
+| Source | Views |
+|--------|------:|
+| linkedin.com | 570 |
+| t.co (Twitter/X) | 1,014 |
+| mail.google.com | 328 |
+| Gmail (Android) | 291 |
+| v0.app | 257 |
+| bytes.dev | 234 |
+| google.com | 150 |
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
