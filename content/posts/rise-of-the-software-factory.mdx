@@ -1,0 +1,105 @@
+---
+title: "Rise of the Software Factory"
+description: "Everyone is suddenly talking about the software factory. Few have built one. Here's what it actually means, and the three properties every software factory must have."
+date: "2026-06-30"
+author: "Tereza Tizkova"
+tags: ["software-factory", "AI", "engineering", "talk"]
+---
+
+I gave this talk at AI Engineer World Fair in San Francisco, June 2026. Everyone is suddenly talking about the software factory. Few have built one. Fewer still show the process. This post walks through what we've learned building Factory over the past two years.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-01-title.png" alt="Rise of the Software Factory - title slide" className="my-8 rounded-xl border border-zinc-700" />
+
+## No one knows what software factory means
+
+<img src="/images/blog/rise-of-the-software-factory/slide-02-noone-knows.png" alt="No one knows what software factory means" className="my-8 rounded-xl border border-zinc-700" />
+
+The term gets thrown around loosely. Some people mean "coding agent." Others mean "a consulting project with AI bolted on." Neither is right.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-03-whole-cycle.png" alt="The software factory is the whole cycle" className="my-8 rounded-xl border border-zinc-700" />
+
+A software factory is the whole cycle of developing software that runs autonomously. Not just writing code. The spec, the build, the validation, the deploy, the learning. All of it.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-05-not-coding-agent.png" alt="Software factory is not a coding agent or a consulting project" className="my-8 rounded-xl border border-zinc-700" />
+
+The numbers back this up. Firms that rewire around AI (not just adopt it) see 2x revenue according to a16z's study of 515 startups. Accenture's cash-flow multiple compressed from 30x to 10x as the "AI implementor" model lost its sheen. You can't bolt AI onto a broken process and call it a factory.
+
+## The software factory wasn't possible two years ago
+
+<img src="/images/blog/rise-of-the-software-factory/slide-04-timeline.png" alt="Technology timeline for the software factory" className="my-8 rounded-xl border border-zinc-700" />
+
+You needed Copilot (2021), ChatGPT (2022), GPT-4 and bigger context windows (2023), better reasoning (2024), and persistent environments with long-running missions (2025). Every layer had to exist before the factory could.
+
+## Three properties every software factory must have
+
+<img src="/images/blog/rise-of-the-software-factory/slide-06-three-properties.png" alt="Agnostic, Autonomous, Always improving" className="my-8 rounded-xl border border-zinc-700" />
+
+We think about it as three properties. The same properties you'd want from the best engineering team you ever managed: agnostic, autonomous, always improving.
+
+---
+
+## 1. Agnostic
+
+<img src="/images/blog/rise-of-the-software-factory/slide-09-token-optimization.png" alt="Token optimization is winning over just cost saving" className="my-8 rounded-xl border border-zinc-700" />
+
+Token optimization is winning over just cost saving. Better default models, cache hit rates going from 5% to 60%, and routing. The goal isn't fewer tokens used, it's fewer tokens wasted.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-11-routing.png" alt="Routing doesn't improve just cost, but also reliability and speed" className="my-8 rounded-xl border border-zinc-700" />
+
+Routing isn't just about cost. It gives you reliability (failover between providers), speed (pick the fastest model for simple tasks), and cost efficiency without sacrificing quality.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-12-classifier.png" alt="The magic of routing is in the classifier" className="my-8 rounded-xl border border-zinc-700" />
+
+The magic is in the classifier. Five signals (message content, recent tools, repo size, language mix, difficulty) produce a single quality score per model. That's it. No magic, just a well-tuned classifier.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-14-caching.png" alt="Prompt caching - we pass discounts to end users" className="my-8 rounded-xl border border-zinc-700" />
+
+We pass caching discounts directly to end users. The mechanism is prefix caching: your system prompt, tools, and skills stay the same every turn. The transformer already computed the KV cache for that prefix. Why make you pay again? Turn 2 is 10x cheaper than turn 1.
+
+---
+
+## 2. Autonomous
+
+<img src="/images/blog/rise-of-the-software-factory/slide-16-loops.png" alt="Loops have always been here, they just moved level up" className="my-8 rounded-xl border border-zinc-700" />
+
+Loops have always been here, they just moved a level up. Mathematical induction, code loops, training loops, ReAct tool loops, and now software factory loops. The core is always the same: iterator, exits, entry conditions. Even for a nondeterministic agent, the scaffolding is still the same primitives.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-18-task-length.png" alt="Task length doubles every 7 months" className="my-8 rounded-xl border border-zinc-700" />
+
+Task length doubles roughly every 7 months, but only at 50% reliability. The real challenge isn't making agents do more. It's making them do more reliably. That's why validation is a separate concern from generation.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-20-validator.png" alt="Neither validator wrote the code it's judging" className="my-8 rounded-xl border border-zinc-700" />
+
+Neither validator wrote the code it's judging. The Scrutiny Validator reads the code and trajectory: tests, typecheck, lint, and code review. It sees the code but didn't write it. The User-Testing Validator is a true black box: it never reads the source. It drives the running app via computer-use and checks behavior against the contract.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-24-context.png" alt="Context is the elephant in the room" className="my-8 rounded-xl border border-zinc-700" />
+
+Context is the elephant in the room. You can't feed an agent your entire codebase. The deferred context engine keeps a compact capability index and loads full schemas on demand, saving 15-50% of tokens depending on tool count.
+
+---
+
+## 3. Always improving
+
+<img src="/images/blog/rise-of-the-software-factory/slide-26-gap.png" alt="Gap between leaders and laggards" className="my-8 rounded-xl border border-zinc-700" />
+
+The gap between AI leaders and laggards has been 12x in the last three years, and it continues growing. Structure matters. Without it, AI makes code worse.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-28-readiness.png" alt="Agent readiness is measurable" className="my-8 rounded-xl border border-zinc-700" />
+
+Agent readiness is measurable. We score repositories on how well they support autonomous work: linting, type safety, test coverage, documentation. These aren't vanity metrics. They directly predict how well an agent performs on your codebase.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-29-stop-repeating.png" alt="Stop repeating to agents how you want things done" className="my-8 rounded-xl border border-zinc-700" />
+
+Stop repeating to agents how you want things done. Plugins bundle skills, commands, and tools into one install. AutoWiki generates always-fresh docs from your codebase. The packaging layer ships droids, hooks, and MCP servers as versioned packages. The context engine uses deferred context, scoped tools, and structured user preferences. All of this compounds on your own data.
+
+---
+
+## Where we're heading
+
+<img src="/images/blog/rise-of-the-software-factory/slide-31-move-up.png" alt="We move up, towards deciding what to build" className="my-8 rounded-xl border border-zinc-700" />
+
+We move up, towards deciding what to build, instead of how. The factory handles the how.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-33-grass.png" alt="Go touch some grass" className="my-8 rounded-xl border border-zinc-700" />
+
+Go touch some grass.
