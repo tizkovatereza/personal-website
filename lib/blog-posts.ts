@@ -7,6 +7,7 @@ export interface BlogPost {
   isNew?: boolean
   isInternal?: boolean
   label?: string
+  draft?: boolean
 }
 
 export const blogPosts: BlogPost[] = [
@@ -18,7 +19,8 @@ export const blogPosts: BlogPost[] = [
     url: "/writing/agentic-seo-math",
     isNew: true,
     isInternal: true,
-    label: "Draft done with AI during demo"
+    label: "Draft done with AI during demo",
+    draft: true
   },
   {
     title: "Every good date we had in San Francisco",
@@ -26,7 +28,8 @@ export const blogPosts: BlogPost[] = [
     subtitle: "A curated list of date spots in SF that were actually worth it",
     image: "/images/blog/sf-dates.jpg",
     url: "/writing/sf-dates",
-    isInternal: true
+    isInternal: true,
+    draft: true
   },
   {
     title: "Software is becoming marketing",
