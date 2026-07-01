@@ -6,6 +6,14 @@ import { ArrowRight, Send } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
+  {
+    title: "Rise of the Software Factory",
+    date: "Jun 2026",
+    source: "Talk",
+    href: "/blog/rise-of-the-software-factory",
+    isNew: true,
+    label: "AI Engineer World's Fair talk",
+  },
   // Draft: hidden until ready
   // {
   //   title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
