@@ -92,18 +92,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <p className="text-xl text-muted-foreground leading-relaxed">
             {post.description}
           </p>
-          {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </header>
 
         {/* Content */}

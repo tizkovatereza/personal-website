@@ -208,11 +208,6 @@ export default function HomePage() {
                         New
                       </span>
                     )}
-                    {'label' in item && item.label && (
-                      <span className="px-1.5 py-0.5 bg-muted text-muted-foreground text-[9px] font-mono uppercase tracking-wider">
-                        {item.label as string}
-                      </span>
-                    )}
                   </h3>
                   <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
                     {item.date} · {item.source}
