@@ -13,39 +13,60 @@ export function LikeButton({ slug }: LikeButtonProps) {
   const [liked, setLiked] = React.useState(false)
   const [count, setCount] = React.useState(0)
   const [mounted, setMounted] = React.useState(false)
+  const [pending, setPending] = React.useState(false)
 
   React.useEffect(() => {
     setMounted(true)
-    // Check if user has already liked this post
     const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}')
     if (likedPosts[slug]) {
       setLiked(true)
     }
-    // Get like count from localStorage (simulated)
-    const likeCounts = JSON.parse(localStorage.getItem('likeCounts') || '{}')
-    setCount(likeCounts[slug] || Math.floor(Math.random() * 50) + 10)
+    // Get the real like count from the server
+    fetch(`/api/likes?slug=${encodeURIComponent(slug)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && typeof data.count === 'number') setCount(data.count)
+      })
+      .catch(() => {})
   }, [slug])
 
-  function handleLike() {
-    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}')
-    const likeCounts = JSON.parse(localStorage.getItem('likeCounts') || '{}')
-    
-    if (liked) {
-      // Unlike
-      delete likedPosts[slug]
-      likeCounts[slug] = Math.max(0, (likeCounts[slug] || count) - 1)
-      setLiked(false)
-      setCount((prev) => Math.max(0, prev - 1))
-    } else {
-      // Like
-      likedPosts[slug] = true
-      likeCounts[slug] = (likeCounts[slug] || count) + 1
-      setLiked(true)
-      setCount((prev) => prev + 1)
-    }
+  async function handleLike() {
+    if (pending) return
+    setPending(true)
 
-    localStorage.setItem('likedPosts', JSON.stringify(likedPosts))
-    localStorage.setItem('likeCounts', JSON.stringify(likeCounts))
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}')
+    const action = liked ? 'unlike' : 'like'
+
+    // Optimistic update
+    setLiked(!liked)
+    setCount((prev) => Math.max(0, prev + (liked ? -1 : 1)))
+
+    try {
+      const res = await fetch('/api/likes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, action }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        if (typeof data.count === 'number') setCount(data.count)
+        if (action === 'like') {
+          likedPosts[slug] = true
+        } else {
+          delete likedPosts[slug]
+        }
+        localStorage.setItem('likedPosts', JSON.stringify(likedPosts))
+      } else {
+        // Revert on failure
+        setLiked(liked)
+        setCount((prev) => Math.max(0, prev + (liked ? 1 : -1)))
+      }
+    } catch {
+      setLiked(liked)
+      setCount((prev) => Math.max(0, prev + (liked ? 1 : -1)))
+    } finally {
+      setPending(false)
+    }
   }
 
   if (!mounted) {
