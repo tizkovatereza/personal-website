@@ -274,6 +274,19 @@ export default function SoftwareAbundanceArticle() {
           <p className="mb-8">
             The barrier to entry for software has fallen. It&apos;s not coming back up. The question isn&apos;t whether this changes everything. It&apos;s whether you&apos;ll be the one doing the changing, or the one being changed.
           </p>
+
+          <p className="mt-12 pt-8 border-t border-border text-muted-foreground">
+            Update: someone posted this on Hacker News and it turned into a really good debate, with plenty of people agreeing, disagreeing, and pushing on the details. If you want to jump in or tell me where I got it wrong, that&apos;s the best place to do it:{' '}
+            <a
+              href="https://news.ycombinator.com/item?id=48694563"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:no-underline"
+            >
+              the discussion on Hacker News
+            </a>
+            .
+          </p>
         </div>
       </article>
     </div>
