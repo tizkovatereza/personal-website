@@ -12,6 +12,12 @@ async function ensureTable(sql: ReturnType<typeof getSql>) {
       count INTEGER NOT NULL DEFAULT 0
     )
   `
+  // One-time baseline for the launch post. Runs once, then real likes add on top.
+  await sql`
+    INSERT INTO post_likes (slug, count)
+    VALUES ('rise-of-the-software-factory', 2)
+    ON CONFLICT (slug) DO NOTHING
+  `
 }
 
 export async function GET(request: Request) {
