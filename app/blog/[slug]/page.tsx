@@ -89,9 +89,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-balance">
             {post.title}
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            {post.description}
-          </p>
         </header>
 
         {/* Content */}
@@ -105,9 +102,6 @@ export default async function PostPage({ params }: PostPageProps) {
             <LikeButton slug={slug} />
             <ShareButtons url={postUrl} title={post.title} />
           </div>
-
-          {/* Subscribe CTA */}
-          <SubscribeForm />
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
