@@ -7,9 +7,20 @@ export interface BlogPost {
   isNew?: boolean
   isInternal?: boolean
   label?: string
+  draft?: boolean
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Rise of the Software Factory",
+    date: "Jun 30, 2026",
+    subtitle: "What a software factory actually means, and the three properties every one must have",
+    image: "/images/blog/rise-of-the-software-factory/slide-01-title.png",
+    url: "/blog/rise-of-the-software-factory",
+    isNew: true,
+    isInternal: true,
+    label: "AI Engineer World's Fair talk"
+  },
   {
     title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
     date: "May 14, 2026",
@@ -18,7 +29,8 @@ export const blogPosts: BlogPost[] = [
     url: "/writing/agentic-seo-math",
     isNew: true,
     isInternal: true,
-    label: "Draft done with AI during demo"
+    label: "Draft done with AI during demo",
+    draft: true
   },
   {
     title: "Every good date we had in San Francisco",
@@ -26,7 +38,8 @@ export const blogPosts: BlogPost[] = [
     subtitle: "A curated list of date spots in SF that were actually worth it",
     image: "/images/blog/sf-dates.jpg",
     url: "/writing/sf-dates",
-    isInternal: true
+    isInternal: true,
+    draft: true
   },
   {
     title: "Software is becoming marketing",

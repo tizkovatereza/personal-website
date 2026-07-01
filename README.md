@@ -4,7 +4,7 @@ Personal website and blog. Built with Next.js, deployed on Vercel.
 
 ## Analytics
 
-> Last updated: May 22, 2026
+> Last updated: July 1, 2026
 
 ### Overview
 
@@ -22,6 +22,7 @@ Personal website and blog. Built with Next.js, deployed on Vercel.
 | [Software is becoming marketing](https://www.terezatizkova.com/writing/software-abundance) | 5,551 | Google (587) | 29 |
 | [A guide to not wasting money on conference booths](https://www.terezatizkova.com/writing/conference-booths) | 984 | Twitter/X (244) | 34 |
 | [Your "30% AI Visibility Score" Is Statistically Meaningless](https://www.terezatizkova.com/writing/agentic-seo-math) | 190 | LinkedIn (42) | 8 |
+| [Rise of the Software Factory](https://www.terezatizkova.com/blog/rise-of-the-software-factory) | new | AI Engineer World's Fair | 1 |
 
 #### Where people shared
 

@@ -7,13 +7,22 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
-    title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
-    date: "May 2026",
-    source: "New",
-    href: "/writing/agentic-seo-math",
+    title: "Rise of the Software Factory",
+    date: "Jun 2026",
+    source: "Talk",
+    href: "/blog/rise-of-the-software-factory",
     isNew: true,
-    label: "Draft done with AI during demo",
+    label: "AI Engineer World's Fair talk",
   },
+  // Draft: hidden until ready
+  // {
+  //   title: "Your \"30% AI Visibility Score\" Is Statistically Meaningless",
+  //   date: "May 2026",
+  //   source: "New",
+  //   href: "/writing/agentic-seo-math",
+  //   isNew: true,
+  //   label: "Draft done with AI during demo",
+  // },
   {
     title: "Software is becoming marketing",
     date: "Apr 2026",

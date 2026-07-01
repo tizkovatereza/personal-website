@@ -1,12 +1,14 @@
 ---
 title: "Rise of the Software Factory"
-description: "Everyone is suddenly talking about the software factory. Few have built one. Here's what it actually means, and the three properties every software factory must have."
+description: "Everyone is suddenly talking about the software factory. Few have built one. Here is what it actually means, and the three properties every software factory must have."
 date: "2026-06-30"
 author: "Tereza Tizkova"
 tags: ["software-factory", "AI", "engineering", "talk"]
 ---
 
-I gave this talk at AI Engineer World Fair in San Francisco, June 2026. Everyone is suddenly talking about the software factory. Few have built one. Fewer still show the process. This post walks through what we've learned building Factory over the past two years.
+I gave this talk at [AI Engineer](https://www.youtube.com/@aiDotEngineer) World Fair in San Francisco, June 2026.
+
+Everyone is suddenly talking about software factories. Few have built one. Fewer still show the process. So let me start with the obvious questions: why now, and what does a software factory actually mean?
 
 <img src="/images/blog/rise-of-the-software-factory/slide-01-title.png" alt="Rise of the Software Factory - title slide" className="my-8 rounded-xl border border-zinc-700" />
 
@@ -14,27 +16,49 @@ I gave this talk at AI Engineer World Fair in San Francisco, June 2026. Everyone
 
 <img src="/images/blog/rise-of-the-software-factory/slide-02-noone-knows.png" alt="No one knows what software factory means" className="my-8 rounded-xl border border-zinc-700" />
 
-The term gets thrown around loosely. Some people mean "coding agent." Others mean "a consulting project with AI bolted on." Neither is right.
+Everyone is launching software factories. Enterprises share their transformations, LinkedIn is full of thought leadership, and this conference even has a dedicated track for them. But does any of it really work in production? What are the conditions? How autonomous is software today?
+
+The questions people ask: What is a software factory? Should I build my own? How? What works in production? How does it work? At what cost?
 
 <img src="/images/blog/rise-of-the-software-factory/slide-03-whole-cycle.png" alt="The software factory is the whole cycle" className="my-8 rounded-xl border border-zinc-700" />
 
-A software factory is the whole cycle of developing software that runs autonomously. Not just writing code. The spec, the build, the validation, the deploy, the learning. All of it.
+The software factory is the whole cycle of developing software that runs autonomously. Not just writing code. The spec, the build, the validation, the deploy, the learning. Forget the chatbot-that-codes. Think of a factory floor: parallel lines, each handling a different task at a different level of autonomy. You set policy and priorities at the top and the floor reports up.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-05-not-coding-agent.png" alt="Software factory is not a coding agent or a consulting project" className="my-8 rounded-xl border border-zinc-700" />
+That is why the rest of the talk is about three properties that make this floor trustworthy: agnostic, autonomous, and always-improving.
 
-The numbers back this up. Firms that rewire around AI (not just adopt it) see 2x revenue according to a16z's study of 515 startups. Accenture's cash-flow multiple compressed from 30x to 10x as the "AI implementor" model lost its sheen. You can't bolt AI onto a broken process and call it a factory.
-
-## The software factory wasn't possible two years ago
+## The software factory was not possible two years ago
 
 <img src="/images/blog/rise-of-the-software-factory/slide-04-timeline.png" alt="Technology timeline for the software factory" className="my-8 rounded-xl border border-zinc-700" />
 
-You needed Copilot (2021), ChatGPT (2022), GPT-4 and bigger context windows (2023), better reasoning (2024), and persistent environments with long-running missions (2025). Every layer had to exist before the factory could.
+Karpathy wrote "Software 2.0" in 2017. That was the intellectual precursor. Then came Copilot (2021) for autocomplete, ChatGPT (2022) for conversation, GPT-4 and bigger context windows (2023) for real code generation, better reasoning (2024) for multi-step tasks, and persistent environments with long-running missions (2025) for true autonomy. Every layer had to exist before the factory could.
 
-## Three properties every software factory must have
+Task length agents can handle doubles roughly every 7 months. For years, the AI was a brain with no body: it could plan, retry, and narrate, but it could not actually execute across a full cycle.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-06-three-properties.png" alt="Agnostic, Autonomous, Always improving" className="my-8 rounded-xl border border-zinc-700" />
+The idea itself is not new. AutoGPT and BabyAGI were already looping and iterating on software back in 2023. They just did not work: the models hallucinated, context windows were too small, reasoning was too weak, and there were no good isolated environments where an agent could actually run. Every one of those had to be fixed before the factory became real.
 
-We think about it as three properties. The same properties you'd want from the best engineering team you ever managed: agnostic, autonomous, always improving.
+<img src="/images/blog/rise-of-the-software-factory/slide-05-not-coding-agent.png" alt="Software factory is not a coding agent" className="my-8 rounded-xl border border-zinc-700" />
+
+I like to define things by what they are not. A software factory is not a coding agent. It is not even a swarm of thousands of coding agents. Generating code is the easy part. Engineers do not spend most of their time writing code, they spend it on everything around the code, and that is exactly the hard part a factory has to handle. The right mental model is building a real team of humans: with that many agents testing, validating, and iterating, it can easily turn into chaos, so you have to design it deliberately.
+
+The numbers back this up. Firms that rewire around AI (not just adopt it) see 2x revenue according to a16z's study of 515 startups. The gap between leaders and laggards is there because you need to be ready. You cannot just adopt AI somehow. A software factory is something you build and own, not a consultancy you hire.
+
+Accenture's valuation multiple peaked near 30x in early 2025 and has come down to about 10x. The market is pricing the difference between advising on AI and actually shipping it.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-06-three-properties.png" alt="Three properties: Agnostic, Autonomous, Always improving" className="my-8 rounded-xl border border-zinc-700" />
+
+Think of electrification. When factories first got electricity, they bolted a motor onto the old steam-era layout and saw almost no gains. The real jump only came when they redesigned the whole factory around electricity. AI is the same. Bolting agents onto today's process gives you the old factory with a new motor. Redesigning around them gives you the software factory.
+
+It should be independent rather than a platform that locks you in. It should combine with the models and tools you already use. It should be trusted enough to be genuinely autonomous. And it should carry context and learn with use.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-08-primitives.png" alt="We need to build software factory primitives" className="my-8 rounded-xl border border-zinc-700" />
+
+Do not lock yourself into one environment or subscription. The same agent should run in the cloud, locally, in CI, and in your IDE. Portability becomes leverage and you avoid vendor lock-in.
+
+**Resources for this section:**
+- [Karpathy, "Software 2.0" (2017)](https://karpathy.medium.com/software-2-0-a64152b37c35)
+- [a16z State of AI in Startups (515-startup study)](https://a16z.com/ai-in-startups/)
+- [METR task-horizon benchmarks](https://metr.org/)
+- [MacroTrends: Accenture P/FCF historical data](https://www.macrotrends.net/stocks/charts/ACN/accenture/price-fcf)
 
 ---
 
@@ -42,19 +66,33 @@ We think about it as three properties. The same properties you'd want from the b
 
 <img src="/images/blog/rise-of-the-software-factory/slide-09-token-optimization.png" alt="Token optimization is winning over just cost saving" className="my-8 rounded-xl border border-zinc-700" />
 
-Token optimization is winning over just cost saving. Better default models, cache hit rates going from 5% to 60%, and routing. The goal isn't fewer tokens used, it's fewer tokens wasted.
+Brian Armstrong, CEO of Coinbase, shared how they saved significantly on AI spend while still token-maxing. The key: not with friction and spend alerts, but with better defaults, model routing, and caching. Their token usage grew exponentially while spend stayed flat.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-11-routing.png" alt="Routing doesn't improve just cost, but also reliability and speed" className="my-8 rounded-xl border border-zinc-700" />
+<img src="/images/blog/rise-of-the-software-factory/slide-11-routing.png" alt="Routing improves cost, reliability, and speed" className="my-8 rounded-xl border border-zinc-700" />
 
-Routing isn't just about cost. It gives you reliability (failover between providers), speed (pick the fastest model for simple tasks), and cost efficiency without sacrificing quality.
+When everything gets commoditized, the move is to choose all of it rather than bet on one model. Routing does not just improve cost. It gives you reliability (failover between providers), speed (pick the fastest model for simple tasks), and cost efficiency without sacrificing quality.
 
 <img src="/images/blog/rise-of-the-software-factory/slide-12-classifier.png" alt="The magic of routing is in the classifier" className="my-8 rounded-xl border border-zinc-700" />
 
-The magic is in the classifier. Five signals (message content, recent tools, repo size, language mix, difficulty) produce a single quality score per model. That's it. No magic, just a well-tuned classifier.
+This is the Factory Router. An engineer describes a task in plain text. The classifier reads it, scores the message content, recent tool calls, repo size, language mix, and difficulty. Each model gets a quality probability score. The system picks the best fit automatically.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-14-caching.png" alt="Prompt caching - we pass discounts to end users" className="my-8 rounded-xl border border-zinc-700" />
+There are really four parts to it. You assign a task, and as an organization you can set different default models and permissions per role, so sales, marketing, and engineers each start from a sensible default. The classifier scores how hard the task is. You set a quality threshold for what is good enough. Then the router picks the cheapest model predicted to clear that threshold. Our benchmark is deliberately conservative, and even so it shows around 25% savings, likely more in practice.
 
-We pass caching discounts directly to end users. The mechanism is prefix caching: your system prompt, tools, and skills stay the same every turn. The transformer already computed the KV cache for that prefix. Why make you pay again? Turn 2 is 10x cheaper than turn 1.
+<img src="/images/blog/rise-of-the-software-factory/slide-13-routing-questions.png" alt="What if the routing is wrong?" className="my-8 rounded-xl border border-zinc-700" />
+
+Fair question: what if the routing is wrong? The router does not just act on the first message. It can upgrade mid-conversation. If a task turns out harder than expected, it switches to a stronger model. The user always has an override.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-14-caching.png" alt="We pass caching discounts to end users" className="my-8 rounded-xl border border-zinc-700" />
+
+A quick refresher on why caching matters so much for agents. A transformer does not really remember your conversation; every turn it re-reads the entire history from scratch. Prefix caching lets you skip that re-computation for the parts that did not change (system prompt, tools, skills). The result: Turn 2 is 10x cheaper than Turn 1. We pass those savings directly to end users.
+
+Worth being honest about one thing: caching is not a moat. Anyone can do it, including open models hosted on your own dedicated compute. The final price a user sees is a pricing decision, not a technical one. It comes down to what savings you choose to pass on and what deals you strike with providers.
+
+**Resources for this section:**
+- [Source: Brian Armstrong / Coinbase, X (June 2026)](https://x.com/brian_armstrong)
+- [Factory docs: Model routing](https://docs.factory.ai)
+- [Anthropic prompt caching announcement](https://www.anthropic.com/news/prompt-caching)
+- [Factory blog: Model Independence Day](https://factory.ai/blog)
 
 ---
 
@@ -62,44 +100,123 @@ We pass caching discounts directly to end users. The mechanism is prefix caching
 
 <img src="/images/blog/rise-of-the-software-factory/slide-16-loops.png" alt="Loops have always been here, they just moved level up" className="my-8 rounded-xl border border-zinc-700" />
 
-Loops have always been here, they just moved a level up. Mathematical induction, code loops, training loops, ReAct tool loops, and now software factory loops. The core is always the same: iterator, exits, entry conditions. Even for a nondeterministic agent, the scaffolding is still the same primitives.
+The loop never went away, it just moved up a layer. On the left is the loop we all started with: a while-loop in code. On the right is the same shape expressed in an agent: iterate, check exit conditions, continue. Mathematical induction, code loops, training loops, ReAct tool loops, and now software factory loops. The core is always the same: iterator, exits, entry conditions.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-17-loop-example.png" alt="Example of the loop - 3D printing" className="my-8 rounded-xl border border-zinc-700" />
+
+Here is a real example. Someone asked Droid: "I want a 750mm Factory rotor logo, wall-mounted, on my Bambu X1C." One prompt, one clarifying question. Droid pulled the SVG from our brand assets, converted it to a 3D model, sliced it for the printer, and output the G-code. Start to finish, no hand-holding.
 
 <img src="/images/blog/rise-of-the-software-factory/slide-18-task-length.png" alt="Task length doubles every 7 months" className="my-8 rounded-xl border border-zinc-700" />
 
-Task length doubles roughly every 7 months, but only at 50% reliability. The real challenge isn't making agents do more. It's making them do more reliably. That's why validation is a separate concern from generation.
+I believe agents will run for a year without interruption. Task length doubles roughly every 7 months, but only at 50% reliability. The real frontier now is reliability over long horizons, not raw capability. Capability is solved. Reliability is the moat.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-20-validator.png" alt="Neither validator wrote the code it's judging" className="my-8 rounded-xl border border-zinc-700" />
+<img src="/images/blog/rise-of-the-software-factory/slide-19-missions.png" alt="Factory Missions architecture" className="my-8 rounded-xl border border-zinc-700" />
 
-Neither validator wrote the code it's judging. The Scrutiny Validator reads the code and trajectory: tests, typecheck, lint, and code review. It sees the code but didn't write it. The User-Testing Validator is a true black box: it never reads the source. It drives the running app via computer-use and checks behavior against the contract.
+This is the three-role architecture: an orchestrator, workers, and validators, with a validation contract that defines what "done" means before any code is written. The orchestrator handles planning. Workers implement. Validators judge independently.
+
+One design choice surprised people: the workers run in sequence, not as a parallel swarm. Each one finishes its piece and hands off to the next, so the next worker starts with fresh context, the same way a colleague reviews your code with fresh eyes. A worker can still spin up its own parallel subagents for smaller jobs like web research or scaffolding files. In a real customer mission, validation alone took about 40% of the whole process, which is a good sign, not a bad one.
+
+Example: a 16.5-hour mission with 185 agent runs, 63 workers, 27 validators, 778.5M tokens, of which 744.9M were cache reads.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-20-validator.png" alt="Neither validator wrote the code it is judging" className="my-8 rounded-xl border border-zinc-700" />
+
+If you have worked with coding agents, you have seen the pattern: the agent builds a feature, writes some tests, the tests pass, and it reports complete. The catch is that the tests were shaped by the same context that shaped the code. That is why we separate validation from generation.
+
+The Scrutiny Validator reads the code and trajectory: tests, typecheck, lint, and code review. It sees the code but did not write it. The User-Testing Validator is a true black box: it never reads the source. It drives the running app via computer-use and checks behavior against the contract.
+
+I watched one engineer migrate a codebase this way. Other tools produced something that looked right in the code but was a dead, non-interactive dummy. Because our user-testing validator actually clicked through the running app, it caught that the result did not work, not just that it looked good. That is only possible now because computer-use and persistent virtual machines for agents finally got good.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-21-mission-control.png" alt="Mission Control terminal dashboard" className="my-8 rounded-xl border border-zinc-700" />
+
+This is Mission Control, the terminal dashboard for a long-running autonomous Mission. You are watching a Droid build and maintain a project: linting, testing, implementing, committing, and handing off. All autonomous.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-22-loops-in-loop.png" alt="Factory Missions run loops in the loop" className="my-8 rounded-xl border border-zinc-700" />
+
+Missions run loops in the loop. The outer loop is the mission itself (plan, implement, validate, iterate). The inner loops are individual agent sessions handling subtasks. Each worker gets fresh context per feature so it does not carry stale assumptions across tasks.
 
 <img src="/images/blog/rise-of-the-software-factory/slide-24-context.png" alt="Context is the elephant in the room" className="my-8 rounded-xl border border-zinc-700" />
 
-Context is the elephant in the room. You can't feed an agent your entire codebase. The deferred context engine keeps a compact capability index and loads full schemas on demand, saving 15-50% of tokens depending on tool count.
+Context is the elephant in the room. Less bloat means fewer compressions, which means more reliable long-horizon runs. The bottleneck for autonomous agents is not capability, it is reliability over long horizons, and a big driver of that is context bloat.
+
+Enterprises are the extreme case. They wire in hundreds of tools on average (Figma, Notion, Gmail, Drive, and on and on), each with its own schemas, parameters, and descriptions. Two tools that sound alike are enough to make an agent pick the wrong one, or to blow the context window and force a compression. That is genuinely dangerous in the middle of a long mission.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-25-deferred-context.png" alt="Deferred context engine" className="my-8 rounded-xl border border-zinc-700" />
+
+The deferred context engine keeps a compact capability index and loads full schemas on demand. It progressively discloses tools: the agent starts with a short list and short descriptions, and only fully loads a tool when the code actually needs it. Nothing is ever removed, it is just hidden and out of reach until it is needed. Results: 15% fewer input tokens on average per MCP session, 39% reduction at the p90 (the heavy sessions), and 51% average reduction once 100+ tools are deferred. It scales with catalog size.
+
+**Resources for this section:**
+- [Factory blog: Introducing Missions](https://factory.ai/blog/introducing-missions)
+- [Factory docs: Missions architecture](https://docs.factory.ai)
+- [Factory blog: Deferred context engine](https://factory.ai/blog)
+- [METR task-horizon data](https://metr.org/)
+- [Source: @NilkhanVaibhav on X (Mission Control screenshot)](https://x.com/NilkhanVaibhav)
 
 ---
 
 ## 3. Always improving
 
-<img src="/images/blog/rise-of-the-software-factory/slide-26-gap.png" alt="Gap between leaders and laggards" className="my-8 rounded-xl border border-zinc-700" />
+<img src="/images/blog/rise-of-the-software-factory/slide-26-gap.png" alt="Gap between leaders and laggards is 12x" className="my-8 rounded-xl border border-zinc-700" />
 
-The gap between AI leaders and laggards has been 12x in the last three years, and it continues growing. Structure matters. Without it, AI makes code worse.
+The gap between AI leaders and laggards has been 12x in the last three years, and it follows a power law. It is not just winner takes all, it is loser loses all. Agents need onboarding just like new engineers do. Good documentation makes good agents. Codebase legibility matters as much as the code itself.
+
+GitClear and DX show that unstructured AI coding actually degrades code quality (more churn, more duplication), while structured practice reverses it. In AI adoption you either succeed big or fail big, there is no quiet middle anymore.
+
+<img src="/images/blog/rise-of-the-software-factory/slide-27-ramp.png" alt="Without structure, AI makes code worse" className="my-8 rounded-xl border border-zinc-700" />
+
+The data is clear: Level 1 repos (no linting config, no AGENTS.md, no pre-commit hooks) see massive quality degradation after AI adoption. Level 2+ repos with basic structure see manageable, controlled changes. This is the strongest empirical evidence that agent results are an environment problem, not a model problem.
+
+Cognitive complexity: +96% in Level 1 repos vs +29% in Level 2+. Static-analysis warnings: +45% vs +13%. Duplicated line density: +122% vs +34%. The gap is 3-4x across every metric.
 
 <img src="/images/blog/rise-of-the-software-factory/slide-28-readiness.png" alt="Agent readiness is measurable" className="my-8 rounded-xl border border-zinc-700" />
 
-Agent readiness is measurable. We score repositories on how well they support autonomous work: linting, type safety, test coverage, documentation. These aren't vanity metrics. They directly predict how well an agent performs on your codebase.
+Agent-readiness is measurable, not vibes. We score repositories on how well they support autonomous work: style and validation, build system, testing, documentation, dev environment, observability, security, and task discovery. These are not vanity metrics. They directly predict how well an agent performs on your codebase.
+
+Teams blame the model when the real bottleneck is missing pre-commit hooks, undocumented env vars, or build steps buried in Slack.
 
 <img src="/images/blog/rise-of-the-software-factory/slide-29-stop-repeating.png" alt="Stop repeating to agents how you want things done" className="my-8 rounded-xl border border-zinc-700" />
 
-Stop repeating to agents how you want things done. Plugins bundle skills, commands, and tools into one install. AutoWiki generates always-fresh docs from your codebase. The packaging layer ships droids, hooks, and MCP servers as versioned packages. The context engine uses deferred context, scoped tools, and structured user preferences. All of this compounds on your own data.
+Most of the time working with AI, you find yourself repeating how you want things done and feeling like the agent still does not get you. It is the same problem a new hire has: every company runs on rules that are not written down anywhere, the things between the lines you only pick up by observing. Agents need a way to absorb that too.
+
+Every time you explain a preference to an agent, you are wasting tokens and time. These features encode your preferences once so the agent just knows:
+
+- **Plugins** bundle skills, slash commands, hooks, and MCP server connections into one install. Think npm packages but for agent behavior.
+- **AutoWiki** generates always-fresh documentation from your codebase automatically.
+- **Packaging layer** ships droids, hooks, and MCP servers as versioned packages.
+- **Context engine** uses deferred context, scoped tools, and structured user preferences.
+
+It is the difference between hand-configuring every developer's agent vs. running `droid plugin add company/standard-setup`.
+
+**Resources for this section:**
+- [Denisov-Blanch, Agarwal, Azaletskiy et al., Stanford (ASE 2026) - RAMP framework](https://arxiv.org/)
+- [GitClear: AI code quality impact study](https://www.gitclear.com/)
+- [DX: Developer experience research](https://getdx.com/)
+- [Factory docs: Plugins](https://docs.factory.ai)
+- [Factory docs: AutoWiki](https://docs.factory.ai)
+- [Factory blog: Agent Readiness](https://factory.ai/blog)
 
 ---
 
-## Where we're heading
+## Where we are heading
+
+<img src="/images/blog/rise-of-the-software-factory/slide-30-question.png" alt="Will the software factory replace us?" className="my-8 rounded-xl border border-zinc-700" />
+
+So here is the question everyone actually came for: will the software factory replace us?
 
 <img src="/images/blog/rise-of-the-software-factory/slide-31-move-up.png" alt="We move up, towards deciding what to build" className="my-8 rounded-xl border border-zinc-700" />
 
-We move up, towards deciding what to build, instead of how. The factory handles the how.
+Computer was a job title before it was a machine. The people who held it were not written out, they moved up a layer of abstraction. That is the honest way to read this shift: the software factory does not replace engineers, it moves what "engineering" means up a layer.
 
-<img src="/images/blog/rise-of-the-software-factory/slide-33-grass.png" alt="Go touch some grass" className="my-8 rounded-xl border border-zinc-700" />
+The photo is from the 1940s: 80+ women employed as human "computers." One ballistics trajectory by hand took 30-40 hours, organized factory-style. Then compilers and high-level languages let you describe intent and stop hand-computing. The structure did not change, only the layer humans sit at moved.
 
-Go touch some grass.
+<img src="/images/blog/rise-of-the-software-factory/slide-32-agents-floor.png" alt="This could be agents instead" className="my-8 rounded-xl border border-zinc-700" />
+
+This is the same factory floor, except the rows of human computers are now agents. The structure did not change: parallel work, factory-style organization, a few humans directing. Only the layer the humans sit at moved.
+
+The risk is not being replaced. It is refusing to move up the layer.
+
+So I will end on the optimistic read. Humans should be deciding what to build, not how to build it, because the how is exactly what the agents are for. The factory does not come for the interesting work, it comes for the annoying work: the alignment, the status updates, the meetings that exist just to move context between people. Hand that to your software factory. Then, as I told the room: go touch some grass and let your agents build for you.
+
+**Resources for this section:**
+- [Factory.ai](https://factory.ai)
+- [Factory docs](https://docs.factory.ai)
+- [AI Engineer World Fair 2025](https://www.ai.engineer/)
