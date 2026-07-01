@@ -10,6 +10,8 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  const baseClassName = className ?? 'my-8 rounded-xl border border-zinc-700'
+
   useEffect(() => setMounted(true), [])
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
         {...props}
         alt={alt}
         onClick={() => setOpen(true)}
-        className={`${className ?? ''} cursor-zoom-in`}
+        className={`${baseClassName} cursor-zoom-in`}
       />
       {open && mounted && createPortal(
         <div
