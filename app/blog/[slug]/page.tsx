@@ -7,7 +7,7 @@ import { ReadingProgress } from '@/components/reading-progress'
 import { LikeButton } from '@/components/like-button'
 import { ShareButtons } from '@/components/share-buttons'
 import { SubscribeForm } from '@/components/subscribe-form'
-import { PostCard } from '@/components/post-card'
+import { blogPosts } from '@/lib/blog-posts'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
@@ -58,11 +58,9 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const allPosts = getAllPosts()
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug)
-  const relatedPosts = allPosts
-    .filter((p, i) => i !== currentIndex)
-    .slice(0, 2)
+  const relatedPosts = blogPosts
+    .filter((p) => !p.draft && p.url !== `/blog/${slug}`)
+    .slice(0, 3)
 
   const postUrl = `https://www.terezatizkova.com/blog/${slug}`
 
@@ -89,21 +87,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-balance">
             {post.title}
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            {post.description}
-          </p>
-          {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </header>
 
         {/* Content */}
@@ -118,17 +101,39 @@ export default async function PostPage({ params }: PostPageProps) {
             <ShareButtons url={postUrl} title={post.title} />
           </div>
 
-          {/* Subscribe CTA */}
-          <SubscribeForm />
-
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
             <div className="pt-8 border-t border-border/40">
               <h2 className="font-serif text-xl font-semibold mb-6">Keep reading</h2>
               <div>
-                {relatedPosts.map((relatedPost) => (
-                  <PostCard key={relatedPost.slug} post={relatedPost} />
-                ))}
+                {relatedPosts.map((relatedPost) => {
+                  const external = relatedPost.url.startsWith('http')
+                  return (
+                    <article
+                      key={relatedPost.url}
+                      className="group py-6 border-b border-border/40 last:border-0"
+                    >
+                      <Link
+                        href={relatedPost.url}
+                        target={external ? '_blank' : undefined}
+                        rel={external ? 'noopener noreferrer' : undefined}
+                        className="block"
+                      >
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <span>{relatedPost.date}</span>
+                          </div>
+                          <h3 className="font-serif text-xl font-medium tracking-tight group-hover:text-primary transition-colors text-balance">
+                            {relatedPost.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {relatedPost.subtitle}
+                          </p>
+                        </div>
+                      </Link>
+                    </article>
+                  )
+                })}
               </div>
             </div>
           )}

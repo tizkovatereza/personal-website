@@ -28,13 +28,14 @@ export default function BlogPage() {
             Writing
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-6">
-            I want your constructive criticism and debate. Would love to co-author too.{" "}
+            Roast my writing. I would be grateful for any constructive criticism, debate, or ideas you have about writing in general. Always want to{" "}
             <a 
               href="mailto:tereza.tizkova@gmail.com" 
               className="text-primary hover:underline cursor-pointer"
             >
-              Pitch me an idea.
-            </a>
+              connect
+            </a>{" "}
+            with fellow writers.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <SubscribeForm variant="button" />
@@ -56,7 +57,7 @@ export default function BlogPage() {
       {/* Posts List - solid background, no image */}
       <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-4xl">
         <div className="flex flex-col">
-          {blogPosts.map((post, index) => {
+          {blogPosts.filter(post => !post.draft).map((post, index) => {
             const LinkComponent = post.isInternal ? Link : 'a'
             const linkProps = post.isInternal 
               ? { href: post.url }
@@ -77,9 +78,11 @@ export default function BlogPage() {
                       </span>
                     )}
                   </h2>
-                  <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
-                    {post.subtitle}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
+                      {post.subtitle}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4 flex-shrink-0">
                   <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">

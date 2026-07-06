@@ -65,6 +65,12 @@ const education = [
 
 const talks = [
   {
+    title: 'Rise of the Software Factory',
+    platform: "AI Engineer World's Fair",
+    description: 'Main-stage talk on what a software factory actually is and the three properties every one needs. Slides and full write-up.',
+    link: '/blog/rise-of-the-software-factory',
+  },
+  {
     title: 'Building Coding Agents with Tool Execution',
     platform: 'DeepLearning.AI',
     description: "Co-taught a course on building agents that write and execute code, on Andrew Ng's platform.",

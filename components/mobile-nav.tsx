@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { ResumeDropdownMobile } from "./resume-dropdown"
+import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -90,13 +91,16 @@ export function MobileNav() {
           <span className="w-4 h-px bg-primary" />
           <span className="font-serif text-base tracking-[-0.02em] text-foreground">Tereza Tizkova</span>
         </Link>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 text-foreground hover:text-primary transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay */}

@@ -35,7 +35,13 @@ export function getPostBySlug(slug: string): Post | null {
   try {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    const stats = readingTime(content)
+    // Strip JSX/HTML tags, link URLs, and markdown symbols so the estimate
+    // counts real prose, not image attributes and hrefs.
+    const prose = content
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/[#>*`_~|-]/g, ' ')
+    const stats = readingTime(prose)
 
     return {
       slug: realSlug,
