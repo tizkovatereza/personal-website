@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
@@ -31,6 +32,38 @@ function SectionHeader({ children }: { children: React.ReactNode }) {
     <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mt-16 mb-6 pt-8 border-t border-border">
       {children}
     </h2>
+  )
+}
+
+function ArticleImage({ src, alt, caption, sourceUrl }: { src: string; alt: string; caption?: string; sourceUrl?: string }) {
+  return (
+    <figure className="my-8">
+      <div className="relative w-full">
+        <Image
+          src={src}
+          alt={alt}
+          width={1200}
+          height={900}
+          className="w-full h-auto"
+          unoptimized
+        />
+      </div>
+      {(caption || sourceUrl) && (
+        <figcaption className="text-center mt-3 text-sm text-muted-foreground">
+          {caption}
+          {sourceUrl && (
+            <a
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary ml-1"
+            >
+              Source
+            </a>
+          )}
+        </figcaption>
+      )}
+    </figure>
   )
 }
 
