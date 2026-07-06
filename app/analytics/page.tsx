@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Eye, Globe, Calendar, Link2, FileText, TrendingUp, MapPin, Clock, Lock } from 'lucide-react'
-
-const ANALYTICS_PASSWORD = process.env.NEXT_PUBLIC_ANALYTICS_PASSWORD || 'tereza2024'
+import { ArrowLeft, Eye, Globe, Calendar, Link2, FileText, TrendingUp, MapPin, Clock } from 'lucide-react'
 
 interface AnalyticsData {
   totalViews: number
@@ -43,9 +41,6 @@ const articleTitles: Record<string, string> = {
 }
 
 export default function AnalyticsPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [password, setPassword] = useState('')
-  const [authError, setAuthError] = useState(false)
   const [data, setData] = useState<AnalyticsData | null>(null)
   const [articleData, setArticleData] = useState<ArticleAnalytics | null>(null)
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null)
@@ -53,69 +48,6 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'overview' | 'articles'>('articles')
-
-  // Check if already authenticated from session storage
-  useEffect(() => {
-    const stored = sessionStorage.getItem('analytics_auth')
-    if (stored === 'true') {
-      setIsAuthenticated(true)
-    }
-  }, [])
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (password === ANALYTICS_PASSWORD) {
-      setIsAuthenticated(true)
-      sessionStorage.setItem('analytics_auth', 'true')
-      setAuthError(false)
-    } else {
-      setAuthError(true)
-    }
-  }
-
-  // Show login form if not authenticated
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="w-full max-w-sm">
-          <div className="border border-border bg-card p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <Lock className="w-5 h-5 text-muted-foreground" />
-              <h1 className="text-lg font-mono">Analytics</h1>
-            </div>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  className="w-full px-4 py-3 bg-background border border-border font-mono text-sm focus:outline-none focus:border-primary"
-                  autoFocus
-                />
-              </div>
-              {authError && (
-                <p className="text-red-500 text-sm font-mono">Incorrect password</p>
-              )}
-              <button
-                type="submit"
-                className="w-full px-4 py-3 bg-primary text-primary-foreground font-mono text-sm hover:opacity-90 transition-opacity"
-              >
-                Enter
-              </button>
-            </form>
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm font-mono mt-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to home
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   useEffect(() => {
     const fetchAnalytics = async () => {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { RotatingProfilePhoto } from '@/components/rotating-profile-photo'
 
 export const metadata: Metadata = {
   title: 'About | Tereza Tizkova',
@@ -125,9 +125,18 @@ export default function AboutPage() {
             About
           </h1>
           
-          {/* Profile Photo - hover to see random photos */}
+          {/* Profile Icon - minimalist line-art avatar */}
           <div className="mb-10">
-            <RotatingProfilePhoto />
+            <div className="flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 border border-border bg-muted/20">
+              <Image
+                src="/images/profile-icon.png"
+                alt="Tereza Tizkova"
+                width={120}
+                height={120}
+                className="w-28 h-28 sm:w-32 sm:h-32 object-contain"
+                priority
+              />
+            </div>
           </div>
           
           {/* Intro paragraph */}
