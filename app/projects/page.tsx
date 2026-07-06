@@ -1,7 +1,18 @@
 import type { Metadata } from 'next'
-import { ArrowUpRight } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Rocket,
+  GraduationCap,
+  Star,
+  BookOpen,
+  CalendarDays,
+  School,
+  Users,
+  PenLine,
+  Mic,
+  Lightbulb,
+} from 'lucide-react'
 import { TopicsWaitlistForm } from '@/components/topics-waitlist-form'
-import { RotatingProjectPhoto } from '@/components/rotating-project-photo'
 
 export const metadata: Metadata = {
   title: 'Projects | Tereza Tizkova',
@@ -24,7 +35,7 @@ const projects = [
     description: 'I was the founding team member, and the person responsible for marketing, growth, events, community, and partnerships with startups from scratch to Series A+.',
     link: 'https://e2b.dev',
     tag: 'Growth of a Startup',
-    image: '/images/project-deeplearning.jpg',
+    icon: Rocket,
   },
   {
     id: 'deeplearning',
@@ -32,7 +43,7 @@ const projects = [
     description: 'Prepared and co-taught this coding agents course on DeepLearning.AI with Andrew Ng\'s team. Reached thousands of learners worldwide.',
     link: 'https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/',
     tag: 'Course',
-    image: '/images/project-deeplearning.jpg',
+    icon: GraduationCap,
   },
   {
     id: 'awesome-agents',
@@ -40,7 +51,7 @@ const projects = [
     description: 'Open source list of AI agents. 27k+ GitHub stars, went viral across social media, newsletters, conferences, and talks.',
     link: 'https://github.com/e2b-dev/awesome-ai-agents',
     tag: 'Open Source',
-    image: '/images/project-topics.jpg',
+    icon: Star,
   },
   {
     id: 'topics',
@@ -48,7 +59,7 @@ const projects = [
     description: 'A curated reading app for writers and learners who want to read more intentionally. Looking for beta testers!',
     link: '#',
     tag: 'Launching Soon',
-    image: '/images/project-topics.jpg',
+    icon: BookOpen,
     isWaitlist: true,
   },
   {
@@ -57,7 +68,7 @@ const projects = [
     description: 'Organized AI hackathons and developer events in San Francisco, Prague, and online through E2B. Including the first AI hackathon in Czech Republic with 50+ builders.',
     link: 'https://lu.ma/e2b',
     tag: 'Events',
-    image: '/images/project-growth-talks.jpg',
+    icon: CalendarDays,
   },
   {
     id: 'discover',
@@ -65,7 +76,7 @@ const projects = [
     description: 'Lecturer at Discover Summer Academy, a non-profit summer school for talented Czech and Slovak high school students. Taught graduate-level mathematics to teenagers.',
     link: 'https://discover.sk/en/',
     tag: 'Teaching',
-    image: '/images/project-advent.jpg',
+    icon: School,
   },
   {
     id: 'growth-lab',
@@ -73,7 +84,7 @@ const projects = [
     description: 'A curated community of growth people sharing what actually works — tactics, tools, and real talk. 50+ members from startups, dev platforms, and AI companies.',
     link: '/growth-lab',
     tag: 'Community',
-    image: '/images/project-growth-talks.jpg',
+    icon: Users,
   },
   {
     id: 'advent',
@@ -81,7 +92,7 @@ const projects = [
     description: 'A 24-day writing challenge that helped hundreds of creators develop a consistent writing habit during the holiday season.',
     link: 'https://adventofwriting.com/',
     tag: 'Writing',
-    image: '/images/project-advent.jpg',
+    icon: PenLine,
   },
   {
     id: 'talks',
@@ -89,7 +100,7 @@ const projects = [
     description: 'Conference talks, podcast appearances, and interviews on AI agents, developer tools, and growth.',
     link: '/about#talks',
     tag: 'Speaking',
-    image: '/images/project-advent.jpg',
+    icon: Mic,
   },
   {
     id: 'advisory',
@@ -97,7 +108,7 @@ const projects = [
     description: 'I enjoy helping early-stage teams figure things out.',
     link: 'mailto:tereza.tizkova@gmail.com?subject=Advisory chat',
     tag: 'Advisory',
-    image: '/images/project-growth-talks.jpg',
+    icon: Lightbulb,
   },
 ]
 
@@ -136,8 +147,10 @@ export default function ProjectsPage() {
                   id={project.id}
                   className="group block bg-card/90 backdrop-blur-sm border border-border transition-all duration-300 overflow-hidden"
                 >
-                  {/* Rotating Photo Preview */}
-                  <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                  {/* Minimal centered icon */}
+                  <div className="flex items-center justify-center h-40 border-b border-border bg-muted/20">
+                    <project.icon className="h-10 w-10 text-primary" strokeWidth={1.25} />
+                  </div>
                   
                   <div className="p-6 sm:p-8">
                     {/* Category with diamond */}
@@ -171,8 +184,10 @@ export default function ProjectsPage() {
                 rel={project.link.startsWith('http') ? "noopener noreferrer" : undefined}
                 className="group block bg-card/90 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300 overflow-hidden"
               >
-                {/* Rotating Photo Preview */}
-                <RotatingProjectPhoto projectName={project.title} className="w-full" />
+                {/* Minimal centered icon */}
+                <div className="flex items-center justify-center h-40 border-b border-border bg-muted/20">
+                  <project.icon className="h-10 w-10 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.25} />
+                </div>
                 
                 <div className="p-6 sm:p-8">
                   {/* Category with diamond */}
