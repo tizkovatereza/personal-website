@@ -1,0 +1,111 @@
+---
+title: "The AI Adoption Gap: Between the Lines"
+description: "Why most industries are not adopting AI yet, and why the real problem is not intelligence."
+date: "2026-07-07"
+author: "Tereza Tizkova"
+tags: ["AI", "adoption", "tacit-knowledge", "context"]
+---
+
+For the last few years, the conversation around AI has been about intelligence. We keep asking whether the models are smart enough, whether they can reason, whether they can code, whether they can pass exams. But the more time I spend watching people and companies actually try to use AI, the more I think the bottleneck is not intelligence. It is repetition and context. The thing I keep calling "between the lines."
+
+Most industries that want to automate with AI are stuck because they have to keep telling the model what they want, how they want it, what the context is, and what success looks like. Every single time. The work of using AI has become the work of repeating yourself.
+
+That repetition is not a small UI problem. It is the central friction that will determine how much of the economy actually adopts AI in the next few years.
+
+## The "between the lines" knowledge
+
+There is a gap between what is documented and what is actually known.
+
+![Documented vs. between the lines](/images/blog/ai-adoption-gap/documented-vs-not.png)
+
+A company has a codebase, a list of tools to sign up for, a stay-at-home policy, and an org chart. But none of those documents tell you how long people actually stay, whether it is normal to respond on weekends, who really approves a pull request, or that you need to be added to the Vercel team rather than just given access.
+
+- "This is my manager" is not the same as "this person will often have opinions and wants to change things before they go out."
+- "Here is how you order lunch" is not the same as "the veggie burger is terrible, do not order it."
+- "We collaborate with this agency and have weekly calls" is not the same as "you should ping them more times and have an agenda prepared, ideally in your head."
+
+These are not secrets. They are not conspiracy theories. They are just the operating system of a place. And they are almost never written down.
+
+It reminds me of the "that is how mafia works" meme. In the game, you do things that look pointless or even counterproductive, and suddenly you level up. The rules are not explained anywhere. They are just how the system works. A lot of organizational knowledge is exactly like that. You cannot derive it from the documentation. You have to live it.
+
+## The spectrum of tacit knowledge
+
+Not all tacit knowledge is the same. There is a spectrum.
+
+![Spectrum of tacit knowledge](/images/blog/ai-adoption-gap/spectrum.png)
+
+On one end, there are things that are essentially clear data: code, documentation, SOPs, public internet text. In the middle, there are things that are still capturable but more context-dependent: org charts, relationship maps, workflows, brand guidelines, communication conventions. On the far right, there are things that are hard to articulate even for humans: reading the room, knowing when to push, timing a joke, or sensing that a meeting is actually about something else.
+
+That single line is a useful first sketch, but it collapses too many dimensions into one. The real picture is three-dimensional. I think about three axes:
+
+- **Availability**: how much of this knowledge exists in capturable form, public or private.
+- **Stability**: how fast it changes.
+- **Subjectivity**: how much it depends on interpretation and context.
+
+For the sake of drawing, I am holding a fourth axis constant: **structure**, meaning how easy the knowledge is to format into tokens, tables, or vectors. If I tried to add that too, the drawing would become impossible.
+
+![Tacit knowledge in 3D: availability, stability, subjectivity](/images/blog/ai-adoption-gap/spectrum-3d.svg)
+
+Code sits in the corner of high availability, high stability, and low subjectivity. That is why models are already good at it. Brand rules are more available and stable than people assume, but they are subjective. Customer relationships are low availability, low stability, and high subjectivity. Reading the room is the extreme case on all three dimensions.
+
+I think funny people are often smart in exactly this way. They can retrieve patterns from a situation and make something meta out of it quickly. They are not just witty; they are processing a lot of context at once. That is the same skill AI will need.
+
+## The data vs. the context layer
+
+Some of this knowledge can be turned into training data. If you have enough examples of how a company writes code, makes decisions, or talks to customers, you can fine-tune a model on it.
+
+But a lot of it should not be frozen into a model. It changes too fast. People leave, priorities shift, and the client you are working with today is not the one from last quarter. So the answer is probably a split: train models on the stable patterns, like taste and general workflows, and keep the live, changing context in a **persistent context layer** that the model can read at inference time.
+
+This is the part that makes the current generation of "computer use" products so revealing. They are clicking through terrible SaaS interfaces, filling the same forms, navigating the same broken dashboards. They are not failing because they cannot understand the task. They are failing because they cannot read the room. They do not know the hidden rules of this particular company.
+
+The models are already good enough to operate most of these tools. The tools themselves, and the missing context around them, are what make the work slow.
+
+## The adoption gap is a power law
+
+Anthropic's Economic Index tracks millions of real Claude conversations. The distribution of AI use is extremely uneven.
+
+![Anthropic Economic Index: usage by job type](/images/blog/ai-adoption-gap/anthropic-domain-chart.jpg)
+
+The top categories globally are computer and mathematical work at 21.7%, arts, design, entertainment, sports and media at 14.5%, and educational instruction at 13.4%. Most of the rest of the economy barely shows up in the data.
+
+This is not because the rest of the economy is refusing AI. It is because the rest of the economy has not yet translated its work into a format an AI can act on. The United States ranks twelfth globally in usage per capita, behind countries like Australia, Singapore, Switzerland, and New Zealand. The idea that America is far ahead on AI adoption is, at least in terms of actual usage, not quite right.
+
+## People do not know what is possible, and they do not trust what they see
+
+Instagram ads are not saying "use Claude to do this specific thing." They are saying "learn Claude." Which is a strange thing to ask. Are people really so bad at wanting things from a machine that can explore new math, write code, and summarize anything?
+
+Yes, I think they are. Not because they are stupid, but because the tool can do anything, and that places a burden on the user. Where do you start? What do you automate? What are these long workflows everyone is apparently running with agents?
+
+Being able to ask the right question is already an art. It reminds me of math classes where the professor asks "any questions?" and most people stay silent because they do not even know what they do not know. That is the situation with AI today. People do not know what to ask.
+
+I have been in San Francisco since 2023, which in AI years is a long time. I have watched dozens of products demo beautifully on stage or on Twitter, then quietly disappear a few months later. That creates a specific kind of trust problem. Even when a tool works, some part of you expects it to be abandoned.
+
+My non-technical friends are even further back. They do not ask me which AI to buy. They ask me what to do with one. They do not know what is possible, so they do not know where to start.
+
+## The dark matter of the internet
+
+Will Depue recently wrote about what he calls "A Stargate for Data." He makes the point that the internet was a one-time civilizational subsidy to AI. Decades of books, blogs, images, videos, and papers, all digitized and freely available. But we are running out of it. There are only about 300 trillion tokens of useful public human text, and the internet does not produce enough new high-quality data to match what scaling demands.
+
+More importantly, he points to the "dark matter" of the internet: the tacit knowledge, undocumented processes, and context that was never published. It lives inside organizations, in the physical world, or in people's heads. The speed at which we automate the economy, he argues, will be directly rate-limited by our ability to collect data about it.
+
+This is the same thing I am describing at the company level, just scaled up. The "between the lines" knowledge is not just a collaboration problem. It is a data problem. And it is becoming the binding constraint on the next phase of AI.
+
+## What to do now
+
+The best version of working with an AI would look like a mix of two things. First, the AI learns during the process. Second, you have good documentation, conventions, and context captured along the way. It goes both directions.
+
+We will need better connectors, better computer use, and persistent environments where the AI can form a working model of how you operate. But we will also need "generative context": the agent detecting when it is missing a hidden rule and asking for it, rather than guessing.
+
+## What this means
+
+AI adoption will not accelerate because the next model scores a few points higher on a benchmark. It will accelerate when the repetition disappears. When a company can capture its context once, encode its taste once, and then have the AI act on it forever, that is when the rest of the economy will show up in the adoption charts.
+
+Until then, most industries are not really adopting AI. They are watching the few industries that have already digitized their work repeat themselves out loud.
+
+---
+
+**Sources and links**
+
+- [Anthropic Economic Index](https://www.anthropic.com/economic-index)
+- [Software is becoming marketing](https://www.terezatizkova.com/writing/software-abundance)
+- [Will Depue, "A Stargate for Data"](https://x.com/willdepue/status/...)

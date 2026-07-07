@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<rect width="800" height="500" fill="#fafafa"/>
+<line x1="300.0" y1="300.0" x2="440.0" y2="370.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="300.0" y1="300.0" x2="210.0" y2="350.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="300.0" y1="300.0" x2="300.0" y2="170.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="350.0" y1="290.0" x2="210.0" y2="220.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="350.0" y1="290.0" x2="440.0" y2="240.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="350.0" y1="290.0" x2="350.0" y2="420.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="440.0" y1="370.0" x2="350.0" y2="420.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="440.0" y1="370.0" x2="440.0" y2="240.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="210.0" y1="350.0" x2="350.0" y2="420.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="210.0" y1="350.0" x2="210.0" y2="220.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="300.0" y1="170.0" x2="440.0" y2="240.0" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="300.0" y1="170.0" x2="210.0" y2="220.0" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="461.0" y="380.5" font-family="sans-serif" font-size="14" fill="#334155" text-anchor="middle" font-weight="bold">Availability</text>
+<text x="196.5" y="357.5" font-family="sans-serif" font-size="14" fill="#334155" text-anchor="middle" font-weight="bold">Stability</text>
+<text x="300.0" y="140.5" font-family="sans-serif" font-size="14" fill="#334155" text-anchor="middle" font-weight="bold">Subjectivity</text>
+<text x="290" y="315" font-family="sans-serif" font-size="11" fill="#64748b" text-anchor="end">low</text>
+<text x="440" y="385" font-family="sans-serif" font-size="11" fill="#64748b" text-anchor="middle">high</text>
+<circle cx="354.0" cy="390.0" r="6" fill="#2563eb" stroke="white" stroke-width="2"/>
+<text x="366.0" y="382.0" font-family="sans-serif" font-size="12" fill="#2563eb">Code</text>
+<circle cx="358.0" cy="360.0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
+<text x="370.0" y="378.0" font-family="sans-serif" font-size="12" fill="#3b82f6">Documentation</text>
+<circle cx="343.0" cy="285.0" r="6" fill="#f59e0b" stroke="white" stroke-width="2"/>
+<text x="263.0" y="277.0" font-family="sans-serif" font-size="12" fill="#f59e0b">Org charts</text>
+<circle cx="316.0" cy="300.0" r="6" fill="#f59e0b" stroke="white" stroke-width="2"/>
+<text x="236.0" y="318.0" font-family="sans-serif" font-size="12" fill="#f59e0b">Brand rules</text>
+<circle cx="324.0" cy="279.0" r="6" fill="#f97316" stroke="white" stroke-width="2"/>
+<text x="336.0" y="297.0" font-family="sans-serif" font-size="12" fill="#f97316">CRM notes</text>
+<circle cx="310.0" cy="233.0" r="6" fill="#ef4444" stroke="white" stroke-width="2"/>
+<text x="170.0" y="225.0" font-family="sans-serif" font-size="12" fill="#ef4444">Customer relationships</text>
+<circle cx="305.0" cy="195.0" r="6" fill="#dc2626" stroke="white" stroke-width="2"/>
+<text x="195.0" y="187.0" font-family="sans-serif" font-size="12" fill="#dc2626">Reading the room</text>
+<circle cx="310.0" cy="207.0" r="6" fill="#dc2626" stroke="white" stroke-width="2"/>
+<text x="322.0" y="225.0" font-family="sans-serif" font-size="12" fill="#dc2626">Timing of jokes</text>
+<circle cx="293.0" cy="259.0" r="6" fill="#db2777" stroke="white" stroke-width="2"/>
+<text x="213.0" y="251.0" font-family="sans-serif" font-size="12" fill="#db2777">What's tacky</text>
+<text x="400" y="30" font-family="sans-serif" font-size="18" fill="#1e293b" text-anchor="middle" font-weight="bold">Tacit knowledge in 3D: availability, stability, subjectivity</text>
+<text x="400" y="470" font-family="sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Structure is assumed constant for this visualization.</text>
+</svg>

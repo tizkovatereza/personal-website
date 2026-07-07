@@ -12,6 +12,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "The AI Adoption Gap: Between the Lines",
+    date: "Jul 7, 2026",
+    subtitle: "Why most industries are not adopting AI yet, and why the real problem is not intelligence",
+    image: "/images/blog/ai-adoption-gap/anthropic-domain-chart.jpg",
+    url: "/blog/ai-adoption-gap",
+    isNew: true,
+    isInternal: true,
+    draft: true
+  },
+  {
     title: "Rise of the Software Factory",
     date: "Jun 30, 2026",
     subtitle: "What a software factory actually means, and the three properties every one must have",
