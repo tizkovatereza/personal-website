@@ -12,6 +12,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "X Algorithm 2026: Every Question Answered From the Source Code",
+    date: "Jul 10, 2026",
+    subtitle: "A deep read through the open-sourced X algorithm — reach, timing, and engagement",
+    image: "/images/blog/x-algorithm.png",
+    url: "/writing/x-algorithm",
+    isNew: true,
+    isInternal: true,
+    label: "Deep research pass with AI"
+  },
+  {
     title: "Rise of the Software Factory",
     date: "Jun 30, 2026",
     subtitle: "What a software factory actually means, and the three properties every one must have",
