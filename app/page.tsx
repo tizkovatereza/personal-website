@@ -2,7 +2,20 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Send } from "lucide-react"
+import {
+  ArrowRight,
+  Send,
+  Rocket,
+  GraduationCap,
+  Star,
+  BookOpen,
+  CalendarDays,
+  School,
+  Users,
+  PenLine,
+  Mic,
+  Lightbulb,
+} from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
@@ -68,18 +81,21 @@ const projects = [
     title: "E2B", 
     description: "Founding team member. Built growth from zero, established developer relations, shaped product positioning. Zero to Series A.",
     href: "https://e2b.dev",
+    icon: Rocket,
   },
   { 
     category: "Course",
     title: "Building Coding Agents with Tool Execution", 
     description: "Prepared and co-taught this coding agents course on DeepLearning.AI with Andrew Ng's team. Reached thousands of learners worldwide.",
     href: "https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/",
+    icon: GraduationCap,
   },
   { 
     category: "Open Source",
     title: "Awesome AI Agents", 
     description: "Open source list of AI agents. 27k+ GitHub stars, went viral across social media, newsletters, conferences, and talks.",
     href: "https://github.com/e2b-dev/awesome-ai-agents",
+    icon: Star,
   },
   { 
     category: "Launching Soon",
@@ -87,42 +103,49 @@ const projects = [
     description: "A curated reading app for writers and learners who want to read more intentionally. Looking for beta testers!",
     href: "#",
     isWaitlist: true,
+    icon: BookOpen,
   },
   { 
     category: "Events",
     title: "Developer Events & Hackathons", 
     description: "Organized AI hackathons and developer events in San Francisco, Prague, and online through E2B. Including the first AI hackathon in Czech Republic with 50+ builders.",
     href: "https://lu.ma/e2b",
+    icon: CalendarDays,
   },
   { 
     category: "Teaching",
     title: "Discover Academy", 
     description: "Lecturer at Discover Summer Academy, a non-profit summer school for talented Czech and Slovak high school students. Taught graduate-level mathematics to teenagers.",
     href: "https://discover.sk/en/",
+    icon: School,
   },
   { 
     category: "Community",
     title: "The Growth Lab", 
     description: "A curated community of growth people sharing what actually works — tactics, tools, and real talk. 50+ members from startups, dev platforms, and AI companies.",
     href: "/growth-lab",
+    icon: Users,
   },
   { 
     category: "Writing",
     title: "Advent of Writing", 
     description: "A 24-day writing challenge that helped hundreds of creators develop a consistent writing habit during the holiday season.",
     href: "https://adventofwriting.com/",
+    icon: PenLine,
   },
   { 
     category: "Speaking",
     title: "Talks & Podcasts", 
     description: "Conference talks, podcast appearances, and interviews on AI agents, developer tools, and growth.",
     href: "/about#talks",
+    icon: Mic,
   },
   { 
     category: "Advisory",
     title: "Startup Advisory", 
     description: "I enjoy helping early-stage teams figure things out.",
     href: "mailto:tereza.tizkova@gmail.com?subject=Advisory chat",
+    icon: Lightbulb,
   },
 ]
 
@@ -244,7 +267,7 @@ export default function HomePage() {
                 className="group block p-4 bg-card border border-border card-hover"
               >
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="w-1 h-1 bg-primary rotate-45" />
+                  <project.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
                   <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
                     {project.category}
                   </span>
