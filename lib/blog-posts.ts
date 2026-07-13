@@ -77,11 +77,19 @@ export const blogPosts: BlogPost[] = [
     category: "growth"
   },
   {
-    title: "Gödel's Incompleteness Theorems Explained Simply",
+    title: "Gödel's Incompleteness Theorems Explained Simply — Part 1",
+    date: "Jun 30, 2025",
+    subtitle: "Why Math Will Never Be Complete — Part 1",
+    image: "/images/blog/godels-theorems.jpg",
+    url: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained",
+    category: "math"
+  },
+  {
+    title: "Gödel's Incompleteness Theorems Explained Simply — Part 2",
     date: "Jul 19, 2025",
     subtitle: "Why Math Will Always Be Broken — Part 2",
     image: "/images/blog/godels-theorems.jpg",
-    url: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained",
+    url: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained-5f7",
     category: "math"
   },
   {
