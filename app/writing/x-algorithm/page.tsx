@@ -90,11 +90,15 @@ export default function XAlgorithmArticle() {
         {/* Content */}
         <div className="text-[16px] sm:text-[17px] leading-[1.75] text-foreground/90">
           <p className="mb-6">
+            I spent some time digging into how the X algorithm actually works — reading through the open-sourced code rather than the usual &quot;growth hack&quot; threads. I ran the research with the help of my AI agents, having them comb the repositories line by line so I could answer the questions that keep coming up about reach, timing, and engagement. What follows is what we found, straight from the source.
+          </p>
+
+          <p className="mb-6">
             All sources are the open-sourced GitHub repositories (twitter/the-algorithm, twitter/the-algorithm-ml, xai-org/x-algorithm) and official X team communications — no third-party marketing studies. The algorithm changes, so check whether there have been new commits since this was written.
           </p>
 
           <p className="mb-6">
-            X is the only major social platform where the algorithm is fully open-source — twice, in March 2023 (twitter/the-algorithm, twitter/the-algorithm-ml) and January 2026 (xai-org/x-algorithm, Grok-powered rewrite). The weights are public, the scoring formula is documented, and most people still haven&apos;t read it. I did a deep research pass with AI to dig through the actual code and pull out answers to the questions that keep coming up internally. Everything below links directly to the relevant file in the repo.
+            X is the only major social platform where the algorithm is fully open-source — twice, in March 2023 (twitter/the-algorithm, twitter/the-algorithm-ml) and January 2026 (xai-org/x-algorithm, Grok-powered rewrite). The weights are public, the scoring formula is documented, and most people still haven&apos;t read it. Everything below links directly to the relevant file in the repo.
           </p>
 
           <SectionHeader>&quot;What actually matters for reach? Likes? Followers? Impressions?&quot;</SectionHeader>
