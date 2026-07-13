@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
+import { ReadMore } from '@/components/read-more'
 
 export const metadata: Metadata = {
   title: 'A guide to not wasting money on conference booths | Tereza Tizkova',
@@ -484,6 +485,8 @@ export default function ConferenceBoothsArticle() {
             alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
             sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
           />
+
+          <ReadMore currentUrl="/writing/conference-booths" />
         </div>
       </article>
 

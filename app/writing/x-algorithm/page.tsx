@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
+import { ReadMore } from '@/components/read-more'
 
 export const metadata: Metadata = {
   title: 'X Algorithm 2026: Every Question Answered From the Source Code | Tereza Tizkova',
@@ -73,7 +74,7 @@ export default function XAlgorithmArticle() {
       </nav>
 
       {/* Article */}
-      <article className="px-6 sm:px-8 lg:px-12 pb-24 max-w-[820px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">
@@ -384,6 +385,8 @@ export default function XAlgorithmArticle() {
           <p className="mt-12 pt-8 border-t border-border text-muted-foreground text-[14px]">
             Sources: xai-org/x-algorithm · twitter/the-algorithm · twitter/the-algorithm-ml · Heavy Ranker README · FEATURES.md · ScoredTweetsParam.scala · Earlybird README · TweepCred README · Real Graph source
           </p>
+
+          <ReadMore currentUrl="/writing/x-algorithm" />
         </div>
       </article>
     </div>
