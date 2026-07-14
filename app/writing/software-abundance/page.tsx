@@ -70,7 +70,7 @@ export default function SoftwareAbundanceArticle() {
       </nav>
 
       {/* Article */}
-      <article className="px-6 sm:px-8 pb-24 max-w-[680px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">

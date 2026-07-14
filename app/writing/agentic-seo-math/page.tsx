@@ -57,7 +57,7 @@ export default function AgenticSeoMathArticle() {
         </Link>
       </nav>
 
-      <article className="px-6 sm:px-8 pb-24 max-w-[680px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         <header className="mb-12">
           <div className="mb-4">
             <span className="px-2 py-1 bg-primary/10 text-primary text-[10px] font-mono uppercase tracking-wider border border-primary/20 rounded-sm">
