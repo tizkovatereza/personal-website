@@ -58,9 +58,14 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const relatedPosts = blogPosts
-    .filter((p) => !p.draft && p.url !== `/blog/${slug}`)
-    .slice(0, 3)
+  const pool = blogPosts.filter((p) => !p.draft && p.url !== `/blog/${slug}`)
+  const latestTwo = [...pool]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2)
+  const latestUrls = new Set(latestTwo.map((p) => p.url))
+  const mathPool = pool.filter((p) => p.category === 'math' && !latestUrls.has(p.url))
+  const randomMath = mathPool.length > 0 ? mathPool[Math.floor(Math.random() * mathPool.length)] : undefined
+  const relatedPosts = randomMath ? [...latestTwo, randomMath] : latestTwo
 
   const postUrl = `https://www.terezatizkova.com/blog/${slug}`
 

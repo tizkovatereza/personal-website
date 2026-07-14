@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
+import { ReadMore } from '@/components/read-more'
 
 export const metadata: Metadata = {
   title: 'A guide to not wasting money on conference booths | Tereza Tizkova',
@@ -94,7 +95,7 @@ export default function ConferenceBoothsArticle() {
       </nav>
 
       {/* Article */}
-      <article className="px-6 sm:px-8 pb-24 max-w-[680px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">
@@ -484,11 +485,13 @@ export default function ConferenceBoothsArticle() {
             alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
             sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
           />
+
+          <ReadMore currentUrl="/writing/conference-booths" />
         </div>
       </article>
 
       {/* Footer */}
-      <footer className="px-6 sm:px-8 pb-12 max-w-[680px] mx-auto border-t border-border pt-8">
+      <footer className="px-6 sm:px-12 md:px-16 lg:px-20 pb-12 max-w-[900px] border-t border-border pt-8">
         <Link 
           href="/"
           className="inline-flex items-center gap-2 font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"

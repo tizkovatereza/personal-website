@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
+import { ReadMore } from '@/components/read-more'
 
 export const metadata: Metadata = {
   title: 'Your 30% AI Visibility Score Is Statistically Meaningless | Tereza Tizkova',
@@ -56,7 +57,7 @@ export default function AgenticSeoMathArticle() {
         </Link>
       </nav>
 
-      <article className="px-6 sm:px-8 pb-24 max-w-[680px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         <header className="mb-12">
           <div className="mb-4">
             <span className="px-2 py-1 bg-primary/10 text-primary text-[10px] font-mono uppercase tracking-wider border border-primary/20 rounded-sm">
@@ -260,6 +261,8 @@ export default function AgenticSeoMathArticle() {
           <p className="mb-8">
             The agent SEO category is going to mature. The tools will get better, sample sizes will increase, and we&apos;ll eventually have reliable benchmarks. But right now, in mid-2026, most of these numbers deserve a squint, not a strategy pivot.
           </p>
+
+          <ReadMore currentUrl="/writing/agentic-seo-math" />
         </div>
       </article>
     </div>

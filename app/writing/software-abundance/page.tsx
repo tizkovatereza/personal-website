@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { ShareableChart } from '@/components/shareable-chart'
 import { PageTracker } from '@/components/page-tracker'
+import { ReadMore } from '@/components/read-more'
 
 export const metadata: Metadata = {
   title: 'Software is becoming marketing | Tereza Tizkova',
@@ -69,7 +70,7 @@ export default function SoftwareAbundanceArticle() {
       </nav>
 
       {/* Article */}
-      <article className="px-6 sm:px-8 pb-24 max-w-[680px] mx-auto">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">
@@ -287,6 +288,8 @@ export default function SoftwareAbundanceArticle() {
             </a>
             .
           </p>
+
+          <ReadMore currentUrl="/writing/software-abundance" />
         </div>
       </article>
     </div>
