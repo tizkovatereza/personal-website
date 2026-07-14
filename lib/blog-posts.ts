@@ -161,7 +161,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jul 18, 2025",
     subtitle: "My raw notes — to be updated",
     image: "/images/blog/relativity.jpg",
-    url: "https://terezatizkova.substack.com/p/notes-on-theory-of-relativity",
+    url: "https://terezatizkova.substack.com/p/theory-of-relativity",
     category: "math"
   },
   {
