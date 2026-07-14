@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react'
 import { ShareableChart } from '@/components/shareable-chart'
 import { PageTracker } from '@/components/page-tracker'
 import { ReadMore } from '@/components/read-more'
+import { ArticleEngagement } from '@/components/article-engagement'
 
 export const metadata: Metadata = {
   title: 'Software is becoming marketing | Tereza Tizkova',
@@ -288,6 +289,12 @@ export default function SoftwareAbundanceArticle() {
             </a>
             .
           </p>
+
+          <ArticleEngagement
+            slug="software-abundance"
+            title="Software is becoming marketing"
+            url="https://www.terezatizkova.com/writing/software-abundance"
+          />
 
           <ReadMore currentUrl="/writing/software-abundance" />
         </div>

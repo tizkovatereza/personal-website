@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
 import { ReadMore } from '@/components/read-more'
+import { ArticleEngagement } from '@/components/article-engagement'
 
 export const metadata: Metadata = {
   title: 'A guide to not wasting money on conference booths | Tereza Tizkova',
@@ -484,6 +485,12 @@ export default function ConferenceBoothsArticle() {
             src="/images/baseten-booth.jpeg"
             alt="Baseten booth with Philip Kiely showing his Inference Engineering book"
             sourceUrl="https://x.com/philipkiely/status/2033634606612943007?s=20"
+          />
+
+          <ArticleEngagement
+            slug="conference-booths"
+            title="A guide to not wasting money on conference booths"
+            url="https://www.terezatizkova.com/writing/conference-booths"
           />
 
           <ReadMore currentUrl="/writing/conference-booths" />
