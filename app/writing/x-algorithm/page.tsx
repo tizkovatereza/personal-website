@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PageTracker } from '@/components/page-tracker'
 import { ReadMore } from '@/components/read-more'
+import { LikeButton } from '@/components/like-button'
+import { Comments } from '@/components/comments'
 
 export const metadata: Metadata = {
   title: 'X Algorithm 2026: Every Question Answered From the Source Code | Tereza Tizkova',
@@ -385,6 +387,15 @@ export default function XAlgorithmArticle() {
           <p className="mt-12 pt-8 border-t border-border text-muted-foreground text-[14px]">
             Sources: xai-org/x-algorithm · twitter/the-algorithm · twitter/the-algorithm-ml · Heavy Ranker README · FEATURES.md · ScoredTweetsParam.scala · Earlybird README · TweepCred README · Real Graph source
           </p>
+
+          <div className="mt-10 flex items-center gap-2">
+            <span className="font-mono text-[11px] font-light tracking-[0.1em] uppercase text-muted-foreground">
+              Enjoyed this?
+            </span>
+            <LikeButton slug="x-algorithm" />
+          </div>
+
+          <Comments slug="x-algorithm" />
 
           <ReadMore currentUrl="/writing/x-algorithm" />
         </div>
