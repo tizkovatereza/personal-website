@@ -7,7 +7,7 @@ import { ReadingProgress } from '@/components/reading-progress'
 import { LikeButton } from '@/components/like-button'
 import { ShareButtons } from '@/components/share-buttons'
 import { SubscribeForm } from '@/components/subscribe-form'
-import { blogPosts } from '@/lib/blog-posts'
+import { ReadMore } from '@/components/read-more'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
@@ -58,15 +58,6 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const pool = blogPosts.filter((p) => !p.draft && p.url !== `/blog/${slug}`)
-  const latestTwo = [...pool]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 2)
-  const latestUrls = new Set(latestTwo.map((p) => p.url))
-  const mathPool = pool.filter((p) => p.category === 'math' && !latestUrls.has(p.url))
-  const randomMath = mathPool.length > 0 ? mathPool[Math.floor(Math.random() * mathPool.length)] : undefined
-  const relatedPosts = randomMath ? [...latestTwo, randomMath] : latestTwo
-
   const postUrl = `https://www.terezatizkova.com/blog/${slug}`
 
   return (
@@ -107,41 +98,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           {/* Related Posts */}
-          {relatedPosts.length > 0 && (
-            <div className="pt-8 border-t border-border/40">
-              <h2 className="font-serif text-xl font-semibold mb-6">Keep reading</h2>
-              <div>
-                {relatedPosts.map((relatedPost) => {
-                  const external = relatedPost.url.startsWith('http')
-                  return (
-                    <article
-                      key={relatedPost.url}
-                      className="group py-6 border-b border-border/40 last:border-0"
-                    >
-                      <Link
-                        href={relatedPost.url}
-                        target={external ? '_blank' : undefined}
-                        rel={external ? 'noopener noreferrer' : undefined}
-                        className="block"
-                      >
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <span>{relatedPost.date}</span>
-                          </div>
-                          <h3 className="font-serif text-xl font-medium tracking-tight group-hover:text-primary transition-colors text-balance">
-                            {relatedPost.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            {relatedPost.subtitle}
-                          </p>
-                        </div>
-                      </Link>
-                    </article>
-                  )
-                })}
-              </div>
-            </div>
-          )}
+          <ReadMore currentUrl={`/blog/${slug}`} />
         </footer>
       </article>
     </>
