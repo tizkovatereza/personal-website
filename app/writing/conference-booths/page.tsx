@@ -95,7 +95,7 @@ export default function ConferenceBoothsArticle() {
       </nav>
 
       {/* Article */}
-      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px]">
+      <article className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-[900px] mx-auto">
         {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] tracking-[-0.02em] leading-[1.1] mb-4">
@@ -491,7 +491,7 @@ export default function ConferenceBoothsArticle() {
       </article>
 
       {/* Footer */}
-      <footer className="px-6 sm:px-12 md:px-16 lg:px-20 pb-12 max-w-[900px] border-t border-border pt-8">
+      <footer className="px-6 sm:px-12 md:px-16 lg:px-20 pb-12 max-w-[900px] mx-auto border-t border-border pt-8">
         <Link 
           href="/"
           className="inline-flex items-center gap-2 font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
