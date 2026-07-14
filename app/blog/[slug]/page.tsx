@@ -4,10 +4,9 @@ import { getPostBySlug, getAllPosts } from '@/lib/mdx'
 import { formatDate } from '@/lib/format'
 import { MDXContent } from '@/components/mdx-content'
 import { ReadingProgress } from '@/components/reading-progress'
-import { LikeButton } from '@/components/like-button'
-import { ShareButtons } from '@/components/share-buttons'
 import { SubscribeForm } from '@/components/subscribe-form'
 import { ReadMore } from '@/components/read-more'
+import { ArticleEngagement } from '@/components/article-engagement'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 
@@ -91,11 +90,8 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         {/* Footer Actions */}
-        <footer className="border-t border-border/40 pt-8 space-y-8">
-          <div className="flex items-center justify-between">
-            <LikeButton slug={slug} />
-            <ShareButtons url={postUrl} title={post.title} />
-          </div>
+        <footer className="space-y-8">
+          <ArticleEngagement slug={slug} title={post.title} url={postUrl} />
 
           {/* Related Posts */}
           <ReadMore currentUrl={`/blog/${slug}`} />
