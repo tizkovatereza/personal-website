@@ -15,6 +15,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "How do \"computer use\" agents work?",
+    date: "Aug 6, 2026",
+    subtitle: "Why it's surprisingly challenging to let an LLM use a computer for you",
+    image: "/images/blog/agents-llms.jpg",
+    url: "https://technically.dev/posts/how-do-computer-use-agents-work",
+    isNew: true,
+    label: "Written for technically.dev",
+    category: "ai"
+  },
+  {
     title: "X Algorithm 2026: Every Question Answered From the Source Code",
     date: "Jul 10, 2026",
     subtitle: "A deep read through the open-sourced X algorithm — reach, timing, and engagement",

@@ -8,7 +8,7 @@ import { blogPosts, type BlogCategory } from "@/lib/blog-posts"
 const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "All", value: "all" },
   { label: "Growth", value: "growth" },
-  { label: "AI", value: "ai" },
+  { label: "Technology", value: "ai" },
   { label: "Math", value: "math" },
   { label: "Other", value: "other" },
 ]
@@ -59,15 +59,15 @@ export function BlogList() {
               className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8 py-6 border-b border-border hover:border-primary/30 transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2 flex items-center gap-2">
+                <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
                   {post.title}
-                  {post.isNew && (
-                    <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[9px] font-mono uppercase tracking-wider">
-                      New
+                </h2>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {post.label && (
+                    <span className="font-mono text-[9px] font-medium uppercase tracking-wider bg-primary text-primary-foreground px-1.5 py-0.5 whitespace-nowrap">
+                      {post.label}
                     </span>
                   )}
-                </h2>
-                <div className="flex items-center gap-2">
                   <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
                     {post.subtitle}
                   </p>

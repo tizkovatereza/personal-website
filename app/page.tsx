@@ -20,6 +20,14 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
+    title: "How do \"computer use\" agents work?",
+    date: "Aug 2026",
+    source: "technically.dev",
+    href: "https://technically.dev/posts/how-do-computer-use-agents-work",
+    isNew: true,
+    label: "Written for technically.dev",
+  },
+  {
     title: "Rise of the Software Factory",
     date: "Jun 2026",
     source: "Talk",
@@ -224,11 +232,11 @@ export default function HomePage() {
                   {...linkProps}
                   className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2"
                 >
-                  <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
+                  <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2 flex-wrap">
                     {item.title}
-                    {'isNew' in item && item.isNew && (
-                      <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[9px] font-mono uppercase tracking-wider">
-                        New
+                    {'label' in item && item.label && (
+                      <span className="px-1.5 py-0.5 bg-primary text-primary-foreground text-[9px] font-mono font-medium uppercase tracking-wider whitespace-nowrap">
+                        {item.label}
                       </span>
                     )}
                   </h3>
