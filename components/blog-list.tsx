@@ -67,10 +67,15 @@ export function BlogList() {
                     </span>
                   )}
                 </h2>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
                     {post.subtitle}
                   </p>
+                  {post.label && (
+                    <span className="font-mono text-[9px] font-light uppercase tracking-wider text-primary/70 border border-primary/20 px-1.5 py-0.5 whitespace-nowrap">
+                      {post.label}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-4 flex-shrink-0">

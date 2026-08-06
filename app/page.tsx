@@ -20,6 +20,14 @@ import { SFFogHero } from "@/components/sf-fog-hero"
 
 const writingItems = [
   {
+    title: "How do \"computer use\" agents work?",
+    date: "Aug 2026",
+    source: "technically.dev",
+    href: "https://technically.dev/posts/how-do-computer-use-agents-work",
+    isNew: true,
+    label: "Written for technically.dev",
+  },
+  {
     title: "Rise of the Software Factory",
     date: "Jun 2026",
     source: "Talk",
