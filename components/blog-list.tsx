@@ -62,16 +62,22 @@ export function BlogList() {
                 <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
                   {post.title}
                 </h2>
-                <div className="flex items-center gap-2 flex-wrap">
-                  {post.label && (
-                    <span className="font-mono text-[9px] font-medium uppercase tracking-wider bg-primary text-primary-foreground px-1.5 py-0.5 whitespace-nowrap">
-                      {post.label}
-                    </span>
-                  )}
-                  <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
-                    {post.subtitle}
+                {post.guestPost ? (
+                  <p className="text-[13px] sm:text-[14px] font-light italic text-primary/80">
+                    Guest post for {post.guestPost}
                   </p>
-                </div>
+                ) : (
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {post.label && (
+                      <span className="font-mono text-[9px] font-light uppercase tracking-[0.1em] text-muted-foreground/70 border border-border px-1.5 py-0.5 whitespace-nowrap">
+                        {post.label}
+                      </span>
+                    )}
+                    <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground line-clamp-1">
+                      {post.subtitle}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="flex items-center gap-4 flex-shrink-0">
                 <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">

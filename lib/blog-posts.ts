@@ -9,6 +9,7 @@ export interface BlogPost {
   isNew?: boolean
   isInternal?: boolean
   label?: string
+  guestPost?: string
   draft?: boolean
   category?: BlogCategory
 }
@@ -21,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     image: "/images/blog/agents-llms.jpg",
     url: "https://technically.dev/posts/how-do-computer-use-agents-work",
     isNew: true,
-    label: "Written for technically.dev",
+    guestPost: "technically.dev",
     category: "ai"
   },
   {
