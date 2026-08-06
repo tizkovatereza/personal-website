@@ -25,7 +25,7 @@ const writingItems = [
     source: "technically.dev",
     href: "https://technically.dev/posts/how-do-computer-use-agents-work",
     isNew: true,
-    label: "Written for technically.dev",
+    guestPost: "technically.dev",
   },
   {
     title: "Rise of the Software Factory",
@@ -33,7 +33,6 @@ const writingItems = [
     source: "Talk",
     href: "/blog/rise-of-the-software-factory",
     isNew: true,
-    label: "AI Engineer World's Fair talk",
   },
   // Draft: hidden until ready
   // {
@@ -234,9 +233,9 @@ export default function HomePage() {
                 >
                   <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2 flex-wrap">
                     {item.title}
-                    {'label' in item && item.label && (
-                      <span className="px-1.5 py-0.5 bg-primary text-primary-foreground text-[9px] font-mono font-medium uppercase tracking-wider whitespace-nowrap">
-                        {item.label}
+                    {'guestPost' in item && item.guestPost && (
+                      <span className="text-[13px] font-light italic text-primary/80 tracking-normal normal-case">
+                        Guest post for {item.guestPost}
                       </span>
                     )}
                   </h3>
