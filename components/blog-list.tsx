@@ -8,7 +8,7 @@ import { blogPosts, type BlogCategory } from "@/lib/blog-posts"
 const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "All", value: "all" },
   { label: "Growth", value: "growth" },
-  { label: "AI", value: "ai" },
+  { label: "Technology", value: "ai" },
   { label: "Math", value: "math" },
   { label: "Other", value: "other" },
 ]
