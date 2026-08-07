@@ -17,6 +17,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import { SFFogHero } from "@/components/sf-fog-hero"
+import { trackOutbound } from "@/lib/track-outbound"
 
 const writingItems = [
   {
@@ -222,7 +223,12 @@ export default function HomePage() {
               const isExternal = item.href.startsWith('http')
               const LinkComponent = isExternal ? 'a' : Link
               const linkProps = isExternal 
-                ? { href: item.href, target: "_blank", rel: "noopener noreferrer" }
+                ? {
+                    href: item.href,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    onClick: () => trackOutbound(item.href, item.title),
+                  }
                 : { href: item.href }
               
               return (
