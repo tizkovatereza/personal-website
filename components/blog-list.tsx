@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { blogPosts, type BlogCategory } from "@/lib/blog-posts"
+import { trackOutbound } from "@/lib/track-outbound"
 
 const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "All", value: "all" },
@@ -50,7 +51,12 @@ export function BlogList() {
           const LinkComponent = post.isInternal ? Link : "a"
           const linkProps = post.isInternal
             ? { href: post.url }
-            : { href: post.url, target: "_blank", rel: "noopener noreferrer" }
+            : {
+                href: post.url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                onClick: () => trackOutbound(post.url, post.title),
+              }
 
           return (
             <LinkComponent
