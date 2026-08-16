@@ -33,7 +33,6 @@ export const blogPosts: BlogPost[] = [
     url: "/writing/x-algorithm",
     isNew: true,
     isInternal: true,
-    label: "Deep research pass with AI",
     category: "growth"
   },
   {
@@ -44,7 +43,6 @@ export const blogPosts: BlogPost[] = [
     url: "/blog/rise-of-the-software-factory",
     isNew: true,
     isInternal: true,
-    label: "AI Engineer World's Fair talk",
     category: "ai"
   },
   {
