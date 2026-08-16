@@ -20,10 +20,10 @@ const resources = [
     url: "https://factory.ai/news/software-factory",
   },
   {
-    title: "Best software factory platforms in 2026: a comparison guide",
+    title: "Making your codebase AI-agent ready",
     description:
-      "A reference comparison of platforms implementing the software factory model — delivery, audit, model flexibility, and deployment.",
-    url: "https://factory.ai/articles/best-software-factory-platforms-2026",
+      "The practices that make a repository legible to coding agents — clear structure, tests to verify against, and written-down conventions.",
+    url: "https://factory.ai/articles/codebase-ai-agent-readiness",
   },
   {
     title: "Deferred Context Engine",
@@ -38,16 +38,16 @@ const resources = [
     url: "https://factory.ai/articles/how-enterprises-automate-software-development",
   },
   {
+    title: "How to use DeepSeek V4 in Factory",
+    description:
+      "Running the open-weight DeepSeek V4 model natively inside a Droid — selection, reasoning levels, and cost.",
+    url: "https://factory.ai/articles/deepseek-on-factory",
+  },
+  {
     title: "Introducing Agent Effectiveness",
     description:
       "Mapping agent usage to delivery speed, work priorities, and shipped artifacts across an engineering organization.",
     url: "https://factory.ai/news/agent-effectiveness",
-  },
-  {
-    title: "Droid Shield 2.0: learned secret detection",
-    description:
-      "A learned approach to detecting secrets and preventing leaks in agent-generated code.",
-    url: "https://factory.ai/news/droid-shield-2-0",
   },
   {
     title: "What is a software factory? The architecture behind autonomous software delivery",
@@ -56,16 +56,64 @@ const resources = [
     url: "https://factory.ai/articles/what-is-a-software-factory-architecture",
   },
   {
+    title: "How to use GLM-5.2 in Factory",
+    description:
+      "Running Zhipu AI's open-weight GLM models in a Droid at a low credit multiplier for high-volume work.",
+    url: "https://factory.ai/articles/glm-on-factory",
+  },
+  {
+    title: "Droid Shield 2.0: learned secret detection",
+    description:
+      "A learned approach to detecting secrets and preventing leaks in agent-generated code.",
+    url: "https://factory.ai/news/droid-shield-2-0",
+  },
+  {
+    title: "How to measure agent readiness",
+    description:
+      "Turning codebase quality into a score you can track — the CLI report, dashboard, and API behind agent readiness.",
+    url: "https://factory.ai/articles/measuring-agent-readiness",
+  },
+  {
     title: "Designing an AI-Native Enterprise Organizational Model",
     description:
       "Central governance with explicit boundaries for access, integrations, policy, spend, and data residency.",
     url: "https://factory.ai/news/enterprise-organization-model",
   },
   {
+    title: "How to use Kimi K2 in Factory",
+    description:
+      "Using Moonshot AI's Kimi K2 family for scoped coding tasks with open weights and a low credit multiplier.",
+    url: "https://factory.ai/articles/kimi-k2-on-factory",
+  },
+  {
+    title: "Best software factory platforms in 2026: a comparison guide",
+    description:
+      "A reference comparison of platforms implementing the software factory model — delivery, audit, model flexibility, and deployment.",
+    url: "https://factory.ai/articles/best-software-factory-platforms-2026",
+  },
+  {
     title: "Launching the Factory Guild",
     description:
       "A community of students, builders, and researchers shaping how software gets built with Droids.",
     url: "https://factory.ai/news/factory-guild",
+  },
+  {
+    title: "Why your AI agents should be model-agnostic",
+    description:
+      "The case against coupling your workflow to a single model provider, and what switching models per task buys you.",
+    url: "https://factory.ai/articles/model-agnostic-ai-agents",
+  },
+  {
+    title: "How to use MiniMax in Factory",
+    description:
+      "Running MiniMax, the lowest-multiplier models in the catalog, for cost-sensitive batches and cleanup passes.",
+    url: "https://factory.ai/articles/minimax-on-factory",
+  },
+  {
+    title: "A guide to Factory Router",
+    description:
+      "How Factory Router picks the right model for each step automatically instead of pinning a run to one.",
+    url: "https://factory.ai/articles/factory-router-guide",
   },
 ]
 
