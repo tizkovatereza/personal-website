@@ -79,7 +79,7 @@ export default function ResourcesPage() {
             Reading list
           </p>
           <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
-            Resources
+            Resources for Factory
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
             I now work on growth at Factory. Here are some pieces from the team worth reading.
