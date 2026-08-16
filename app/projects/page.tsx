@@ -164,7 +164,14 @@ export default function ProjectsPage() {
                     {/* Title */}
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em]">
-                        {project.title}
+                        <a
+                          href="https://topicsapp.net"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                        >
+                          {project.title}
+                        </a>
                       </h2>
                     </div>
                     

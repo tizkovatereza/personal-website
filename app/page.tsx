@@ -246,7 +246,7 @@ export default function HomePage() {
                     )}
                   </h3>
                   <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
-                    {item.date} · {item.source}
+                    {item.date} �� {item.source}
                   </span>
                 </LinkComponent>
               )
@@ -397,6 +397,13 @@ export default function HomePage() {
             >
               Substack
             </a>
+            <Link
+              href="/resources"
+              aria-label="Resources"
+              className="font-mono text-[11px] font-light text-background hover:text-background tracking-[0.05em] uppercase select-none"
+            >
+              Resources
+            </Link>
           </div>
         </footer>
 
