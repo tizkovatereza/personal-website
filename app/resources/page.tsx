@@ -2,7 +2,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Resources | Tereza Tizkova",
-  description: "A small collection of links worth reading.",
+  description: "A collection of pieces from Factory worth reading.",
   robots: { index: false, follow: false },
 }
 
@@ -14,10 +14,22 @@ const resources = [
     url: "https://factory.ai/articles/what-is-a-software-factory",
   },
   {
+    title: "Factory 2.0: From coding agents to software factories",
+    description:
+      "The shift from coding agents to full software factories, and what autonomy across the SDLC actually looks like.",
+    url: "https://factory.ai/news/software-factory",
+  },
+  {
     title: "Best software factory platforms in 2026: a comparison guide",
     description:
       "A reference comparison of platforms implementing the software factory model — delivery, audit, model flexibility, and deployment.",
     url: "https://factory.ai/articles/best-software-factory-platforms-2026",
+  },
+  {
+    title: "Deferred Context Engine",
+    description:
+      "How Factory defers and compresses context to keep agents effective across long, complex tasks.",
+    url: "https://factory.ai/news/deferred-context-engine",
   },
   {
     title: "How enterprise engineering teams automate software development (2026)",
@@ -26,10 +38,34 @@ const resources = [
     url: "https://factory.ai/articles/how-enterprises-automate-software-development",
   },
   {
+    title: "Introducing Agent Effectiveness",
+    description:
+      "Mapping agent usage to delivery speed, work priorities, and shipped artifacts across an engineering organization.",
+    url: "https://factory.ai/news/agent-effectiveness",
+  },
+  {
+    title: "Droid Shield 2.0: learned secret detection",
+    description:
+      "A learned approach to detecting secrets and preventing leaks in agent-generated code.",
+    url: "https://factory.ai/news/droid-shield-2-0",
+  },
+  {
     title: "What is a software factory? The architecture behind autonomous software delivery",
     description:
       "A reference architecture: the components that move a unit of intent through specification, execution, review, and deployment.",
     url: "https://factory.ai/articles/what-is-a-software-factory-architecture",
+  },
+  {
+    title: "Designing an AI-Native Enterprise Organizational Model",
+    description:
+      "Central governance with explicit boundaries for access, integrations, policy, spend, and data residency.",
+    url: "https://factory.ai/news/enterprise-organization-model",
+  },
+  {
+    title: "Launching the Factory Guild",
+    description:
+      "A community of students, builders, and researchers shaping how software gets built with Droids.",
+    url: "https://factory.ai/news/factory-guild",
   },
 ]
 
@@ -43,10 +79,10 @@ export default function ResourcesPage() {
             Reading list
           </p>
           <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
-            Resources
+            Resources for Factory
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
-            A small, unlisted collection of links worth reading.
+            I now work on growth at Factory. Here are some pieces from the team worth reading.
           </p>
         </header>
       </div>
