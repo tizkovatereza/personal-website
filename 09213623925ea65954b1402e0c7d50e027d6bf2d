@@ -1,0 +1,25 @@
+app/page.tsx
+  334f031f66d643f2 109,111-112
+app/projects/page.tsx
+  334f031f66d643f2 58-60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "09213623925ea65954b1402e0c7d50e027d6bf2d",
+  "prompts": {
+    "334f031f66d643f2": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "c301b7e4-f563-4767-b577-3c722f333cfd",
+        "model": "auto"
+      },
+      "human_author": "tizkovatereza",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 51,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    }
+  }
+}
