@@ -1,0 +1,25 @@
+components/mobile-nav.tsx
+  fe2f44fd3527ba4a 119-129
+components/sidebar.tsx
+  fe2f44fd3527ba4a 42-53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "0a98786e68b2410b5236ee03c6a4f50a677c6dc6",
+  "prompts": {
+    "fe2f44fd3527ba4a": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "7281ea39-d82c-41a2-8cdb-301540fe0d14",
+        "model": "auto"
+      },
+      "human_author": "tizkovatereza",
+      "messages": [],
+      "total_additions": 54,
+      "total_deletions": 69,
+      "accepted_lines": 24,
+      "overriden_lines": 3
+    }
+  }
+}
