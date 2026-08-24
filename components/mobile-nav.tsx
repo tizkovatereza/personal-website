@@ -116,6 +116,17 @@ export function MobileNav() {
             </div>
             
             <ul className="space-y-1">
+              <li>
+                <a
+                  href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-3 text-[17px] font-medium text-primary transition-colors hover:text-foreground"
+                >
+                  Download iOS App
+                </a>
+              </li>
               {navItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== "/" && pathname.startsWith(item.href))

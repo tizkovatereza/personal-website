@@ -39,6 +39,18 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-8 pt-4">
         <ul className="space-y-1">
+          <li>
+            {/* Inter is loaded at 300/400/500 only, so font-medium is the heaviest
+                weight that renders without the browser synthesising it. */}
+            <a
+              href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 text-[15px] font-medium text-primary transition-colors hover:text-foreground"
+            >
+              Download iOS App
+            </a>
+          </li>
           {navItems.map((item) => {
             const isActive = pathname === item.href || 
               (item.href !== "/" && pathname.startsWith(item.href))
