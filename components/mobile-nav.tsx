@@ -92,6 +92,16 @@ export function MobileNav() {
           <span className="font-serif text-base tracking-[-0.02em] text-foreground">Tereza Tizkova</span>
         </Link>
         <div className="flex items-center gap-1">
+          {/* In the bar, not just the menu: the header is fixed above the overlay,
+              so this stays reachable whether the menu is open or closed. */}
+          <a
+            href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mr-1 text-[13px] font-medium text-primary whitespace-nowrap"
+          >
+            Download iOS App
+          </a>
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -116,17 +126,6 @@ export function MobileNav() {
             </div>
             
             <ul className="space-y-1">
-              <li>
-                <a
-                  href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="block py-3 text-[17px] font-medium text-primary transition-colors hover:text-foreground"
-                >
-                  Download iOS App
-                </a>
-              </li>
               {navItems.map((item) => {
                 const isActive = pathname === item.href || 
                   (item.href !== "/" && pathname.startsWith(item.href))
