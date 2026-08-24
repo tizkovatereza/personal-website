@@ -1,5 +1,10 @@
 'use client'
 
+// Not rendered anywhere since Topics shipped to the App Store on 24 August 2026;
+// the project cards link to the store instead. Kept because the signups it wrote
+// live in the `topics_waitlist` table behind app/api/topics-waitlist, and those
+// addresses are the launch announcement list.
+
 import { useState } from 'react'
 
 export function TopicsWaitlistForm() {

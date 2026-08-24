@@ -12,7 +12,6 @@ import {
   Mic,
   Lightbulb,
 } from 'lucide-react'
-import { TopicsWaitlistForm } from '@/components/topics-waitlist-form'
 
 export const metadata: Metadata = {
   title: 'Projects | Tereza Tizkova',
@@ -56,11 +55,10 @@ const projects = [
   {
     id: 'topics',
     title: 'Topics',
-    description: 'A curated reading app for writers and learners who want to read more intentionally. Looking for beta testers!',
-    link: '#',
-    tag: 'Launching Soon',
+    description: 'A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.',
+    link: 'https://apps.apple.com/us/app/topics-curated-reading/id6759892878',
+    tag: 'iOS App',
     icon: BookOpen,
-    isWaitlist: true,
   },
   {
     id: 'events',
@@ -139,49 +137,6 @@ export default function ProjectsPage() {
         {/* Projects Grid - 2x2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((project) => {
-            // Special handling for waitlist projects
-            if (project.isWaitlist) {
-              return (
-                <div
-                  key={project.id}
-                  id={project.id}
-                  className="group block bg-card/90 backdrop-blur-sm border border-border transition-all duration-300 overflow-hidden"
-                >
-                  {/* Minimal centered icon */}
-                  <div className="flex items-center justify-center h-40 border-b border-border bg-muted/20">
-                    <project.icon className="h-10 w-10 text-primary" strokeWidth={1.25} />
-                  </div>
-                  
-                  <div className="p-6 sm:p-8">
-                    {/* Category with diamond */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="w-1.5 h-1.5 bg-primary rotate-45" />
-                      <span className="font-mono text-[11px] font-light text-primary tracking-[0.05em] uppercase">
-                        {project.tag}
-                      </span>
-                    </div>
-                    
-                    {/* Title */}
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <h2 className="font-serif text-[20px] sm:text-[22px] tracking-[-0.01em]">
-                        <a
-                          href="https://topicsapp.net"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          {project.title}
-                        </a>
-                      </h2>
-                    </div>
-                    
-                    {/* Waitlist Form */}
-                    <TopicsWaitlistForm />
-                  </div>
-                </div>
-              )
-            }
-
             return (
               <a
                 key={project.id}

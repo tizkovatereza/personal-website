@@ -106,11 +106,10 @@ const projects = [
     icon: Star,
   },
   { 
-    category: "Launching Soon",
+    category: "iOS App",
     title: "Topics", 
-    description: "A curated reading app for writers and learners who want to read more intentionally. Looking for beta testers!",
-    href: "#",
-    isWaitlist: true,
+    description: "A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.",
+    href: "https://apps.apple.com/us/app/topics-curated-reading/id6759892878",
     icon: BookOpen,
   },
   { 
