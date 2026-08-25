@@ -7,14 +7,25 @@ import Link from 'next/link'
 
 const experience = [
   {
+    role: 'Growth',
+    company: 'Factory',
+    location: 'San Francisco, CA',
+    date: '2026 – Present',
+    bullets: [
+      'Lead growth for an agent-native software delivery platform serving enterprise engineering teams',
+      'Own developer acquisition and activation — content, launches, and technical education that convert developers into active users',
+      'Build the top-of-funnel motion: articles, model guides, and community programs that grow qualified developer signups',
+    ],
+  },
+  {
     role: 'Founding Member — Growth & DevRel',
     company: 'E2B',
     location: 'San Francisco, CA',
-    date: 'Jun 2023 – Present',
+    date: 'Jun 2023 – 2026',
     bullets: [
-      'First hire at AI infrastructure startup; led growth from pre-seed to Series A',
-      'Built Awesome AI Agents repo (31K+ GitHub stars), co-taught DeepLearning.AI course with Andrew Ng',
-      'Drove product launches, partnerships (Groq, Mistral, LangChain), developer community, and events',
+      'First hire at AI infrastructure startup; owned growth end-to-end from pre-seed through Series A',
+      'Grew a developer audience to 40K+ newsletter and 31K+ GitHub stars (Awesome AI Agents); co-taught a DeepLearning.AI course with Andrew Ng',
+      'Drove measurable acquisition through product launches, partnerships (Groq, Mistral, LangChain), community, and events (1000+ hackathon attendees)',
     ],
   },
   {
@@ -23,7 +34,7 @@ const experience = [
     location: 'Prague',
     date: '2022 – 2023',
     bullets: [
-      'Strategy consulting in energy, finance, and sustainable transition',
+      'Data-driven strategy consulting across energy, finance, and sustainable transition — analytics, modeling, and executive recommendations',
     ],
   },
   {
@@ -111,7 +122,7 @@ function ResumeContent() {
             Tereza Tizkova
           </h1>
           <p className="text-[11px] text-gray-600 mb-2">
-            Growth & DevRel leader. First hire at E2B (AI infrastructure, Series A). Background in math, consulting, and developer communities.
+            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned growth from pre-seed to Series A. Math degree, ex-McKinsey, with a 40K+ developer audience.
           </p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500">
             <span className="flex items-center gap-1">
