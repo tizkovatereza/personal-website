@@ -12,9 +12,10 @@ const experience = [
     location: 'San Francisco, CA',
     date: '2026 – Present',
     bullets: [
-      'Lead growth for an agent-native software delivery platform serving enterprise engineering teams',
-      'Own developer acquisition and activation — content, launches, and technical education that convert developers into active users',
-      'Build the top-of-funnel motion: articles, model guides, and community programs that grow qualified developer signups',
+      'Own key growth metrics for an agent-native software delivery platform — new sign-ups and newly activated users',
+      'Lead SEO and AI SEO strategy, paid ads scale-up across channels, and a global OOH campaign (billboards and ads)',
+      'Build the influencer and creator network and the developer community',
+      'Contribute to earned media & PR, email campaigns, social media strategy, brand & positioning, and onboarding/activation flows',
     ],
   },
   {
@@ -66,13 +67,6 @@ const highlights = [
   'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)',
   'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
-]
-
-const audience = [
-  { label: 'Newsletter', value: '40K+' },
-  { label: 'Twitter', value: '7K+' },
-  { label: 'LinkedIn', value: '8K+' },
-  { label: 'GitHub Stars', value: '31K+' },
 ]
 
 const awards = [
@@ -207,38 +201,20 @@ function ResumeContent() {
           </section>
         </div>
 
-        {/* Two columns: Audience + Awards */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Audience - compact row */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Audience
-            </h2>
-            <div className="flex flex-wrap gap-x-6 gap-y-1">
-              {audience.map((item, i) => (
-                <div key={i} className="flex items-baseline gap-1.5">
-                  <span className="text-[12px] font-bold text-gray-900">{item.value}</span>
-                  <span className="text-[8px] text-gray-500 uppercase">{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Awards & Memberships */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Awards & Memberships
-            </h2>
-            <ul className="space-y-0.5">
-              {awards.map((item, i) => (
-                <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
-                  <span className="absolute left-0 text-gray-400">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        {/* Awards & Memberships */}
+        <section>
+          <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+            Awards & Memberships
+          </h2>
+          <ul className="space-y-0.5">
+            {awards.map((item, i) => (
+              <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
+                <span className="absolute left-0 text-gray-400">•</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
 
       </div>
