@@ -63,13 +63,11 @@ const education = [
 ]
 
 const highlights = [
+  'Keynote speaker at AI Engineer, San Francisco 2026',
   'Co-taught "Building Coding Agents" course on DeepLearning.AI with Andrew Ng\'s team',
   'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)',
   'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
-]
-
-const awards = [
   'AI Awards 2025 & Kristalova Lupa 2025 — E2B recognized for brand, content, and achievements (Czech Republic\'s most prestigious tech awards)',
   '4th Place, Rotman European Trading Challenge 2021 — Algorithmic trading competition',
   'DevRel Collective Member — Exclusive global community of 1,800+ developer relations professionals',
@@ -165,49 +163,31 @@ function ResumeContent() {
           </div>
         </section>
 
-        {/* Two columns: Education + Highlights */}
-        <div className="grid grid-cols-2 gap-6 mb-3">
-          {/* Education */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Education
-            </h2>
-            <div className="space-y-1.5">
-              {education.map((edu, i) => (
-                <div key={i}>
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="text-[10px] font-semibold text-gray-900">{edu.degree}</h3>
-                    <span className="text-[9px] text-gray-500 ml-2">{edu.years}</span>
-                  </div>
-                  <p className="text-[9px] text-gray-600">{edu.school}</p>
+        {/* Education */}
+        <section className="mb-3">
+          <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+            Education
+          </h2>
+          <div className="space-y-1.5">
+            {education.map((edu, i) => (
+              <div key={i}>
+                <div className="flex justify-between items-baseline">
+                  <h3 className="text-[10px] font-semibold text-gray-900">{edu.degree}</h3>
+                  <span className="text-[9px] text-gray-500 ml-2">{edu.years}</span>
                 </div>
-              ))}
-            </div>
-          </section>
+                <p className="text-[9px] text-gray-600">{edu.school}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Highlights */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Highlights
-            </h2>
-            <ul className="space-y-0.5">
-              {highlights.map((item, i) => (
-                <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
-                  <span className="absolute left-0 text-gray-400">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
-
-        {/* Awards & Memberships */}
+        {/* Highlights & Achievements */}
         <section>
           <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-            Awards & Memberships
+            Highlights & Achievements
           </h2>
-          <ul className="space-y-0.5">
-            {awards.map((item, i) => (
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
+            {highlights.map((item, i) => (
               <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
                 <span className="absolute left-0 text-gray-400">•</span>
                 {item}
