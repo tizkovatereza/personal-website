@@ -119,20 +119,20 @@ function ResumeContent() {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500">
             <span className="flex items-center gap-1">
               <MapPin className="w-3 h-3" />
-              San Francisco / Prague
+              San Francisco
             </span>
-            <span className="flex items-center gap-1">
+            <a href="mailto:tereza.tizkova@gmail.com" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Mail className="w-3 h-3" />
               tereza.tizkova@gmail.com
-            </span>
-            <span className="flex items-center gap-1">
+            </a>
+            <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Globe className="w-3 h-3" />
               terezatizkova.com
-            </span>
-            <span className="flex items-center gap-1">
+            </a>
+            <a href="https://linkedin.com/in/tereza-tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Linkedin className="w-3 h-3" />
               linkedin.com/in/tereza-tizkova
-            </span>
+            </a>
           </div>
         </header>
 
