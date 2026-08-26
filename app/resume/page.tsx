@@ -47,7 +47,9 @@ const experience = [
     location: 'Prague',
     date: '2022 – 2023',
     bullets: [
-      'Data-driven strategy consulting across energy, finance, and sustainable transition — analytics, modeling, and executive recommendations',
+      'Due diligence and sustainable energy transformation engagements',
+      'Optimizing operations, strategy, and growth for clients',
+      'Led two recruiting initiatives within the Prague office',
     ],
   },
   {
