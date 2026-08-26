@@ -181,10 +181,10 @@ function ResumeContent() {
           </div>
         </section>
 
-        {/* Highlights & Achievements */}
+        {/* Achievements */}
         <section>
           <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-            Highlights & Achievements
+            Achievements
           </h2>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
             {highlights.map((item, i) => (
