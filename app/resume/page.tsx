@@ -46,7 +46,6 @@ const experience = [
     bullets: [
       'Due diligence and sustainable energy transformation engagements',
       'Optimizing operations, strategy, and growth for clients',
-      'Led two recruiting initiatives within the Prague office',
     ],
   },
   {
