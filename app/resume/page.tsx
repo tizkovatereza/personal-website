@@ -143,7 +143,7 @@ function ResumeContent() {
             </span>
             <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Globe className="w-3 h-3 shrink-0" />
-              terezatizkova.com <span className="text-gray-400">· 5K/mo</span>
+              terezatizkova.com <span className="text-gray-400">· 5K blog readers/mo</span>
             </a>
             <a href="https://linkedin.com/in/tereza-tizkova-568439174" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Linkedin className="w-3 h-3 shrink-0" />
