@@ -55,8 +55,7 @@ const experience = [
     date: '2020 – 2022',
     bullets: [
       'IAESTE is a global nonprofit that runs international technical internship exchanges for STEM students',
-      'Founded the local branch and organized international technical internships',
-      'Organized a career fair and built partnerships with companies',
+      'Founded the local branch, organized a career fair, and built partnerships with companies and faculties',
     ],
   },
 ]
