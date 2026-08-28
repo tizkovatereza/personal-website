@@ -31,6 +31,7 @@ const experience = [
       'First hire; owned growth end-to-end from pre-seed through Series A',
       'Created and co-taught a DeepLearning.AI course with Andrew Ng, with tens of thousands of enrollments',
       'Led product launches and launch campaigns',
+      'Led a global OOH campaign',
       'Built co-marketing partnerships (Groq, Mistral, LangChain)',
       'Ran developer community and events (1000+ hackathon attendees)',
       'Owned content strategy across blog, docs, and social',
