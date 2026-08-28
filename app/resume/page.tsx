@@ -29,7 +29,6 @@ const experience = [
     bullets: [
       'Helped build an AI sandbox infrastructure company whose customers include Manus, Perplexity, Hugging Face, and Groq',
       'First hire; owned growth end-to-end from pre-seed through Series A',
-      'Grew the developer audience to 40K+ newsletter subscribers and 30K GitHub stars (Awesome AI Agents)',
       'Co-taught a DeepLearning.AI course with Andrew Ng',
       'Led product launches and launch campaigns',
       'Built co-marketing partnerships (Groq, Mistral, LangChain)',
