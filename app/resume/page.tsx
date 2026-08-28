@@ -17,12 +17,8 @@ const experience = [
       'Scaling paid ads across Google, LinkedIn, X, and others, cutting cost per acquisition by single-digit % month over month',
       'Own a global OOH billboard campaign',
       'Build the influencer and creator network',
-      'Grow and nurture the developer community',
-      'Drive earned media & public relations strategy',
+      'Start and own a developer event series',
       'Design onboarding, user feedback, and activation flows',
-      'Own email campaign strategy and execution',
-      'Set social media strategy',
-      'Shape brand and positioning',
     ],
   },
   {
