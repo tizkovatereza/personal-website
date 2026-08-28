@@ -13,7 +13,7 @@ const experience = [
     date: '2026 – Present',
     bullets: [
       'Own key growth metrics: new sign-ups and newly activated users',
-      'Lead SEO and AI SEO strategy',
+      'Lead initiatives that improve SEO and AI SEO strategy, driving double-digit % growth in organic traffic',
       'Scale paid ads across channels',
       'Run a global OOH campaign (billboards and ads)',
       'Build the influencer and creator network',
