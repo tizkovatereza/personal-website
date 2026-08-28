@@ -15,7 +15,7 @@ const experience = [
       'Own key growth metrics: new sign-ups and newly activated users',
       'Lead initiatives that improve SEO and AI SEO strategy, driving double-digit % growth in organic traffic',
       'Scaling paid ads across Google, LinkedIn, X, and others, cutting cost per acquisition by single-digit % month over month',
-      'Run a global OOH campaign (billboards and ads)',
+      'Own a global OOH billboard campaign',
       'Build the influencer and creator network',
       'Grow and nurture the developer community',
       'Drive earned media & public relations strategy',
