@@ -83,7 +83,6 @@ const highlights = [
   { text: 'Keynote speaker at AI Engineer, San Francisco 2026', href: '/blog/rise-of-the-software-factory' },
   'Co-taught "Building Coding Agents" course on DeepLearning.AI with Andrew Ng\'s team',
   { text: 'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)', href: 'https://github.com/e2b-dev/awesome-ai-agents' },
-  'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
   'AI Awards 2025 & Kristalova Lupa 2025 — E2B recognized for brand, content, and achievements (Czech Republic\'s most prestigious tech awards)',
 ]
