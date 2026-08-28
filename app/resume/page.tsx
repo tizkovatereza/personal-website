@@ -101,6 +101,13 @@ function ResumeContent() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 print:bg-white">
+      <style>{`
+        @media print {
+          @page { size: letter portrait; margin: 0.4in; }
+          html, body { height: auto !important; background: #fff !important; }
+          .resume-page { width: 100% !important; padding: 0 !important; margin: 0 !important; }
+        }
+      `}</style>
       {/* Header bar - hidden when printing */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
         <Link href="/" className="text-[12px] text-gray-500 hover:text-gray-900 transition-colors">
@@ -120,7 +127,7 @@ function ResumeContent() {
       </div>
 
       {/* Resume - optimized for one page */}
-      <div className="w-[8.5in] mx-auto bg-white px-[0.6in] py-[0.5in] print:px-[0.5in] print:py-[0.4in] print:w-full">
+      <div className="resume-page w-[8.5in] mx-auto bg-white px-[0.6in] py-[0.5in] print:w-full">
         {/* Header */}
         <header className="mb-4 print:mb-3">
           <h1 className="text-[22px] font-bold text-gray-900 mb-0.5">
@@ -160,7 +167,7 @@ function ResumeContent() {
           <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
             Experience
           </h2>
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {experience.map((job, i) => (
               <div key={i}>
                 <div className="flex justify-between items-baseline">
@@ -171,7 +178,7 @@ function ResumeContent() {
                 </div>
                 <ul className="mt-0.5 space-y-0">
                   {job.bullets.map((bullet, j) => (
-                    <li key={j} className="text-[10px] text-gray-700 pl-2.5 relative leading-relaxed">
+                    <li key={j} className="text-[10px] text-gray-700 pl-2.5 relative leading-snug">
                       <span className="absolute left-0 text-gray-400">•</span>
                       {bullet}
                     </li>
