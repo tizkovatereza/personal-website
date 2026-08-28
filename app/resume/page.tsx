@@ -14,7 +14,7 @@ const experience = [
     bullets: [
       'Own key growth metrics: new sign-ups and newly activated users',
       'Lead initiatives that improve SEO and AI SEO strategy, driving double-digit % growth in organic traffic',
-      'Scale paid ads across channels',
+      'Scaling paid ads across Google, LinkedIn, X, and others, cutting cost per acquisition by single-digit % month over month',
       'Run a global OOH campaign (billboards and ads)',
       'Build the influencer and creator network',
       'Grow and nurture the developer community',
