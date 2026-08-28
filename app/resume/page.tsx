@@ -80,7 +80,7 @@ const education = [
 ]
 
 const highlights = [
-  'Keynote speaker at AI Engineer, San Francisco 2026',
+  { text: 'Keynote speaker at AI Engineer, San Francisco 2026', href: '/blog/rise-of-the-software-factory' },
   'Co-taught "Building Coding Agents" course on DeepLearning.AI with Andrew Ng\'s team',
   'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)',
   'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
@@ -210,12 +210,27 @@ function ResumeContent() {
             Achievements
           </h2>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
-            {highlights.map((item, i) => (
-              <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
-                <span className="absolute left-0 text-gray-400">•</span>
-                {item}
-              </li>
-            ))}
+            {highlights.map((item, i) => {
+              const isLink = typeof item === 'object'
+              const text = isLink ? item.text : item
+              return (
+                <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
+                  <span className="absolute left-0 text-gray-400">•</span>
+                  {isLink ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors"
+                    >
+                      {text}
+                    </a>
+                  ) : (
+                    text
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </section>
       </div>
