@@ -109,7 +109,7 @@ function ResumeContent() {
         }
       `}</style>
       {/* Header bar - hidden when printing */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
+      <div className="bg-white border-b border-gray-200 pl-6 pr-16 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
         <Link href="/" className="text-[12px] text-gray-500 hover:text-gray-900 transition-colors">
           ← Back
         </Link>
