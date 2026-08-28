@@ -86,8 +86,6 @@ const highlights = [
   'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
   'AI Awards 2025 & Kristalova Lupa 2025 — E2B recognized for brand, content, and achievements (Czech Republic\'s most prestigious tech awards)',
-  '4th Place, Rotman European Trading Challenge 2021 — Algorithmic trading competition',
-  'DevRel Collective Member — Exclusive global community of 1,800+ developer relations professionals',
 ]
 
 function ResumeContent() {
