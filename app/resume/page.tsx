@@ -68,8 +68,13 @@ const education = [
     years: '2019 – 2022',
   },
   {
-    degree: 'Economics & Finance + Marketing Communications',
-    school: 'Charles University — studied simultaneously',
+    degree: 'BSc Economics & Finance',
+    school: 'Charles University — completed alongside a second degree',
+    years: '2016 – 2019',
+  },
+  {
+    degree: 'BA Marketing Communications',
+    school: 'Charles University — completed alongside a second degree',
     years: '2016 – 2019',
   },
 ]
