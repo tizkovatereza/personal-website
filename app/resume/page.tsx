@@ -102,13 +102,13 @@ function ResumeContent() {
   return (
     <div className="min-h-screen bg-white text-gray-900 print:bg-white">
       {/* Header bar - hidden when printing */}
-      <div className="bg-background px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
-        <Link href="/" className="font-mono text-[12px] text-gray-400 hover:text-white transition-colors">
+      <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
+        <Link href="/" className="text-[12px] text-gray-500 hover:text-gray-900 transition-colors">
           ← Back
         </Link>
         <button
           onClick={() => window.print()}
-          className="flex items-center gap-2 px-4 py-2 text-[12px] font-mono font-light tracking-wide text-gray-300 border border-white/20 hover:border-white/40 hover:text-white transition-colors"
+          className="flex items-center gap-2 px-4 py-2 text-[12px] tracking-wide text-gray-700 border border-gray-300 hover:border-gray-500 hover:text-gray-900 transition-colors"
         >
           <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

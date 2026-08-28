@@ -14,6 +14,8 @@ const navItems = [
 export function Sidebar() {
   const pathname = usePathname()
 
+  if (pathname === "/resume") return null
+
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-background border-r border-border z-50">
       {/* Header with name */}
