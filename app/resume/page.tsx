@@ -18,7 +18,7 @@ const experience = [
       'Own a global OOH billboard campaign',
       'Build the influencer and creator network',
       'Launch a developer event series with 3000+ attendees',
-      'Design onboarding, user feedback, and activation flows',
+      'Work on onboarding, user feedback, activation flows, email campaigns',
     ],
   },
   {
