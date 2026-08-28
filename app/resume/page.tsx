@@ -7,14 +7,35 @@ import Link from 'next/link'
 
 const experience = [
   {
+    role: 'Growth',
+    company: 'Factory',
+    location: 'San Francisco, CA',
+    date: '2026 – Present',
+    bullets: [
+      'Own key growth metrics: new sign-ups and newly activated users',
+      'Lead initiatives that improve SEO and AI SEO strategy, driving double-digit % growth in organic traffic',
+      'Scaling paid ads across Google, LinkedIn, X, and others, cutting cost per acquisition by single-digit % month over month',
+      'Own a global OOH billboard campaign',
+      'Build the influencer and creator network',
+      'Start and own a developer event series',
+      'Design onboarding, user feedback, and activation flows',
+    ],
+  },
+  {
     role: 'Founding Member — Growth & DevRel',
     company: 'E2B',
     location: 'San Francisco, CA',
-    date: 'Jun 2023 – Present',
+    date: 'Jun 2023 – 2026',
     bullets: [
-      'First hire at AI infrastructure startup; led growth from pre-seed to Series A',
-      'Built Awesome AI Agents repo (31K+ GitHub stars), co-taught DeepLearning.AI course with Andrew Ng',
-      'Drove product launches, partnerships (Groq, Mistral, LangChain), developer community, and events',
+      'Helped build an AI sandbox infrastructure company whose customers include Manus, Perplexity, Hugging Face, and Groq',
+      'First hire; owned growth end-to-end from pre-seed through Series A',
+      'Created and co-taught a DeepLearning.AI course with Andrew Ng, with tens of thousands of enrollments',
+      'Led product launches and launch campaigns',
+      'Led a global OOH campaign',
+      'Built co-marketing partnerships (Groq, Mistral, LangChain)',
+      'Ran developer community and events (1000+ hackathon attendees)',
+      'Owned content strategy across blog, docs, and social',
+      'Established brand and positioning for the developer audience',
     ],
   },
   {
@@ -23,7 +44,8 @@ const experience = [
     location: 'Prague',
     date: '2022 – 2023',
     bullets: [
-      'Strategy consulting in energy, finance, and sustainable transition',
+      'Due diligence and sustainable energy transformation engagements',
+      'Optimizing operations, strategy, and growth for clients',
     ],
   },
   {
@@ -32,7 +54,8 @@ const experience = [
     location: '',
     date: '2020 – 2022',
     bullets: [
-      'Founded local branch; organized international technical internships',
+      'IAESTE is a global nonprofit that runs international technical internship exchanges for STEM students',
+      'Founded the local branch, organized a career fair, and built partnerships with companies and faculties',
     ],
   },
 ]
@@ -44,30 +67,23 @@ const education = [
     years: '2019 – 2022',
   },
   {
-    degree: 'Economics & Finance + Marketing Communications',
-    school: 'Charles University — studied simultaneously',
+    degree: 'BSc Economics & Finance',
+    school: 'Charles University — completed alongside a second degree',
+    years: '2016 – 2019',
+  },
+  {
+    degree: 'BA Marketing Communications',
+    school: 'Charles University — completed alongside a second degree',
     years: '2016 – 2019',
   },
 ]
 
 const highlights = [
+  { text: 'Keynote speaker at AI Engineer, San Francisco 2026', href: '/blog/rise-of-the-software-factory' },
   'Co-taught "Building Coding Agents" course on DeepLearning.AI with Andrew Ng\'s team',
-  'Built Awesome AI Agents — most popular open-source list of AI agents (31K+ stars)',
-  'Organized AI hackathons in San Francisco and Prague with 1000+ attendees total',
+  { text: 'Built Awesome AI Agents — most popular open-source list of AI agents (30K stars)', href: 'https://github.com/e2b-dev/awesome-ai-agents' },
   'Lecturer at Discover Academy teaching graduate-level math to high schoolers',
-]
-
-const audience = [
-  { label: 'Newsletter', value: '40K+' },
-  { label: 'Twitter', value: '7K+' },
-  { label: 'LinkedIn', value: '8K+' },
-  { label: 'GitHub Stars', value: '31K+' },
-]
-
-const awards = [
   'AI Awards 2025 & Kristalova Lupa 2025 — E2B recognized for brand, content, and achievements (Czech Republic\'s most prestigious tech awards)',
-  '4th Place, Rotman European Trading Challenge 2021 — Algorithmic trading competition',
-  'DevRel Collective Member — Exclusive global community of 1,800+ developer relations professionals',
 ]
 
 function ResumeContent() {
@@ -86,15 +102,15 @@ function ResumeContent() {
   return (
     <div className="min-h-screen bg-white text-gray-900 print:bg-white">
       {/* Header bar - hidden when printing */}
-      <div className="bg-background px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
-        <Link href="/" className="font-mono text-[12px] text-gray-400 hover:text-white transition-colors">
+      <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between print:hidden sticky top-0 z-10">
+        <Link href="/" className="text-[12px] text-gray-500 hover:text-gray-900 transition-colors">
           ← Back
         </Link>
         <button
           onClick={() => window.print()}
-          className="flex items-center gap-2 px-5 py-2.5 text-[13px] font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors rounded"
+          className="flex items-center gap-2 px-4 py-2 text-[12px] tracking-wide text-gray-700 border border-gray-300 hover:border-gray-500 hover:text-gray-900 transition-colors"
         >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="7 10 12 15 17 10" />
             <line x1="12" y1="15" x2="12" y2="3" />
@@ -111,25 +127,31 @@ function ResumeContent() {
             Tereza Tizkova
           </h1>
           <p className="text-[11px] text-gray-600 mb-2">
-            Growth & DevRel leader. First hire at E2B (AI infrastructure, Series A). Background in math, consulting, and developer communities.
+            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned marketing, growth, startup programs, and developer relations from zero to Series A+.
           </p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500">
+          <div className="grid grid-cols-3 gap-x-4 gap-y-1 text-[10px] text-gray-500">
             <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3" />
-              San Francisco / Prague
+              <MapPin className="w-3 h-3 shrink-0" />
+              San Francisco
             </span>
-            <span className="flex items-center gap-1">
-              <Mail className="w-3 h-3" />
+            <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Globe className="w-3 h-3 shrink-0" />
+              terezatizkova.com <span className="text-gray-400">· 5K/mo</span>
+            </a>
+            <a href="https://linkedin.com/in/tereza-tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Linkedin className="w-3 h-3 shrink-0" />
+              linkedin.com/in/tereza-tizkova <span className="text-gray-400">· 10K</span>
+            </a>
+            <a href="mailto:tereza.tizkova@gmail.com" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Mail className="w-3 h-3 shrink-0" />
               tereza.tizkova@gmail.com
-            </span>
-            <span className="flex items-center gap-1">
-              <Globe className="w-3 h-3" />
-              terezatizkova.com
-            </span>
-            <span className="flex items-center gap-1">
-              <Linkedin className="w-3 h-3" />
-              linkedin.com/in/tereza-tizkova
-            </span>
+            </a>
+            <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+              </svg>
+              x.com/tereza_tizkova <span className="text-gray-400">· 9K</span>
+            </a>
           </div>
         </header>
 
@@ -160,74 +182,53 @@ function ResumeContent() {
           </div>
         </section>
 
-        {/* Two columns: Education + Highlights */}
-        <div className="grid grid-cols-2 gap-6 mb-3">
-          {/* Education */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Education
-            </h2>
-            <div className="space-y-1.5">
-              {education.map((edu, i) => (
-                <div key={i}>
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="text-[10px] font-semibold text-gray-900">{edu.degree}</h3>
-                    <span className="text-[9px] text-gray-500 ml-2">{edu.years}</span>
-                  </div>
-                  <p className="text-[9px] text-gray-600">{edu.school}</p>
+        {/* Education */}
+        <section className="mb-3">
+          <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+            Education
+          </h2>
+          <div className="space-y-1.5">
+            {education.map((edu, i) => (
+              <div key={i}>
+                <div className="flex justify-between items-baseline">
+                  <h3 className="text-[10px] font-semibold text-gray-900">{edu.degree}</h3>
+                  <span className="text-[9px] text-gray-500 ml-2">{edu.years}</span>
                 </div>
-              ))}
-            </div>
-          </section>
+                <p className="text-[9px] text-gray-600">{edu.school}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Highlights */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Highlights
-            </h2>
-            <ul className="space-y-0.5">
-              {highlights.map((item, i) => (
+        {/* Achievements */}
+        <section>
+          <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
+            Achievements
+          </h2>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
+            {highlights.map((item, i) => {
+              const isLink = typeof item === 'object'
+              const text = isLink ? item.text : item
+              return (
                 <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
                   <span className="absolute left-0 text-gray-400">•</span>
-                  {item}
+                  {isLink ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-gray-300 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-colors"
+                    >
+                      {text}
+                    </a>
+                  ) : (
+                    text
+                  )}
                 </li>
-              ))}
-            </ul>
-          </section>
-        </div>
-
-        {/* Two columns: Audience + Awards */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Audience - compact row */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Audience
-            </h2>
-            <div className="flex flex-wrap gap-x-6 gap-y-1">
-              {audience.map((item, i) => (
-                <div key={i} className="flex items-baseline gap-1.5">
-                  <span className="text-[12px] font-bold text-gray-900">{item.value}</span>
-                  <span className="text-[8px] text-gray-500 uppercase">{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Awards & Memberships */}
-          <section>
-            <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-              Awards & Memberships
-            </h2>
-            <ul className="space-y-0.5">
-              {awards.map((item, i) => (
-                <li key={i} className="text-[9px] text-gray-700 pl-2.5 relative leading-relaxed">
-                  <span className="absolute left-0 text-gray-400">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+              )
+            })}
+          </ul>
+        </section>
       </div>
 
       </div>

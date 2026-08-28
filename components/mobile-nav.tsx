@@ -83,6 +83,8 @@ export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
+  if (pathname === "/resume") return null
+
   return (
     <div className="lg:hidden">
       {/* Mobile Header */}
