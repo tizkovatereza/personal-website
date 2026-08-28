@@ -128,27 +128,27 @@ function ResumeContent() {
             Tereza Tizkova
           </h1>
           <p className="text-[11px] text-gray-600 mb-2">
-            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned marketing, growth, startup programs, and developer relations from zero to Series A+. Math degree, ex-McKinsey.
+            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned marketing, growth, startup programs, and developer relations from zero to Series A+.
           </p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500">
+          <div className="grid grid-cols-3 gap-x-4 gap-y-1 text-[10px] text-gray-500">
             <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3" />
+              <MapPin className="w-3 h-3 shrink-0" />
               San Francisco
             </span>
-            <a href="mailto:tereza.tizkova@gmail.com" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
-              <Mail className="w-3 h-3" />
-              tereza.tizkova@gmail.com
-            </a>
             <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
-              <Globe className="w-3 h-3" />
-              terezatizkova.com <span className="text-gray-400">· 5K readers/mo</span>
+              <Globe className="w-3 h-3 shrink-0" />
+              terezatizkova.com <span className="text-gray-400">· 5K/mo</span>
             </a>
             <a href="https://linkedin.com/in/tereza-tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
-              <Linkedin className="w-3 h-3" />
+              <Linkedin className="w-3 h-3 shrink-0" />
               linkedin.com/in/tereza-tizkova <span className="text-gray-400">· 10K</span>
             </a>
+            <a href="mailto:tereza.tizkova@gmail.com" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Mail className="w-3 h-3 shrink-0" />
+              tereza.tizkova@gmail.com
+            </a>
             <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
-              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
               </svg>
               x.com/tereza_tizkova <span className="text-gray-400">· 9K</span>
