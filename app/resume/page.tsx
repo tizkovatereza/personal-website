@@ -17,8 +17,8 @@ const experience = [
       'Scaling paid ads across Google, LinkedIn, X, and others, cutting cost per acquisition by single-digit % month over month',
       'Own a global OOH billboard campaign',
       'Build the influencer and creator network',
-      'Start and own a developer event series',
-      'Design onboarding, user feedback, and activation flows',
+      'Launch a developer event series with 3000+ attendees',
+      'Work on onboarding, user feedback, activation flows, email campaigns',
     ],
   },
   {
@@ -45,7 +45,7 @@ const experience = [
     date: '2022 – 2023',
     bullets: [
       'Due diligence and sustainable energy transformation engagements',
-      'Optimizing operations, strategy, and growth for clients',
+      'Profit and cost optimizations for clients in finance and banking',
     ],
   },
   {
@@ -143,11 +143,11 @@ function ResumeContent() {
             </span>
             <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Globe className="w-3 h-3 shrink-0" />
-              terezatizkova.com <span className="text-gray-400">· 5K/mo</span>
+              terezatizkova.com <span className="text-gray-400">· 5K blog readers/mo</span>
             </a>
             <a href="https://linkedin.com/in/tereza-tizkova-568439174" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Linkedin className="w-3 h-3 shrink-0" />
-              linkedin.com/in/tereza-tizkova <span className="text-gray-400">· 10K</span>
+              linkedin.com/in/tereza-tizkova-568439174 <span className="text-gray-400">· 10K</span>
             </a>
             <a href="mailto:tereza.tizkova@gmail.com" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Mail className="w-3 h-3 shrink-0" />
