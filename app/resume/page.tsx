@@ -45,7 +45,7 @@ const experience = [
     date: '2022 – 2023',
     bullets: [
       'Due diligence and sustainable energy transformation engagements',
-      'Optimizing operations, strategy, and growth for clients',
+      'Profit and cost optimizations for clients in finance and banking',
     ],
   },
   {
