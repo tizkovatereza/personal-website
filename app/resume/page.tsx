@@ -12,7 +12,7 @@ const experience = [
     location: 'San Francisco, CA',
     date: '2026 – Present',
     bullets: [
-      'Own key growth metrics for an agent-native software delivery platform — new sign-ups and newly activated users',
+      'Own key growth metrics: new sign-ups and newly activated users',
       'Lead SEO and AI SEO strategy',
       'Scale paid ads across channels',
       'Run a global OOH campaign (billboards and ads)',
@@ -128,7 +128,7 @@ function ResumeContent() {
             Tereza Tizkova
           </h1>
           <p className="text-[11px] text-gray-600 mb-2">
-            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned growth from pre-seed to Series A. Math degree, ex-McKinsey, with a 40K+ developer audience.
+            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned marketing, growth, startup programs, and developer relations from zero to Series A+. Math degree, ex-McKinsey.
           </p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-500">
             <span className="flex items-center gap-1">
@@ -141,11 +141,17 @@ function ResumeContent() {
             </a>
             <a href="https://terezatizkova.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Globe className="w-3 h-3" />
-              terezatizkova.com
+              terezatizkova.com <span className="text-gray-400">· 5K readers/mo</span>
             </a>
             <a href="https://linkedin.com/in/tereza-tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
               <Linkedin className="w-3 h-3" />
-              linkedin.com/in/tereza-tizkova
+              linkedin.com/in/tereza-tizkova <span className="text-gray-400">· 10K</span>
+            </a>
+            <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+              </svg>
+              x.com/tereza_tizkova <span className="text-gray-400">· 9K</span>
             </a>
           </div>
         </header>
