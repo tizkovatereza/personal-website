@@ -35,7 +35,7 @@ const experience = [
       'Built co-marketing partnerships (Groq, Mistral, LangChain)',
       'Ran developer community and events (1000+ hackathon attendees)',
       'Owned content strategy across blog, docs, and social',
-      'Established brand and positioning for the developer audience',
+      'Built and scaled the Startup Program, Research Program, and YC Deal to 10% of the latest YC batches running on E2B',
     ],
   },
   {
@@ -103,9 +103,9 @@ function ResumeContent() {
     <div className="min-h-screen bg-white text-gray-900 print:bg-white">
       <style>{`
         @media print {
-          @page { size: letter portrait; margin: 0.4in; }
+          @page { size: letter portrait; margin: 0; }
           html, body { height: auto !important; background: #fff !important; }
-          .resume-page { width: 100% !important; padding: 0 !important; margin: 0 !important; }
+          .resume-page { width: 100% !important; margin: 0 !important; padding: 0.4in !important; }
         }
       `}</style>
       {/* Header bar - hidden when printing */}
@@ -207,10 +207,10 @@ function ResumeContent() {
           </div>
         </section>
 
-        {/* Achievements */}
+        {/* Achievements & Highlights */}
         <section>
           <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-1 mb-2">
-            Achievements
+            Achievements & Highlights
           </h2>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
             {highlights.map((item, i) => {
