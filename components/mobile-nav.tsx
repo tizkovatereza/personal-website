@@ -94,16 +94,6 @@ export function MobileNav() {
           <span className="font-serif text-base tracking-[-0.02em] text-foreground">Tereza Tizkova</span>
         </Link>
         <div className="flex items-center gap-1">
-          {/* In the bar, not just the menu: the header is fixed above the overlay,
-              so this stays reachable whether the menu is open or closed. */}
-          <a
-            href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mr-1 text-[13px] font-medium text-primary whitespace-nowrap"
-          >
-            Download iOS App
-          </a>
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}

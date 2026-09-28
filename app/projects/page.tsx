@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import {
   ArrowUpRight,
+  Factory,
   Rocket,
   GraduationCap,
   Star,
@@ -29,6 +30,22 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    id: 'factory',
+    title: 'Factory',
+    description: 'First growth hire. I work on growth and own key metrics like daily sign-ups and activation rate.',
+    link: 'https://factory.ai',
+    tag: 'Growth',
+    icon: Factory,
+  },
+  {
+    id: 'topics',
+    title: 'Topics',
+    description: 'A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.',
+    link: 'https://apps.apple.com/us/app/topics-curated-reading/id6759892878',
+    tag: 'iOS App',
+    icon: BookOpen,
+  },
+  {
     id: 'e2b',
     title: 'E2B',
     description: 'I was the founding team member, and the person responsible for marketing, growth, events, community, and partnerships with startups from scratch to Series A+.',
@@ -51,14 +68,6 @@ const projects = [
     link: 'https://github.com/e2b-dev/awesome-ai-agents',
     tag: 'Open Source',
     icon: Star,
-  },
-  {
-    id: 'topics',
-    title: 'Topics',
-    description: 'A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.',
-    link: 'https://apps.apple.com/us/app/topics-curated-reading/id6759892878',
-    tag: 'iOS App',
-    icon: BookOpen,
   },
   {
     id: 'events',

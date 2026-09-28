@@ -5,6 +5,7 @@ import Link from "next/link"
 import {
   ArrowRight,
   Send,
+  Factory,
   Rocket,
   GraduationCap,
   Star,
@@ -84,6 +85,20 @@ const promptChips = [
 ]
 
 const projects = [
+  {
+    category: "Growth",
+    title: "Factory",
+    description: "First growth hire. I work on growth and own key metrics like daily sign-ups and activation rate.",
+    href: "https://factory.ai",
+    icon: Factory,
+  },
+  {
+    category: "iOS App",
+    title: "Topics",
+    description: "A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.",
+    href: "https://apps.apple.com/us/app/topics-curated-reading/id6759892878",
+    icon: BookOpen,
+  },
   { 
     category: "Growth of a Startup",
     title: "E2B", 
@@ -104,13 +119,6 @@ const projects = [
     description: "Open source list of AI agents. 27k+ GitHub stars, went viral across social media, newsletters, conferences, and talks.",
     href: "https://github.com/e2b-dev/awesome-ai-agents",
     icon: Star,
-  },
-  { 
-    category: "iOS App",
-    title: "Topics", 
-    description: "A curated reading app for writers and learners who want to read more intentionally. Live on the App Store.",
-    href: "https://apps.apple.com/us/app/topics-curated-reading/id6759892878",
-    icon: BookOpen,
   },
   { 
     category: "Events",
