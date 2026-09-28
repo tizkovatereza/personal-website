@@ -112,14 +112,25 @@ export function SFFogHero() {
           My work is about growing startups (like <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">E2B</a>). I like math, and I also <a href="https://x.com/tereza_tizkova" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">like cheese</a>.
         </p>
 
-        {/* CTA Link */}
-        <Link 
-          href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.05em] uppercase text-foreground group w-fit"
-        >
-          <span className="link-underline pb-1">Read my writing</span>
-          <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
-        </Link>
+          {/* CTA Links */}
+          <div className="flex flex-col gap-4">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.05em] uppercase text-foreground group w-fit"
+            >
+              <span className="link-underline pb-1">Read my writing</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+            <a
+              href="https://apps.apple.com/app/topics-curated-reading/id6759892878"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.05em] uppercase text-foreground group w-fit"
+            >
+              <span className="link-underline pb-1">Download the Topics app for iOS</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">↗</span>
+            </a>
+          </div>
       </div>
 
       {/* === SCROLL INDICATOR (right side) - hidden on mobile === */}
