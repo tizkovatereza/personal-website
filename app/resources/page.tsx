@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { factoryArticles } from "@/lib/factory-articles"
 
 export const metadata: Metadata = {
   title: "Resources | Tereza Tizkova",
@@ -6,24 +7,19 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-const resources = [
-  {
-    title: "What is a software factory? A 2026 guide to agent-native delivery",
-    description:
-      "A managed model for producing software with repeatable inputs, standardized tooling, and measurable output.",
-    url: "https://factory.ai/articles/what-is-a-software-factory",
-  },
+type Resource = {
+  title: string
+  description: string
+  url: string
+  date?: string
+}
+
+const news: Resource[] = [
   {
     title: "Factory 2.0: From coding agents to software factories",
     description:
       "The shift from coding agents to full software factories, and what autonomy across the SDLC actually looks like.",
     url: "https://factory.ai/news/software-factory",
-  },
-  {
-    title: "Making your codebase AI-agent ready",
-    description:
-      "The practices that make a repository legible to coding agents — clear structure, tests to verify against, and written-down conventions.",
-    url: "https://factory.ai/articles/codebase-ai-agent-readiness",
   },
   {
     title: "Deferred Context Engine",
@@ -32,34 +28,10 @@ const resources = [
     url: "https://factory.ai/news/deferred-context-engine",
   },
   {
-    title: "How enterprise engineering teams automate software development (2026)",
-    description:
-      "How large enterprises automate software development in 2026, with concrete examples drawn from published case studies.",
-    url: "https://factory.ai/articles/how-enterprises-automate-software-development",
-  },
-  {
-    title: "How to use DeepSeek V4 in Factory",
-    description:
-      "Running the open-weight DeepSeek V4 model natively inside a Droid — selection, reasoning levels, and cost.",
-    url: "https://factory.ai/articles/deepseek-on-factory",
-  },
-  {
     title: "Introducing Agent Effectiveness",
     description:
       "Mapping agent usage to delivery speed, work priorities, and shipped artifacts across an engineering organization.",
     url: "https://factory.ai/news/agent-effectiveness",
-  },
-  {
-    title: "What is a software factory? The architecture behind autonomous software delivery",
-    description:
-      "A reference architecture: the components that move a unit of intent through specification, execution, review, and deployment.",
-    url: "https://factory.ai/articles/what-is-a-software-factory-architecture",
-  },
-  {
-    title: "How to use GLM-5.2 in Factory",
-    description:
-      "Running Zhipu AI's open-weight GLM models in a Droid at a low credit multiplier for high-volume work.",
-    url: "https://factory.ai/articles/glm-on-factory",
   },
   {
     title: "Droid Shield 2.0: learned secret detection",
@@ -68,28 +40,10 @@ const resources = [
     url: "https://factory.ai/news/droid-shield-2-0",
   },
   {
-    title: "How to measure agent readiness",
-    description:
-      "Turning codebase quality into a score you can track — the CLI report, dashboard, and API behind agent readiness.",
-    url: "https://factory.ai/articles/measuring-agent-readiness",
-  },
-  {
     title: "Designing an AI-Native Enterprise Organizational Model",
     description:
       "Central governance with explicit boundaries for access, integrations, policy, spend, and data residency.",
     url: "https://factory.ai/news/enterprise-organization-model",
-  },
-  {
-    title: "How to use Kimi K2 in Factory",
-    description:
-      "Using Moonshot AI's Kimi K2 family for scoped coding tasks with open weights and a low credit multiplier.",
-    url: "https://factory.ai/articles/kimi-k2-on-factory",
-  },
-  {
-    title: "Best software factory platforms in 2026: a comparison guide",
-    description:
-      "A reference comparison of platforms implementing the software factory model — delivery, audit, model flexibility, and deployment.",
-    url: "https://factory.ai/articles/best-software-factory-platforms-2026",
   },
   {
     title: "Launching the Factory Guild",
@@ -97,30 +51,63 @@ const resources = [
       "A community of students, builders, and researchers shaping how software gets built with Droids.",
     url: "https://factory.ai/news/factory-guild",
   },
-  {
-    title: "Why your AI agents should be model-agnostic",
-    description:
-      "The case against coupling your workflow to a single model provider, and what switching models per task buys you.",
-    url: "https://factory.ai/articles/model-agnostic-ai-agents",
-  },
-  {
-    title: "How to use MiniMax in Factory",
-    description:
-      "Running MiniMax, the lowest-multiplier models in the catalog, for cost-sensitive batches and cleanup passes.",
-    url: "https://factory.ai/articles/minimax-on-factory",
-  },
-  {
-    title: "A guide to Factory Router",
-    description:
-      "How Factory Router picks the right model for each step automatically instead of pinning a run to one.",
-    url: "https://factory.ai/articles/factory-router-guide",
-  },
 ]
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
+function ResourceList({ heading, items }: { heading: string; items: Resource[] }) {
+  return (
+    <section className="px-6 sm:px-12 md:px-16 lg:px-20 pb-16 max-w-4xl">
+      <h2 className="flex items-baseline justify-between font-mono text-[11px] font-light tracking-[0.2em] uppercase text-muted-foreground pb-4">
+        <span>{heading}</span>
+        <span>{items.length}</span>
+      </h2>
+      <ul className="border-t border-border">
+        {items.map((item) => (
+          <li key={item.url} className="border-b border-border">
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block py-6 sm:py-7"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight text-pretty">
+                  {item.title}
+                </h3>
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[13px] text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1"
+                >
+                  &#8599;
+                </span>
+              </div>
+              <p className="mt-2 text-[14px] font-light text-muted-foreground leading-relaxed max-w-2xl">
+                {item.description}
+              </p>
+              <span className="mt-3 inline-block font-mono text-[11px] font-light tracking-[0.1em] uppercase text-muted-foreground/70">
+                {item.date ? (
+                  <time dateTime={item.date}>{dateFormatter.format(new Date(item.date))}</time>
+                ) : (
+                  "factory.ai"
+                )}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
 
 export default function ResourcesPage() {
   return (
     <div className="min-h-screen">
-      {/* Header */}
       <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-12 max-w-4xl">
         <header>
           <p className="font-mono text-[11px] font-light tracking-[0.2em] uppercase text-muted-foreground mb-4">
@@ -135,38 +122,9 @@ export default function ResourcesPage() {
         </header>
       </div>
 
-      {/* Links */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-4xl">
-        <ul className="border-t border-border">
-          {resources.map((item) => (
-            <li key={item.url} className="border-b border-border">
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block py-6 sm:py-7"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight">
-                    {item.title}
-                  </h2>
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-[13px] text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1"
-                  >
-                    &#8599;
-                  </span>
-                </div>
-                <p className="mt-2 text-[13px] sm:text-[14px] font-light text-muted-foreground leading-relaxed max-w-2xl">
-                  {item.description}
-                </p>
-                <span className="mt-3 inline-block font-mono text-[11px] font-light tracking-[0.1em] uppercase text-muted-foreground/70">
-                  factory.ai
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+      <ResourceList heading="Articles" items={factoryArticles} />
+      <div className="pb-8">
+        <ResourceList heading="News" items={news} />
       </div>
     </div>
   )

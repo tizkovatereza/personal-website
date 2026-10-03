@@ -406,8 +406,7 @@ export default function HomePage() {
             </a>
             <Link
               href="/resources"
-              aria-label="Resources"
-              className="font-mono text-[11px] font-light text-background hover:text-background tracking-[0.05em] uppercase select-none"
+              className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase hover:text-primary transition-colors"
             >
               Resources
             </Link>
