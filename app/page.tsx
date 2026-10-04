@@ -134,13 +134,7 @@ const projects = [
     href: "https://discover.sk/en/",
     icon: School,
   },
-  { 
-    category: "Community",
-    title: "The Growth Lab", 
-    description: "A curated community of growth people sharing what actually works — tactics, tools, and real talk. 50+ members from startups, dev platforms, and AI companies.",
-    href: "/growth-lab",
-    icon: Users,
-  },
+
   { 
     category: "Writing",
     title: "Advent of Writing", 
