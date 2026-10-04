@@ -85,14 +85,7 @@ const projects = [
     tag: 'Teaching',
     icon: School,
   },
-  {
-    id: 'growth-lab',
-    title: 'The Growth Lab',
-    description: 'A curated community of growth people sharing what actually works — tactics, tools, and real talk. 50+ members from startups, dev platforms, and AI companies.',
-    link: '/growth-lab',
-    tag: 'Community',
-    icon: Users,
-  },
+
   {
     id: 'advent',
     title: 'Advent of Writing',
