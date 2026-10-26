@@ -46,7 +46,7 @@ export default function ChangelogPage() {
             onChange={(e) => setPw(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && login()}
             placeholder="Password"
-            className="px-3 py-2 border border-border bg-card text-sm"
+            className="px-3 py-2 border border-border bg-card/90 backdrop-blur-sm text-sm"
             autoFocus
           />
           <button onClick={login} className="px-3 py-2 bg-foreground text-background text-sm">
@@ -59,12 +59,12 @@ export default function ChangelogPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-xl mx-auto px-6 py-16">
-        <h1 className="font-serif text-4xl mb-12">Changelog</h1>
+      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16">
+        <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">Changelog</h1>
 
         {Object.entries(changelog).map(([year, weeks]) => (
           <div key={year} className="mb-10">
-            <h2 className="font-mono text-xs text-primary tracking-wider mb-4">{year}</h2>
+            <h2 className="font-serif text-[24px] text-primary tracking-[-0.02em] mb-4">{year}</h2>
             
             {weeks.map((entry, i) => {
               const key = `${year}-${i}`

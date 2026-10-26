@@ -16,6 +16,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Hawaii for the First Time: Three Days on the Big Island",
+    date: "Oct 25, 2026",
+    subtitle: "Coqui frogs, coffee farms, manta rays, and a volcano that wouldn't cooperate",
+    image: "/images/blog/hawaii.jpg",
+    url: "/blog/hawaii",
+    isNew: true,
+    isInternal: true,
+    draft: true,
+    category: "other"
+  },
+  {
     title: "How do \"computer use\" agents work?",
     date: "Aug 6, 2026",
     subtitle: "Why it's surprisingly challenging to let an LLM use a computer for you",

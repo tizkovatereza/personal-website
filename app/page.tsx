@@ -246,7 +246,7 @@ export default function HomePage() {
                       </span>
                     )}
                   </h3>
-                  <span className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase flex-shrink-0">
+                  <span className="font-mono text-muted-foreground uppercase flex-shrink-0 text-[11px] font-light tracking-[0.05em]">
                     {item.date} �� {item.source}
                   </span>
                 </LinkComponent>
@@ -278,11 +278,11 @@ export default function HomePage() {
                 href={project.href}
                 target={project.href.startsWith('http') || project.href.startsWith('mailto') ? "_blank" : undefined}
                 rel={project.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="group block p-4 bg-card border border-border card-hover"
+                className="group block p-4 bg-card/90 backdrop-blur-sm border border-border card-hover"
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <project.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
-                  <span className="font-mono text-[9px] font-light text-primary tracking-[0.05em] uppercase">
+                  <span className="font-mono text-primary uppercase text-[11px] font-light tracking-[0.05em]">
                     {project.category}
                   </span>
                 </div>
@@ -301,7 +301,7 @@ export default function HomePage() {
         <section className="mb-24">
           <h2 className="font-serif text-[28px] sm:text-[32px] tracking-[-0.02em] mb-8">Write me something</h2>
           
-          <div className="p-6 sm:p-8 bg-card border border-border">
+          <div className="p-6 sm:p-8 bg-card/90 backdrop-blur-sm border border-border">
             {isSent ? (
               <div className="text-center py-8">
                 <p className="font-serif text-[18px] text-primary">Sent! Thanks.</p>
@@ -363,7 +363,7 @@ export default function HomePage() {
         {/* === FOOTER === */}
         <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 py-12 border-t border-border">
           <span className="font-mono text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">
-            © 2026 Tereza Tizkova
+            © {new Date().getFullYear()} Tereza Tizkova
           </span>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a

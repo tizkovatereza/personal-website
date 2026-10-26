@@ -1,10 +1,12 @@
 import RSS from 'rss'
+import { blogPosts } from '@/lib/blog-posts'
 import { getAllPosts } from '@/lib/mdx'
 
 const siteUrl = process.env.SITE_URL || 'https://www.terezatizkova.com'
 
 export async function GET() {
-  const posts = getAllPosts()
+  const drafts = new Set(blogPosts.filter((post) => post.draft).map((post) => post.url))
+  const posts = getAllPosts().filter((post) => !drafts.has(`/blog/${post.slug}`))
 
   const feed = new RSS({
     title: 'Tereza Tizkova',

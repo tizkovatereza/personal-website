@@ -117,23 +117,23 @@ const talks = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-4xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl">
         
         {/* Header */}
         <header className="mb-16">
-          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-8">
+          <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             About
           </h1>
           
-          {/* Profile Icon - minimalist line-art avatar */}
+          {/* Profile photo */}
           <div className="mb-10">
             <div className="flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 border border-border bg-muted/20">
               <Image
-                src="/images/profile-icon.png"
+                src="/images/tereza-profile.jpg"
                 alt="Tereza Tizkova"
-                width={120}
-                height={120}
-                className="w-28 h-28 sm:w-32 sm:h-32 object-contain"
+                width={192}
+                height={192}
+                className="w-full h-full object-cover"
                 priority
               />
             </div>
@@ -210,7 +210,7 @@ export default function AboutPage() {
                     <span className="font-semibold">{edu.degree}</span>
                     {edu.school && <span className="text-secondary"> — {edu.school}</span>}
                   </h3>
-                  <p className="text-[13px] sm:text-[14px] font-light text-muted-foreground">{edu.description}</p>
+                  <p className="text-[13px] sm:text-[14px] font-light text-secondary">{edu.description}</p>
                 </div>
               </div>
             ))}
@@ -232,7 +232,7 @@ export default function AboutPage() {
                   href={talk.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block p-6 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)] hover:border-primary/30 transition-all duration-300"
+                  className="group block p-6 bg-card/90 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300"
                 >
                   {/* Platform with diamond */}
                   <div className="flex items-center gap-2 mb-3">
@@ -258,7 +258,7 @@ export default function AboutPage() {
               ) : (
                 <div
                   key={index}
-                  className="p-6 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]"
+                  className="p-6 bg-card/90 backdrop-blur-sm border border-border"
                 >
                   {/* Platform with diamond */}
                   <div className="flex items-center gap-2 mb-3">
@@ -287,7 +287,7 @@ export default function AboutPage() {
         <div className="h-px w-full bg-border mb-16" />
 
         {/* CTA */}
-        <section className="p-8 sm:p-10 bg-card/90 backdrop-blur-sm border border-[rgba(255,255,255,0.06)]">
+        <section className="p-8 sm:p-10 bg-card/90 backdrop-blur-sm border border-border">
           <h2 className="font-serif text-[24px] sm:text-[28px] tracking-[-0.02em] mb-4">Get in touch</h2>
           <p className="font-light text-[14px] sm:text-[15px] text-secondary leading-relaxed mb-8 max-w-lg">
             I love meeting new people. Whether you want to collaborate, 

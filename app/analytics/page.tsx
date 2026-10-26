@@ -120,29 +120,29 @@ export default function AnalyticsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
+      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-12 sm:py-16">
         {/* Back link */}
         <Link 
           href="/"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span className="font-mono text-[11px] uppercase tracking-wider">Back</span>
+          <span className="font-mono uppercase text-[11px] font-light tracking-[0.05em]">Back</span>
         </Link>
 
         {/* Header */}
-        <h1 className="font-serif text-[32px] sm:text-[40px] tracking-[-0.02em] mb-2">
+        <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
           Analytics
         </h1>
-        <p className="text-muted-foreground text-[14px] mb-8">
+        <p className="text-secondary text-[14px] mb-8">
           Detailed traffic analysis for blog articles
         </p>
 
         {/* Tabs */}
-        <div className="flex gap-1 mb-8 bg-card border border-border p-1 w-fit">
+        <div className="flex gap-1 mb-8 bg-card/90 backdrop-blur-sm border border-border p-1 w-fit">
           <button
             onClick={() => setActiveTab('articles')}
-            className={`px-4 py-2 font-mono text-[11px] uppercase tracking-wider transition-colors ${
+            className={`px-4 py-2 font-mono text-[11px] font-light uppercase tracking-[0.05em] transition-colors ${
               activeTab === 'articles' 
                 ? 'bg-primary text-primary-foreground' 
                 : 'text-muted-foreground hover:text-foreground'
@@ -152,7 +152,7 @@ export default function AnalyticsPage() {
           </button>
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2 font-mono text-[11px] uppercase tracking-wider transition-colors ${
+            className={`px-4 py-2 font-mono text-[11px] font-light uppercase tracking-[0.05em] transition-colors ${
               activeTab === 'overview' 
                 ? 'bg-primary text-primary-foreground' 
                 : 'text-muted-foreground hover:text-foreground'
@@ -174,13 +174,13 @@ export default function AnalyticsPage() {
               {/* Overall referrer breakdown */}
               {articleData && articleData.topReferrersAllArticles.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-4">
+                  <h3 className="font-mono uppercase text-muted-foreground mb-4 text-[11px] font-light tracking-[0.05em]">
                     All Articles Combined
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
                     {articleData.topReferrersAllArticles.map((ref) => (
-                      <div key={ref.source} className="bg-card border border-border p-4">
-                        <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mb-1">
+                      <div key={ref.source} className="bg-card/90 backdrop-blur-sm border border-border p-4">
+                        <div className="font-mono uppercase text-muted-foreground mb-1 text-[11px] font-light tracking-[0.05em]">
                           {ref.source}
                         </div>
                         <div className="font-serif text-[20px]">
@@ -200,7 +200,7 @@ export default function AnalyticsPage() {
                   const isExpanded = selectedArticle === article.path
                   
                   return (
-                    <div key={article.path} className="bg-card border border-border">
+                    <div key={article.path} className="bg-card/90 backdrop-blur-sm border border-border">
                       {/* Article header */}
                       <button
                         onClick={() => setSelectedArticle(isExpanded ? null : article.path)}
@@ -211,13 +211,13 @@ export default function AnalyticsPage() {
                             <h3 className="font-serif text-[18px] mb-1 truncate">
                               {articleTitles[article.path] || article.path.split('/').pop()}
                             </h3>
-                            <p className="font-mono text-[11px] text-muted-foreground truncate">
+                            <p className="font-mono text-[11px] text-secondary truncate">
                               {article.path}
                             </p>
                           </div>
                           <div className="text-right shrink-0">
                             <div className="font-serif text-[24px]">{totalViews.toLocaleString()}</div>
-                            <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                            <div className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">
                               total views
                             </div>
                           </div>
@@ -241,7 +241,7 @@ export default function AnalyticsPage() {
                         {/* Referrer labels */}
                         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                           {referrers.slice(0, 6).map((ref) => (
-                            <span key={ref.source} className="font-mono text-[10px] text-muted-foreground">
+                            <span key={ref.source} className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">
                               {ref.source}: {Number(ref.views).toLocaleString()}
                             </span>
                           ))}
@@ -256,28 +256,28 @@ export default function AnalyticsPage() {
                             <div>
                               <div className="flex items-center gap-2 mb-1">
                                 <Eye className="h-3 w-3 text-primary" />
-                                <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Total Views</span>
+                                <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Total Views</span>
                               </div>
                               <div className="font-serif text-[20px]">{Number(articleDetail.totalViews).toLocaleString()}</div>
                             </div>
                             <div>
                               <div className="flex items-center gap-2 mb-1">
                                 <Calendar className="h-3 w-3 text-primary" />
-                                <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Days Active</span>
+                                <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Days Active</span>
                               </div>
                               <div className="font-serif text-[20px]">{article.days_with_views}</div>
                             </div>
                             <div>
                               <div className="flex items-center gap-2 mb-1">
                                 <Globe className="h-3 w-3 text-primary" />
-                                <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Countries</span>
+                                <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Countries</span>
                               </div>
                               <div className="font-serif text-[20px]">{articleDetail.countries.length}</div>
                             </div>
                             <div>
                               <div className="flex items-center gap-2 mb-1">
                                 <Link2 className="h-3 w-3 text-primary" />
-                                <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Sources</span>
+                                <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Sources</span>
                               </div>
                               <div className="font-serif text-[20px]">{articleDetail.referrers.length}</div>
                             </div>
@@ -286,7 +286,7 @@ export default function AnalyticsPage() {
                           <div className="grid md:grid-cols-2 gap-6">
                             {/* Traffic Sources */}
                             <div>
-                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                              <h4 className="font-mono uppercase text-muted-foreground mb-3 flex items-center gap-2 text-[11px] font-light tracking-[0.05em]">
                                 <TrendingUp className="h-3 w-3" />
                                 Traffic Sources
                               </h4>
@@ -313,7 +313,7 @@ export default function AnalyticsPage() {
 
                             {/* Top Countries */}
                             <div>
-                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                              <h4 className="font-mono uppercase text-muted-foreground mb-3 flex items-center gap-2 text-[11px] font-light tracking-[0.05em]">
                                 <MapPin className="h-3 w-3" />
                                 Top Countries
                               </h4>
@@ -342,7 +342,7 @@ export default function AnalyticsPage() {
                           {/* Views over time */}
                           {articleDetail.viewsByDay.length > 0 && (
                             <div>
-                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                              <h4 className="font-mono uppercase text-muted-foreground mb-3 flex items-center gap-2 text-[11px] font-light tracking-[0.05em]">
                                 <Calendar className="h-3 w-3" />
                                 Recent Activity
                               </h4>
@@ -361,8 +361,8 @@ export default function AnalyticsPage() {
                                 })}
                               </div>
                               <div className="flex justify-between mt-1">
-                                <span className="font-mono text-[9px] text-muted-foreground">14 days ago</span>
-                                <span className="font-mono text-[9px] text-muted-foreground">Today</span>
+                                <span className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">14 days ago</span>
+                                <span className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">Today</span>
                               </div>
                             </div>
                           )}
@@ -370,7 +370,7 @@ export default function AnalyticsPage() {
                           {/* Top Cities */}
                           {articleDetail.cities.length > 0 && (
                             <div>
-                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                              <h4 className="font-mono uppercase text-muted-foreground mb-3 flex items-center gap-2 text-[11px] font-light tracking-[0.05em]">
                                 <MapPin className="h-3 w-3" />
                                 Top Cities
                               </h4>
@@ -378,7 +378,7 @@ export default function AnalyticsPage() {
                                 {articleDetail.cities.slice(0, 10).map((c) => (
                                   <span 
                                     key={`${c.city}-${c.country}`}
-                                    className="font-mono text-[10px] px-2 py-1 bg-muted/30 text-muted-foreground"
+                                    className="font-mono text-[11px] px-2 py-1 bg-muted/30 text-muted-foreground font-light tracking-[0.05em] uppercase"
                                   >
                                     {c.city}{c.country ? `, ${c.country}` : ''} ({c.views})
                                   </span>
@@ -390,7 +390,7 @@ export default function AnalyticsPage() {
                           {/* Hourly distribution */}
                           {articleDetail.hourlyDistribution.length > 0 && (
                             <div>
-                              <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                              <h4 className="font-mono uppercase text-muted-foreground mb-3 flex items-center gap-2 text-[11px] font-light tracking-[0.05em]">
                                 <Clock className="h-3 w-3" />
                                 Traffic by Hour (UTC)
                               </h4>
@@ -411,9 +411,9 @@ export default function AnalyticsPage() {
                                 })}
                               </div>
                               <div className="flex justify-between mt-1">
-                                <span className="font-mono text-[9px] text-muted-foreground">0:00</span>
-                                <span className="font-mono text-[9px] text-muted-foreground">12:00</span>
-                                <span className="font-mono text-[9px] text-muted-foreground">23:00</span>
+                                <span className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">0:00</span>
+                                <span className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">12:00</span>
+                                <span className="font-mono text-[11px] text-muted-foreground font-light tracking-[0.05em] uppercase">23:00</span>
                               </div>
                             </div>
                           )}
@@ -424,8 +424,8 @@ export default function AnalyticsPage() {
                 })}
 
                 {(!articleData || articleData.articles.length === 0) && (
-                  <div className="bg-card border border-border p-8 text-center">
-                    <p className="text-muted-foreground">No article views tracked yet</p>
+                  <div className="bg-card/90 backdrop-blur-sm border border-border p-8 text-center">
+                    <p className="text-secondary">No article views tracked yet</p>
                   </div>
                 )}
               </div>
@@ -437,34 +437,34 @@ export default function AnalyticsPage() {
           <>
             {/* Stats Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-              <div className="bg-card border border-border p-6">
+              <div className="bg-card/90 backdrop-blur-sm border border-border p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Eye className="h-4 w-4 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Total Views</span>
+                  <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Total Views</span>
                 </div>
                 <div className="font-serif text-[28px]">{Number(data.totalViews).toLocaleString()}</div>
               </div>
               
-              <div className="bg-card border border-border p-6">
+              <div className="bg-card/90 backdrop-blur-sm border border-border p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Today</span>
+                  <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Today</span>
                 </div>
                 <div className="font-serif text-[28px]">{Number(data.todayViews).toLocaleString()}</div>
               </div>
 
-              <div className="bg-card border border-border p-6">
+              <div className="bg-card/90 backdrop-blur-sm border border-border p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Globe className="h-4 w-4 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Countries</span>
+                  <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Countries</span>
                 </div>
                 <div className="font-serif text-[28px]">{data.viewsByCountry.length}</div>
               </div>
 
-              <div className="bg-card border border-border p-6">
+              <div className="bg-card/90 backdrop-blur-sm border border-border p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Link2 className="h-4 w-4 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Referrers</span>
+                  <span className="font-mono uppercase text-muted-foreground text-[11px] font-light tracking-[0.05em]">Referrers</span>
                 </div>
                 <div className="font-serif text-[28px]">{data.topReferrers.length}</div>
               </div>
@@ -473,7 +473,7 @@ export default function AnalyticsPage() {
             {/* Views by Page */}
             <div className="mb-12">
               <h2 className="font-serif text-[20px] mb-6">Views by Page</h2>
-              <div className="bg-card border border-border">
+              <div className="bg-card/90 backdrop-blur-sm border border-border">
                 {data.viewsByPage.length === 0 ? (
                   <div className="p-6 text-muted-foreground text-[14px]">No page views yet</div>
                 ) : (
@@ -499,7 +499,7 @@ export default function AnalyticsPage() {
             {/* Last 7 Days */}
             <div className="mb-12">
               <h2 className="font-serif text-[20px] mb-6">Last 7 Days</h2>
-              <div className="bg-card border border-border">
+              <div className="bg-card/90 backdrop-blur-sm border border-border">
                 {data.last7Days.length === 0 ? (
                   <div className="p-6 text-muted-foreground text-[14px]">No data yet</div>
                 ) : (
@@ -526,7 +526,7 @@ export default function AnalyticsPage() {
               {/* Top Countries */}
               <div>
                 <h2 className="font-serif text-[20px] mb-6">Top Countries</h2>
-                <div className="bg-card border border-border">
+                <div className="bg-card/90 backdrop-blur-sm border border-border">
                   {data.viewsByCountry.length === 0 ? (
                     <div className="p-6 text-muted-foreground text-[14px]">No data yet</div>
                   ) : (
@@ -552,7 +552,7 @@ export default function AnalyticsPage() {
               {/* Top Referrers */}
               <div>
                 <h2 className="font-serif text-[20px] mb-6">Top Referrers</h2>
-                <div className="bg-card border border-border">
+                <div className="bg-card/90 backdrop-blur-sm border border-border">
                   {data.topReferrers.length === 0 ? (
                     <div className="p-6 text-muted-foreground text-[14px]">No referrers yet</div>
                   ) : (
