@@ -1,7 +1,15 @@
 import { neon } from '@neondatabase/serverless'
 import { NextRequest, NextResponse } from 'next/server'
 
-const sql = process.env.DATABASE_URL ? neon(process.env.DATABASE_URL) : null
+// Invalid production configuration must not prevent the site from building.
+const sql = (() => {
+  if (!process.env.DATABASE_URL) return null
+  try {
+    return neon(process.env.DATABASE_URL)
+  } catch {
+    return null
+  }
+})()
 
 export async function POST(request: NextRequest) {
   if (!sql) {
