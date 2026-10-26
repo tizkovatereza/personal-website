@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { blogPosts, type BlogCategory } from "@/lib/blog-posts"
@@ -62,9 +61,6 @@ export function BlogList() {
               {...linkProps}
               className="group flex items-start gap-4 sm:gap-6 py-6 border-b border-border hover:border-primary/30 transition-colors"
             >
-              <div className="relative w-20 h-20 sm:w-28 sm:h-24 shrink-0 overflow-hidden border border-border bg-card/90 backdrop-blur-sm">
-                <Image src={post.image} alt="" fill sizes="(max-width: 639px) 80px, 112px" className="object-cover transition-transform group-hover:scale-105" />
-              </div>
               <div className="flex-1 min-w-0">
                 <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
                   {post.title}

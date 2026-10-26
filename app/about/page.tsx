@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -124,20 +123,6 @@ export default function AboutPage() {
           <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             About
           </h1>
-          
-          {/* Profile photo */}
-          <div className="mb-10">
-            <div className="flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 border border-border bg-muted/20">
-              <Image
-                src="/images/tereza-profile.jpg"
-                alt="Tereza Tizkova"
-                width={192}
-                height={192}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
-          </div>
           
           {/* Intro paragraph */}
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-[1.8] max-w-2xl">
