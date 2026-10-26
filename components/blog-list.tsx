@@ -3,7 +3,9 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { blogPosts, type BlogCategory } from "@/lib/blog-posts"
+import { type BlogCategory } from "@/lib/blog-posts"
+import { type WritingPost } from "@/lib/writing-posts"
+import { WritingLikeCount } from "@/components/writing-like-count"
 import { trackOutbound } from "@/lib/track-outbound"
 
 const filters: { label: string; value: BlogCategory | "all" }[] = [
@@ -14,9 +16,9 @@ const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "Other", value: "other" },
 ]
 
-export function BlogList() {
+export function BlogList({ posts }: { posts: WritingPost[] }) {
   const [active, setActive] = useState<BlogCategory | "all">("all")
-  const visiblePosts = blogPosts
+  const visiblePosts = posts
     .filter((post) => !post.draft)
     .filter((post) => active === "all" || post.category === active)
 
@@ -62,14 +64,18 @@ export function BlogList() {
               className="group flex items-start gap-4 sm:gap-6 py-6 border-b border-border hover:border-primary/30 transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <h2 className="font-serif text-[18px] sm:text-[20px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-tight mb-2">
+                <h2 className="font-serif text-[21px] sm:text-[23px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-snug mb-3">
                   {post.title}
                 </h2>
-                <p className="text-[13px] sm:text-[14px] font-light text-secondary line-clamp-2 leading-relaxed mb-3">
-                  {post.subtitle}
-                </p>
+                {post.excerpt && (
+                  <p className="text-[15px] font-normal text-secondary line-clamp-2 leading-[1.75] mb-4">
+                    {post.excerpt}
+                  </p>
+                )}
                 <div className="flex items-center gap-x-3 gap-y-2 flex-wrap font-mono text-[11px] font-light tracking-[0.05em] uppercase text-muted-foreground">
                   <span>{post.date}</span>
+                  <span>{post.source}</span>
+                  <WritingLikeCount source={post.source} slug={post.isInternal ? post.url.split("/").pop() : undefined} count={post.likes} />
                   {post.guestPost && <span className="text-primary border border-border px-1.5 py-0.5">Guest post for {post.guestPost}</span>}
                   {post.label && <span className="border border-border px-1.5 py-0.5">{post.label}</span>}
                 </div>

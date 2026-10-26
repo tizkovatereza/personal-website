@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { getWritingPosts } from "@/lib/writing-posts"
 import { BlogList } from "@/components/blog-list"
 import { SubscribeForm } from "@/components/subscribe-form"
 
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogPage() {
+export const revalidate = 3600
+
+export default async function BlogPage() {
+  const posts = await getWritingPosts()
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -54,7 +58,7 @@ export default function BlogPage() {
 
       {/* Posts List with category filters */}
       <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-5xl">
-        <BlogList />
+        <BlogList posts={posts} />
       </div>
     </div>
   )
