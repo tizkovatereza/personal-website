@@ -388,60 +388,36 @@ export function DontClickHere() {
             transition: isPoofing ? 'all 0.3s' : 'none',
           }}
         >
-          <svg width="70" height="80" viewBox="0 0 70 80" fill="none">
-            {/* Antenna */}
-            <line x1="35" y1="8" x2="35" y2="0" stroke="#8b9bb5" strokeWidth="2" />
-            <circle cx="35" cy="0" r="4" fill="#8b9bb5" className="animate-pulse" />
-            
-            {/* Head */}
-            <rect x="15" y="8" width="40" height="28" rx="4" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" />
-            
-            {/* Eyes */}
-            <circle cx="25" cy="20" r="3.5" fill="#8b9bb5" className="animate-pulse" />
-            <circle cx="45" cy="20" r="3.5" fill="#8b9bb5" className="animate-pulse" />
-            
-            {/* Mouth */}
-            <rect 
-              x="18" 
-              y={mouthOpen ? 25 : 30} 
-              width="34" 
-              height={mouthOpen ? 12 : 4} 
-              rx="2" 
-              fill="#0a0e17" 
-              stroke="#8b9bb5" 
-              strokeWidth="1.5" 
-            />
-            {mouthOpen && (
-              <>
-                <rect x="20" y="26" width="4" height="3" fill="#e5e7eb" />
-                <rect x="26" y="26" width="4" height="4" fill="#e5e7eb" />
-                <rect x="32" y="26" width="4" height="3" fill="#e5e7eb" />
-                <rect x="38" y="26" width="4" height="4" fill="#e5e7eb" />
-                <rect x="44" y="26" width="4" height="3" fill="#e5e7eb" />
-                <rect x="20" y="33" width="4" height="3" fill="#e5e7eb" />
-                <rect x="26" y="32" width="4" height="4" fill="#e5e7eb" />
-                <rect x="32" y="33" width="4" height="3" fill="#e5e7eb" />
-                <rect x="38" y="32" width="4" height="4" fill="#e5e7eb" />
-                <rect x="44" y="33" width="4" height="3" fill="#e5e7eb" />
-              </>
-            )}
-            
-            {/* Body */}
-            <rect x="10" y="38" width="50" height="25" rx="3" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" />
-            <rect x="18" y="44" width="8" height="8" rx="1" fill="#2a3142" />
-            <rect x="31" y="44" width="8" height="8" rx="1" fill="#2a3142" />
-            <rect x="44" y="44" width="8" height="8" rx="1" fill="#2a3142" />
-            <circle cx="22" cy="48" r="2" fill="#8b9bb5" opacity="0.5" />
-            <circle cx="35" cy="48" r="2" fill="#8b9bb5" opacity="0.5" />
-            <circle cx="48" cy="48" r="2" fill="#8b9bb5" opacity="0.5" />
-            
-            {/* Legs */}
-            <rect x="18" y="63" width="10" height="14" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" style={{ transform: `translateY(${legOffset}px)` }} />
-            <rect x="42" y="63" width="10" height="14" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="2" style={{ transform: `translateY(${-legOffset}px)` }} />
-            
-            {/* Feet */}
-            <rect x="15" y="75" width="16" height="5" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="1" style={{ transform: `translateY(${legOffset}px)` }} />
-            <rect x="39" y="75" width="16" height="5" rx="2" fill="#1a1f2e" stroke="#2a3142" strokeWidth="1" style={{ transform: `translateY(${-legOffset}px)` }} />
+          <svg width="90" height="80" viewBox="0 0 90 80" fill="none" role="img" aria-label="A playful robotic dog">
+            {/* Curled tail and the far pair of articulated legs. */}
+            <path d="M20 43 Q3 40 9 26 Q13 19 17 27" stroke="#8b9bb5" strokeWidth="5" strokeLinecap="round" />
+            <g stroke="#53647e" strokeWidth="6" strokeLinecap="round">
+              <path d={`M29 49 L${27 - legOffset} 64 L${32 - legOffset} 72`} />
+              <path d={`M57 49 L${59 + legOffset} 64 L${64 + legOffset} 72`} />
+            </g>
+            <rect x="18" y="33" width="49" height="26" rx="13" fill="#c5d0df" stroke="#53647e" strokeWidth="2" />
+            <rect x="30" y="38" width="20" height="12" rx="6" fill="#243248" />
+            <circle cx="36" cy="44" r="2" fill="#a3e8d2" />
+            <path d="M42 44 H46" stroke="#8b9bb5" strokeWidth="2" strokeLinecap="round" />
+            {/* Floppy ears, a rounded face screen, and a little antenna. */}
+            <path d="M59 23 L57 12" stroke="#8b9bb5" strokeWidth="2" />
+            <circle cx="57" cy="10" r="3" fill="#a3e8d2" className="animate-pulse" />
+            <path d="M52 23 Q40 17 45 39 Q48 44 53 34" fill="#8b9bb5" stroke="#53647e" strokeWidth="2" />
+            <rect x="50" y="20" width="31" height="29" rx="12" fill="#c5d0df" stroke="#53647e" strokeWidth="2" />
+            <rect x="56" y="26" width="21" height="13" rx="6" fill="#172335" />
+            <circle cx="63" cy="32" r="2.5" fill="#a3e8d2" />
+            <circle cx="72" cy="32" r="2.5" fill="#a3e8d2" />
+            <ellipse cx="77" cy="42" rx="9" ry="6" fill="#e3e9f1" stroke="#53647e" strokeWidth="1.5" />
+            <ellipse cx="82" cy="39" rx="3" ry="2.5" fill="#243248" />
+            <path d={mouthOpen ? "M70 44 Q77 56 84 44 Z" : "M71 44 Q77 48 82 44"} fill={mouthOpen ? "#172335" : "none"} stroke="#53647e" strokeWidth="1.5" />
+            {mouthOpen && <path d="M76 47 V51 Q79 54 80 49" stroke="#f1a8b8" strokeWidth="3" strokeLinecap="round" />}
+            {/* Near legs alternate with the far legs using the existing walk cycle. */}
+            <g stroke="#8b9bb5" strokeWidth="7" strokeLinecap="round">
+              <path d={`M26 54 L${28 + legOffset} 65 L${23 + legOffset} 73`} />
+              <path d={`M58 54 L${56 - legOffset} 65 L${61 - legOffset} 73`} />
+            </g>
+            <circle cx="26" cy="55" r="4" fill="#243248" />
+            <circle cx="58" cy="55" r="4" fill="#243248" />
           </svg>
           
           

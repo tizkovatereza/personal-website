@@ -1,10 +1,12 @@
 import type { MetadataRoute } from 'next'
+import { blogPosts } from '@/lib/blog-posts'
 import { getAllPosts } from '@/lib/mdx'
 
 const siteUrl = process.env.SITE_URL || 'https://www.terezatizkova.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts()
+  const drafts = new Set(blogPosts.filter((post) => post.draft).map((post) => post.url))
+  const posts = getAllPosts().filter((post) => !drafts.has(`/blog/${post.slug}`))
 
   const postUrls = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,

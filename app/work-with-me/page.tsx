@@ -44,11 +44,11 @@ const stats = [
 export default function AdvisoryPage() {
   return (
     <div className="min-h-screen relative">
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-4xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl">
         
         {/* Header */}
         <header className="mb-16">
-          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+          <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Work With Me
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl mb-10">
@@ -107,7 +107,7 @@ export default function AdvisoryPage() {
                 <p className="font-serif text-[28px] sm:text-[36px] tracking-[-0.02em] text-primary mb-1">
                   {stat.value}
                 </p>
-                <p className="font-mono text-[10px] sm:text-[11px] font-light text-muted-foreground tracking-[0.05em] uppercase">{stat.label}</p>
+                <p className="font-mono text-secondary uppercase text-[11px] font-light tracking-[0.05em]">{stat.label}</p>
               </div>
             ))}
           </div>

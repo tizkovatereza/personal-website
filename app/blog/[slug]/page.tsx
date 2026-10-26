@@ -1,3 +1,4 @@
+import { blogPosts } from '@/lib/blog-posts'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getPostBySlug, getAllPosts } from '@/lib/mdx'
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 
   return {
     title: post.title,
+    robots: blogPosts.some((entry) => entry.url === `/blog/${slug}` && entry.draft) ? { index: false, follow: false } : undefined,
     description: post.description,
     openGraph: {
       title: post.title,
@@ -62,11 +64,11 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <>
       <ReadingProgress />
-      <article className="container mx-auto max-w-3xl px-4 py-16">
+      <article className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16">
         {/* Back Link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="inline-flex items-center gap-2 font-mono text-[11px] font-light tracking-[0.05em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to blog
@@ -74,12 +76,12 @@ export default async function PostPage({ params }: PostPageProps) {
 
         {/* Header */}
         <header className="mb-12 space-y-6">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 font-mono text-[11px] font-light tracking-[0.05em] uppercase text-muted-foreground">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readingTime}</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+          <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             {post.title}
           </h1>
         </header>

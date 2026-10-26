@@ -62,8 +62,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 function ResourceList({ heading, items }: { heading: string; items: Resource[] }) {
   return (
-    <section className="px-6 sm:px-12 md:px-16 lg:px-20 pb-16 max-w-4xl">
-      <h2 className="flex items-baseline justify-between font-mono text-[11px] font-light tracking-[0.2em] uppercase text-muted-foreground pb-4">
+    <section className="px-6 sm:px-12 md:px-16 lg:px-20 pb-16 max-w-5xl">
+      <h2 className="flex items-baseline justify-between font-serif text-[24px] sm:text-[28px] font-normal tracking-[-0.02em] text-muted-foreground pb-4">
         <span>{heading}</span>
         <span>{items.length}</span>
       </h2>
@@ -87,10 +87,10 @@ function ResourceList({ heading, items }: { heading: string; items: Resource[] }
                   &#8599;
                 </span>
               </div>
-              <p className="mt-2 text-[14px] font-light text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="mt-2 text-[14px] font-light text-secondary leading-relaxed max-w-2xl">
                 {item.description}
               </p>
-              <span className="mt-3 inline-block font-mono text-[11px] font-light tracking-[0.1em] uppercase text-muted-foreground/70">
+              <span className="mt-3 inline-block font-mono uppercase text-muted-foreground/70 text-[11px] font-light tracking-[0.05em]">
                 {item.date ? (
                   <time dateTime={item.date}>{dateFormatter.format(new Date(item.date))}</time>
                 ) : (
@@ -108,12 +108,12 @@ function ResourceList({ heading, items }: { heading: string; items: Resource[] }
 export default function ResourcesPage() {
   return (
     <div className="min-h-screen">
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-12 max-w-4xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-12 max-w-5xl">
         <header>
-          <p className="font-mono text-[11px] font-light tracking-[0.2em] uppercase text-muted-foreground mb-4">
+          <p className="font-mono uppercase text-secondary mb-4 text-[11px] font-light tracking-[0.05em]">
             Reading list
           </p>
-          <h1 className="font-serif text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
+          <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Resources for Factory
           </h1>
           <p className="font-light text-[15px] sm:text-[17px] text-secondary leading-relaxed max-w-xl">
