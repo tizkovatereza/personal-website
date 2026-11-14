@@ -13,6 +13,7 @@ const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "Growth", value: "growth" },
   { label: "Technology", value: "ai" },
   { label: "Math", value: "math" },
+  { label: "Life", value: "life" },
   { label: "Other", value: "other" },
 ]
 

@@ -1,4 +1,4 @@
-export type BlogCategory = "growth" | "ai" | "math" | "other"
+export type BlogCategory = "growth" | "ai" | "math" | "life" | "other"
 
 export interface BlogPost {
   title: string
@@ -18,6 +18,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Three days in Hawaii",
+    date: "Nov 14, 2026",
+    subtitle: "What we did on the Big Island for Ben’s birthday and a few things I learned about Hawaii",
+    image: "/images/hawaii/hawaii-050.jpg",
+    url: "/blog/hawaii",
+    isNew: true,
+    isInternal: true,
+    category: "life"
+  },
+
+  {
     title: "The secret behind viral product launches",
     date: "Nov 9, 2026",
     subtitle: "What goes into a successful launch: storytelling, copy, community, and distribution.",
@@ -27,17 +38,6 @@ export const blogPosts: BlogPost[] = [
     label: "New",
     publication: "With Kyle Jeong · Browserbase",
     category: "growth"
-  },
-  {
-    title: "Hawaii for the First Time: Three Days on the Big Island",
-    date: "Oct 25, 2026",
-    subtitle: "Coqui frogs, coffee farms, manta rays, and a volcano that wouldn't cooperate",
-    image: "/images/blog/hawaii.jpg",
-    url: "/blog/hawaii",
-    isNew: true,
-    isInternal: true,
-    draft: true,
-    category: "other"
   },
   {
     title: "How do \"computer use\" agents work?",

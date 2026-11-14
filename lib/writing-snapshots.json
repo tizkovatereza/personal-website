@@ -76,5 +76,8 @@
   },
   "/blog/rise-of-the-software-factory": {
     "excerpt": "Everyone is suddenly talking about software factories, but very few have actually built one and fewer still are willing to show the process. So I want to start with the obvious questions of why this is happening now and what a software factory actually means."
+  },
+  "/blog/hawaii": {
+    "excerpt": "It was Ben’s birthday, so we went to Hawaii for the first time. I am writing you tips for what to see in the Big Island, and what I learned about Hawaii."
   }
 }
