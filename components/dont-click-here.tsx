@@ -4,453 +4,160 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { ThemeToggle } from "./theme-toggle"
 
-interface CharTarget {
-  el: HTMLElement
-  originalHtml: string
-  currentIndex: number
-}
+type Target = { node: Text; original: string }
+type Pose = { x: number; y: number; direction: number; chewing: boolean; step: number }
+const resting: Pose = { x: 0, y: 0, direction: 1, chewing: false, step: 0 }
 
 export function DontClickHere() {
   const pathname = usePathname()
-  const isHomepage = pathname === '/'
-  const [isActive, setIsActive] = useState(false)
-  const [robotPos, setRobotPos] = useState({ x: 0, y: 0 })
-  const [isPoofing, setIsPoofing] = useState(false)
-  const [walkFrame, setWalkFrame] = useState(0)
-  const [mouthOpen, setMouthOpen] = useState(false)
-  const [direction, setDirection] = useState(1)
-  const [eatenLetters, setEatenLetters] = useState<string[]>([])
-  const [isPooping, setIsPooping] = useState(false)
-  const [poopPile, setPoopPile] = useState<{letter: string, x: number, y: number, rotation: number, scale: number, hue: number, sat: number, light: number, fontSize: number}[]>([])
-  const [isDone, setIsDone] = useState(false)
-  const [poopFading, setPoopFading] = useState(false)
-  
-  const animationRef = useRef<number | null>(null)
-  const targetsRef = useRef<CharTarget[]>([])
-  const currentTargetIdx = useRef(0)
-  const originalHtmlRef = useRef<Map<HTMLElement, string>>(new Map())
+  const [active, setActive] = useState(false)
+  const [pose, setPose] = useState(resting)
+  const [letters, setLetters] = useState<string[]>([])
+  const targets = useRef<Target[]>([])
+  const eaten = useRef<string[]>([])
+  const position = useRef(resting)
+  const frame = useRef(0)
+  const scatterTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  
-
-  // Find ALL text elements to eat - targets everything with text
-  const prepareTargets = useCallback(() => {
-    const targets: CharTarget[] = []
-    const processedElements = new Set<HTMLElement>()
-    
-    // Target ALL text-containing elements on the page
-    const selectors = [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',  // All headings
-      'p',                                   // Paragraphs
-      'span',                                // Spans
-      'a',                                   // Links
-      'li',                                  // List items
-      'time',                                // Dates
-      'label',                               // Labels
-      'td', 'th',                            // Table cells
-      'figcaption',                          // Captions
-      'blockquote',                          // Quotes
-      'cite',                                // Citations
-    ]
-    
-    const allElements: HTMLElement[] = []
-    
-    selectors.forEach(selector => {
-      document.querySelectorAll(selector).forEach(el => {
-        const htmlEl = el as HTMLElement
-        // Skip navigation, hero section (has React state animations), buttons, and already processed
-        // The hero section contains typewriter animation that can't be restored via innerHTML
-        if (htmlEl.closest('nav') || 
-            htmlEl.closest('button') || 
-            htmlEl.closest('.robot-trigger') ||
-            htmlEl.closest('[role="navigation"]') ||
-            htmlEl.closest('.sf-fog-hero') ||  // Skip hero section (has React state animations)
-            processedElements.has(htmlEl)) return
-        
-        // Skip if parent is already in list (avoid duplicates)
-        let hasParentInList = false
-        allElements.forEach(existing => {
-          if (existing.contains(htmlEl) && existing !== htmlEl) {
-            hasParentInList = true
-          }
-        })
-        if (hasParentInList) return
-        
-        // Remove children that are now contained by this element
-        const toRemove: HTMLElement[] = []
-        allElements.forEach(existing => {
-          if (htmlEl.contains(existing) && htmlEl !== existing) {
-            toRemove.push(existing)
-          }
-        })
-        toRemove.forEach(el => {
-          const idx = allElements.indexOf(el)
-          if (idx > -1) allElements.splice(idx, 1)
-        })
-        
-        allElements.push(htmlEl)
-        processedElements.add(htmlEl)
-      })
-    })
-    
-    // Sort by vertical position top-to-bottom
-    allElements.sort((a, b) => {
-      const rectA = a.getBoundingClientRect()
-      const rectB = b.getBoundingClientRect()
-      return (rectA.top + window.scrollY) - (rectB.top + window.scrollY)
-    })
-    
-    // Add all elements with text - store innerHTML to preserve structure
-    allElements.forEach(htmlEl => {
-      const text = htmlEl.textContent || ''
-      if (text.trim() && text.length > 0) {
-        originalHtmlRef.current.set(htmlEl, htmlEl.innerHTML)
-        targets.push({
-          el: htmlEl,
-          originalHtml: htmlEl.innerHTML,
-          currentIndex: 0
-        })
-      }
-    })
-    
-    return targets
+  const restore = useCallback(() => {
+    cancelAnimationFrame(frame.current)
+    for (const target of targets.current) {
+      if (target.node.isConnected) target.node.nodeValue = target.original
+    }
+    targets.current = []
+    eaten.current = []
+    if (scatterTimer.current) clearTimeout(scatterTimer.current)
   }, [])
 
-  
+  useEffect(() => {
+    restore()
+    setActive(false)
+    setLetters([])
+    return restore
+  }, [pathname, restore])
 
-  // Handle clicking the "don't click here" button - starts or resets the robot
-  const handleButtonClick = () => {
-    if (!isHomepage) return
-    
-    // If robot is active, do a full reset
-    if (isActive) {
-      // Stop animation
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-        animationRef.current = null
-      }
-      
-      // Restore all original HTML (preserves structure, line breaks, etc.)
-      originalHtmlRef.current.forEach((html, el) => {
-        if (el && el.isConnected) {
-          el.innerHTML = html
-        }
-      })
-      originalHtmlRef.current.clear()
-      targetsRef.current = []
-      currentTargetIdx.current = 0
-      
-      // Reset all state
-      setIsActive(false)
-      setIsPoofing(false)
-      setIsPooping(false)
-      setPoopPile([])
-      setPoopFading(false)
-      setEatenLetters([])
-      setIsDone(false)
-      setMouthOpen(false)
-      setWalkFrame(0)
-      setDirection(1)
-      setRobotPos({ x: 0, y: 0 })
-      
-      // Scroll back to top smoothly
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+  function toggle() {
+    if (active) {
+      restore()
+      setActive(false)
+      setLetters([])
       return
     }
-    
-    const button = document.querySelector('.robot-trigger')
-    const rect = button?.getBoundingClientRect()
-    const startX = rect?.left || 100
-    const startY = (rect?.bottom || 50) + 50
-    
-    // Prepare targets
-    const targets = prepareTargets()
-    targetsRef.current = targets
-    currentTargetIdx.current = 0
-    
-    // Clear previous state
-    setPoopPile([])
-    setPoopFading(false)
-    setEatenLetters([])
-    setIsDone(false)
-    
-    setRobotPos({ x: startX, y: startY })
-    setIsActive(true)
-  }
-
-  // Handle clicking on the robot - makes it poop out eaten letters
-  const handleRobotClick = () => {
-    if (!isActive || isPooping) return
-    
-    // Robot poops out all eaten letters from its body to the left
-    if (eatenLetters.length > 0) {
-      setIsPooping(true)
-      setPoopFading(false)
-      const lettersToAdd = [...eatenLetters]
-      setEatenLetters([])
-      
-      // Get current robot position for pooping below the robot
-      const currentX = robotPos.x
-      const currentY = robotPos.y + 60 // Below the robot
-      
-      let i = 0
-      const poopInterval = setInterval(() => {
-        if (i < lettersToAdd.length) {
-          // Add letter below robot, piling up
-          // Pre-calculate all random values so they don't change on re-render
-          const col = i % 8
-          const row = Math.floor(i / 8)
-          const offsetX = (col - 4) * 14 + (Math.random() - 0.5) * 6
-          const offsetY = row * 16 + (Math.random() - 0.5) * 4
-          setPoopPile(prev => [...prev, {
-            letter: lettersToAdd[i],
-            x: currentX + offsetX,
-            y: currentY + offsetY,
-            rotation: Math.random() * 30 - 15,
-            scale: 0.9 + Math.random() * 0.3,
-            hue: 25 + Math.random() * 15,
-            sat: 40 + Math.random() * 20,
-            light: 35 + Math.random() * 15,
-            fontSize: 12 + Math.random() * 4
-          }])
-          i++
-        } else {
-          clearInterval(poopInterval)
-          setIsPooping(false)
-          
-          // Start fade out after 1 second
-          setTimeout(() => {
-            setPoopFading(true)
-            // Remove pile after fade animation completes
-            setTimeout(() => {
-              setPoopPile([])
-              setPoopFading(false)
-            }, 1000)
-          }, 1000)
-        }
-      }, 50) // Slower animation - 50ms between letters
+    const root = document.querySelector('main') ?? document.body
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement
+        if (!node.textContent?.trim() || !parent || parent.closest('nav, aside, button, textarea, input, script, style, [data-dog-skip], [aria-hidden="true"]')) return NodeFilter.FILTER_REJECT
+        const rect = parent.getBoundingClientRect()
+        return rect.width && rect.height ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+      },
+    })
+    const next: Target[] = []
+    while (walker.nextNode()) {
+      const node = walker.currentNode as Text
+      next.push({ node, original: node.nodeValue ?? '' })
     }
-    // If no letters eaten yet, do nothing - robot keeps eating
+    targets.current = next
+    eaten.current = []
+    position.current = { ...resting, x: window.innerWidth - 80, y: 90 }
+    setPose(position.current)
+    setActive(true)
   }
 
   useEffect(() => {
-    if (!isActive || isPoofing) return
+    if (!active) return
+    let index = 0
+    let previous = performance.now()
+    let lastBite = 0
+    let scrolledTarget: Text | null = null
+    const range = document.createRange()
 
-    const speed = 250
-    let lastTime = performance.now()
-    let lastEatTime = 0
-
-    const animate = (time: number) => {
-      const dt = (time - lastTime) / 1000
-      lastTime = time
-
-      setWalkFrame(f => (f + 1) % 20)
-
-      const targets = targetsRef.current
-      const idx = currentTargetIdx.current
-      
-      // Check if we've eaten all targets - return to top right corner
-      if (idx >= targets.length) {
-        // Move to top right corner
-        const cornerX = window.innerWidth - 100
-        const cornerY = 100
-        
-        setRobotPos(prev => {
-          const dx = cornerX - prev.x
-          const dy = cornerY - prev.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          
-          if (dx > 2) setDirection(1)
-          else if (dx < -2) setDirection(-1)
-          
-          // If at corner, mark as done
-          if (dist < 20) {
-            setIsDone(true)
-            return { x: cornerX, y: cornerY }
-          }
-          
-          // Move toward corner
-          return {
-            x: prev.x + (dx / dist) * speed * dt,
-            y: prev.y + (dy / dist) * speed * dt
-          }
-        })
-        
-        animationRef.current = requestAnimationFrame(animate)
+    function animate(now: number) {
+      const dt = Math.min((now - previous) / 1000, 0.04)
+      previous = now
+      while (index < targets.current.length && (!targets.current[index].node.isConnected || !targets.current[index].node.nodeValue?.trim())) index++
+      const target = targets.current[index]
+      if (!target) {
+        setPose(p => ({ ...p, chewing: false }))
         return
       }
-
-      const target = targets[idx]
-      if (!target || !target.el || !target.el.isConnected) {
-        currentTargetIdx.current++
-        animationRef.current = requestAnimationFrame(animate)
+      const text = target.node.nodeValue ?? ''
+      const start = text.search(/\S/)
+      range.setStart(target.node, Math.max(0, start))
+      range.setEnd(target.node, Math.min(text.length, Math.max(0, start) + 1))
+      const rect = range.getBoundingClientRect()
+      if (!rect.width || !rect.height) {
+        index++
+        frame.current = requestAnimationFrame(animate)
         return
       }
-      
-      // Check if this target is fully eaten
-      const currentText = target.el.textContent || ''
-      if (currentText.length === 0) {
-        currentTargetIdx.current++
-        animationRef.current = requestAnimationFrame(animate)
-        return
+      if ((rect.top < 80 || rect.bottom > window.innerHeight - 60) && scrolledTarget !== target.node) {
+        target.node.parentElement?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        scrolledTarget = target.node
       }
-
-      // Get position of the element (aim for the first character area)
-      const rect = target.el.getBoundingClientRect()
-      if (rect.width === 0 || rect.height === 0) {
-        currentTargetIdx.current++
-        animationRef.current = requestAnimationFrame(animate)
-        return
+      const prev = position.current
+      const tx = Math.max(42, Math.min(window.innerWidth - 42, rect.left - 32))
+      const ty = Math.max(42, Math.min(window.innerHeight - 42, rect.top + rect.height / 2))
+      const dx = tx - prev.x
+      const dy = ty - prev.y
+      const distance = Math.hypot(dx, dy)
+      const step = Math.min(distance, 1050 * dt)
+      const near = distance < 24
+      const next = {
+        x: distance ? prev.x + dx / distance * step : tx,
+        y: distance ? prev.y + dy / distance * step : ty,
+        direction: near ? 1 : dx < -4 ? -1 : dx > 4 ? 1 : prev.direction,
+        chewing: near && Math.floor(now / 65) % 2 === 0,
+        step: near ? 0 : Math.sin(now / 65) * 5,
       }
-      
-      // If element is off-screen, scroll to it
-      if (rect.top > window.innerHeight - 100 || rect.bottom < 100) {
-        target.el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      if (near && now - lastBite >= 32) {
+        // Keep the original text nodes and links intact so reset is exact.
+        const bite = text.slice(0, Math.max(0, start) + 3)
+        target.node.nodeValue = text.slice(bite.length)
+        eaten.current.push(...Array.from(bite).filter(char => char.trim()))
+        lastBite = now
       }
-      
-      // Target the left edge where first char is
-      const tx = rect.left + 20
-      const ty = rect.top + rect.height / 2
-
-      setRobotPos(prev => {
-        const dx = tx - prev.x
-        const dy = ty - prev.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-
-        if (dx > 2) setDirection(1)
-        else if (dx < -2) setDirection(-1)
-
-        // When close enough, eat a character
-        if (dist < 40 && time - lastEatTime > 80) {
-          setMouthOpen(true)
-          setTimeout(() => setMouthOpen(false), 60)
-          
-          // Remove first character and store it
-          const text = target.el.textContent || ''
-          if (text.length > 0) {
-            const eatenChar = text[0]
-            target.el.textContent = text.substring(1)
-            // Store the eaten letter (skip spaces)
-            if (eatenChar.trim()) {
-              setEatenLetters(prev => [...prev, eatenChar])
-            }
-          }
-          lastEatTime = time
-          return prev
-        }
-
-        // Move toward target
-        if (dist > 5) {
-          const newX = prev.x + (dx / dist) * speed * dt
-          const newY = prev.y + (dy / dist) * speed * dt
-          // Keep X within viewport, but Y can follow scroll
-          return {
-            x: Math.max(50, Math.min(window.innerWidth - 50, newX)),
-            y: newY
-          }
-        }
-        return prev
-      })
-
-      animationRef.current = requestAnimationFrame(animate)
+      position.current = next
+      setPose(next)
+      frame.current = requestAnimationFrame(animate)
     }
+    frame.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(frame.current)
+  }, [active])
 
-    animationRef.current = requestAnimationFrame(animate)
-    return () => { 
-      if (animationRef.current) cancelAnimationFrame(animationRef.current) 
-    }
-  }, [isActive, isPoofing])
-
-  const legOffset = Math.sin(walkFrame * 0.5) * 4
+  function scatterLetters() {
+    setLetters(eaten.current.splice(-32))
+    if (scatterTimer.current) clearTimeout(scatterTimer.current)
+    scatterTimer.current = setTimeout(() => setLetters([]), 1600)
+  }
 
   return (
     <>
       <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-2">
-        {isHomepage && (
-          <button 
-            onClick={handleButtonClick} 
-            className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0"
-          >
-            don&apos;t click here
-          </button>
-        )}
+        {pathname === '/' && <button onClick={toggle} aria-pressed={active} className="robot-trigger font-mono text-[11px] text-muted-foreground hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0">don&apos;t click here</button>}
         <ThemeToggle />
       </div>
-
-      {isActive && (
-        <div
-          onClick={handleRobotClick}
-          className="fixed z-[9999] cursor-pointer"
-          style={{
-            left: robotPos.x,
-            top: robotPos.y,
-            transform: `translate(-50%, -50%) scaleX(${direction}) ${isPoofing ? 'scale(1.5)' : 'scale(1)'}`,
-            opacity: isPoofing ? 0 : 1,
-            transition: isPoofing ? 'all 0.3s' : 'none',
-          }}
-        >
-          <svg width="90" height="80" viewBox="0 0 90 80" fill="none" role="img" aria-label="A playful robotic dog">
-            {/* Curled tail and the far pair of articulated legs. */}
-            <path d="M20 43 Q3 40 9 26 Q13 19 17 27" stroke="#8b9bb5" strokeWidth="5" strokeLinecap="round" />
-            <g stroke="#53647e" strokeWidth="6" strokeLinecap="round">
-              <path d={`M29 49 L${27 - legOffset} 64 L${32 - legOffset} 72`} />
-              <path d={`M57 49 L${59 + legOffset} 64 L${64 + legOffset} 72`} />
+      {active && <>
+        <button data-dog-skip type="button" aria-label="Let the dog drop its letters" onClick={scatterLetters} className="fixed z-[9999] bg-transparent border-0 p-0 cursor-pointer" style={{ left: pose.x, top: pose.y, transform: `translate(-50%, -50%) scaleX(${pose.direction})` }}>
+          <svg width="88" height="72" viewBox="0 0 88 72" fill="none" role="img" aria-label="A playful letter-eating dog">
+            <g stroke="#503e32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 38 Q5 32 9 23" stroke="#ba885a" strokeWidth="7" />
+              <path d={`M28 45 L${26 - pose.step} 62 L${32 - pose.step} 62 M55 45 L${57 + pose.step} 62 L${63 + pose.step} 62`} stroke="#96704d" strokeWidth="7" />
+              <path d="M18 36 Q20 29 33 30 L57 31 Q66 34 64 46 Q61 53 48 52 L29 51 Q17 50 18 36Z" fill="#d9ae79" />
+              <path d="M51 34 Q45 17 57 13 Q74 9 76 27 L81 31 Q87 33 82 39 L65 42 Q55 43 51 34Z" fill="#e9c795" />
+              <path d="M57 15 Q43 12 48 34 Q52 42 58 31Z" fill="#91613e" />
+              <path d="M51 38 L63 42" stroke="#b64e43" strokeWidth="5" />
+              <path d={`M26 47 L${26 + pose.step} 65 L${33 + pose.step} 65 M55 48 L${55 - pose.step} 65 L${62 - pose.step} 65`} stroke="#d9ae79" strokeWidth="7" />
+              <circle cx="70" cy="25" r="2.4" fill="#302820" stroke="none" />
+              <circle cx="70.7" cy="24.2" r="0.7" fill="white" stroke="none" />
+              <path d="M80 30 Q87 29 84 34 Q80 36 79 32Z" fill="#302820" />
+              <path d={pose.chewing ? 'M69 37 Q76 49 82 36Z' : 'M70 37 Q76 41 81 36'} fill={pose.chewing ? '#503e32' : 'none'} />
+              {pose.chewing && <path d="M74 41 Q77 47 79 41" stroke="#e79896" strokeWidth="3" />}
             </g>
-            <rect x="18" y="33" width="49" height="26" rx="13" fill="#c5d0df" stroke="#53647e" strokeWidth="2" />
-            <rect x="30" y="38" width="20" height="12" rx="6" fill="#243248" />
-            <circle cx="36" cy="44" r="2" fill="#a3e8d2" />
-            <path d="M42 44 H46" stroke="#8b9bb5" strokeWidth="2" strokeLinecap="round" />
-            {/* Floppy ears, a rounded face screen, and a little antenna. */}
-            <path d="M59 23 L57 12" stroke="#8b9bb5" strokeWidth="2" />
-            <circle cx="57" cy="10" r="3" fill="#a3e8d2" className="animate-pulse" />
-            <path d="M52 23 Q40 17 45 39 Q48 44 53 34" fill="#8b9bb5" stroke="#53647e" strokeWidth="2" />
-            <rect x="50" y="20" width="31" height="29" rx="12" fill="#c5d0df" stroke="#53647e" strokeWidth="2" />
-            <rect x="56" y="26" width="21" height="13" rx="6" fill="#172335" />
-            <circle cx="63" cy="32" r="2.5" fill="#a3e8d2" />
-            <circle cx="72" cy="32" r="2.5" fill="#a3e8d2" />
-            <ellipse cx="77" cy="42" rx="9" ry="6" fill="#e3e9f1" stroke="#53647e" strokeWidth="1.5" />
-            <ellipse cx="82" cy="39" rx="3" ry="2.5" fill="#243248" />
-            <path d={mouthOpen ? "M70 44 Q77 56 84 44 Z" : "M71 44 Q77 48 82 44"} fill={mouthOpen ? "#172335" : "none"} stroke="#53647e" strokeWidth="1.5" />
-            {mouthOpen && <path d="M76 47 V51 Q79 54 80 49" stroke="#f1a8b8" strokeWidth="3" strokeLinecap="round" />}
-            {/* Near legs alternate with the far legs using the existing walk cycle. */}
-            <g stroke="#8b9bb5" strokeWidth="7" strokeLinecap="round">
-              <path d={`M26 54 L${28 + legOffset} 65 L${23 + legOffset} 73`} />
-              <path d={`M58 54 L${56 - legOffset} 65 L${61 - legOffset} 73`} />
-            </g>
-            <circle cx="26" cy="55" r="4" fill="#243248" />
-            <circle cx="58" cy="55" r="4" fill="#243248" />
           </svg>
-          
-          
-        </div>
-      )}
-      
-      {/* Poop pile - letters appearing below robot */}
-      {poopPile.length > 0 && (
-        <div 
-          className="fixed z-[9997] pointer-events-none transition-opacity duration-[1000ms] ease-out"
-          style={{
-            opacity: poopFading ? 0 : 1,
-          }}
-        >
-          {poopPile.map((item, i) => (
-            <span
-              key={i}
-              className="absolute font-serif font-bold"
-              style={{
-                left: item.x,
-                top: item.y,
-                color: `hsl(${item.hue}, ${item.sat}%, ${item.light}%)`,
-                transform: `translate(-50%, -50%) rotate(${item.rotation}deg) scale(${item.scale})`,
-                fontSize: `${item.fontSize}px`,
-                textShadow: '1px 1px 0 rgba(139,90,43,0.5), -1px -1px 0 rgba(210,180,140,0.4)',
-                zIndex: 9997 + i,
-              }}
-            >
-              {item.letter}
-            </span>
-          ))}
-        </div>
-      )}
+        </button>
+        {letters.length > 0 && <div data-dog-skip aria-hidden="true" className="fixed z-[9998] pointer-events-none" style={{ left: pose.x - 25, top: pose.y + 32 }}>{letters.map((letter, i) => <span key={i} className="absolute text-sm font-serif text-amber-800" style={{ left: (i % 8) * 13 - 40, top: Math.floor(i / 8) * 15, transform: `rotate(${(i % 5 - 2) * 12}deg)` }}>{letter}</span>)}</div>}
+      </>}
     </>
   )
 }

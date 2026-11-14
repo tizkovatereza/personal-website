@@ -96,7 +96,7 @@ export function SFFogHero() {
         </h1>
         
         {/* Animated tagline - same size as description */}
-        <p className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-4">
+        <p data-dog-skip className="text-secondary font-light text-[15px] sm:text-[17px] leading-[1.7] max-w-[520px] mb-4">
           <span>I explain </span>
           <span 
             className="text-primary italic cursor-default"
