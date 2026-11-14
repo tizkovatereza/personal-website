@@ -16,6 +16,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "The secret behind viral product launches",
+    date: "Nov 9, 2026",
+    subtitle: "What goes into a successful launch: storytelling, copy, community, and distribution. With Kyle Jeong from Browserbase.",
+    image: "https://kylejeong.com/blog/no-such-thing-as-a-free-launch/17.webp",
+    url: "https://kylejeong.com/blog/no-such-thing-as-a-free-launch",
+    isNew: true,
+    label: "New · With Kyle Jeong (Browserbase)",
+    guestPost: "kylejeong.com",
+    category: "growth"
+  },
+  {
     title: "Hawaii for the First Time: Three Days on the Big Island",
     date: "Oct 25, 2026",
     subtitle: "Coqui frogs, coffee farms, manta rays, and a volcano that wouldn't cooperate",

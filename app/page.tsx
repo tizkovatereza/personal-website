@@ -22,6 +22,14 @@ import { trackOutbound } from "@/lib/track-outbound"
 
 const writingItems = [
   {
+    title: "The secret behind viral product launches",
+    date: "Nov 2026",
+    source: "With Kyle Jeong (Browserbase)",
+    href: "https://kylejeong.com/blog/no-such-thing-as-a-free-launch",
+    isNew: true,
+    label: "New",
+  },
+  {
     title: "How do \"computer use\" agents work?",
     date: "Aug 2026",
     source: "technically.dev",
@@ -240,6 +248,11 @@ export default function HomePage() {
                 >
                   <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2 flex-wrap">
                     {item.title}
+                    {'label' in item && item.label && (
+                      <span className="font-mono text-[10px] font-light uppercase tracking-[0.05em] text-primary border border-border px-1.5 py-0.5">
+                        {item.label}
+                      </span>
+                    )}
                     {'guestPost' in item && item.guestPost && (
                       <span className="text-[13px] font-light italic text-primary/80 tracking-normal normal-case">
                         Guest post for {item.guestPost}
