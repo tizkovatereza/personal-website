@@ -10,7 +10,9 @@ export interface BlogPost {
   isInternal?: boolean
   label?: string
   guestPost?: string
+  publication?: string
   draft?: boolean
+  unlisted?: boolean
   category?: BlogCategory
 }
 
@@ -18,12 +20,12 @@ export const blogPosts: BlogPost[] = [
   {
     title: "The secret behind viral product launches",
     date: "Nov 9, 2026",
-    subtitle: "What goes into a successful launch: storytelling, copy, community, and distribution. With Kyle Jeong from Browserbase.",
+    subtitle: "What goes into a successful launch: storytelling, copy, community, and distribution.",
     image: "https://kylejeong.com/blog/no-such-thing-as-a-free-launch/17.webp",
     url: "https://kylejeong.com/blog/no-such-thing-as-a-free-launch",
     isNew: true,
-    label: "New · With Kyle Jeong (Browserbase)",
-    guestPost: "kylejeong.com",
+    label: "New",
+    publication: "With Kyle Jeong · Browserbase",
     category: "growth"
   },
   {
@@ -55,6 +57,7 @@ export const blogPosts: BlogPost[] = [
     url: "/writing/x-algorithm",
     isNew: true,
     isInternal: true,
+    unlisted: true,
     category: "growth"
   },
   {

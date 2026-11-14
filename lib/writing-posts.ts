@@ -10,7 +10,7 @@ export interface WritingPost extends BlogPost {
 const saved = snapshots as Record<string, { excerpt: string; likes?: number }>
 
 export async function getWritingPosts(): Promise<WritingPost[]> {
-  return Promise.all(blogPosts.filter((post) => !post.draft).map(async (post) => {
+  return Promise.all(blogPosts.filter((post) => !post.draft && !post.unlisted).map(async (post) => {
     const snapshot = saved[post.url]
     const isSubstack = new URL(post.url, 'https://www.terezatizkova.com').hostname === 'terezatizkova.substack.com'
     let likes = snapshot?.likes
@@ -36,7 +36,7 @@ export async function getWritingPosts(): Promise<WritingPost[]> {
     return {
       ...post,
       excerpt: snapshot?.excerpt ?? '',
-      source: post.isInternal ? 'Blog' : isSubstack ? 'Substack' : post.guestPost ?? 'Guest post',
+      source: post.isInternal ? 'Blog' : isSubstack ? 'Substack' : post.publication ?? post.guestPost ?? 'Guest post',
       likes,
     }
   }))

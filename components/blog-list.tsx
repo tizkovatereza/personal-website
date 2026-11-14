@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { type BlogCategory } from "@/lib/blog-posts"
@@ -16,15 +16,17 @@ const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "Other", value: "other" },
 ]
 
-export function BlogList({ posts }: { posts: WritingPost[] }) {
+export function BlogList({ posts, sidebar }: { posts: WritingPost[]; sidebar?: ReactNode }) {
   const [active, setActive] = useState<BlogCategory | "all">("all")
   const visiblePosts = posts
-    .filter((post) => !post.draft)
+    .filter((post) => !post.draft && !post.unlisted)
     .filter((post) => active === "all" || post.category === active)
 
   return (
-    <div>
-      <div className="flex flex-wrap items-center gap-2 mb-8" role="group" aria-label="Filter articles by topic">
+    <div className="grid gap-10 md:grid-cols-[210px_minmax(0,1fr)] md:gap-12 items-start">
+      <aside className="flex flex-col gap-8 md:sticky md:top-8" aria-label="Writing subscriptions and topics">
+        {sidebar}
+        <div className="flex flex-col items-stretch gap-1" role="group" aria-label="Filter articles by topic">
         {filters.map((filter) => {
           const isActive = active === filter.value
           return (
@@ -33,17 +35,18 @@ export function BlogList({ posts }: { posts: WritingPost[] }) {
               type="button"
               onClick={() => setActive(filter.value)}
               aria-pressed={isActive}
-              className={`px-4 py-1.5 text-[11px] font-mono font-light uppercase tracking-[0.05em] border transition-colors ${
+              className={`px-3 py-2.5 text-left text-[11px] font-mono font-light uppercase tracking-[0.05em] border-l-2 transition-colors ${
                 isActive
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "text-muted-foreground border-border hover:border-primary/30 hover:text-primary"
+                  ? "bg-primary/5 text-foreground border-primary"
+                  : "text-muted-foreground border-transparent hover:border-primary/30 hover:text-primary"
               }`}
             >
               {filter.label}
             </button>
           )
         })}
-      </div>
+        </div>
+      </aside>
 
       <div className="flex flex-col">
         {visiblePosts.map((post) => {
@@ -76,8 +79,7 @@ export function BlogList({ posts }: { posts: WritingPost[] }) {
                   <span>{post.date}</span>
                   <span>{post.source}</span>
                   <WritingLikeCount source={post.source} slug={post.isInternal ? post.url.split("/").pop() : undefined} count={post.likes} />
-                  {post.guestPost && <span className="text-primary border border-border px-1.5 py-0.5">Guest post for {post.guestPost}</span>}
-                  {post.label && <span className="border border-border px-1.5 py-0.5">{post.label}</span>}
+                  {post.label && <span className="text-primary">{post.label}</span>}
                 </div>
               </div>
               <ArrowUpRight className="h-4 w-4 shrink-0 mt-1 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block" />

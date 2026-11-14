@@ -24,7 +24,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-16 max-w-5xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-10 max-w-6xl">
         <header>
           <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Writing
@@ -39,26 +39,28 @@ export default async function BlogPage() {
             </a>{" "}
             with fellow writers.
           </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <SubscribeForm variant="button" />
-            <a
-              href="https://terezatizkova.substack.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-              </svg>
-              Substack — older, inactive
-            </a>
-          </div>
+
         </header>
       </div>
 
       {/* Posts List with category filters */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-5xl">
-        <BlogList posts={posts} />
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-6xl">
+        <BlogList posts={posts} sidebar={
+          <div className="flex flex-col items-stretch gap-4">
+            <SubscribeForm variant="button" layout="vertical" />
+            <a
+              href="https://terezatizkova.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-start gap-2 text-[12px] leading-relaxed font-mono font-light text-muted-foreground hover:text-primary transition-colors"
+            >
+              <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+              </svg>
+              Substack archive
+            </a>
+          </div>
+        } />
       </div>
     </div>
   )

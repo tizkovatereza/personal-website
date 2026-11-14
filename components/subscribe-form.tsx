@@ -5,9 +5,10 @@ import { Loader2, CheckCircle, Mail } from 'lucide-react'
 
 interface SubscribeFormProps {
   variant?: 'default' | 'inline' | 'button'
+  layout?: 'horizontal' | 'vertical'
 }
 
-export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
+export function SubscribeForm({ variant = 'default', layout = 'horizontal' }: SubscribeFormProps) {
   const [email, setEmail] = React.useState('')
   const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = React.useState('')
@@ -57,22 +58,23 @@ export function SubscribeForm({ variant = 'default' }: SubscribeFormProps) {
       return (
         <button
           onClick={() => setIsOpen(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-mono font-light text-primary border border-primary/30 hover:bg-primary/10 transition-colors"
+          className={`inline-flex items-center gap-2 py-2.5 text-[13px] leading-relaxed text-left font-mono font-light text-primary border border-primary/30 hover:bg-primary/10 transition-colors ${layout === 'vertical' ? 'w-full px-3' : 'px-5'}`}
         >
-          <Mail className="w-4 h-4" />
+          <Mail className="w-4 h-4 shrink-0" />
           Subscribe to new articles
         </button>
       )
     }
 
     return (
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
+      <form onSubmit={handleSubmit} className={`flex gap-2 ${layout === 'vertical' ? 'flex-col items-stretch' : 'items-center'}`}>
         <input
           type="email"
+          aria-label="Email address for new articles"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
-          className="px-4 py-2.5 text-[13px] font-mono bg-background border border-primary/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary w-[200px]"
+          className={`min-w-0 px-4 py-2.5 text-[13px] font-mono bg-background border border-primary/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary ${layout === 'vertical' ? 'w-full' : 'w-[200px]'}`}
           autoFocus
           required
           disabled={status === 'loading'}

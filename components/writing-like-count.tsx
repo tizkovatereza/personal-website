@@ -33,8 +33,8 @@ export function WritingLikeCount({ source, slug, count }: WritingLikeCountProps)
   }, [slug])
 
   const value = slug ? nativeCount : count
-  if (!slug && count === undefined) return null
-  const label = loading ? 'Loading likes' : value == null ? 'Likes unavailable' : `${value} ${value === 1 ? 'like' : 'likes'}`
+  if (loading || value == null) return null
+  const label = `${value} ${value === 1 ? 'like' : 'likes'}`
 
   return (
     <span className="inline-flex items-center gap-1.5" aria-label={`${label} on ${source}`}>

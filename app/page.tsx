@@ -79,9 +79,9 @@ const writingItems = [
   },
   {
     title: "Gödel's Incompleteness Theorems Explained Simply — Part 1",
-    date: "Jan 2026",
+    date: "Jun 2025",
     source: "Substack",
-    href: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-part-1",
+    href: "https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained",
   },
 ]
 
@@ -171,6 +171,7 @@ export default function HomePage() {
   const [contact, setContact] = useState("")
   const [isSent, setIsSent] = useState(false)
   const [isSending, setIsSending] = useState(false)
+  const [sendError, setSendError] = useState("")
 
   const handleChipClick = (prompt: string) => {
     setMessage(prompt)
@@ -179,6 +180,7 @@ export default function HomePage() {
   const handleSend = async () => {
     if (!message.trim()) return
     setIsSending(true)
+    setSendError("")
     
     try {
       const fullMessage = contact.trim() 
@@ -198,9 +200,12 @@ export default function HomePage() {
           setMessage("")
           setContact("")
         }, 3000)
+      } else {
+        setSendError("Your message couldn't be sent. Please try again or email me.")
       }
     } catch (error) {
       console.error('Failed to send feedback:', error)
+      setSendError("Your message couldn't be sent. Please try again or email me.")
     } finally {
       setIsSending(false)
     }
@@ -244,7 +249,7 @@ export default function HomePage() {
                 <LinkComponent
                   key={index}
                   {...linkProps}
-                  className="flex flex-col sm:flex-row sm:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2"
+                  className="flex flex-col xl:flex-row xl:items-baseline justify-between py-5 px-4 bg-transparent editorial-item group gap-2 xl:gap-6"
                 >
                   <h3 className="font-serif text-[16px] sm:text-[18px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors flex items-center gap-2 flex-wrap">
                     {item.title}
@@ -260,7 +265,7 @@ export default function HomePage() {
                     )}
                   </h3>
                   <span className="font-mono text-muted-foreground uppercase flex-shrink-0 text-[11px] font-light tracking-[0.05em]">
-                    {item.date} �� {item.source}
+                    {item.date} · {item.source}
                   </span>
                 </LinkComponent>
               )
@@ -340,6 +345,7 @@ export default function HomePage() {
 
                 {/* Text area */}
                 <textarea
+                  aria-label="Your message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write something..."
@@ -350,6 +356,7 @@ export default function HomePage() {
                 {/* Contact and send row */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                   <input
+                    aria-label="Your contact details (optional)"
                     type="text"
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
@@ -365,6 +372,14 @@ export default function HomePage() {
                     <Send className="w-3 h-3" />
                   </button>
                 </div>
+                {sendError && (
+                  <p role="alert" className="text-[14px] leading-relaxed text-secondary mt-4">
+                    {sendError}{" "}
+                    <a href="mailto:tereza.tizkova@gmail.com" className="text-primary underline underline-offset-4">
+                      tereza.tizkova@gmail.com
+                    </a>
+                  </p>
+                )}
               </>
             )}
           </div>

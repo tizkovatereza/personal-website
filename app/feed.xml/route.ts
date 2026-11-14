@@ -5,7 +5,7 @@ import { getAllPosts } from '@/lib/mdx'
 const siteUrl = process.env.SITE_URL || 'https://www.terezatizkova.com'
 
 export async function GET() {
-  const drafts = new Set(blogPosts.filter((post) => post.draft).map((post) => post.url))
+  const drafts = new Set(blogPosts.filter((post) => post.draft || post.unlisted).map((post) => post.url))
   const posts = getAllPosts().filter((post) => !drafts.has(`/blog/${post.slug}`))
 
   const feed = new RSS({

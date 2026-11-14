@@ -9,7 +9,7 @@ function parseDate(date: string): number {
 
 export function ReadMore({ currentUrl }: { currentUrl: string }) {
   // Everything except the current article and hidden drafts
-  const pool = blogPosts.filter((p) => p.url !== currentUrl && !p.draft)
+  const pool = blogPosts.filter((p) => p.url !== currentUrl && !p.draft && !p.unlisted)
 
   // Two latest by date
   const latest = [...pool].sort((a, b) => parseDate(b.date) - parseDate(a.date)).slice(0, 2)

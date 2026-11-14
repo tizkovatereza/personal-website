@@ -81,7 +81,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.className} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-light antialiased noise-texture scanlines">
+      <body className="font-light antialiased noise-texture">
         <div className="global-bg-pattern print:hidden" aria-hidden="true" />
         <ThemeProvider
           attribute="class"

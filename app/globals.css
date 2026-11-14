@@ -51,7 +51,7 @@
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.12);
   --input: #ffffff;
   --ring: #4a5568;
   --text-muted: #9ca3af;
@@ -100,7 +100,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-color: #0a0f1a;
+  background-color: var(--background);
 }
 
 .light .global-bg-pattern {
@@ -121,13 +121,9 @@
 }
 
 .light .global-bg-pattern::before {
-  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/u9688764358_seamless_repeating_wallpaper_pattern_tiny_simple__a2a194ab-9c74-4cdd-9540-30d743eb658f_3%20%281%29-pl1n8P2WXmePIPiDK8xlbOmEi4azfe.png');
-  background-size: 300px;
-  background-position: top left;
-  background-attachment: fixed;
-  background-repeat: repeat;
   filter: saturate(0) invert(1);
-  opacity: 0.04;
+  opacity: 0.055;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.45), #000);
 }
 
 /* Selection styling */
@@ -146,7 +142,7 @@ html {
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
+  opacity: 0.015;
   pointer-events: none;
   z-index: 100;
 }
@@ -211,8 +207,8 @@ html {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 255, 255, 0.06) 20%,
-    rgba(255, 255, 255, 0.06) 80%,
+    var(--border) 20%,
+    var(--border) 80%,
     transparent
   );
 }
