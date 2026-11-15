@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Sidebar } from '@/components/sidebar'
@@ -8,27 +8,12 @@ import { DontClickHere } from '@/components/dont-click-here'
 import { PageViewTracker } from '@/components/page-view-tracker'
 import './globals.css'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-sans-display',
-  display: 'swap',
-  weight: ['300', '400', '500'],
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-serif-display',
-  display: 'swap',
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-})
-
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ['latin'],
-  variable: '--font-mono-display',
-  display: 'swap',
-  weight: ['300', '400'],
-})
+const inter = localFont({ src: '../public/fonts/inter.ttf', weight: '100 900', variable: '--font-sans-display', display: 'swap' })
+const playfair = localFont({ src: [
+  { path: '../public/fonts/playfair.ttf', weight: '400 900', style: 'normal' },
+  { path: '../public/fonts/playfair-italic.ttf', weight: '400 900', style: 'italic' },
+], variable: '--font-serif-display', display: 'swap' })
+const jetbrainsMono = localFont({ src: '../public/fonts/jetbrains.ttf', weight: '100 800', variable: '--font-mono-display', display: 'swap' })
 
 export const metadata: Metadata = {
   title: {
