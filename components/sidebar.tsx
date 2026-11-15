@@ -9,6 +9,7 @@ const navItems = [
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Writing" },
+  { href: "/growth-advisory", label: "Growth advisory" },
 ]
 
 export function Sidebar() {

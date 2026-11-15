@@ -161,7 +161,7 @@ const projects = [
     category: "Advisory",
     title: "Startup Advisory", 
     description: "I enjoy helping early-stage teams figure things out.",
-    href: "mailto:tereza.tizkova@gmail.com?subject=Advisory chat",
+    href: "/growth-advisory",
     icon: Lightbulb,
   },
 ]

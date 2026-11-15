@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/work-with-me`,
+      url: `${siteUrl}/growth-advisory`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
