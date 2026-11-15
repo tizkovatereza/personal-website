@@ -81,7 +81,6 @@ const items: Item[] = [
   { kind: 'quote', value: quotes[5] },
   { kind: 'quote', value: moreQuotes[1] },
   { kind: 'appearance', value: appearances[3] },
-  { kind: 'appearance', value: appearances[4] },
   { kind: 'quote', value: moreQuotes[3] },
   { kind: 'quote', value: { name: 'Swetha Nyalam', context: 'E2B hackathon attendee', quote: 'A big thank you to Tereza Tizkova for putting together such an amazing event!', url: 'https://www.linkedin.com/posts/swetha-nyalam_i-had-the-incredible-opportunity-to-attend-activity-7248881779854467072-BZV_', image: 'https://media.licdn.com/dms/image/v2/D5622AQFsicrx3o42IQ/feedshare-image-high-res/feedshare-image-high-res/0/1728268093071?e=2147483647&v=beta&t=nEisWbZ1EYvhcOGs3sDZ385bn1lFqlS7zErn6aeP5V8' } },
   { kind: 'quote', value: { name: 'Richard Molnár', context: 'E2B hackathon attendee', quote: 'Thanks for organizing such a fun event, we had a great experience building something interesting!', url: 'https://www.linkedin.com/posts/tereza-tizkova-568439174_yes-im-posting-about-the-hackathon-again-activity-7312203593883832320-bYPD' } },
