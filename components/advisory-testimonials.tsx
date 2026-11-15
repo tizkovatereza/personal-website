@@ -69,6 +69,8 @@ const appearances: Appearance[] = [
 
 type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string; imageAlt?: string; note?: string; relatedUrl?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
 const items: Item[] = [
+  { kind: 'appearance', value: { image: 'https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ccff0b45-d474-4fdd-90c3-f01e5419a5dc/ee341b9f-8fd3-47e5-87db-9b3d0fc72de5_1280x720.jpg?t=1788558979', alt: 'Latent Space coverage of AI Engineer World’s Fair', source: 'Latent Space · Richard MacManus', title: 'My keynote in Latent Space', description: 'Coverage of my AI Engineer World’s Fair keynote and how I define a software factory.', url: 'https://latent.space/p/aiewf-daily-dispatch-loops' } },
+  { kind: 'appearance', value: { image: 'https://images.lumacdn.com/event-covers/nb/ff5e3a7b-be7e-4974-bb87-ed272f4c0502', alt: 'Code Interpreting 2.0 hackathon event poster', source: 'E2B × Fireworks AI × Swyx', title: 'Code Interpreting 2.0', description: 'An SF hackathon I hosted with E2B, Fireworks AI, and Shawn “Swyx” Wang, co-founder of Latent Space.', url: 'https://luma.com/kkc0gwao' } },
   { kind: 'quote', value: moreQuotes[0] },
   { kind: 'appearance', value: appearances[0] },
   { kind: 'quote', value: quotes[0] },
