@@ -7,13 +7,13 @@ const avatars = avatarData as Record<string, string>
 const quotes = [
   {
     name: 'Matan Grinberg',
-    context: 'Factory',
+    context: 'Co-founder & CEO, Factory',
     quote: "A few days in and she's already crushing it -- she owned the launch of Factory Router on Tuesday. … An ambitious scope for a truly 1 of 1 individual.",
     url: 'https://x.com/matanSF/status/2062600775172280428',
   },
   {
     name: 'Erik Dunteman',
-    context: 'Modal',
+    context: 'Co-founder & CEO, Modal',
     quote: "You absolutely crushed it! Great work and best wishes with what's next.",
     url: 'https://x.com/erikdunteman/status/2032539570496245989',
   },
@@ -25,13 +25,13 @@ const quotes = [
   },
   {
     name: 'Eno Reyes',
-    context: 'Factory',
+    context: 'Co-founder & CTO, Factory',
     quote: 'Tereza is already running a million miles an hour and crushed the launch of Factory Router.',
     url: 'https://x.com/EnoReyes/status/2062650766347952529',
   },
   {
     name: 'Francesca LaBianca',
-    context: 'Factory',
+    context: 'COO, Factory',
     quote: 'She is n=1 on all things growth, and exhibits relentlessness in everything she does.',
     url: 'https://x.com/francesca_lab/status/2062639698842136692',
   },
@@ -51,9 +51,9 @@ const quotes = [
 
 const moreQuotes = [
   { name: 'Natalie Sportelli', context: 'Clay', quote: "you'd be missing out if you're not following these growth and marketing folks: … @ElenaVerna @tereza_tizkova.", url: 'https://x.com/N_Sportelli/status/2121250696431382631' },
-  { name: 'Haroon Choudery', context: '', quote: 'Just recorded a 🔥 episode with @tereza_tizkova - all about AI agents.', url: 'https://x.com/haroonc/status/1762563455750381740' },
+  { name: 'Haroon Choudery', context: 'AI Ready podcast · Our episode on AI agents', quote: 'Just recorded a 🔥 episode with @tereza_tizkova - all about AI agents.', url: 'https://x.com/haroonc/status/1762563455750381740' },
   { name: 'meng shao', context: '', quote: 'Fragments by @e2b_dev @tereza_tizkova …', url: 'https://x.com/shao__meng/status/1842788840664404448' },
-  { name: 'Nehil Jain', context: 'Anyscale', quote: 'Thanks @tereza_tizkova for such an amazing event. Learnt a ton about @e2b_dev!', url: 'https://x.com/nehiljain/status/1842773037122453997' },
+  { name: 'Nehil Jain', context: 'Anyscale · On an E2B hackathon I organized', quote: 'Thanks @tereza_tizkova for such an amazing event. Learnt a ton about @e2b_dev!', url: 'https://x.com/nehiljain/status/1842773037122453997' },
 ]
 
 type Appearance = { image: string; alt: string; source: string; title: string; url: string; description?: string }
@@ -67,7 +67,7 @@ const appearances: Appearance[] = [
 
 ]
 
-type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
+type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string; note?: string; relatedUrl?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
 const items: Item[] = [
   { kind: 'quote', value: moreQuotes[0] },
   { kind: 'appearance', value: appearances[0] },
@@ -85,16 +85,16 @@ const items: Item[] = [
   { kind: 'quote', value: moreQuotes[3] },
   { kind: 'quote', value: { name: 'Swetha Nyalam', context: 'E2B hackathon attendee', quote: 'A big thank you to Tereza Tizkova for putting together such an amazing event!', url: 'https://www.linkedin.com/posts/swetha-nyalam_i-had-the-incredible-opportunity-to-attend-activity-7248881779854467072-BZV_', image: 'https://media.licdn.com/dms/image/v2/D5622AQFsicrx3o42IQ/feedshare-image-high-res/feedshare-image-high-res/0/1728268093071?e=2147483647&v=beta&t=nEisWbZ1EYvhcOGs3sDZ385bn1lFqlS7zErn6aeP5V8' } },
   { kind: 'quote', value: { name: 'Richard Molnár', context: 'E2B hackathon attendee', quote: 'Thanks for organizing such a fun event, we had a great experience building something interesting!', url: 'https://www.linkedin.com/posts/tereza-tizkova-568439174_yes-im-posting-about-the-hackathon-again-activity-7312203593883832320-bYPD' } },
-  { kind: 'quote', value: { name: 'Henry Scott-Green', context: 'On my AI agents map', quote: 'Great map!', url: 'https://x.com/HenrySG/status/1693575160085832015' } },
+  { kind: 'quote', value: { name: 'Henry Scott-Green', context: 'Co-founder, Context.ai', note: 'On the AI agents map I created at E2B, a directory of agent projects and tools.', relatedUrl: 'https://github.com/e2b-dev/awesome-ai-agents', image: '/images/advisory/agents.png', quote: 'Great map!', url: 'https://x.com/HenrySG/status/1693575160085832015' } },
   { kind: 'quote', value: quotes[3] },
   { kind: 'quote', value: quotes[6] },
-  { kind: 'quote', value: { name: 'Hank Taylor', context: '', quote: 'Tereza is great!', url: 'https://www.linkedin.com/posts/francesca-labianca-a15563158_very-excited-to-welcome-tereza-tizkova-to-activity-7468789652292915200-5229' } },
+  { kind: 'quote', value: { name: 'Hank Taylor', context: 'Former VP of Marketing & RevOps, Vercel', quote: 'Tereza is great!', url: 'https://www.linkedin.com/posts/francesca-labianca-a15563158_very-excited-to-welcome-tereza-tizkova-to-activity-7468789652292915200-5229' } },
 ]
 
 export function AdvisoryTestimonials() {
   const track = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-  const [orderedItems, setOrderedItems] = useState(items)
+  const [orderedItems, setOrderedItems] = useState<Item[]>([])
   const [paused, setPaused] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(true)
   const [hidden, setHidden] = useState(false)
@@ -103,11 +103,26 @@ export function AdvisoryTestimonials() {
   const interactionUntil = useRef(0)
 
   useEffect(() => {
-    const next = [...items]
-    for (let i = next.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[next[i], next[j]] = [next[j], next[i]]
+    const shuffle = (values: Item[]) => {
+      for (let i = values.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[values[i], values[j]] = [values[j], values[i]]
+      }
+      return values
     }
+    const quoteCards = shuffle(items.filter(item => item.kind === 'quote'))
+    const workCards = shuffle(items.filter(item => item.kind === 'appearance'))
+    const next: Item[] = []
+    while (quoteCards.length || workCards.length) {
+      if (quoteCards.length) next.push(quoteCards.pop()!)
+      if (workCards.length) next.push(workCards.pop()!)
+      if (quoteCards.length) next.push(quoteCards.pop()!)
+    }
+    try {
+      const previous = sessionStorage.getItem('advisory-first-card')
+      if (next[0].value.url === previous) next.push(next.shift()!)
+      sessionStorage.setItem('advisory-first-card', next[0].value.url)
+    } catch { /* Shuffling also works when storage is unavailable. */ }
     setOrderedItems(next)
   }, [])
 
@@ -162,6 +177,7 @@ export function AdvisoryTestimonials() {
 
   return (
     <section aria-label="Posts, talks and writing" aria-roledescription="carousel" className="py-8 mb-4" onFocusCapture={event => { if ((event.target as HTMLElement).matches(':focus-visible')) setFocused(true) }} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocused(false) }}>
+      <h2 className="font-serif text-[28px] sm:text-[32px] mb-6">My humble bragging:</h2>
       <div ref={track} className="flex flex-nowrap gap-5 overflow-x-auto scrollbar-hide pb-2" tabIndex={0} aria-label="Scroll through posts, talks and articles" onPointerDown={() => setDragging(true)} onPointerUp={() => { setDragging(false); interactionUntil.current = performance.now() + 1500 }} onPointerCancel={() => setDragging(false)} onPointerLeave={() => setDragging(false)} onWheel={() => { interactionUntil.current = performance.now() + 1800 }} onScroll={event => {
         const node = event.currentTarget
         const width = (node.firstElementChild as HTMLElement)?.offsetWidth || node.clientWidth
@@ -171,7 +187,8 @@ export function AdvisoryTestimonials() {
           <div key={`${item.value.url}-${index}`} role="group" aria-hidden={index >= items.length} aria-roledescription="slide" aria-label={`${index % items.length + 1} of ${items.length}`} className="w-[86%] sm:w-[340px] shrink-0 border border-border flex flex-col min-h-[330px]">
             {item.kind === 'quote' ? (
               <figure className="p-6 flex flex-col justify-between gap-6 h-full">
-                {item.value.image && <img src={item.value.image} alt={item.value.name === 'Richard Mladek' ? 'Tereza with Richard Mladek and Ted Bibr' : 'Photo from the E2B hackathon'} width="2048" height="1536" loading="lazy" className="w-full aspect-[1.9/1] object-cover" />}
+                {item.value.image && <img src={item.value.image} alt={item.value.name === 'Richard Mladek' ? 'Tereza with Richard Mladek and Ted Bibr' : item.value.name === 'Henry Scott-Green' ? 'The AI agents directory I created at E2B' : 'Photo from the E2B hackathon'} width="2048" height="1536" loading="lazy" className="w-full aspect-[1.9/1] object-cover" />}
+                {item.value.note && <p className="text-[14px] text-secondary leading-[1.75]">{item.value.relatedUrl ? <a href={item.value.relatedUrl} tabIndex={index >= items.length ? -1 : undefined} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">{item.value.note} ↗</a> : item.value.note}</p>}
                 <blockquote className="text-[16px] leading-[1.85]"><p>“{item.value.quote}”</p></blockquote>
                 <figcaption className="flex items-center gap-3 text-[13px] leading-relaxed">
                   <div className="relative shrink-0 w-9 h-9 rounded-full overflow-hidden bg-foreground/10 flex items-center justify-center text-[11px]" aria-hidden="true">
@@ -183,7 +200,7 @@ export function AdvisoryTestimonials() {
               </figure>
             ) : (
               <a tabIndex={index >= items.length ? -1 : undefined} href={item.value.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col h-full">
-                {item.value.source === 'technically.dev' ? <div className="aspect-[1.9/1] bg-white text-black p-5 flex flex-col justify-between"><img src={item.value.image} alt="Technically" width="1200" height="630" loading="lazy" className="w-28 h-12 object-contain object-left" /><p className="font-serif text-[21px] leading-tight">How do “computer use” agents work?</p><p className="text-[10px] text-neutral-600 mt-2">By Tereza Tizkova</p></div> : <div className="aspect-[1.9/1] overflow-hidden bg-black"><img src={item.value.image} alt={item.value.alt} width="640" height="360" loading="lazy" className="w-full h-full object-cover" /></div>}
+                {item.value.source === 'technically.dev' ? <div className="aspect-[1.9/1] bg-white text-black p-5 flex flex-col justify-between"><img src={item.value.image} alt="Technically" width="1200" height="630" loading="lazy" className="w-28 h-12 object-contain object-left" /><div className="space-y-2" aria-hidden="true"><div className="h-px bg-neutral-200 w-full" /><div className="h-px bg-neutral-200 w-5/6" /><div className="h-px bg-neutral-200 w-2/3" /></div><p className="text-[10px] text-neutral-600 mt-2">By Tereza Tizkova</p></div> : <div className="aspect-[1.9/1] overflow-hidden bg-black"><img src={item.value.image} alt={item.value.alt} width="640" height="360" loading="lazy" className="w-full h-full object-cover" /></div>}
                 <div className="p-6"><p className="text-[12px] text-secondary mb-3">{item.value.source}</p><h3 className="font-serif text-[23px] leading-snug group-hover:underline underline-offset-4">{item.value.title} ↗</h3>{item.value.description && <p className="text-[14px] text-secondary leading-[1.75] mt-3">{item.value.description}</p>}</div>
               </a>
             )}

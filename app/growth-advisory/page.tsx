@@ -11,7 +11,7 @@ export default function GrowthAdvisoryPreview() {
       <header className="max-w-[700px] mb-14">
         <h1 className="font-serif font-normal text-[42px] sm:text-[60px] leading-[1.15] tracking-[-0.025em] mb-8">Growth advisory</h1>
         <div className="text-[16px] sm:text-[18px] text-secondary leading-[1.85] space-y-5">
-          <p>I work on growth at Factory. Before that, I led growth at E2B, where I also owned the marketing, developer relations, and ecosystem partnerships functions. Before joining startups, I worked as a strategy and management consultant at McKinsey.</p>
+          <p>I work on growth at Factory. Before that, I was a founding member at E2B, where I led growth and built the marketing, developer relations, and ecosystem partnerships functions from scratch, through Series A and beyond. Before joining startups, I worked as a strategy and management consultant at McKinsey.</p>
           <p>I also work with founders on their marketing and growth. This can mean figuring out how to explain your product, preparing a launch, reviewing what you’re spending money on, or deciding what to try next.</p>
         </div>
         <a href="#consultation" className="inline-flex items-center gap-8 mt-8 border-b border-foreground pb-2 text-[14px] hover:text-secondary">Request a consultation <span aria-hidden="true">↗</span></a>
@@ -26,7 +26,7 @@ export default function GrowthAdvisoryPreview() {
           </div>
           <div>
             <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center h-10 hover:opacity-70"><img src="/images/companies/e2b.svg" alt="E2B" width="90" height="26" className="w-[90px] h-auto dark:invert" /></a>
-            <p className="text-[15px] text-secondary leading-[1.85] mt-4">I led growth and owned the marketing, developer relations, and ecosystem partnerships functions, including community, startup programs, and research programs.</p>
+            <p className="text-[15px] text-secondary leading-[1.85] mt-4">As a founding member, I led growth and owned the marketing, developer relations, and ecosystem partnerships functions from scratch, through Series A and beyond.</p>
           </div>
         </div>
       </section>
