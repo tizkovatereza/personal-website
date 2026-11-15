@@ -67,7 +67,7 @@ const appearances: Appearance[] = [
 
 ]
 
-type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string; note?: string; relatedUrl?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
+type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string; imageAlt?: string; note?: string; relatedUrl?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
 const items: Item[] = [
   { kind: 'quote', value: moreQuotes[0] },
   { kind: 'appearance', value: appearances[0] },
@@ -78,7 +78,7 @@ const items: Item[] = [
   { kind: 'quote', value: quotes[1] },
   { kind: 'appearance', value: appearances[5] },
   { kind: 'appearance', value: appearances[1] },
-  { kind: 'quote', value: quotes[5] },
+  { kind: 'quote', value: { ...quotes[5], image: '/images/advisory/keynote.jpg', imageAlt: 'Tereza speaking at AI Engineer World’s Fair', note: 'Watch my AI Engineer World’s Fair keynote on building software factories.', relatedUrl: 'https://www.youtube.com/watch?v=vGCJ7diEtrw' } },
   { kind: 'quote', value: moreQuotes[1] },
   { kind: 'appearance', value: appearances[3] },
   { kind: 'quote', value: moreQuotes[3] },
@@ -186,7 +186,7 @@ export function AdvisoryTestimonials() {
           <div key={`${item.value.url}-${index}`} role="group" aria-hidden={index >= items.length} aria-roledescription="slide" aria-label={`${index % items.length + 1} of ${items.length}`} className="w-[86%] sm:w-[340px] shrink-0 border border-border flex flex-col min-h-[330px]">
             {item.kind === 'quote' ? (
               <figure className="p-6 flex flex-col justify-between gap-6 h-full">
-                {item.value.image && <img src={item.value.image} alt={item.value.name === 'Richard Mladek' ? 'Tereza with Richard Mladek and Ted Bibr' : item.value.name === 'Henry Scott-Green' ? 'The AI agents directory I created at E2B' : 'Photo from the E2B hackathon'} width="2048" height="1536" loading="lazy" className="w-full aspect-[1.9/1] object-cover" />}
+                {item.value.image && <img src={item.value.image} alt={item.value.imageAlt || (item.value.name === 'Richard Mladek' ? 'Tereza with Richard Mladek and Ted Bibr' : item.value.name === 'Henry Scott-Green' ? 'The AI agents directory I created at E2B' : 'Photo from the E2B hackathon')} width="2048" height="1536" loading="lazy" className="w-full aspect-[1.9/1] object-cover" />}
                 {item.value.note && <p className="text-[14px] text-secondary leading-[1.75]">{item.value.relatedUrl ? <a href={item.value.relatedUrl} tabIndex={index >= items.length ? -1 : undefined} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">{item.value.note} ↗</a> : item.value.note}</p>}
                 <blockquote className="text-[16px] leading-[1.85]"><p>“{item.value.quote}”</p></blockquote>
                 <figcaption className="flex items-center gap-3 text-[13px] leading-relaxed">
