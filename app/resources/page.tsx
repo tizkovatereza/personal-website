@@ -62,7 +62,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 function ResourceList({ heading, items }: { heading: string; items: Resource[] }) {
   return (
-    <section className="px-6 sm:px-12 md:px-16 lg:px-20 pb-16 max-w-5xl">
+    <section className="px-6 sm:px-12 md:px-16 lg:px-20 pb-16 max-w-5xl mx-auto">
       <h2 className="flex items-baseline justify-between font-serif text-[24px] sm:text-[28px] font-normal tracking-[-0.02em] text-muted-foreground pb-4">
         <span>{heading}</span>
         <span>{items.length}</span>
@@ -108,7 +108,7 @@ function ResourceList({ heading, items }: { heading: string; items: Resource[] }
 export default function ResourcesPage() {
   return (
     <div className="min-h-screen">
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-12 max-w-5xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-12 max-w-5xl mx-auto">
         <header>
           <p className="font-mono uppercase text-secondary mb-4 text-[11px] font-light tracking-[0.05em]">
             Reading list

@@ -21,7 +21,7 @@ export default function HawaiiArticle() {
   return (
     <>
       <ReadingProgress />
-      <article className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16">
+      <article className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16 mx-auto">
         <Link href="/blog" className="inline-block font-mono text-[11px] uppercase tracking-wide text-muted-foreground hover:text-foreground mb-8">← Back to writing</Link>
         <header className="mb-12 space-y-6">
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground"><time dateTime={article.date}>November 14, 2026</time> · Life · {Math.ceil(article.text.split(/\s+/).length / 200)} min read</p>

@@ -120,7 +120,7 @@ export default function AnalyticsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-12 sm:py-16">
+      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-12 sm:py-16 mx-auto">
         {/* Back link */}
         <Link 
           href="/"

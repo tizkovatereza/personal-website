@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Growth advisory', description: 'Grow
 
 export default function GrowthAdvisoryPreview() {
   return (
-    <article className="max-w-[1020px] px-6 sm:px-12 lg:px-20 py-16 sm:py-24 pb-24">
+    <article className="max-w-[1020px] px-6 sm:px-12 lg:px-20 py-16 sm:py-24 pb-24 mx-auto">
       <header className="max-w-[700px] mb-14">
         <h1 className="font-serif font-normal text-[42px] sm:text-[60px] leading-[1.15] tracking-[-0.025em] mb-8">Growth advisory</h1>
         <div className="text-[16px] sm:text-[18px] text-secondary leading-[1.85] space-y-5">

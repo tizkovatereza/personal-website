@@ -115,7 +115,7 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen relative">
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-16 sm:py-24 max-w-5xl mx-auto">
         
         {/* Header */}
         <header className="mb-16">

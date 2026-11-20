@@ -64,7 +64,7 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <>
       <ReadingProgress />
-      <article className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16">
+      <article className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16 mx-auto">
         {/* Back Link */}
         <Link
           href="/blog"

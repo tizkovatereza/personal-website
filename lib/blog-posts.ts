@@ -18,7 +18,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "The Riemann Hypothesis Explained Simply",
+    title: "The Riemann Hypothesis Explained Simply (and info on how it was maybe proven by AI)",
     date: "Nov 20, 2026",
     subtitle: "What may have just been proved, what the zeta function does, and why we care",
     image: "/images/blog/riemann/zeta-vivek.webp",

@@ -59,7 +59,7 @@ export default function ChangelogPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16">
+      <div className="max-w-5xl px-6 sm:px-12 md:px-16 lg:px-20 py-16 mx-auto">
         <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">Changelog</h1>
 
         {Object.entries(changelog).map(([year, weeks]) => (

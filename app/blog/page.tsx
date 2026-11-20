@@ -24,7 +24,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-10 max-w-6xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-16 sm:pt-24 pb-10 max-w-6xl mx-auto">
         <header>
           <h1 className="font-serif font-normal text-[40px] sm:text-[48px] md:text-[56px] tracking-[-0.02em] text-foreground mb-6">
             Writing
@@ -44,7 +44,7 @@ export default async function BlogPage() {
       </div>
 
       {/* Posts List with category filters */}
-      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-6xl">
+      <div className="px-6 sm:px-12 md:px-16 lg:px-20 pb-24 max-w-6xl mx-auto">
         <BlogList posts={posts} sidebar={
           <div className="flex flex-col items-stretch gap-4">
             <SubscribeForm variant="button" layout="vertical" />
