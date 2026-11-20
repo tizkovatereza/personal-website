@@ -88,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
         {/* Content */}
         <div className="mb-12">
-          <MDXContent source={post.content} />
+          <MDXContent source={post.content} compact={slug === "riemann-hypothesis"} />
         </div>
 
         {/* Footer Actions */}
