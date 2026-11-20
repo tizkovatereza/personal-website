@@ -1,0 +1,414 @@
+---
+title: "The Riemann Hypothesis Explained Simply"
+description: "What may have just been proved, what the zeta function does, and why we care. A visual explanation of primes, analytic continuation, and the critical line."
+date: "2026-11-20"
+author: "Tereza Tizkova"
+tags: ["math", "Riemann hypothesis", "AI", "Claude"]
+image: "/images/blog/riemann/zeta-vivek.webp"
+---
+
+On November 20, mathematician Levent Alpöge announced that he believes he has proved the Riemann hypothesis, working with Claude. He also claims the method resolves the Generalized Riemann Hypothesis, a broader version of the problem. If confirmed, this would settle a question that has been open since 1859.
+
+For now, this is a **claimed proof awaiting independent verification**. But what exactly might have been proved? And why would mathematicians care so much?
+
+We’ll start with prime numbers, explain why we introduce a seemingly unrelated function, and build up to the hypothesis itself. You don’t need a background in complex analysis. I want to explain what each piece is doing before putting them together.
+
+*This article describes the announcement as of November 20, 2026. The [original announcement](https://alpo.ge/remark.pdf) and [Clay’s official problem description](https://www.claymath.org/millennium/riemann-hypothesis/) are linked for context.*
+
+## Where Do Prime Numbers Appear?
+
+Prime numbers are whole numbers greater than 1 divisible only by 1 and themselves.
+
+2, 3, 5, 7, 11, 13, 17, 19…
+
+They are the building blocks of whole numbers. For example,
+
+<Equation>60 = 2² × 3 × 5</Equation>
+
+Every whole number greater than 1 has a unique prime factorization, apart from the order.
+
+But the primes themselves appear irregularly. Sometimes they are close together, like 11 and 13. Sometimes there is a much larger gap.
+
+One way to see their patterns is to arrange whole numbers in an outward square spiral, then highlight the primes. This is called an [Ulam spiral](https://mathworld.wolfram.com/PrimeSpiral.html). Diagonal patterns start appearing.
+
+<RiemannVisual name="prime-patterns" title="Prime numbers highlighted on an Ulam spiral" />
+
+I am an atheist, but seeing that prime numbers form mysterious shapes and patterns is a religious experience for me, reaching the limits of human intuition.
+
+We chose the spiral arrangement, so the picture depends on how we display the numbers. Still, the concentrations of primes along some diagonals are interesting mathematical patterns.
+
+The Riemann hypothesis concerns another kind of regularity. **How many primes appear as we move further along the number line?**
+
+## Counting Primes
+
+Instead of asking “What is the next prime?”, ask “How many primes are there up to a given number?”
+
+We call this count π(x). The π here names a counting function. It has nothing to do with circles.
+
+<Equation>π(10) = 4</Equation>
+
+Because there are four primes up to 10. They are 2, 3, 5, and 7.
+
+Imagine drawing this count as a staircase. Every time you pass a prime, the count goes up by one.
+
+Mathematicians have smooth formulas that approximate this staircase. The prime number theorem describes the overall growth. The Riemann hypothesis concerns how far the actual count can deviate from a more precise approximation.
+
+Keep that picture in mind. **A staircase, a smooth curve, and the difference between them.**
+
+## Meet The Zeta Function
+
+When a problem is difficult, mathematicians often translate it into another language.
+
+Instead of studying a list of numbers directly, we build a function connected to those numbers. Then we can use tools for studying functions.
+
+The **Riemann zeta function** is one such tool. It starts with this recipe,
+
+<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯</Equation>
+
+ζ is the Greek letter zeta. It is just the function’s name. And s is its input.
+
+Here is what the recipe does. Take each positive whole number, raise it to the power s, take its reciprocal, and add all those contributions.
+
+For example, with s = 2,
+
+<Equation>ζ(2) = 1 + 1/4 + 1/9 + 1/16 + ⋯ ≈ 1.645</Equation>
+
+With s = 3,
+
+<Equation>ζ(3) = 1 + 1/8 + 1/27 + 1/64 + ⋯ ≈ 1.202</Equation>
+
+For these real inputs, increasing s makes the contributions from larger numbers shrink faster. Think of s as a setting that changes how strongly the function weights different whole numbers.
+
+But why is adding these fractions useful?
+
+Because this function has an exact connection to primes. And Riemann found formulas connecting its **zeros**, the inputs where its output becomes zero, to the distribution of primes.
+
+Zeta doesn’t directly answer “What is the next prime?” It gives us another way to investigate the whole distribution.
+
+## Where The Primes Enter
+
+Euler discovered this equality,
+
+<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯<br />= 1/(1 − 2⁻ˢ) × 1/(1 − 3⁻ˢ) × 1/(1 − 5⁻ˢ) × 1/(1 − 7⁻ˢ) × ⋯</Equation>
+
+The first expression adds contributions from **all positive whole numbers**. The second multiplies factors involving **only primes**.
+
+Both expressions equal ζ(s), when the real part of s is greater than 1. We’ll explain “real part” shortly.
+
+It is essentially a clever shuffle of terms. Expand each factor into a geometric series, multiply, and every positive whole number appears exactly once because prime factorization is unique.
+
+Trust me on this one for now. If you want the details, here are the [Euler-product identities and their conditions](https://dlmf.nist.gov/27.4).
+
+Those conditions matter. Infinite sums cannot always be rearranged freely. Here, absolute convergence makes the shuffle valid.
+
+So we already have a connection between two different areas. A fact about multiplication and prime factorization becomes an identity involving infinite sums.
+
+## The Sum Doesn’t Always Work
+
+Adding infinitely many terms can give a finite answer.
+
+<Equation>1/2 + 1/4 + 1/8 + 1/16 + ⋯ = 1</Equation>
+
+The running totals get closer and closer to 1. We say the series **converges**.
+
+Our zeta series at s = 2 also converges. But at s = 1, it becomes
+
+<Equation>1 + 1/2 + 1/3 + 1/4 + ⋯</Equation>
+
+This total grows without a finite limit. The terms get smaller, but that alone isn’t enough. We can group them like this,
+
+<Equation>1 + 1/2 + (1/3 + 1/4) + (1/5 + 1/6 + 1/7 + 1/8) + ⋯</Equation>
+
+Each bracket contributes at least ½, and there are infinitely many brackets.
+
+So we can’t feed any input into our original formula and expect a finite answer. To explain where it works, we need complex numbers.
+
+## Giving Numbers Another Direction
+
+Ordinary real numbers sit on a line. Complex numbers give us a second direction. We write them as
+
+<Equation>s = a + bi</Equation>
+
+Here, i² = −1.
+
+For this article, picture a and b as coordinates. The **real part**, a, gives the horizontal position. The **imaginary part**, b, gives the vertical position.
+
+So 2 + 3i becomes the point (2, 3). Two units right, three units up.
+
+<RiemannVisual name="complex-plane" title="Complex numbers plotted on the real and imaginary axes" />
+
+This is what I love about math. If something is too difficult to look at from one point of view, you can choose a different point of view.
+
+An unfamiliar expression becomes a point you can picture.
+
+A complex function takes a complex number as input and returns another complex number. So the input and output can each be pictured on their own plane. And those pictures can become beautiful.
+
+![Image shared by Vivek in his Riemann Hypothesis post](/images/blog/riemann/zeta-vivek.webp)
+
+*Image shared in [Vivek’s post](https://x.com/itsreallyvivek/status/2123826942185181510). The post doesn’t identify the curves or colors, so we won’t use it as a labeled explanation of the hypothesis.*
+
+One distinction to remember is that **input locations and output locations are different things**. Later, when we draw the zeros on a line, we will be drawing inputs.
+
+## Continuing Where The Original Formula Stops
+
+The original zeta series converges when Re(s) is greater than 1. That means the input lies to the right of the vertical line through 1.
+
+Beyond that region, mathematicians extend the function using **analytic continuation**. Let’s build the intuition with a simpler function.
+
+Consider these two recipes,
+
+<Equation>A(x) = 1 + x + x² + x³ + ⋯</Equation>
+
+<Equation>B(x) = 1/(1 − x)</Equation>
+
+When |x| is less than 1, they give exactly the same answer. At x = ½, for example,
+
+<Equation>1 + 1/2 + 1/4 + ⋯ = 1/(1 − 1/2) = 2</Equation>
+
+But at x = −2, the first recipe gives
+
+<Equation>1 − 2 + 4 − 8 + 16 − ⋯</Equation>
+
+The running totals don’t settle down. The second recipe still works,
+
+<Equation>B(−2) = 1/(1 + 2) = 1/3</Equation>
+
+We haven’t made the divergent sum converge. We have found an expression that agrees with the original function where the series works, and also defines values further away.
+
+That is what “continuing the function” means.
+
+## What Makes The Continuation Analytic?
+
+This is the part where simply saying “preserving its structure” doesn’t explain much. What structure?
+
+Think of a power series as a local recipe for the function. Our geometric series is one such recipe, built around the input 0.
+
+The same function can have another local recipe built around a different input. For example,
+
+<Equation>1/(1 − x) = (2/3)[1 + q + q² + q³ + ⋯]<br />where q = (x + 1/2)/(3/2)</Equation>
+
+This series is centered at x = −½. It works when |x + ½| is less than 1½. Along the real line, that reaches from −2 to 1, excluding the endpoints. Our original series only reached from −1 to 1.
+
+We moved the center of the recipe and gained access to more inputs.
+
+**In the region where both recipes work, they agree exactly.**
+
+That is the useful picture. We can continue a function through overlapping regions, using local power series that agree where they overlap.
+
+<RiemannVisual name="analytic-continuation" title="Overlapping power-series regions extend the same function" />
+
+The disks show regions of the complex plane where individual series converge. Moving the center gives us another disk. The overlap connects the recipes.
+
+An **analytic function** is one that has such a convergent power-series description around every point in its domain.
+
+This is much stronger than saying “the graph looks smooth.” The local recipes must fit together exactly. For analytic functions, agreement throughout an open region forces agreement throughout a connected shared domain.
+
+So we can’t choose arbitrary new values as we go. Where continuation exists, the existing function constrains it.
+
+For zeta, this gives a [uniquely determined extension](https://dlmf.nist.gov/25.2) throughout the complex plane except at s = 1.
+
+## What Happens At A Pole?
+
+Our simpler function has a problem at 1,
+
+<Equation>f(x) = 1/(1 − x)</Equation>
+
+As x approaches 1, the denominator approaches zero.
+
+<Equation>f(0.9) = 10, f(0.99) = 100, f(0.999) = 1000</Equation>
+
+From the other side,
+
+<Equation>f(1.1) = −10, f(1.01) = −100, f(1.001) = −1000</Equation>
+
+<RiemannVisual name="pole-explorer" title="Explore the output as the input approaches a pole" />
+
+This kind of point is called a **pole**. The output’s magnitude grows without bound as the input approaches it. Exactly at 1, there is no finite output. We would be dividing by zero.
+
+Being from Prague, I want to compare this to the Golem. In one version of the legend, Rabbi Loew places a parchment carrying the sacred name, the *shem*, into its mouth and brings it to life.
+
+![An illustration of Rabbi Loew placing the shem in the clay Golem’s mouth](/images/blog/riemann/golem.webp)
+
+*An illustration made for this article, inspired by the [Prague Golem legend](https://www.jewishmuseum.cz/novinka/the-golem-of-prague-the-legend-of-rabbi-loew-s-creation/).*
+
+A pole has that “special input where the quiet creature suddenly becomes uncontrollable” feeling.
+
+The mathematical meaning is more specific, of course. The function doesn’t become random or alive. Its output grows without bound **as we approach** the special input.
+
+Zeta also has a pole at s = 1. Elsewhere, its extended version is analytic. From now on, that extended function is what we mean by zeta.
+
+## What Is A Zero Of A Function?
+
+“Zero” here is also a term.
+
+A **zero of a function is an input that makes its output equal zero**.
+
+For example, f(x) = x − 3 has a zero at **3**, because f(3) = 0. So a zero of a function doesn’t mean the input number 0.
+
+As a loose human analogy, imagine a function measuring your remaining energy after an activity. Your “zero” might be a long hike. Or a glass of wine, after which you shut down for the evening.
+
+The hike isn’t the number zero. It is the input that produces zero as the result.
+
+For zeta, we want numbers s such that
+
+<Equation>ζ(s) = 0</Equation>
+
+Since those inputs can be complex numbers, we can mark them as points on the input plane.
+
+## What Makes Some Zeros Trivial?
+
+Some zeta zeros occur at −2, −4, −6, −8, and so on. These are called the **trivial zeros**.
+
+“Trivial” often means a result follows relatively directly from definitions or established facts. It doesn’t mean you should immediately find it obvious.
+
+Here, these zeros follow from an identity called zeta’s functional equation. Their locations are understood.
+
+The **nontrivial zeros** are the remaining ones. They lie in the strip where the real part is between 0 and 1. You can find the [precise statement here](https://dlmf.nist.gov/25.10).
+
+## Why Would They Lie On One Vertical Line?
+
+Start with these inputs,
+
+<Equation>½ + 2i, ½ + 5i, ½ − 3i</Equation>
+
+Their heights differ. Their horizontal coordinate is always ½. So they sit directly above or below one another, on the vertical line through ½.
+
+Some known zeta zeros are approximately
+
+<Equation>½ + 14.134725i<br />½ + 21.022040i<br />½ + 25.010858i</Equation>
+
+<RiemannVisual name="critical-line" title="Three known zeta zeros on the line with real part one half" />
+
+The height here belongs to the input. At each marked point, the output is zero.
+
+But why would ½ be special? Why not 0.4 or 0.7?
+
+## The Middle Is A Mirror
+
+Zeta has a deep symmetry, expressed through its functional equation. Among other things, the nontrivial zeros are symmetric about the vertical line through ½.
+
+If a + bi is a nontrivial zero, then its reflected point (1 − a) + bi is also a zero.
+
+So a hypothetical zero with horizontal coordinate 0.3 would have a partner at 0.7, at the same height. They are equally far from ½.
+
+The midpoint is special because
+
+<Equation>a = 1 − a implies a = ½</Equation>
+
+A point on that middle line reflects onto itself.
+
+<RiemannVisual name="zero-symmetry" title="Hypothetical mirrored zeros illustrate why symmetry alone is insufficient" />
+
+This gives intuition for **why that particular line is the natural candidate**. It is built into the function’s symmetry.
+
+But symmetry alone doesn’t put every zero on the line.
+
+Imagine two people standing on opposite sides of a mirror. They can form a symmetric arrangement without either person standing on the mirror itself.
+
+Likewise, zeros could theoretically occur in reflected pairs away from the middle. The Riemann hypothesis says that never happens.
+
+So the difficult leap is from “the zeros are symmetric around this line” to “every nontrivial zero actually lies on this line.”
+
+## Finally, The Whole Hypothesis
+
+Now we can put the sentence together.
+
+<RiemannVisual name="riemann-recap" title="Color-coded explanation of every part of the Riemann hypothesis" />
+
+The word **all** matters.
+
+To prove “there exists a prime greater than 100,” one example is enough. Here is 101. Done.
+
+But checking a million zeros, or a trillion, doesn’t establish a claim about every zero. There are infinitely many left.
+
+Universal claims can have short proofs, and existence claims can be difficult. Still, the difference in what counts as sufficient evidence matters. One example can establish existence. One counterexample can destroy a universal claim.
+
+## Why This Connection Is So Beautiful
+
+Let’s return to why we introduced zeta.
+
+Prime numbers belong to a world of whole numbers, divisibility, and multiplication. These are discrete objects. You can list them one by one.
+
+Analysis studies functions, limits, infinite series, differentiation, and integration. It gives us ways to reason about continuous behavior.
+
+Euler’s product connects those worlds. Unique prime factorization becomes an identity involving an infinite sum and an infinite product.
+
+Riemann then takes the connection further. The zeros of a complex function enter explicit formulas for counting primes. Their positions control fluctuations in those counts.
+
+This is what I love about math. Different areas can look like separate subjects until someone finds a connection, and suddenly you can use everything you know about one to understand the other.
+
+You are looking at prime numbers and asking where they appear. Then you change the point of view, and the question becomes about a function. Change it again, and you are looking at geometry in the complex plane.
+
+The connections are exact enough that proving something about the geometry gives you a theorem about the original numbers.
+
+For me, this is a big part of why abstraction is useful. It gives us more ways to approach the same problem.
+
+## What Would A Proof Change?
+
+It would establish a strong bound on the error in our approximation of prime counts. More precisely, the hypothesis is equivalent to
+
+<Equation>π(x) = Li(x) + O(√x log x)</Equation>
+
+Here, π(x) is the actual prime count, Li(x) is the smooth approximation, and the final term bounds how fast the error can grow. Eventually, the error’s magnitude is at most a fixed constant times √x log x. The [official problem description](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf) explains the connection.
+
+Remember the staircase and the smooth curve? This tells us how far apart they can become. It wouldn’t make primes evenly spaced.
+
+It would also make results proved assuming RH unconditional. Results requiring generalized versions would need those broader hypotheses established too.
+
+Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. A proof of RH would not, by itself, supply a fast factoring algorithm or automatically break encryption.
+
+And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
+
+## So What Has Actually Been Done?
+
+Now we understand the claim. Every nontrivial zero must lie on the line through ½.
+
+What would proving that involve?
+
+Checking more zeros wouldn’t finish the job. We need a logical argument that rules out every possible exception, however far away it might be.
+
+Alpöge says he and Claude have found such an argument, covering both the original hypothesis and its generalization to Dirichlet L-functions. He released a four-page announcement pointing to a mathematical formalization distributed across 14 archive files.
+
+The scale is unusual. In a footnote to his announcement, he says an attempt at a detailed prose version exceeded **250,000 pages**. He chose to publish the argument in Lean rather than release that enormous writeup. You can read the [original announcement here](https://alpo.ge/remark.pdf).
+
+So there isn’t a conventional 250,000-page paper for mathematicians to sit down and read. The main released argument is written in a formal language that computers can check.
+
+## What Did Claude Contribute?
+
+According to Alpöge, he guided the research from ideas in a simpler mathematical setting toward the situation they needed to solve. He credits Claude with major mathematical contributions near the end.
+
+The technical overview mentions adapting ideas from Stepanov’s method and combining constructions called theta lifts. That gives experts something to investigate, but it isn’t yet an accessible explanation of why the proof works.
+
+I don’t want to throw those names at you and pretend we have explained the argument. At this point, we have an account of the approach from its author, plus the formal files. Turning that into an understandable mathematical story is still work ahead.
+
+Alpöge himself says he expects substantial simplification and intends to explain the argument properly.
+
+## How Can A Computer Check A Proof?
+
+Lean is a proof assistant. You express mathematical definitions, statements, and arguments in a precise language, and its core checker verifies that the conclusion follows from the definitions and assumptions used.
+
+If you read my [Gödel articles](https://terezatizkova.substack.com/p/godels-incompleteness-theorems-explained), this should sound familiar. We start with a formal system, specify its rules, and derive statements inside it.
+
+But there are two separate questions.
+
+**Does the argument prove the formal statement?**
+
+**Does that formal statement mean the Riemann hypothesis we intended?**
+
+Both matter. A perfectly checked proof of a subtly different statement would leave the original problem unresolved. Reviewers also need to inspect the assumptions and dependencies, including whether any unfinished steps have been accepted as assumptions. [Lean’s documentation](https://lean-lang.org/doc/reference/latest/ValidatingProofs/) explicitly distinguishes these checks.
+
+That is why “released in Lean” is meaningful, but doesn’t by itself mean independent verification is complete.
+
+## What Happens Next?
+
+Independent researchers need to reproduce the checking, examine the exact statements and definitions, and audit what the proof depends on. At the time of writing, independent verification was still pending and [Clay continued to list RH as unsolved](https://www.claymath.org/millennium/riemann-hypothesis/).
+
+If it survives that process, the achievement would be extraordinary.
+
+Then comes another task that I find just as interesting. Understanding the proof well enough to explain its central ideas.
+
+We started this article with prime numbers. We moved into infinite sums, then complex analysis, then a geometric question about a line. Each change of perspective gave us a different way to approach the same underlying structure.
+
+I love that these areas of math can connect so precisely. Something you learn about a function can become knowledge about whole numbers. A geometric restriction can become a guarantee about prime counts.
+
+And now I want to know which connection finally makes the proof work. We already knew the zeros were symmetric around the middle line. What rules out every possible exception away from it?

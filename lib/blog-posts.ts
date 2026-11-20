@@ -18,6 +18,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "The Riemann Hypothesis Explained Simply",
+    date: "Nov 20, 2026",
+    subtitle: "What may have just been proved, what the zeta function does, and why we care",
+    image: "/images/blog/riemann/zeta-vivek.webp",
+    url: "/blog/riemann-hypothesis",
+    isNew: true,
+    isInternal: true,
+    category: "math"
+  },
+  {
     title: "Three days in Hawaii",
     date: "Nov 14, 2026",
     subtitle: "What we did on the Big Island for Ben’s birthday and a few things I learned about Hawaii",

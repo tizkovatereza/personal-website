@@ -1,11 +1,14 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import rehypeHighlight from 'rehype-highlight'
+import { RiemannVisual, Equation } from './mdx/riemann-visual'
 import { Callout } from './mdx/callout'
 import { LightboxImage } from './mdx/lightbox-image'
 
 const components = {
   Callout,
+  RiemannVisual,
+  Equation,
   img: LightboxImage,
   // Add custom components here
 }
