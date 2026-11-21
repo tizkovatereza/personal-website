@@ -18,7 +18,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "The Riemann Hypothesis, Part 2 — What Lean Verified",
+    title: "The Riemann Hypothesis, Part 2, What Lean Verified",
     date: "Nov 21, 2026",
     subtitle: "How independent checkers verified Levent Alpöge’s Claude-assisted proof",
     image: "/images/blog/riemann/golem.webp",
@@ -28,7 +28,7 @@ export const blogPosts: BlogPost[] = [
     category: "math"
   },
   {
-    title: "The Riemann Hypothesis, Part 1 — Explained Simply",
+    title: "The Riemann Hypothesis, Part 1, Explained Simply",
     date: "Nov 20, 2026",
     subtitle: "A visual explanation of primes, the zeta function, and why its zeros matter",
     image: "/images/blog/riemann/golem.webp",

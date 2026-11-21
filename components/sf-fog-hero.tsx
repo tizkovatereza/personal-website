@@ -148,13 +148,6 @@ export function SFFogHero() {
           }}
         />
       </div>
-
-      {/* === STATUS BAR (bottom) === */}
-      <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 md:left-12 lg:left-16 xl:left-20 right-6 sm:right-20 z-30 flex items-center justify-end">
-        <span className="font-mono text-[11px] font-light text-[#4a4f5a] tracking-[0.05em] hidden md:block">
-          37.7749° N, 122.4194° W
-        </span>
-      </div>
     </div>
   )
 }

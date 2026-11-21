@@ -1,5 +1,5 @@
 ---
-title: "The Riemann Hypothesis, Part 1 — Explained Simply"
+title: "The Riemann Hypothesis, Part 1, Explained Simply"
 description: "A visual explanation of primes, the zeta function, and why its zeros matter."
 date: "2026-11-20"
 author: "Tereza Tizkova"
@@ -7,13 +7,13 @@ tags: ["math", "Riemann hypothesis"]
 image: "/images/blog/riemann/golem.webp"
 ---
 
+Levent Alpöge announced that he’d proved the Riemann hypothesis with Claude. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859. So let’s start with what the question even is.
+
 How many primes are there below a million? You can count them. But what if you want to know how that count behaves as you go further and further out? How good an estimate can you get, and how far off could it be?
 
 In 1859, Bernhard Riemann wrote a paper about that counting problem. He started with something Euler had noticed earlier. An infinite sum over **all** the whole numbers could also be written as a product over **just** the primes. Riemann took the function behind that sum, called zeta, and asked what it does when the inputs are complex numbers. He found that the places where zeta becomes zero show up in a formula for counting primes. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
 This is the part I love. A question about counting whole numbers turns into a question about points on a vertical line. If every nontrivial zero lies on that line, as Riemann conjectured, we get a precise limit on how far our estimate of the prime count can be off. So why does a sum of fractions have anything to do with primes in the first place? Let’s build up to it. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
-
-*On November 20, 2026, Levent Alpöge released a proof developed with Claude. The Lean and Mathlib communities independently verified it the next day. [Read Part 2 for what Lean checked](/blog/riemann-hypothesis-part-2).*
 
 ## Where Do Prime Numbers Appear?
 
@@ -202,4 +202,4 @@ Primes appear in cryptography, but counting primes and factoring a particular la
 
 We started with prime numbers, moved through infinite sums and complex analysis, and ended with a geometric question about a line. I love that these ideas can connect so precisely. A geometric restriction on the zeros of a function becomes a guarantee about prime counts.
 
-[Read Part 2 — What Lean Verified](/blog/riemann-hypothesis-part-2) for how independent checkers verified the proof and confirmed that it establishes the same statement we’ve just worked through.
+Before I finished writing this, the Lean and Mathlib communities independently verified the proof. Whoa. In [Part 2](/blog/riemann-hypothesis-part-2), we’ll look at the proof Alpöge released and what it took to check it.

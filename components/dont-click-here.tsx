@@ -139,20 +139,24 @@ export function DontClickHere() {
       </div>
       {active && <>
         <button data-dog-skip type="button" aria-label="Let the dog drop its letters" onClick={scatterLetters} className="fixed z-[9999] bg-transparent border-0 p-0 cursor-pointer" style={{ left: pose.x, top: pose.y, transform: `translate(-50%, -50%) scaleX(${pose.direction})` }}>
-          <svg width="88" height="72" viewBox="0 0 88 72" fill="none" role="img" aria-label="A playful letter-eating dog">
-            <g stroke="#503e32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 38 Q5 32 9 23" stroke="#ba885a" strokeWidth="7" />
-              <path d={`M28 45 L${26 - pose.step} 62 L${32 - pose.step} 62 M55 45 L${57 + pose.step} 62 L${63 + pose.step} 62`} stroke="#96704d" strokeWidth="7" />
-              <path d="M18 36 Q20 29 33 30 L57 31 Q66 34 64 46 Q61 53 48 52 L29 51 Q17 50 18 36Z" fill="#d9ae79" />
-              <path d="M51 34 Q45 17 57 13 Q74 9 76 27 L81 31 Q87 33 82 39 L65 42 Q55 43 51 34Z" fill="#e9c795" />
-              <path d="M57 15 Q43 12 48 34 Q52 42 58 31Z" fill="#91613e" />
-              <path d="M51 38 L63 42" stroke="#b64e43" strokeWidth="5" />
-              <path d={`M26 47 L${26 + pose.step} 65 L${33 + pose.step} 65 M55 48 L${55 - pose.step} 65 L${62 - pose.step} 65`} stroke="#d9ae79" strokeWidth="7" />
-              <circle cx="70" cy="25" r="2.4" fill="#302820" stroke="none" />
+          <svg width="88" height="72" viewBox="0 0 88 72" fill="none" role="img" aria-label="A letter-eating dog wearing square glasses">
+            <g stroke="#243247" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 38 Q5 32 9 23" stroke="#8294ac" strokeWidth="7" />
+              <path d={`M28 45 L${26 - pose.step} 62 L${32 - pose.step} 62 M55 45 L${57 + pose.step} 62 L${63 + pose.step} 62`} stroke="#73869f" strokeWidth="7" />
+              <path d="M18 36 Q20 29 33 30 L57 31 Q66 34 64 46 Q61 53 48 52 L29 51 Q17 50 18 36Z" fill="#b4bfd0" />
+              <path d="M51 34 Q45 17 57 13 Q74 9 76 27 L81 31 Q87 33 82 39 L65 42 Q55 43 51 34Z" fill="#e5e9ef" />
+              <path d="M57 15 Q43 12 48 34 Q52 42 58 31Z" fill="#7d90a8" />
+              <path d="M51 38 L63 42" stroke="#536d93" strokeWidth="5" />
+              <path d={`M26 47 L${26 + pose.step} 65 L${33 + pose.step} 65 M55 48 L${55 - pose.step} 65 L${62 - pose.step} 65`} stroke="#b4bfd0" strokeWidth="7" />
+              <path d="M57 23H64" strokeWidth="1.8" strokeLinecap="square" />
+              <rect x="64" y="19" width="12" height="11" strokeWidth="1.8" strokeLinejoin="miter" />
+              <rect x="51" y="42" width="10" height="10" fill="#e5e9ef" strokeWidth="1.2" strokeLinejoin="miter" />
+              <text x="56" y="50" textAnchor="middle" fill="#243247" stroke="none" fontFamily="monospace" fontSize="8" fontWeight="700">π</text>
+              <circle cx="70" cy="25" r="2.4" fill="#243247" stroke="none" />
               <circle cx="70.7" cy="24.2" r="0.7" fill="white" stroke="none" />
-              <path d="M80 30 Q87 29 84 34 Q80 36 79 32Z" fill="#302820" />
-              <path d={pose.chewing ? 'M69 37 Q76 49 82 36Z' : 'M70 37 Q76 41 81 36'} fill={pose.chewing ? '#503e32' : 'none'} />
-              {pose.chewing && <path d="M74 41 Q77 47 79 41" stroke="#e79896" strokeWidth="3" />}
+              <path d="M80 30 Q87 29 84 34 Q80 36 79 32Z" fill="#243247" />
+              <path d={pose.chewing ? 'M69 37 Q76 49 82 36Z' : 'M70 37 Q76 41 81 36'} fill={pose.chewing ? '#243247' : 'none'} />
+              {pose.chewing && <path d="M74 41 Q77 47 79 41" stroke="#e4a4a5" strokeWidth="3" />}
             </g>
           </svg>
         </button>

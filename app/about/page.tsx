@@ -132,6 +132,10 @@ export default function AboutPage() {
             as an O-1 visa holder. I studied mathematics at Charles University and somehow ended up 
             in AI infrastructure. I do a lot of writing, talks, courses, and developer content that has helped define a new market category around AI sandboxes. I love to learn from others, and try to fail at something new occasionally.
           </p>
+          <p className="mt-5 text-[15px] sm:text-[17px] text-secondary leading-[1.8] max-w-2xl">
+            Fun fact. I&apos;ve been writing my diary in LaTeX since I was 16. I don&apos;t really know why.
+            I used LaTeX a lot studying math at uni too, which probably explains why this website looks like a math paper.
+          </p>
         </header>
 
         {/* Section divider */}

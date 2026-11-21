@@ -7,12 +7,9 @@ import { MobileNav } from '@/components/mobile-nav'
 import { DontClickHere } from '@/components/dont-click-here'
 import { PageViewTracker } from '@/components/page-view-tracker'
 import './globals.css'
+import './site-type.css'
 
 const inter = localFont({ src: '../public/fonts/inter.ttf', weight: '100 900', variable: '--font-sans-display', display: 'swap' })
-const playfair = localFont({ src: [
-  { path: '../public/fonts/playfair.ttf', weight: '400 900', style: 'normal' },
-  { path: '../public/fonts/playfair-italic.ttf', weight: '400 900', style: 'italic' },
-], variable: '--font-serif-display', display: 'swap' })
 const jetbrainsMono = localFont({ src: '../public/fonts/jetbrains.ttf', weight: '100 800', variable: '--font-mono-display', display: 'swap' })
 
 export const metadata: Metadata = {
@@ -65,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.className} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-light antialiased noise-texture">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-serif antialiased noise-texture">
         <div className="global-bg-pattern print:hidden" aria-hidden="true" />
         <ThemeProvider
           attribute="class"

@@ -1,0 +1,91 @@
+.paper-writing :is(h1, h2, h3, h4, [role='math']) {
+  font-family: var(--paper-serif);
+  letter-spacing: normal;
+}
+
+.paper-writing > article {
+  width: 100%;
+  max-width: 51rem;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+  overflow-wrap: break-word;
+}
+
+.paper-writing article > header {
+  margin-block-end: 2.75rem;
+  text-align: center;
+}
+
+.paper-writing h1 {
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.13;
+  text-wrap: balance;
+}
+
+.paper-writing article > header > div {
+  justify-content: center;
+}
+
+.paper-writing article > header > p {
+  margin-inline: auto;
+}
+
+.paper-writing article :is(h2, h3, h4):not(footer *) {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.paper-writing article h2:not(footer *) {
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+}
+
+.paper-writing article :is(h3, h4):not(footer *) {
+  font-size: 1.25rem;
+}
+
+.paper-writing article .prose,
+.paper-writing article > header + div {
+  font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.62;
+}
+
+.paper-writing article .prose :is(p, li) {
+  line-height: inherit;
+}
+
+.paper-writing article .prose a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+.paper-writing article .prose a:hover {
+  color: var(--foreground);
+}
+
+.paper-writing article [role='math'] {
+  font-size: 1.05em;
+}
+
+.paper-writing article .prose p:has(> img) + p:has(> em:only-child) {
+  font-size: 0.9em;
+  line-height: 1.45;
+}
+
+.paper-writing article .prose :is(img, figure) {
+  border-radius: 0;
+}
+
+.paper-writing article .prose img {
+  height: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .paper-writing article .prose > p:not(:has(img)):not(p:has(> img) + p:has(> em:only-child)) {
+    text-align: justify;
+    hyphens: auto;
+  }
+}

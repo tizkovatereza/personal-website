@@ -1,5 +1,5 @@
 ---
-title: "The Riemann Hypothesis, Part 2 — What Lean Verified"
+title: "The Riemann Hypothesis, Part 2, What Lean Verified"
 description: "How independent checkers verified Levent Alpöge’s Claude-assisted proof, and why checking a proof and explaining it are two different jobs."
 date: "2026-11-21"
 author: "Tereza Tizkova"
@@ -7,9 +7,9 @@ tags: ["math", "Riemann hypothesis", "Lean", "AI", "Claude"]
 image: "/images/blog/riemann/golem.webp"
 ---
 
-Yesterday, Levent Alpöge released a proof of the Riemann hypothesis that he developed with Claude. The proof came as a Lean library, roughly 17 million lines of code, accompanied by a short announcement. Today, the Lean and Mathlib communities [confirmed that the formal proof is valid and proves the standard statement of the Riemann hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/). The distinction between those two checks is the most interesting part of the story.
+On November 20, Levent Alpöge released a proof of the Riemann hypothesis that he developed with Claude. The next day, the Lean and Mathlib communities [confirmed the proof](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/). I’m a little emotional about this. People have been trying to prove it since 1859. And now there’s a proof you can ask a computer to check. What does that actually mean? Let’s look at it together.
 
-[Part 1 explains the Riemann hypothesis from scratch](/blog/riemann-hypothesis). Here’s the bit to carry over. The original zeta sum converges only for inputs with real part greater than 1. Analytic continuation gives us values elsewhere, including in the strip between 0 and 1 where the nontrivial zeros live. The hypothesis says that every *nontrivial* zero has real part ½. A proof has to cover every one of those zeros, however large their imaginary parts get.
+[Part 1 explains the hypothesis](/blog/riemann-hypothesis). The line to remember is the one through ½, where every nontrivial zeta zero has to sit.
 
 ## What Lean Checks
 
