@@ -77,21 +77,42 @@ A complex number is a point on a grid. In **2 + 3i**, the real part is **2** (tw
 
 ![The point 2 + 3i is two units right and three units up](/images/blog/riemann/complex-plane-static.png)
 
-## Analytic Continuation In One Example
+## Where The Original Sum And Extended Zeta Agree
 
-Our original zeta sum works to the right of the vertical line through 1. The zeros we care about sit farther left, so we need a way to get values there. Here’s a smaller example of how that works.
+**Extended zeta keeps every value the original sum gives, and adds values at inputs where that sum gives no finite answer.** There’s no region where they both give a value and those values disagree. The extension covers the original region too.
 
-Imagine a function you first meet as the sum **1 + x + x² + x³ + ⋯**. At **x = ½**, you add 1 + ½ + ¼ + ⋯ and the total settles at **2**. The shortcut is **1/(1 − x)**. At x = ½, that’s 1 ÷ (1 − ½), which is also **2**. For any x between −1 and 1, multiplying the convergent sum by (1 − x) cancels everything except 1. So the two formulas give the same answer throughout that interval.
+<div className="overflow-x-auto">
+  <table>
+    <thead><tr><th scope="col">Input</th><th scope="col">Original infinite sum</th><th scope="col">Extended zeta</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Right of the line through 1, for example s = 2</th><td>Converges to about 1.645 at s = 2</td><td>Exactly the same value</td></tr>
+      <tr><th scope="row">On or left of that line, except at 1, for example s = ½ or s = 1 + i</th><td>Diverges</td><td>Gives a finite value</td></tr>
+      <tr><th scope="row">At s = 1 itself</th><td>Grows without bound</td><td>Has a pole, so there’s no finite value</td></tr>
+    </tbody>
+  </table>
+</div>
 
-Now try **x = −2**. The sum starts 1 − 2 + 4 − 8 + ⋯ and the running total jumps around forever. The shortcut still gives **⅓**, because 1 ÷ (1 + 2) = ⅓. The old sum still diverges. The new formula is how we give the *function* a value at −2.
+Picture the original inputs shaded on the right of the vertical line through 1. The extended function keeps that whole shaded area and fills in the rest of the plane, with one point missing. **The boundary is a line. The pole is a single point on that line.** That’s why 1 + i has a value even though 1 doesn’t.
 
-**That’s the idea of analytic continuation.** Start with a formula that works in one region. Find another formula that agrees throughout that region and also works somewhere new. The word *analytic* puts a strong condition on the formulas. Around each point, the function has to be expressible as a convergent power series, like the one we started with. That’s what makes the continuation unique on the connected region you’re extending into. You can’t just pick any value for −2.
+![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
 
-## What This Means For Zeta
+## How A Second Formula Can Extend A Function
 
-At **s = ½**, the original zeta sum keeps growing. A different formula uses an alternating sum instead. Mathematicians can show the two formulas agree at real inputs above 1, where both work. The alternating formula also works at ½, so it lets us calculate **ζ(½)**. That’s the same idea as using the shortcut above. The full continuation gives zeta values everywhere in the complex plane except at 1. [NIST’s zeta formulas](https://dlmf.nist.gov/25.2)
+Try the smaller example **1 + x + x² + x³ + ⋯**. At x = ½, the sum settles at **2**. The formula **1/(1 − x)** also gives **2**. In fact, for any x between −1 and 1, multiplying the convergent sum by (1 − x) cancels everything except 1, so the formulas agree throughout that interval.
 
-In these stills from 3Blue1Brown, each curve traces the zeta outputs for a line of inputs. The second image follows the curves farther because it includes inputs from the extended region.
+At x = −2, the original sum starts **1 − 2 + 4 − 8 + ⋯** and the running total jumps around forever. The second formula gives **⅓**. That’s a value of the extended function at −2. The original sum still diverges there.
+
+The word **analytic** is the rule that keeps this from being arbitrary. Near each point, the function must be expressible as a convergent power series. If two analytic formulas agree on a region, that agreement fixes the continuation wherever both extend on the same connected domain.
+
+## What The Extended Zeta Formula Looks Like
+
+For zeta, one formula that reaches new inputs uses alternating plus and minus signs. **To get ζ(½),** take the following convergent sum and divide by 1 − √2.
+
+<Equation>ζ(½) = (1 − 1/√2 + 1/√3 − 1/√4 + ⋯) / (1 − √2)</Equation>
+
+Where the original sum converges, you get the alternating sum by subtracting twice the even terms. The even terms alone are 2<sup>−s</sup> times the original sum, so the alternating sum equals (1 − 2<sup>1 − s</sup>) times zeta there. At ½, the alternating sum still converges and the multiplier is 1 − √2. This formula illustrates how we can reach ½. Other formulas cover the rest of the extended domain. [NIST’s definition and alternating-series formula](https://dlmf.nist.gov/25.2)
+
+The table describes the inputs. The stills below show what happens on the **output** side. Each curve traces the zeta outputs for a line of inputs. In the second still, more of each input line is available, so its output curve continues farther. The parts of the curves we already had stay where they were.
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
