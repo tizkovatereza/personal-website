@@ -65,16 +65,24 @@ A **sum converges** when its running totals settle toward one number. A **functi
 
 **The original sum converges when the real part of s is greater than 1.** Extended zeta gives exactly the same values there and is defined everywhere else except at s = 1.
 
-<div className="overflow-x-auto">
-  <table>
-    <thead><tr><th scope="col">Input</th><th scope="col">Original infinite sum</th><th scope="col">Extended zeta</th></tr></thead>
-    <tbody>
-      <tr><th scope="row">Right of the line through 1, for example s = 2</th><td>Converges to about 1.645 at s = 2</td><td>Exactly the same value</td></tr>
-      <tr><th scope="row">On or left of that line, except at 1, for example s = ½ or s = 1 + i</th><td>Diverges</td><td>Gives a finite value</td></tr>
-      <tr><th scope="row">At s = 1 itself</th><td>Grows without bound</td><td>Has a pole, so there’s no finite value</td></tr>
-    </tbody>
-  </table>
-</div>
+<figure className="not-prose my-8 border-y border-border px-1 py-4 sm:px-4" aria-label="Three cases for the zeta function">
+  <p className="pb-2 text-2xl">What is ζ(s)?</p>
+  <dl className="divide-y divide-border">
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If Re(s) &gt; 1</dt>
+      <dd>Use the original sum, 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ⋯</dd>
+    </div>
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If Re(s) ≤ 1 and s ≠ 1</dt>
+      <dd>Use analytic continuation to get the value.</dd>
+    </div>
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If s = 1 + 0i</dt>
+      <dd>There’s a pole. Zeta has no finite value.</dd>
+    </div>
+  </dl>
+  <figcaption className="pt-2 text-base text-secondary">Re(s) is the horizontal coordinate of the input. Both recipes give values of the same function.</figcaption>
+</figure>
 
 In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means 1 + 0i, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At 1 + i, one step above the pole, extended zeta has a finite value.
 
