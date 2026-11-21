@@ -41,7 +41,7 @@ Because there are four primes up to 10. They are 2, 3, 5, and 7. Imagine drawing
 
 ## What The Zeta Function Does
 
-**The Riemann zeta function takes a number s and returns a number ζ(s).** Its input can be a point on the complex plane. When the output is zero, we call that input a **zero of zeta**.
+**The Riemann zeta function takes a number s and returns a number ζ(s).** The letter s stands for the whole input. We can write it out as 2 + 3i, or just write 2 when we mean 2 + 0i. Both are points on the complex plane. When the output is zero, we call that input a **zero of zeta**.
 
 Here’s the catch. The easiest formula for zeta works only to the right of the line through 1. **Analytic continuation keeps the values we already know and gives us values farther left, where the zeros we care about are.** Let’s start with the formula we can actually calculate.
 
@@ -76,7 +76,7 @@ A **sum converges** when its running totals settle toward one number. A **functi
   </table>
 </div>
 
-In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **The boundary is a line. The pole is a single point on that line.** That’s why 1 + i has a value even though 1 doesn’t.
+In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means 1 + 0i, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At 1 + i, one step above the pole, extended zeta has a finite value.
 
 ![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
 
@@ -102,11 +102,11 @@ The table describes the inputs. The stills below show what happens on the **outp
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
-*Zeta outputs with the original sum. Each arc traces the values of ζ(s) along a line of inputs. The arcs stop where that sum runs out of inputs. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
+*Zeta outputs with the original sum. Each arc traces the values of ζ(s) along a line of inputs. Follow the input line one unit above the horizontal axis from 2 + i toward 1 + i. Its outputs trace an arc. At 1 + i the original sum fails to settle on a number, so there’s no next point to plot using that sum. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 ![3Blue1Brown still showing the zeta output grid extended as additional complex inputs are included](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img7.jpg)
 
-*Zeta outputs after analytic continuation. The added inputs let us follow the curves farther. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
+*Zeta outputs after analytic continuation. Extended zeta gives a value at 1 + i and at inputs farther left, so the arc can keep going. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 I love seeing this in motion. In [3Blue1Brown’s video on zeta and analytic continuation](https://www.youtube.com/watch?v=sD0NjbwqlYw), you can follow a straight line of inputs as zeta turns it into a curve of outputs.
 
@@ -117,7 +117,7 @@ In both cases, the input can be complex. Write **s = a + bi**. The real part **a
 1. **The original sum works when a > 1.** For example, s = 2 + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
 2. **Extended zeta works everywhere except at s = 1.** At 2 + 3i it gives exactly the original sum’s answer. At ½ + 3i it gives an answer too, even though the original sum diverges there. **The difference is which inputs have an answer.** On their shared region, the answers are identical.
 
-Now we can ask which inputs in the newly reachable region send us to the output 0. Before we do, there’s one point that the extension still can’t fill in.
+**The two vertical lines have different jobs.** The line through 1 marks the boundary of the original sum. The line through ½ is where the Riemann hypothesis says the nontrivial zeros lie. Analytic continuation lets us ask which inputs there give an output of zero.
 
 ## What Happens At A Pole?
 
@@ -145,7 +145,7 @@ This kind of point is called a **pole**. The output grows without bound in magni
 
 <Equation>ζ(s) = 0</Equation>
 
-Since those inputs can be complex numbers, we can mark them as points on the input plane.
+We can mark the zeros as points on the input plane. Why care where they land? Their positions affect how far off our estimate of the prime count can be. We want to prove where the zeros can be, even without finding each one.
 
 ## What Makes Some Zeros Trivial?
 
