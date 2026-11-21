@@ -9,7 +9,7 @@ image: "/images/blog/riemann/golem.webp"
 
 Yesterday, Levent Alpöge released a proof of the Riemann hypothesis that he developed with Claude. The proof came as a Lean library, roughly 17 million lines of code, accompanied by a short announcement. Today, the Lean and Mathlib communities [confirmed that the formal proof is valid and proves the standard statement of the Riemann hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/). The distinction between those two checks is the most interesting part of the story.
 
-[Part 1 explains the Riemann hypothesis from scratch](/blog/riemann-hypothesis). Here’s the bit to carry over. The zeta function has inputs where its output is zero. The hypothesis says that every *nontrivial* zero has real part ½. A proof has to cover every one of those zeros, however large their imaginary parts get.
+[Part 1 explains the Riemann hypothesis from scratch](/blog/riemann-hypothesis). Here’s the bit to carry over. The original zeta sum converges only for inputs with real part greater than 1. Analytic continuation gives us values elsewhere, including in the strip between 0 and 1 where the nontrivial zeros live. The hypothesis says that every *nontrivial* zero has real part ½. A proof has to cover every one of those zeros, however large their imaginary parts get.
 
 ## What Lean Checks
 
@@ -18,6 +18,8 @@ Think of the last line of a proof as a claim with a long chain of receipts. In a
 For a tiny example, imagine I want to prove that the sum of two even integers is even. I start with two arbitrary even integers and write them as 2a and 2b. Their sum is 2(a + b), which gives a concrete reason it’s even. Lean can check that reasoning for arbitrary integers a and b. We could test a million even pairs on a calculator, but the proof works for the next pair too because it never depended on which pair we picked. The same principle explains why checking a formal proof of the Riemann hypothesis is different from computing more zeta zeros. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
 
 ## How They Checked This Proof
+
+![Reviewers checked that the statement matches Mathlib and that the conclusion follows from the stated assumptions](/images/blog/riemann/lean-verification-static.png)
 
 **First, they checked what the theorem says.** Mathlib, Lean’s community-maintained mathematics library, already had a vetted definition of the Riemann hypothesis. The reviewers isolated that statement in a file that depended only on Mathlib. Then they used two independent tools to compare it with the theorem in Alpöge’s submission. Both found that the proof establishes the same statement. This matters because a theorem name alone tells you nothing about what the statement underneath it actually says. [Joint Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
