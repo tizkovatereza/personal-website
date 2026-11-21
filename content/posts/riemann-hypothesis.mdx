@@ -7,7 +7,11 @@ tags: ["math", "Riemann hypothesis"]
 image: "/images/blog/riemann/golem.webp"
 ---
 
-What do prime numbers have to do with points on a vertical line? We’ll start with primes, explain why we introduce a seemingly unrelated function, and build up to the Riemann hypothesis itself. You don’t need a background in complex analysis. I want to explain what each piece is doing before putting them together.
+How many primes are there below a million? You can count them. But what if you want to know how that count behaves as you go further and further out? How good an estimate can you get, and how far off could it be?
+
+In 1859, Bernhard Riemann wrote a paper about that counting problem. He started with something Euler had noticed earlier. An infinite sum over **all** the whole numbers could also be written as a product over **just** the primes. Riemann took the function behind that sum, called zeta, and asked what it does when the inputs are complex numbers. He found that the places where zeta becomes zero show up in a formula for counting primes. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
+
+This is the part I love. A question about counting whole numbers turns into a question about points on a vertical line. If every nontrivial zero lies on that line, as Riemann conjectured, we get a precise limit on how far our estimate of the prime count can be off. So why does a sum of fractions have anything to do with primes in the first place? Let’s build up to it. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
 
 *On November 20, 2026, Levent Alpöge released a proof developed with Claude. The Lean and Mathlib communities independently verified it the next day. [Read Part 2 for what Lean checked](/blog/riemann-hypothesis-part-2).*
 
@@ -31,55 +35,29 @@ Instead of asking “What is the next prime?”, ask “How many primes are ther
 
 Because there are four primes up to 10. They are 2, 3, 5, and 7. Imagine drawing this count as a staircase. Every time you pass a prime, the count goes up by one. Mathematicians have smooth formulas that approximate this staircase. The prime number theorem describes the overall growth. The Riemann hypothesis concerns how far the actual count can deviate from a more precise approximation. Keep that picture in mind. **A staircase, a smooth curve, and the difference between them.**
 
-## Meet The Zeta Function
+## What The Zeta Function Does
 
-When a problem is difficult, mathematicians often translate it into another language. Instead of studying a list of numbers directly, we build a function connected to those numbers. Then we can use tools for studying functions. The **Riemann zeta function** is one such tool. For some inputs, we can calculate it with this recipe.
+**The Riemann zeta function takes a number s and returns a number ζ(s).** Its input can be a point on the complex plane. When the output is zero, we call that input a **zero of zeta**.
 
-<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯</Equation>
+Here’s the catch. The easiest formula for zeta works only to the right of the line through 1. **Analytic continuation keeps the values we already know and gives us values farther left, where the zeros we care about are.** Let’s start with the formula we can actually calculate.
 
-ζ is the Greek letter zeta. It is just the function’s name. And s is its input. Here is what the recipe does. Take each positive whole number, raise it to the power s, take its reciprocal, and add all those contributions. For example, with s = 2,
+### The Original Sum
 
-<Equation>ζ(2) = 1 + 1/4 + 1/9 + 1/16 + ⋯ ≈ 1.645</Equation>
+At s = 2, take the reciprocal of every positive whole number squared and add them up. For other values of s, use s as the exponent.
 
-With s = 3,
+<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯<br />ζ(2) = 1 + 1/4 + 1/9 + 1/16 + ⋯ ≈ 1.645</Equation>
 
-<Equation>ζ(3) = 1 + 1/8 + 1/27 + 1/64 + ⋯ ≈ 1.202</Equation>
-
-For these real inputs, increasing s makes the contributions from larger numbers shrink faster. Think of s as a setting that changes how strongly the function weights different whole numbers. But why is adding these fractions useful? Because this function has an exact connection to primes. And Riemann found formulas connecting its **zeros**, the inputs where its output becomes zero, to the distribution of primes. Zeta doesn’t directly answer “What is the next prime?” It gives us another way to investigate the whole distribution.
-
-## Where The Primes Enter
-
-Euler discovered this equality,
-
-<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯<br />= 1/(1 − 2⁻ˢ) × 1/(1 − 3⁻ˢ) × 1/(1 − 5⁻ˢ) × 1/(1 − 7⁻ˢ) × ⋯</Equation>
-
-The first expression adds contributions from **all positive whole numbers**. The second multiplies factors involving **only primes**. Both expressions equal ζ(s), when the real part of s is greater than 1. We’ll explain “real part” shortly. It is essentially a clever shuffle of terms. Expand each factor into a geometric series, multiply, and every positive whole number appears exactly once because prime factorization is unique. Trust me on this one for now. If you want the details, here are the [Euler-product identities and their conditions](https://dlmf.nist.gov/27.4). Those conditions matter. Infinite sums cannot always be rearranged freely. Here, absolute convergence makes the shuffle valid.
-
-So we already have a connection between two different areas. A fact about multiplication and prime factorization becomes an identity involving infinite sums.
-
-## Why The Original Sum Stops Working
-
-Adding infinitely many terms can give a finite answer.
-
-<Equation>1/2 + 1/4 + 1/8 + 1/16 + ⋯ = 1</Equation>
-
-To see what an infinite sum equals, add the first few terms and keep going. If the running totals approach one finite number, that number is the value of the sum. We say it **converges**. The zeta sum at s = 2 settles near 1.645. At s = 1, here’s what happens instead.
+An infinite sum has a value when its running total approaches a finite number. We say it **converges**. At s = 2, the running total settles near 1.645. At s = 1, it keeps growing. You can see why by grouping the fractions.
 
 <Equation>1 + 1/2 + (1/3 + 1/4) + (1/5 + ⋯ + 1/8) + ⋯</Equation>
 
-Start with the first bracket. It has two terms, each at least ¼, so it adds at least ½. The next bracket has four terms, each at least ⅛, so it also adds at least ½. Keep doubling the number of terms in each bracket and you keep gaining at least another ½. The running total grows without bound, even though the individual terms get smaller.
+The first bracket has two terms of at least ¼ each. The next has four terms of at least ⅛ each. Every bracket adds at least ½, and the brackets go on forever. At s = ½ the terms are even larger, so that sum grows without bound too. To find ζ(½), we need a different formula.
 
-At s = ½, every term is at least as large as its counterpart at s = 1. The running total grows without bound there too. **To find ζ(½), we need a different recipe.** The original sum converges only when the real part of s is greater than 1. The zeta function extends across the complex plane and gives finite values everywhere except at s = 1. Let’s see what that means.
+### Where The Original Sum And Extended Zeta Agree
 
-## Complex Numbers In One Picture
+Think of a complex number as a point on a grid. **2 + 3i** is two units right and three units up. The horizontal coordinate, 2, is called the **real part**. That’s all we need to read the figure below.
 
-A complex number is a point on a grid. In **2 + 3i**, the real part is **2** (two units right) and the imaginary part is **3** (three units up). So “real part ½” simply means a point sits on the vertical line through ½.
-
-![The point 2 + 3i is two units right and three units up](/images/blog/riemann/complex-plane-static.png)
-
-## Where The Original Sum And Extended Zeta Agree
-
-**Extended zeta keeps every value the original sum gives, and adds values at inputs where that sum gives no finite answer.** There’s no region where they both give a value and those values disagree. The extension covers the original region too.
+**The original sum converges when the real part of s is greater than 1.** Extended zeta gives exactly the same values there. It also gives a finite value at every remaining point except s = 1 itself.
 
 <div className="overflow-x-auto">
   <table>
@@ -92,19 +70,19 @@ A complex number is a point on a grid. In **2 + 3i**, the real part is **2** (tw
   </table>
 </div>
 
-Picture the original inputs shaded on the right of the vertical line through 1. The extended function keeps that whole shaded area and fills in the rest of the plane, with one point missing. **The boundary is a line. The pole is a single point on that line.** That’s why 1 + i has a value even though 1 doesn’t.
+In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **The boundary is a line. The pole is a single point on that line.** That’s why 1 + i has a value even though 1 doesn’t.
 
 ![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
 
-## How A Second Formula Can Extend A Function
+### How Analytic Continuation Works
 
 Try the smaller example **1 + x + x² + x³ + ⋯**. At x = ½, the sum settles at **2**. The formula **1/(1 − x)** also gives **2**. In fact, for any x between −1 and 1, multiplying the convergent sum by (1 − x) cancels everything except 1, so the formulas agree throughout that interval.
 
 At x = −2, the original sum starts **1 − 2 + 4 − 8 + ⋯** and the running total jumps around forever. The second formula gives **⅓**. That’s a value of the extended function at −2. The original sum still diverges there.
 
-The word **analytic** is the rule that keeps this from being arbitrary. Near each point, the function must be expressible as a convergent power series. If two analytic formulas agree on a region, that agreement fixes the continuation wherever both extend on the same connected domain.
+Analytic continuation works on this principle. Find a formula that agrees with the original where both work, then use it at new inputs. The word **analytic** imposes a precise rule. The function has to be expressible near each point as a convergent power series. That rule makes the extension unique on a connected region.
 
-## What The Extended Zeta Formula Looks Like
+### A Formula That Reaches ½
 
 For zeta, one formula that reaches new inputs uses alternating plus and minus signs. **To get ζ(½),** take the following convergent sum and divide by 1 − √2.
 
@@ -194,7 +172,13 @@ The word **all** matters. To prove “there exists a prime greater than 100,” 
 
 ## Why This Connection Is So Beautiful
 
-Let’s return to why we introduced zeta. Prime numbers belong to a world of whole numbers, divisibility, and multiplication. These are discrete objects. You can list them one by one. Analysis studies functions, limits, infinite series, differentiation, and integration. It gives us ways to reason about continuous behavior. Euler’s product connects those worlds. Unique prime factorization becomes an identity involving an infinite sum and an infinite product. Riemann then takes the connection further. The zeros of a complex function enter explicit formulas for counting primes. Their positions control fluctuations in those counts.
+Let’s return to why we introduced zeta. Prime numbers belong to a world of whole numbers, divisibility, and multiplication. These are discrete objects. You can list them one by one. Analysis studies functions, limits, infinite series, differentiation, and integration. It gives us ways to reason about continuous behavior. Euler’s product connects those worlds. Where the original sum converges, zeta can also be written as a product with one factor for each prime.
+
+<Equation>ζ(s) = 1/(1 − 2⁻ˢ) × 1/(1 − 3⁻ˢ) × 1/(1 − 5⁻ˢ) × ⋯</Equation>
+
+Expand each factor as a geometric series and multiply. Because every positive whole number has a unique prime factorization, each term in the original sum appears exactly once. [Euler’s product formula](https://dlmf.nist.gov/27.4)
+
+Riemann then takes the connection further. The zeros of a complex function enter explicit formulas for counting primes. Their positions control fluctuations in those counts.
 
 This is what I love about math. Different areas can look like separate subjects until someone finds a connection, and suddenly you can use everything you know about one to understand the other. You are looking at prime numbers and asking where they appear. Then you change the point of view, and the question becomes about a function. Change it again, and you are looking at geometry in the complex plane. The connections are exact enough that proving something about the geometry gives you a theorem about the original numbers.
 

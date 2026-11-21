@@ -27,7 +27,7 @@
   --border: rgba(255, 255, 255, 0.06);
   --input: #0f1420;
   --ring: #8b9bb5;
-  --radius: 12px;
+  --radius: 0px;
   --sidebar-width: 220px;
   --text-muted: #4a4f5a;
 }
@@ -79,10 +79,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-xs: var(--radius);
+  --radius-sm: var(--radius);
   --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) * 1.5);
-  --radius-xl: calc(var(--radius) * 2);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
 }
 
 @layer base {

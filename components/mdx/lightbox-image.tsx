@@ -10,7 +10,7 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
-  const baseClassName = className ?? 'my-8 rounded-xl border border-zinc-700'
+  const baseClassName = className ?? 'my-8 border border-zinc-700'
 
   useEffect(() => setMounted(true), [])
 
@@ -33,7 +33,7 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
         {...props}
         alt={alt}
         onClick={() => setOpen(true)}
-        className={`${baseClassName} cursor-zoom-in`}
+        className={`${baseClassName} rounded-none cursor-zoom-in`}
       />
       {open && mounted && createPortal(
         <div
@@ -46,7 +46,7 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
             type="button"
             aria-label="Close"
             onClick={() => setOpen(false)}
-            className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
+            className="absolute top-4 right-4 rounded-none bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
@@ -54,7 +54,7 @@ export function LightboxImage({ className, alt, ...props }: LightboxImageProps) 
             {...props}
             alt={alt}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[92vh] max-w-[95vw] w-auto h-auto rounded-lg object-contain"
+            className="max-h-[92vh] max-w-[95vw] w-auto h-auto rounded-none object-contain"
           />
         </div>,
         document.body
