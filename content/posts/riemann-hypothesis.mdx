@@ -96,7 +96,9 @@ Try the smaller example **1 + x + x² + x³ + ⋯**. At x = ½, the sum settles 
 
 At x = −2, the original sum starts **1 − 2 + 4 − 8 + ⋯** and the running total jumps around forever. The second formula gives **⅓**. That’s a value of the extended function at −2. The original sum still diverges there.
 
-Analytic continuation works on this principle. Find a formula that agrees with the original where both work, then use it at new inputs. The word **analytic** imposes a precise rule. The function has to be expressible near each point as a convergent power series. That rule makes the extension unique on a connected region.
+**Why is there only one way to continue it?** You could invent a rule that keeps the old answers and assigns whatever values you like elsewhere. An *analytic* extension has to do something much stricter. Near each point, its values come from a power series whose coefficients are fixed by its derivatives there.
+
+Suppose two analytic extensions both agree with the original on an open patch. On that patch they have the same values and the same derivatives, so they give the same local power series. That agreement carries through overlapping neighborhoods wherever the two extensions are both analytic on the same connected region. This is called the **identity theorem**. For zeta, once you know the sum on the right, there’s only one analytic continuation to the complex plane with the point 1 left out. I love that the little part we already know can decide the rest.
 
 ### A Formula That Reaches ½
 
