@@ -188,7 +188,15 @@ Remember the staircase of actual prime counts and the smooth curve we use to est
 
 <Equation>π(x) = Li(x) + O(√x log x)</Equation>
 
-Here, π(x) is the actual prime count, Li(x) is the smooth approximation, and the final term bounds how fast the error can grow. Eventually, the error’s magnitude is at most a fixed constant times √x log x. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states this equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4). It wouldn’t make primes evenly spaced. It would also make results proved assuming RH unconditional. Results requiring generalized versions would need those broader hypotheses established too.
+Here, **π(x)** is how many primes there actually are up to x. **Li(x)** is our smooth estimate. The **O(√x log x)** part says how far off the estimate can be. Once x is large enough, the absolute difference stays below some fixed constant times √x log x. Think of a band around the estimate. It can get wider as x grows, but it gets much smaller relative to the number of primes we’re counting. We’re learning how much the primes can bunch up or thin out in the cumulative count. The formula doesn’t tell us which numbers are prime. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states the equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4).
+
+### Where The ½ Shows Up
+
+Here’s the bit I find wild. In a formula for a weighted count of primes and prime powers, every nontrivial zero contributes a correction. A zero at **a + bi** gives a term involving **x raised to that complex number**. The imaginary part makes the correction oscillate. The real part a gives the power of x in its size.
+
+<Equation>|x<sup>a + bi</sup>| = x<sup>a</sup></Equation>
+
+So if the real part is **½**, that power is **x<sup>½</sup> = √x**. A zero farther to the right would have a larger exponent. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the √x log x bound above. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. A proof of RH would not, by itself, supply a fast factoring algorithm or automatically break encryption. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
 
