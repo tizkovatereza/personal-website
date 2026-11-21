@@ -110,6 +110,13 @@ The table describes the inputs. The stills below show what happens on the **outp
 
 I love seeing this in motion. In [3Blue1Brown’s video on zeta and analytic continuation](https://www.youtube.com/watch?v=sD0NjbwqlYw), you can follow a straight line of inputs as zeta turns it into a curve of outputs.
 
+### A Quick Recap Of The Two Recipes
+
+In both cases, the input can be complex. Write **s = a + bi**. The real part **a** tells you how far left or right the input is. The imaginary part **b** tells you how high or low it is. The output **ζ(s)** can also be complex.
+
+1. **The original sum works when a > 1.** For example, s = 2 + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
+2. **Extended zeta works everywhere except at s = 1.** At 2 + 3i it gives exactly the original sum’s answer. At ½ + 3i it gives an answer too, even though the original sum diverges there. **The difference is which inputs have an answer.** On their shared region, the answers are identical.
+
 Now we can ask which inputs in the newly reachable region send us to the output 0. Before we do, there’s one point that the extension still can’t fill in.
 
 ## What Happens At A Pole?
