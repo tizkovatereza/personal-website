@@ -33,13 +33,41 @@ Could you and I open Claude and hammer-solve the Riemann hypothesis? I don’t t
 
 One example from Alpöge’s account stuck with me. He was looking for a construction that could do the job of an ingredient in Stepanov’s proof in a different setting. That ingredient had no obvious equivalent over the integers. Alpöge guided the search toward a setting where he thought the analogy could work. Claude suggested a specific way to use the theta lifts there, including how many to chain together. To me, that’s the interesting part. Choosing where to look was mathematical work, and so was finding a way through once they got there. [Alpöge’s account of the collaboration](https://alpo.ge/remark.pdf)
 
+## What The Proof Actually Does
+
+**The proof rules out zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
+
+![The proof bounds a weighted prime sum, rules out zeros right of ½, then uses symmetry to rule out zeros on the left](/images/blog/riemann/lean-proof-strategy.png)
+
+1. **Get a bound from the primes.** They smooth the count so it is easier to analyze, and use chains of theta lifts and other tools from number theory to bound it from above. They need that bound on long stretches of scales, with room in the exponent above ½.
+2. **Use the bound to rule out zeros on the right.** A Landau-type argument turns those one-sided bounds into a zero-free region. Roughly, a zero farther right than ½ would force the weighted sum to exceed the allowed bound on those stretches.
+3. **Use the mirror.** A nontrivial zero to the left of ½ would have a partner to the right. With the right side ruled out, the only place left for a nontrivial zero is the line itself. [A technical diagram and guide to the argument](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf)
+
 ## How They Checked This Proof
 
 ![The reviewers asked whether the claim was the Riemann hypothesis and whether the argument proved it](/images/blog/riemann/lean-verification-static.png)
 
-**First, did the claim actually say what we mean by the Riemann hypothesis?** Mathlib is a shared library of mathematics written in Lean. Before this proof came out, mathematicians had already written the question in Lean and checked that it meant the right thing. In plain English, it says that if ζ(s) is zero and s is a nontrivial zero, then the real part of s is ½. The reviewers took that existing statement and compared it with the conclusion of Alpöge’s proof. Two independent tools confirmed an exact match. It’s like checking the question at the top of an exam before grading the answer. A proof of a statement about only the first billion zeros would be answering a different question. [Joint Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
+**First, did the claim actually say what we mean by the Riemann hypothesis?** Mathlib is a shared library of mathematics written in Lean. It already had an exact statement of the hypothesis for the reviewers to compare with the conclusion in Alpöge’s proof. Two independent tools confirmed they matched.
 
-**Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. Lean’s kernel and independent checkers accepted it. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
+If you’ve never seen Lean, here’s the same claim both ways.
+
+**In English.** Every nontrivial zero of zeta has real part ½.
+
+**In Lean.** Here’s that claim laid out one condition per line.
+
+```lean
+∀ s : ℂ,
+  riemannZeta s = 0 →
+  (¬ ∃ n : ℕ, s = -2 * ((n : ℂ) + 1)) →
+  s ≠ 1 →
+  s.re = 1 / 2
+```
+
+Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is ½. The first line says “for every complex number s.” The arrows say the conclusion follows if all three conditions hold. Zeta has to be zero at s, s can’t be one of the already known zeros −2, −4, −6, …, and s can’t be the pole at 1. One difference is that English can tuck those details into the word *nontrivial*. Lean needs each condition stated precisely. [The formal statements the reviewers checked](https://math.mit.edu/~drew/grh/#what-was-verified)
+
+**Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
+
+Some checks zoomed in on one link at a time. An independent reading project isolated the step from the prime-sum bound to the Riemann hypothesis and checked it in two proof checkers. That check takes the bound as a premise. The full proof also supplies the argument for the bound itself. [The isolated checks and their premises](https://github.com/nasqret/riemann-rev#the-two-implications-checked-in-isolation)
 
 The release also covers the generalized hypothesis for Dirichlet L-functions, a family of functions related to zeta. Sutherland’s audit includes those statements too. [The exact statements checked](https://math.mit.edu/~drew/grh/)
 

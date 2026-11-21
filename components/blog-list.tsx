@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, type ReactNode } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 import { type BlogCategory } from "@/lib/blog-posts"
 import { type WritingPost } from "@/lib/writing-posts"
 import { WritingLikeCount } from "@/components/writing-like-count"
@@ -17,37 +16,27 @@ const filters: { label: string; value: BlogCategory | "all" }[] = [
   { label: "Other", value: "other" },
 ]
 
-export function BlogList({ posts, sidebar }: { posts: WritingPost[]; sidebar?: ReactNode }) {
+export function BlogList({ posts }: { posts: WritingPost[] }) {
   const [active, setActive] = useState<BlogCategory | "all">("all")
   const visiblePosts = posts
     .filter((post) => !post.draft && !post.unlisted)
     .filter((post) => active === "all" || post.category === active)
 
   return (
-    <div className="grid gap-10 md:grid-cols-[210px_minmax(0,1fr)] md:gap-12 items-start">
-      <aside className="flex flex-col gap-8 md:sticky md:top-8" aria-label="Writing subscriptions and topics">
-        {sidebar}
-        <div className="flex flex-col items-stretch gap-1" role="group" aria-label="Filter articles by topic">
-        {filters.map((filter) => {
-          const isActive = active === filter.value
-          return (
-            <button
-              key={filter.value}
-              type="button"
-              onClick={() => setActive(filter.value)}
-              aria-pressed={isActive}
-              className={`px-3 py-2.5 text-left text-[11px] font-mono font-light uppercase tracking-[0.05em] border-l-2 transition-colors ${
-                isActive
-                  ? "bg-primary/5 text-foreground border-primary"
-                  : "text-muted-foreground border-transparent hover:border-primary/30 hover:text-primary"
-              }`}
-            >
-              {filter.label}
-            </button>
-          )
-        })}
-        </div>
-      </aside>
+    <div>
+      <div className="flex flex-wrap border-y border-border sm:gap-x-3" role="group" aria-label="Filter articles by topic">
+        {filters.map((filter) => (
+          <button
+            key={filter.value}
+            type="button"
+            onClick={() => setActive(filter.value)}
+            aria-pressed={active === filter.value}
+            className="min-h-11 border-b-2 border-transparent px-1.5 font-mono text-[12px] text-secondary transition-colors hover:text-foreground aria-pressed:border-primary aria-pressed:text-foreground sm:px-3"
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
 
       <div className="flex flex-col">
         {visiblePosts.map((post) => {
@@ -65,25 +54,24 @@ export function BlogList({ posts, sidebar }: { posts: WritingPost[]; sidebar?: R
             <LinkComponent
               key={post.url}
               {...linkProps}
-              className="group flex items-start gap-4 sm:gap-6 py-6 border-b border-border hover:border-primary/30 transition-colors"
+              className="group grid min-w-0 gap-2 border-b border-border py-5 transition-colors hover:border-primary/40 sm:py-6 md:grid-cols-[minmax(0,1fr)_10rem] md:gap-8"
             >
-              <div className="flex-1 min-w-0">
-                <h2 className="font-serif text-[21px] sm:text-[23px] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors leading-snug mb-3">
+              <div className="min-w-0">
+                <h2 className="text-[24px] leading-[1.14] text-foreground group-hover:text-primary sm:text-[29px]">
                   {post.title}
                 </h2>
                 {post.excerpt && (
-                  <p className="text-[15px] font-normal text-secondary line-clamp-2 leading-[1.75] mb-4">
+                  <p className="mt-2 line-clamp-2 max-w-[62ch] text-[17px] leading-[1.45] text-secondary sm:text-[18px]">
                     {post.excerpt}
                   </p>
                 )}
-                <div className="flex items-center gap-x-3 gap-y-2 flex-wrap font-mono text-[11px] font-light tracking-[0.05em] uppercase text-muted-foreground">
-                  <span>{post.date}</span>
-                  <span>{post.source}</span>
-                  <WritingLikeCount source={post.source} slug={post.isInternal ? post.url.split("/").pop() : undefined} count={post.likes} />
-                  {post.label && <span className="text-primary">{post.label}</span>}
-                </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 shrink-0 mt-1 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block" />
+              <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[11px] leading-[1.5] text-secondary md:flex-col md:items-end md:pt-1 md:text-right md:text-xs">
+                <span>{post.date}</span>
+                <span>{post.source}</span>
+                <WritingLikeCount source={post.source} slug={post.isInternal ? post.url.split("/").pop() : undefined} count={post.likes} />
+                {post.label && <span className="text-primary">{post.label}</span>}
+              </div>
             </LinkComponent>
           )
         })}
