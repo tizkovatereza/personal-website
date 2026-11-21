@@ -184,11 +184,11 @@ For me, this is a big part of why abstraction is useful. It gives us more ways t
 
 ## What Would A Proof Change?
 
-It would establish a strong bound on the error in our approximation of prime counts. More precisely, the hypothesis is equivalent to
+Remember the staircase of actual prime counts and the smooth curve we use to estimate it? The Riemann hypothesis tells us how far apart they can get. The two statements are mathematically equivalent. Prove that every nontrivial zero lies on the line through ½ and you get this bound on the error. Prove the bound and you get the statement about the zeros back.
 
 <Equation>π(x) = Li(x) + O(√x log x)</Equation>
 
-Here, π(x) is the actual prime count, Li(x) is the smooth approximation, and the final term bounds how fast the error can grow. Eventually, the error’s magnitude is at most a fixed constant times √x log x. The [official problem description](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf) explains the connection. Remember the staircase and the smooth curve? This tells us how far apart they can become. It wouldn’t make primes evenly spaced. It would also make results proved assuming RH unconditional. Results requiring generalized versions would need those broader hypotheses established too.
+Here, π(x) is the actual prime count, Li(x) is the smooth approximation, and the final term bounds how fast the error can grow. Eventually, the error’s magnitude is at most a fixed constant times √x log x. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states this equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4). It wouldn’t make primes evenly spaced. It would also make results proved assuming RH unconditional. Results requiring generalized versions would need those broader hypotheses established too.
 
 Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. A proof of RH would not, by itself, supply a fast factoring algorithm or automatically break encryption. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
 
