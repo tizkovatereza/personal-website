@@ -102,11 +102,15 @@ At x = −2, the original sum starts **1 − 2 + 4 − 8 + ⋯** and the running
 
 ### A Formula That Reaches ½
 
-For zeta, one formula that reaches new inputs uses alternating plus and minus signs. **To get ζ(½),** take the following convergent sum and divide by 1 − √2.
+Here are the two recipes side by side. The original adds all the terms. The new one alternates plus and minus, then divides by a factor.
 
-<Equation>ζ(½) = (1 − 1/√2 + 1/√3 − 1/√4 + ⋯) / (1 − √2)</Equation>
+<Equation>Original sum<br />1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + ⋯</Equation>
 
-Where the original sum converges, you get the alternating sum by subtracting twice the even terms. The even terms alone are 2<sup>−s</sup> times the original sum, so the alternating sum equals (1 − 2<sup>1 − s</sup>) times zeta there. At ½, the alternating sum still converges and the multiplier is 1 − √2. This recipe is useful at ½. To cover the whole extended domain with one formula, we can use a different sum. [NIST’s definition and alternating-series formula](https://dlmf.nist.gov/25.2)
+<Equation>Alternating formula<br />ζ(s) = [1 − 1/2<sup>s</sup> + 1/3<sup>s</sup> − 1/4<sup>s</sup> + ⋯] / [1 − 2<sup>1 − s</sup>]</Equation>
+
+**Why divide?** Where the original sum converges, the even terms add up to 2<sup>−s</sup> times the whole sum. Subtract twice those even terms and you flip their signs. That leaves (1 − 2<sup>1 − s</sup>) times the original answer. Dividing by that factor gives the original answer back. That’s how we know the two recipes agree wherever the original sum works.
+
+**Now plug in s = ½.** The original sum just keeps growing. The alternating sum settles because its terms shrink and alternate in sign. The denominator becomes 1 − √2, so we can divide. The result is ζ(½). This recipe reaches the point we wanted. Below is a separate formula that covers the whole extended domain. [NIST’s derivation of the alternating formula](https://dlmf.nist.gov/25.2.E3)
 
 ### A Formula For The Whole Extended Function
 
