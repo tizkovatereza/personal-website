@@ -18,9 +18,19 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "The Riemann Hypothesis Explained Simply (and info on how it was maybe proven by AI)",
+    title: "The Riemann Hypothesis, Part 2 — What Lean Verified",
+    date: "Nov 21, 2026",
+    subtitle: "How independent checkers verified Levent Alpöge’s Claude-assisted proof",
+    image: "/images/blog/riemann/golem.webp",
+    url: "/blog/riemann-hypothesis-part-2",
+    isNew: true,
+    isInternal: true,
+    category: "math"
+  },
+  {
+    title: "The Riemann Hypothesis, Part 1 — Explained Simply",
     date: "Nov 20, 2026",
-    subtitle: "What may have just been proved, what the zeta function does, and why we care",
+    subtitle: "A visual explanation of primes, the zeta function, and why its zeros matter",
     image: "/images/blog/riemann/golem.webp",
     url: "/blog/riemann-hypothesis",
     isNew: true,
