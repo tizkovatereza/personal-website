@@ -71,55 +71,27 @@ Start with the first bracket. It has two terms, each at least ¼, so it adds at 
 
 At s = ½, every term is at least as large as its counterpart at s = 1. The running total grows without bound there too. **To find ζ(½), we need a different recipe.** The original sum converges only when the real part of s is greater than 1. The zeta function extends across the complex plane and gives finite values everywhere except at s = 1. Let’s see what that means.
 
-## Giving Numbers Another Direction
+## Complex Numbers In One Picture
 
-Ordinary real numbers sit on a line. Complex numbers give us a second direction. We write them as
-
-<Equation>s = a + bi</Equation>
-
-Here, i² = −1. For this article, picture a and b as coordinates. The **real part**, a, gives the horizontal position. The **imaginary part**, b, gives the vertical position. So 2 + 3i becomes the point (2, 3). Two units right, three units up.
+A complex number is a point on a grid. In **2 + 3i**, the real part is **2** (two units right) and the imaginary part is **3** (three units up). So “real part ½” simply means a point sits on the vertical line through ½.
 
 ![The point 2 + 3i is two units right and three units up](/images/blog/riemann/complex-plane-static.png)
 
-This is what I love about math. If something is too difficult to look at from one point of view, you can choose a different point of view. An unfamiliar expression becomes a point you can picture. A complex function takes a complex number as input and returns another complex number. So the input and output can each be pictured on their own plane. One distinction to remember is that **input locations and output locations are different things**. Later, when we draw the zeros on a line, we will be drawing inputs.
+## Analytic Continuation In One Example
 
-## Why We Need Analytic Continuation
+Our original zeta sum works to the right of the vertical line through 1. The zeros we care about sit farther left, so we need a way to get values there. Here’s a smaller example of how that works.
 
-The original zeta sum gives us a way to calculate ζ(s) when the real part of s is greater than 1. On our picture of the complex plane, that’s everything to the right of the vertical line through 1. But the Riemann hypothesis asks about zeros on the line through **½**. Our recipe stops before we get there. What does ζ even mean on that part of the plane?
+Imagine a function you first meet as the sum **1 + x + x² + x³ + ⋯**. At **x = ½**, you add 1 + ½ + ¼ + ⋯ and the total settles at **2**. The shortcut is **1/(1 − x)**. At x = ½, that’s 1 ÷ (1 − ½), which is also **2**. For any x between −1 and 1, multiplying the convergent sum by (1 − x) cancels everything except 1. So the two formulas give the same answer throughout that interval.
 
-**Analytic continuation** is a way to extend a function by finding a recipe that agrees with it where we already know both recipes work. Let’s see what that means with a sum small enough to do by hand.
+Now try **x = −2**. The sum starts 1 − 2 + 4 − 8 + ⋯ and the running total jumps around forever. The shortcut still gives **⅓**, because 1 ÷ (1 + 2) = ⅓. The old sum still diverges. The new formula is how we give the *function* a value at −2.
 
-## One Function With Two Recipes
+**That’s the idea of analytic continuation.** Start with a formula that works in one region. Find another formula that agrees throughout that region and also works somewhere new. The word *analytic* puts a strong condition on the formulas. Around each point, the function has to be expressible as a convergent power series, like the one we started with. That’s what makes the continuation unique on the connected region you’re extending into. You can’t just pick any value for −2.
 
-Start with this infinite sum.
+## What This Means For Zeta
 
-<Equation>1 + x + x² + x³ + ⋯</Equation>
+At **s = ½**, the original zeta sum keeps growing. A different formula uses an alternating sum instead. Mathematicians can show the two formulas agree at real inputs above 1, where both work. The alternating formula also works at ½, so it lets us calculate **ζ(½)**. That’s the same idea as using the shortcut above. The full continuation gives zeta values everywhere in the complex plane except at 1. [NIST’s zeta formulas](https://dlmf.nist.gov/25.2)
 
-At x = ½, we’re adding 1, then ½, then ¼, and so on. The running totals settle at 2. There’s a second way to get the same answer: divide 1 by 1 − x. To see why, call the sum S. Multiplying S by x shifts every term one place. Subtract xS from S and all the terms cancel except the first 1. So (1 − x)S = 1. This works inside the circle of radius 1 around zero, where the sum converges.
-
-<Equation>1 + x + x² + x³ + ⋯ = 1/(1 − x)</Equation>
-
-Now try x = −2. The running totals of the sum go **1, −1, 3, −5, 11, …**. They never settle. But the second recipe gives 1/(1 + 2) = ⅓. That ⅓ is the value of the *extended function* at −2. The infinite sum still diverges there.
-
-## Why The New Values Are Forced
-
-You might wonder why we’re allowed to pick 1/(1 − x) as the extension. Could we make up some other recipe that gives the same values inside the circle and something different outside it?
-
-The word **analytic** supplies the rule. An analytic function has a convergent power series around each point where it’s defined. A power series centered at a uses powers of x − a, the displacement from that center. The circles below show where each local recipe converges. Start with the series centered at 0, then choose −0.75 as a new center inside the first circle. Because the old recipe already describes the function in a little neighborhood around −0.75, it determines the coefficients of the new series there. The new series reaches −2, which was outside the original circle.
-
-![The disk centered at −0.75 overlaps the original disk and extends far enough to include −2](/images/blog/riemann/continuation-static.png)
-
-The overlap is the important part. We know the recipes agree on a whole patch, which fixes the new power series. If two analytic extensions agree on such a patch, they agree everywhere on the connected region they both cover. That’s the *identity theorem*. It tells us there’s only one answer where a continuation exists. Finding a recipe that actually gets there is a separate step.
-
-## Back To Zeta
-
-For zeta, we can get a glimpse of a new recipe by taking the original sum and subtracting twice its even terms. That changes every even term from a plus to a minus and keeps every odd term as it was. The sum of the even terms is 2⁻ˢ times the original sum. That gives us this identity wherever the original sum converges.
-
-<Equation>(1 − 2¹⁻ˢ) ζ(s) = 1 − 1/2ˢ + 1/3ˢ − 1/4ˢ + ⋯</Equation>
-
-The alternating sum on the right converges at the real input s = ½, because the terms alternate in sign and shrink to zero. The factor multiplying ζ(s) on the left is also nonzero there. So we can divide by it to get a value for ζ(½), even though the original all-positive sum diverges at ½. That’s a concrete example of continuing zeta across the boundary of its first recipe. The full continuation reaches every complex input except s = 1. [NIST’s definition and the alternating-series formula](https://dlmf.nist.gov/25.2)
-
-These two stills from 3Blue1Brown show what the extension looks like. The colored curves live on the **output** plane. Each curve comes from applying zeta to a grid line on the **input** plane. Watch the ends of the two highlighted arcs. The first image shows where the arcs end when we use only inputs from the region where the original sum works. The second shows what happens when we include more inputs.
+In these stills from 3Blue1Brown, each curve traces the zeta outputs for a line of inputs. The second image follows the curves farther because it includes inputs from the extended region.
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
