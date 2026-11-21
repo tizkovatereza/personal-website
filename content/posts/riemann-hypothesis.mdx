@@ -7,13 +7,15 @@ tags: ["math", "Riemann hypothesis"]
 image: "/images/blog/riemann/golem.webp"
 ---
 
-Levent Alpöge announced that he’d proved the Riemann hypothesis with Claude. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859. So let’s start with what the question even is.
+Levent Alpöge announced that he’d proved the Riemann hypothesis with Claude. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859.
+
+Why does it matter? **A proof puts a precise limit on how far off we can be when we estimate the number of primes up to a given size.** It also settles the assumption behind a lot of results mathematicians had already proved *if* the hypothesis was true. And the wild part, to me, is that the limit on this counting error comes from where points sit on a vertical line. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
 
 How many primes are there below a million? You can count them. But what if you want to know how that count behaves as you go further and further out? How good an estimate can you get, and how far off could it be?
 
 In 1859, Bernhard Riemann wrote a paper about that counting problem. He started with something Euler had noticed earlier. An infinite sum over **all** the whole numbers could also be written as a product over **just** the primes. Riemann took the function behind that sum, called zeta, and asked what it does when the inputs are complex numbers. He found that the places where zeta becomes zero show up in a formula for counting primes. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
-This is the part I love. A question about counting whole numbers turns into a question about points on a vertical line. If every nontrivial zero lies on that line, as Riemann conjectured, we get a precise limit on how far our estimate of the prime count can be off. So why does a sum of fractions have anything to do with primes in the first place? Let’s build up to it. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
+So why does a sum of fractions have anything to do with primes in the first place? Let’s build up to it.
 
 ## Where Do Prime Numbers Appear?
 
@@ -57,7 +59,9 @@ The first bracket has two terms of at least ¼ each. The next has four terms of 
 
 Think of a complex number as a point on a grid. **2 + 3i** is two units right and three units up. The horizontal coordinate, 2, is called the **real part**. That’s all we need to read the figure below.
 
-**The original sum converges when the real part of s is greater than 1.** Extended zeta gives exactly the same values there. It also gives a finite value at every remaining point except s = 1 itself.
+A **sum converges** when its running totals settle toward one number. A **function is defined** at an input when it assigns that input a value. At s = ½, the original zeta sum diverges, but extended zeta is defined there. We can get its value from another formula.
+
+**The original sum converges when the real part of s is greater than 1.** Extended zeta gives exactly the same values there and is defined everywhere else except at s = 1.
 
 <div className="overflow-x-auto">
   <table>
