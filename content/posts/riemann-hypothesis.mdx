@@ -106,9 +106,19 @@ For zeta, one formula that reaches new inputs uses alternating plus and minus si
 
 <Equation>ζ(½) = (1 − 1/√2 + 1/√3 − 1/√4 + ⋯) / (1 − √2)</Equation>
 
-Where the original sum converges, you get the alternating sum by subtracting twice the even terms. The even terms alone are 2<sup>−s</sup> times the original sum, so the alternating sum equals (1 − 2<sup>1 − s</sup>) times zeta there. At ½, the alternating sum still converges and the multiplier is 1 − √2. This formula illustrates how we can reach ½. Other formulas cover the rest of the extended domain. [NIST’s definition and alternating-series formula](https://dlmf.nist.gov/25.2)
+Where the original sum converges, you get the alternating sum by subtracting twice the even terms. The even terms alone are 2<sup>−s</sup> times the original sum, so the alternating sum equals (1 − 2<sup>1 − s</sup>) times zeta there. At ½, the alternating sum still converges and the multiplier is 1 − √2. This recipe is useful at ½. To cover the whole extended domain with one formula, we can use a different sum. [NIST’s definition and alternating-series formula](https://dlmf.nist.gov/25.2)
 
-The table describes the inputs. The stills below show what happens on the **output** side. Each curve traces the zeta outputs for a line of inputs. In the second still, more of each input line is available, so its output curve continues farther. The parts of the curves we already had stay where they were.
+### A Formula For The Whole Extended Function
+
+If you’re wondering what you’d actually plug s into, here’s one answer. **Hasse’s formula works at every complex input except 1.** It uses the same rule on both sides of the line through 1.
+
+<Equation>ζ(s) = [1/(s − 1)] ∑<sub>n=0</sub><sup>∞</sup> [1/(n + 1)] ∑<sub>k=0</sub><sup>n</sup> (−1)<sup>k</sup> C(n, k) (k + 1)<sup>1 − s</sup></Equation>
+
+C(n, k) means “n choose k.” The inner sum makes one group at a time. The first group is 1. The second is (1 − 2<sup>1 − s</sup>)/2. The third is (1 − 2 · 2<sup>1 − s</sup> + 3<sup>1 − s</sup>)/3. Add the groups, then divide by s − 1.
+
+Try **s = 0**. The original sum would be 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups are 1 and −½, and all the later groups cancel to zero. Divide ½ by −1 and you get **ζ(0) = −½**. It’s an actual number you can calculate with the continued formula. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
+
+The figure above describes the inputs. The stills below show what happens on the **output** side. Each curve traces the zeta outputs for a line of inputs. In the second still, more of each input line is available, so its output curve continues farther. The parts of the curves we already had stay where they were.
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
