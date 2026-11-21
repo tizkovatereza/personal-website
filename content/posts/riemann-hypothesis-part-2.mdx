@@ -11,25 +11,33 @@ On November 20, Levent Alpöge released a proof of the Riemann hypothesis that h
 
 [Part 1 explains the hypothesis](/blog/riemann-hypothesis). The line to remember is the one through ½, where every nontrivial zeta zero has to sit.
 
-## What Lean Checks
+## What Lean Does
 
-Think of the last line of a proof as a claim with a long chain of receipts. In a paper, an author might write “it follows that” and leave a few steps for the reader. In Lean, the proof has to supply enough information for the software to reconstruct the logical steps. Lean’s kernel, its core checker, checks the resulting proof against the exact statement and the rules of its logic. If one step relies on something the argument hasn’t established, the checker needs a proof of that step or an explicit assumption.
+**Lean is a tool for writing mathematical proofs in a form a computer can check.** You tell it exactly what you want to prove and give it an argument. Lean’s core checker, called the **kernel**, verifies that the conclusion follows from the definitions, theorems, and assumptions the argument uses. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
 
-For a tiny example, imagine I want to prove that the sum of two even integers is even. I start with two arbitrary even integers and write them as 2a and 2b. Their sum is 2(a + b), which gives a concrete reason it’s even. Lean can check that reasoning for arbitrary integers a and b. We could test a million even pairs on a calculator, but the proof works for the next pair too because it never depended on which pair we picked. The same principle explains why checking a formal proof of the Riemann hypothesis is different from computing more zeta zeros. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
+Mathematicians already have ways to build those arguments. In a **direct proof**, you start from what you know and work toward the claim. In a **proof by contradiction**, you assume the claim is false and show that this leads to something impossible. In **induction**, you prove the first case and show why each case implies the next, like knocking over a row of dominoes.
+
+The same techniques work in Lean. The difference is how much you can leave to the reader. On paper, I can write “it follows that” and expect a mathematician to fill in a familiar step. In Lean, that step has to be spelled out or reconstructed by the software so the kernel can check it. Take a tiny direct proof. Two even integers can be written as 2a and 2b. Their sum is 2(a + b), so it’s even. Lean checks the reasoning for arbitrary a and b, which is what makes the proof cover every pair.
+
+## What Alpöge and Claude Built
+
+Alpöge says he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines. That includes definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
+
+![Highlighted line from Alpöge’s announcement saying he believes he discovered a proof working with Claude](/images/blog/riemann/alpoge-announcement-highlight.webp)
+
+*The highlighted opening of Alpöge’s announcement, cropped from [Deedy’s post](https://x.com/deedydas/status/2123797546741232063). The announcement describes the work and links to the Lean proof.*
 
 ## How They Checked This Proof
 
-![Reviewers checked that the statement matches Mathlib and that the conclusion follows from the stated assumptions](/images/blog/riemann/lean-verification-static.png)
+![The reviewers asked whether the claim was the Riemann hypothesis and whether the argument proved it](/images/blog/riemann/lean-verification-static.png)
 
-**First, they checked what the theorem says.** Mathlib, Lean’s community-maintained mathematics library, already had a vetted definition of the Riemann hypothesis. The reviewers isolated that statement in a file that depended only on Mathlib. Then they used two independent tools to compare it with the theorem in Alpöge’s submission. Both found that the proof establishes the same statement. This matters because a theorem name alone tells you nothing about what the statement underneath it actually says. [Joint Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
+**First, did the claim actually say what we mean by the Riemann hypothesis?** Mathlib is a shared library of mathematics written in Lean. It already contained a carefully vetted statement of the hypothesis. Reviewers compared that statement with the conclusion in Alpöge’s code. Two independent tools found they matched. It’s like checking the question at the top of an exam before grading the answer. A proof of a statement about only the first billion zeros would be answering a different question. [Joint Lean and Mathlib statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
-**Then they checked the argument and its assumptions.** Multiple people rebuilt the library and reproduced the same proof export. Lean’s kernel and independent checkers accepted the exported proof. Andrew Sutherland’s verification records show that the main theorem uses only Lean’s three standard axioms. Checking a standalone export also lets reviewers verify the underlying proof without running code from the submission itself. [Sutherland’s verification files and results](https://math.mit.edu/~drew/grh/)
+**Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. Lean’s kernel and independent checkers accepted it. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
-The release also includes the generalized hypothesis for Dirichlet L-functions, which extends the same kind of claim to a family of functions. Sutherland’s audit reports results for those theorems as well. [The exact statements checked](https://math.mit.edu/~drew/grh/)
+The release also covers the generalized hypothesis for Dirichlet L-functions, a family of functions related to zeta. Sutherland’s audit includes those statements too. [The exact statements checked](https://math.mit.edu/~drew/grh/)
 
-## What Claude Did and What We Can Learn Next
-
-Alpöge credits Claude with substantial mathematical contributions and describes guiding the research from a simpler setting toward the one he needed to solve. In his announcement, he also says an attempt at a detailed prose version ran past 250,000 pages. What he released for checking was the formal argument. He expects it can be substantially simplified. [Alpöge’s November 20 announcement](https://alpo.ge/remark.pdf)
+## What I Want To Understand Next
 
 I keep coming back to the picture from Part 1. Symmetry already told us that a zero off the line would have a mirror partner. The hard part was ruling out the pair altogether. The independent checks tell us the argument succeeds. What I want to read next is the human-scale explanation of which mathematical idea makes that pair impossible, and where else we might be able to use it.
 
