@@ -85,43 +85,53 @@ Here, i² = −1. For this article, picture a and b as coordinates. The **real p
 
 This is what I love about math. If something is too difficult to look at from one point of view, you can choose a different point of view. An unfamiliar expression becomes a point you can picture. A complex function takes a complex number as input and returns another complex number. So the input and output can each be pictured on their own plane. One distinction to remember is that **input locations and output locations are different things**. Later, when we draw the zeros on a line, we will be drawing inputs.
 
-## Continuing Where The Original Formula Stops
+## Why We Need Analytic Continuation
 
-The original zeta series converges when Re(s) is greater than 1. That means the input lies to the right of the vertical line through 1. Beyond that region, mathematicians extend the function using **analytic continuation**. Let’s build the intuition with a simpler function. Consider these two recipes,
+The original zeta sum gives us a way to calculate ζ(s) when the real part of s is greater than 1. On our picture of the complex plane, that’s everything to the right of the vertical line through 1. But the Riemann hypothesis asks about zeros on the line through **½**. Our recipe stops before we get there. What does ζ even mean on that part of the plane?
 
-<Equation>A(x) = 1 + x + x² + x³ + ⋯</Equation>
+**Analytic continuation** is a way to extend a function by finding a recipe that agrees with it where we already know both recipes work. Let’s see what that means with a sum small enough to do by hand.
 
-<Equation>B(x) = 1/(1 − x)</Equation>
+## One Function With Two Recipes
 
-When |x| is less than 1, they give exactly the same answer. At x = ½, for example,
+Start with this infinite sum.
 
-<Equation>1 + 1/2 + 1/4 + ⋯ = 1/(1 − 1/2) = 2</Equation>
+<Equation>1 + x + x² + x³ + ⋯</Equation>
 
-But at x = −2, the first recipe gives
+At x = ½, we’re adding 1, then ½, then ¼, and so on. The running totals settle at 2. There’s a second way to get the same answer: divide 1 by 1 − x. To see why, call the sum S. Multiplying S by x shifts every term one place. Subtract xS from S and all the terms cancel except the first 1. So (1 − x)S = 1. This works inside the circle of radius 1 around zero, where the sum converges.
 
-<Equation>1 − 2 + 4 − 8 + 16 − ⋯</Equation>
+<Equation>1 + x + x² + x³ + ⋯ = 1/(1 − x)</Equation>
 
-The running totals don’t settle down. The second recipe still works,
+Now try x = −2. The running totals of the sum go **1, −1, 3, −5, 11, …**. They never settle. But the second recipe gives 1/(1 + 2) = ⅓. That ⅓ is the value of the *extended function* at −2. The infinite sum still diverges there.
 
-<Equation>B(−2) = 1/(1 + 2) = 1/3</Equation>
+## Why The New Values Are Forced
 
-We haven’t made the divergent sum converge. We have found an expression that agrees with the original function where the series works, and also defines values further away. That is what “continuing the function” means.
+You might wonder why we’re allowed to pick 1/(1 − x) as the extension. Could we make up some other recipe that gives the same values inside the circle and something different outside it?
 
-## What Makes The Continuation Analytic?
+The word **analytic** supplies the rule. An analytic function has a convergent power series around each point where it’s defined. A power series centered at a uses powers of x − a, the displacement from that center. The circles below show where each local recipe converges. Start with the series centered at 0, then choose −0.75 as a new center inside the first circle. Because the old recipe already describes the function in a little neighborhood around −0.75, it determines the coefficients of the new series there. The new series reaches −2, which was outside the original circle.
 
-This is the part where simply saying “preserving its structure” doesn’t explain much. What structure? Think of a power series as a local recipe for the function. Our geometric series is one such recipe, built around the input 0. The same function can have another local recipe built around a different input. For example,
+<RiemannVisual name="analytic-continuation" title="Follow overlapping power-series disks from 0 to new inputs" />
 
-<Equation>1/(1 − x) = (2/3)[1 + q + q² + q³ + ⋯]<br />where q = (x + 1/2)/(3/2)</Equation>
+The overlap is the important part. We know the recipes agree on a whole patch, which fixes the new power series. If two analytic extensions agree on such a patch, they agree everywhere on the connected region they both cover. That’s the *identity theorem*. It tells us there’s only one answer where a continuation exists. Finding a recipe that actually gets there is a separate step.
 
-This series is centered at x = −½. It works when |x + ½| is less than 1½. Along the real line, that reaches from −2 to 1, excluding the endpoints. Our original series only reached from −1 to 1. We moved the center of the recipe and gained access to more inputs.
+## Back To Zeta
 
-**In the region where both recipes work, they agree exactly.**
+For zeta, we can get a glimpse of a new recipe by taking the original sum and subtracting twice its even terms. That changes every even term from a plus to a minus and keeps every odd term as it was. The sum of the even terms is 2⁻ˢ times the original sum. That gives us this identity wherever the original sum converges.
 
-That is the useful picture. We can continue a function through overlapping regions, using local power series that agree where they overlap.
+<Equation>(1 − 2¹⁻ˢ) ζ(s) = 1 − 1/2ˢ + 1/3ˢ − 1/4ˢ + ⋯</Equation>
 
-<RiemannVisual name="analytic-continuation" title="Overlapping power-series regions extend the same function" />
+The alternating sum on the right converges at the real input s = ½, because the terms alternate in sign and shrink to zero. The factor multiplying ζ(s) on the left is also nonzero there. So we can divide by it to get a value for ζ(½), even though the original all-positive sum diverges at ½. That’s a concrete example of continuing zeta across the boundary of its first recipe. The full continuation reaches every complex input except s = 1. [NIST’s definition and the alternating-series formula](https://dlmf.nist.gov/25.2)
 
-The disks show regions of the complex plane where individual series converge. Moving the center gives us another disk. The overlap connects the recipes. An **analytic function** is one that has such a convergent power-series description around every point in its domain. This is much stronger than saying “the graph looks smooth.” The local recipes must fit together exactly. For analytic functions, agreement throughout an open region forces agreement throughout a connected shared domain. So we can’t choose arbitrary new values as we go. Where continuation exists, the existing function constrains it. For zeta, this gives a [uniquely determined extension](https://dlmf.nist.gov/25.2) throughout the complex plane except at s = 1.
+Here’s what the extension looks like in 3Blue1Brown’s zeta animation. The colored curves live on the **output** plane. Each curve comes from applying zeta to a grid line on the **input** plane. Watch the ends of the two highlighted arcs. The first image shows where the arcs end when we use only inputs from the region where the original sum works. The second shows what happens when we include more inputs.
+
+![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
+
+*3Blue1Brown, [Visualizing the Riemann zeta function and analytic continuation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation). The arcs stop where the original recipe runs out of inputs.*
+
+![3Blue1Brown still showing the zeta output grid extended as additional complex inputs are included](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img7.jpg)
+
+*3Blue1Brown, [Visualizing the Riemann zeta function and analytic continuation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation). The continued function lets us follow the curves farther.*
+
+Now we can ask which inputs in the newly reachable region send us to the output 0. Before we do, there’s one point that the extension still can’t fill in.
 
 ## What Happens At A Pole?
 
