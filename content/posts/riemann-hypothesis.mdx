@@ -27,6 +27,8 @@ Every whole number greater than 1 has a unique prime factorization, apart from t
 
 ![Prime numbers highlighted on an Ulam spiral](/images/blog/riemann/prime-spiral-static.png)
 
+*Whole numbers. Each dot is an integer. The blue dots are primes.*
+
 I am an atheist, but seeing that prime numbers form mysterious shapes and patterns is a religious experience for me, reaching the limits of human intuition. We chose the spiral arrangement, so the picture depends on how we display the numbers. Still, the concentrations of primes along some diagonals are interesting mathematical patterns. The Riemann hypothesis concerns another kind of regularity. **How many primes appear as we move further along the number line?**
 
 ## Counting Primes
@@ -78,6 +80,8 @@ In the diagram, blue marks where the original sum works. Green marks where the e
 
 ![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
 
+*Zeta inputs. Each point is a possible s. The shading shows which inputs each recipe covers.*
+
 ### How Analytic Continuation Works
 
 Try the smaller example **1 + x + x² + x³ + ⋯**. At x = ½, the sum settles at **2**. The formula **1/(1 − x)** also gives **2**. In fact, for any x between −1 and 1, multiplying the convergent sum by (1 − x) cancels everything except 1, so the formulas agree throughout that interval.
@@ -98,11 +102,11 @@ The table describes the inputs. The stills below show what happens on the **outp
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
-*3Blue1Brown, [Visualizing the Riemann zeta function and analytic continuation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation). The arcs stop where the original recipe runs out of inputs.*
+*Zeta outputs with the original sum. Each arc traces the values of ζ(s) along a line of inputs. The arcs stop where that sum runs out of inputs. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 ![3Blue1Brown still showing the zeta output grid extended as additional complex inputs are included](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img7.jpg)
 
-*3Blue1Brown, [Visualizing the Riemann zeta function and analytic continuation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation). The continued function lets us follow the curves farther.*
+*Zeta outputs after analytic continuation. The added inputs let us follow the curves farther. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 Now we can ask which inputs in the newly reachable region send us to the output 0. Before we do, there’s one point that the extension still can’t fill in.
 
@@ -150,6 +154,8 @@ Their heights differ. Their horizontal coordinate is always ½. So they sit dire
 
 ![Three marked zeta zeros share the real coordinate one half](/images/blog/riemann/critical-line-static.png)
 
+*Zeta inputs. The three dots are different values of s. All three have the same output, zero.*
+
 The height here belongs to the input. At each marked point, the output is zero. But why would ½ be special? Why not 0.4 or 0.7?
 
 ## The Middle Is A Mirror
@@ -161,6 +167,8 @@ Zeta has a deep symmetry, expressed through its functional equation. Among other
 A point on that middle line reflects onto itself.
 
 ![Hypothetical zeros with real parts 0.3 and 0.7 sit at the same height on opposite sides of one half](/images/blog/riemann/zero-symmetry-static.png)
+
+*Zeta inputs. If one of these hypothetical points sent zeta to zero, its mirror partner would too.*
 
 This gives intuition for **why that particular line is the natural candidate**. It is built into the function’s symmetry. But symmetry alone doesn’t put every zero on the line. Imagine two people standing on opposite sides of a mirror. They can form a symmetric arrangement without either person standing on the mirror itself. Likewise, zeros could theoretically occur in reflected pairs away from the middle. The Riemann hypothesis says that never happens. So the difficult leap is from “the zeros are symmetric around this line” to “every nontrivial zero actually lies on this line.”
 
