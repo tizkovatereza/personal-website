@@ -105,7 +105,7 @@ You can plug any complex number except 1 into Hasse’s formula. Try it on the r
 
 **Where did those coefficients come from?** The idea is to work with differences between neighboring powers. Subtract two neighbors, then subtract two neighboring differences. That second step gives the pattern 1, −2, 1. Keep going and you get the alternating binomial coefficients in the first line. The derivation shows that the weighted groups add up to the original zeta value once you divide by s − 1. Those groups also give a convergent series at inputs where the original sum fails. [Hasse’s formula and its derivation, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
 
-The first line makes one group of terms, called Aₙ(s). The second adds those groups after dividing each by n + 1. The stacked n and k mean “n choose k.” For a quick example, use **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**.
+The first line makes one group of terms, called Aₙ(s). The second adds those groups after dividing each by n + 1. The stacked n and k mean “n choose k.” Try **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**.
 
 In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math>, one step above the pole, extended zeta has a finite value.
 
@@ -174,7 +174,7 @@ Vivek posted this picture with the words “Riemann Hypothesis.” Some replies 
 
 *[Vivek’s original post](https://x.com/itsreallyvivek/status/2123826942185181510).*
 
-### A Quick Recap Of The Two Recipes
+### The Two Zeta Recipes
 
 Both recipes take the whole complex number **s** as input. **Re(s)** is its horizontal coordinate.
 
@@ -183,7 +183,7 @@ Both recipes take the whole complex number **s** as input. **Re(s)** is its hori
 
 **The two vertical lines have different jobs.** The line through 1 marks the boundary of the original sum. The line through ½ is where the Riemann hypothesis says the nontrivial zeros lie. Analytic continuation lets us ask which inputs there give an output of zero.
 
-**A quick side note about the pole.** As s approaches <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, the magnitude of ζ(s) grows without bound. At that exact input there’s no finite output. The hypothesis is about the inputs where the output actually equals zero.
+As s approaches <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, the magnitude of ζ(s) grows without bound. At that exact input there’s no finite output. The hypothesis is about the inputs where the output actually equals zero.
 
 ![Rabbi Loew placing the parchment in the clay Golem’s mouth](/images/blog/riemann/golem.webp)
 
