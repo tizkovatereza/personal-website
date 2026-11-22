@@ -64,37 +64,34 @@ Zeta takes a number we call **s**. Plot **<math xmlns="http://www.w3.org/1998/Ma
 
 ### How Zeta Is Defined
 
-The original definition of the zeta function is this infinite sum. It defines ζ(s) for every input whose real part is greater than 1.
+The original definition of the zeta function is this infinite sum. It defines ζ(s) when **Re(s) > 1**, meaning the real part of the input is greater than 1.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>3</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>4</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mo>&#x022EF;</mo></mrow></math></div>
 
 Use the same **s** in every exponent. At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math>**, that gives 1 + ¼ + ⅑ + 1/16 + ⋯. The running total settles near 1.645. That’s what **converges** means. A function is **defined** at an input if it gives that input a value.
 
-At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>** and **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**, the running total keeps growing. At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> + i** it also fails to settle, though the terms now turn in different directions. The sum converges exactly when the real part of **s** is greater than 1. That means strictly right of the vertical line through 1.
+At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>** and **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**, the running total keeps growing. At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> + i** it also fails to settle, though the terms now turn in different directions. The sum converges exactly when **Re(s) > 1**. That means strictly right of the vertical line through 1.
 
 ### What Is Extended Zeta?
 
 **Extended zeta gives the same answers wherever the original sum converges. It also gives values on and to the left of the line through 1, with one exception.** At the single point 1 + 0i, zeta has a pole and no finite value.
 
-Here is one formula that does both jobs. It’s called Hasse’s formula, and it works for every complex input except 1. From here on, ζ means the full function.
-
-<div className="not-prose my-6 space-y-3 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><munderover><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mi>n</mi></mrow></munderover><mo stretchy="false">&#x00028;</mo><mo>&#x02212;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mi>k</mi></msup><mo minsize="2.047em" maxsize="2.047em">&#x00028;</mo><mfrac linethickness="0"><mrow><mi>n</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo minsize="2.047em" maxsize="2.047em">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>k</mi><mo>&#x0002B;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></math>
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>s</mi><mo>&#x02212;</mo><mn>1</mn></mrow></mfrac><munderover><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mo>&#x0221E;</mo></mrow></munderover><mfrac><mrow><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>n</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></mfrac></mrow></math></div>
-
-The first line makes one group of terms, called Aₙ(s). The second adds those groups after dividing each by n + 1. The stacked n and k mean “n choose k.” For a quick example, use **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
-
-### Where The Original Sum And Extended Zeta Agree
+From here on, ζ means the full function.
 
 <figure className="not-prose my-8 border-y border-border px-1 py-4 sm:px-4" aria-label="Three cases for the zeta function">
   <p className="pb-2 text-2xl">What is ζ(s)?</p>
   <dl className="divide-y divide-border">
     <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
       <dt className="font-semibold">If Re(s) &gt; 1</dt>
-      <dd>Use the original sum, 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ⋯</dd>
+      <dd className="overflow-x-auto"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>3</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mo>&#x022EF;</mo></mrow></math></dd>
     </div>
-    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+    <div className="space-y-2 py-3">
       <dt className="font-semibold">If Re(s) ≤ 1 and s ≠ 1</dt>
-      <dd>Use the continuation formula above.</dd>
+      <dd className="space-y-3 overflow-x-auto py-1">
+        <p>Use Hasse’s formula.</p>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><munderover><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mi>n</mi></mrow></munderover><mo stretchy="false">&#x00028;</mo><mo>&#x02212;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mi>k</mi></msup><mo minsize="2.047em" maxsize="2.047em">&#x00028;</mo><mfrac linethickness="0"><mrow><mi>n</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo minsize="2.047em" maxsize="2.047em">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>k</mi><mo>&#x0002B;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></math>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>s</mi><mo>&#x02212;</mo><mn>1</mn></mrow></mfrac><munderover><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mo>&#x0221E;</mo></mrow></munderover><mfrac><mrow><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>n</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></mfrac></mrow></math>
+      </dd>
     </div>
     <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
       <dt className="font-semibold">If s = 1 + 0i</dt>
@@ -103,6 +100,10 @@ The first line makes one group of terms, called Aₙ(s). The second adds those g
   </dl>
   <figcaption className="pt-2 text-base text-secondary">Re(s) is the horizontal coordinate of the input. Both recipes give values of the same function.</figcaption>
 </figure>
+
+Hasse’s formula also works to the right of 1 and gives exactly the values of the original sum there.
+
+The first line makes one group of terms, called Aₙ(s). The second adds those groups after dividing each by n + 1. The stacked n and k mean “n choose k.” For a quick example, use **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
 
 In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math>, one step above the pole, extended zeta has a finite value.
 
@@ -175,7 +176,7 @@ Vivek posted this picture with the words “Riemann Hypothesis.” Some replies 
 
 In both cases, the input can be complex. Write **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></math>**. The real part **a** tells you how far left or right the input is. The imaginary part **b** tells you how high or low it is. The output **ζ(s)** can also be complex.
 
-1. **The original sum works when a > 1.** For example, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
+1. **The original sum works when Re(s) > 1.** For example, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
 2. **Extended zeta works everywhere except at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>.** At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi></mrow></math> it gives exactly the original sum’s answer. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi></mrow></math> it gives an answer too, even though the original sum diverges there. **The difference is which inputs have an answer.** On their shared region, the answers are identical.
 
 **The two vertical lines have different jobs.** The line through 1 marks the boundary of the original sum. The line through ½ is where the Riemann hypothesis says the nontrivial zeros lie. Analytic continuation lets us ask which inputs there give an output of zero.
