@@ -271,12 +271,17 @@ In an ordinary count, each prime adds **1**. In a **weighted count**, you choose
 
 Here the rule is to include every power of a prime and add the natural log of the prime underneath it. For example, 4 is 2², so its weight is log 2.
 
-| Number | Ordinary prime count adds | Weighted count adds |
-| --- | ---: | ---: |
-| 2 | 1 | log 2 |
-| 3 | 1 | log 3 |
-| 4 | 0 | log 2 |
-| 5 | 1 | log 5 |
+<table>
+  <thead>
+    <tr><th scope="col">Number</th><th scope="col">Ordinary count adds</th><th scope="col">Weighted count adds</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2</td><td>1</td><td>log 2</td></tr>
+    <tr><td>3</td><td>1</td><td>log 3</td></tr>
+    <tr><td>4</td><td>0</td><td>log 2</td></tr>
+    <tr><td>5</td><td>1</td><td>log 5</td></tr>
+  </tbody>
+</table>
 
 Add down the middle column and you get **3 primes**. Add down the last column and you get a total of about **4.09**. That total is the weighted count up to 5.
 
