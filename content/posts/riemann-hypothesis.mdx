@@ -291,6 +291,22 @@ Euler’s product lets us express that weighted count using zeta. Here’s the p
 
 Those poles tell you which corrections to add to the weighted count. Its smooth starting estimate is simply **x**. A zero, written ρ, contributes a term of the form <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>x</mi><mi>&#x003C1;</mi></msup></mrow><mrow><mi>&#x003C1;</mi></mrow></mfrac></mrow></math>. Combine it with the term from its mirror across the real axis and you get a real correction that can push the count up or down, like a wave. Mathematicians translate what they learn from this weighted count back to the ordinary staircase. That’s how information about zeros turns into information about the prime count. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
+### What One Correction Looks Like
+
+![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
+
+*This is one wave in the weighted count. At a cutoff of 125, this pair adds about 1.17. At 150, the same pair subtracts about 1.71. The green lines show how big this wave can get in either direction.*
+
+The correction of about −130 we saw earlier was the overall gap in the ordinary count at a million. This graph shows just one piece of the calculation that starts with the weighted count. You need all the zero terms and the rest of the formula to get back to the ordinary count.
+
+## Where The ½ Shows Up
+
+For a zero at **a + bi**, the height b controls how quickly the wave oscillates as we increase the cutoff. The horizontal coordinate a controls how fast its envelope grows. That’s because raising x to this complex power gives a magnitude of x to the power a.
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007C;</mo><msup><mi>x</mi><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></msup><mo stretchy="true" fence="true" form="postfix">&#x0007C;</mo></mrow><mo>&#x0003D;</mo><msup><mi>x</mi><mi>a</mi></msup></mrow></math></div>
+
+So if the real part is **½**, that power is **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>2</mn></mrow></msup><mo>&#x0003D;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math>**. A hypothetical zero with real part ¾ would give a factor of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>3</mn><mo>&#x0002F;</mo><mn>4</mn></mrow></msup></mrow></math>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math> bound below. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+
 ## What The Hypothesis Says About The Counting Error
 
 The statement about the zeros is equivalent to a bound on the gap between the staircase and Li(x).
@@ -298,14 +314,6 @@ The statement about the zeros is equivalent to a bound on the gap between the st
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C0;</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>O</mi><mspace width="negativethinmathspace" /><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">(</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">)</mo></mrow></math></div>
 
 Here, **π(x)** is how many primes there actually are up to x. **Li(x)** is our smooth estimate. The **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi><mo stretchy="false">&#x00028;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>** part says how far off the estimate can be. Once x is large enough, the absolute difference stays below some fixed constant times <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math>. Think of a band around the estimate. It can get wider as x grows, but it gets much smaller relative to the number of primes we’re counting. We’re learning how much the primes can bunch up or thin out in the cumulative count. The formula doesn’t tell us which numbers are prime. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states the equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4).
-
-### Where The ½ Shows Up
-
-Here’s the bit I find wild. In a formula for a weighted count of primes and prime powers, every nontrivial zero contributes a correction. A zero at **a + bi** gives a term involving **x raised to that complex number**. The imaginary part makes the correction oscillate. The real part a gives the power of x in its size.
-
-<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007C;</mo><msup><mi>x</mi><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></msup><mo stretchy="true" fence="true" form="postfix">&#x0007C;</mo></mrow><mo>&#x0003D;</mo><msup><mi>x</mi><mi>a</mi></msup></mrow></math></div>
-
-So if the real part is **½**, that power is **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>2</mn></mrow></msup><mo>&#x0003D;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math>**. A hypothetical zero with real part ¾ would give a factor of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>3</mn><mo>&#x0002F;</mo><mn>4</mn></mrow></msup></mrow></math>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math> bound above. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. The result bounds the error in the cumulative prime count. It leaves the problem of quickly factoring a particular large number open. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
 
