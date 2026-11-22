@@ -266,9 +266,16 @@ This is **Euler’s product formula**. The reason it works is that every whole n
 
 ## Counting Primes Up To A Million
 
-Here’s the staircase again. It steps up by one at each prime. The smooth curve is **Li(x)**, short for *logarithmic integral*. Near a big number t, primes occur at an average rate of roughly **1/log t**. Li adds up that changing rate as you move along the number line. If you want the recipe, start from 2 and take the area under 1/log t up to x. With the convention used here, add the starting value Li(2) ≈ 1.045.
+The staircase steps up by one at each prime. The smooth curve, called **Li(x)**, adds up the expected density of primes as you move along the number line. Near a large number, that density is roughly one prime per natural log of that number.
+
+<details>
+<summary>The formula for the smooth estimate</summary>
+
+Li is short for *logarithmic integral*. Here we use the convention that starts at Li(2) ≈ 1.045 and adds the area under the reciprocal of the natural log.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><msubsup><mo>&#x0222B;</mo><mn>2</mn><mi>x</mi></msubsup><mfrac><mrow><mi>d</mi><mi>t</mi></mrow><mrow><mi>log</mi><mi>t</mi></mrow></mfrac></mrow></math></div>
+
+</details>
 
 ![The staircase counts actual primes and the smooth curve estimates the count, with the gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
 
@@ -276,9 +283,9 @@ At **one million**, we can get the exact answer by listing the primes, for examp
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>628</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>rounded&#x000A0;estimate</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x02212;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>130</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>adjustment</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x0003D;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>498</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>actual&#x000A0;count</mtext></mrow></munder></mrow></math></div>
 
-The adjustment here is about −130 overall. Riemann’s formula breaks an adjustment like this into terms that can push the estimate up or down. Those are the **correction terms**. We’ll see where they come from by looking at a weighted count first. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
+A correction is something we add or subtract to bring an estimate closer to the count. The adjustment at a million is about −130 overall. To see how a zero can supply one piece of an adjustment, it helps to start with a different way of counting. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
-### How The Zeros Give Corrections
+### Counting With Weights
 
 To count primes up to 11, go through the whole numbers one by one. Add **1** when the number is prime and **0** when it isn’t. So 4 adds zero because it has a divisor other than 1 and itself.
 
@@ -304,23 +311,15 @@ The **weighted count** adds the natural log of the base prime for each prime or 
 
 Add the third column and you get **5 primes**. Add the last column and you get the weighted total, about **10.23**.
 
-<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C8;</mi><mo stretchy="false">&#x00028;</mo><mn>11</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>3</mn><mi>log</mi><mn>2</mn><mo>&#x0002B;</mo><mn>2</mn><mi>log</mi><mn>3</mn><mo>&#x0002B;</mo><mi>log</mi><mn>5</mn><mo>&#x0002B;</mo><mi>log</mi><mn>7</mn><mo>&#x0002B;</mo><mi>log</mi><mn>11</mn><mo>&#x02248;</mo><mn>10.23</mn></mrow></math></div>
+The weighted count has a simple starting estimate. Up to 125, start at **125**. Near a large cutoff, primes show up roughly once per log of that number, and each prime adds roughly that same log as its weight. Those two effects balance, so the weighted total grows about as fast as the cutoff.
 
-Euler’s product is the version of zeta that multiplies one factor per prime. It agrees with the original sum when **Re(s) > 1**.
+### How The Zeros Give Corrections
+
+Euler’s product is zeta written with one factor per prime. It agrees with the original sum when **Re(s) > 1**.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></math></div>
 
-Take the negative derivative of the logarithm of that product and you get <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>&#x003B6;</mi><mrow><mi>&#x02032;</mi></mrow></msup><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></mfrac></mrow></math>. The prime mark on ζ means “take the derivative.” This step brings down the log p weights from the table and gives us a way to recover the weighted count from zeta.
-
-The denominator of that fraction is zeta itself. At a zero of zeta, the denominator goes to zero one power faster than the numerator. So the **fraction** blows up there. That’s the pole we use in the prime-counting calculation.
-
-**Start with the cutoff itself.** For the weighted count up to 125, the smooth starting estimate is 125. The idea is that near a large number, you expect roughly one prime per log of that number, and each prime carries a weight of about that same log. The two factors roughly cancel, so the weighted count grows at about one unit per integer.
-
-When you recover the count from the quotient, each pole at a zeta zero contributes a term. If the zero is called <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C1;</mi></mrow></math>, its term is
-
-<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>x</mi><mrow><mi>&#x003C1;</mi></mrow></msup></mrow><mrow><mi>&#x003C1;</mi></mrow></mfrac></mrow></math></div>
-
-Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> is the cutoff. That term is usually complex. Add the term from the zero at the opposite height and the imaginary parts cancel, leaving a real number. As the cutoff changes, that real number can be positive or negative. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+Working with this product gives a way to calculate the weighted count. The formula starts with the cutoff and then adjusts it. Each pair of zeros at opposite heights contributes a wave. That wave can raise the estimate at one cutoff and lower it at another.
 
 ### What One Correction Looks Like
 
@@ -328,26 +327,36 @@ Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi
 
 *The blue curve is what one pair of zeros contributes. It sits above zero at 125 and below zero at 150. The dashed green lines are the upper and lower limits. They’re called a square-root envelope because if you quadruple the cutoff, their distance from zero doubles.*
 
-At 125, this pair moves the starting estimate up to **125 + 1.17**. At 150, the same pair moves it down to **150 − 1.71**. Those are intermediate steps. The full calculation includes the other pairs and the remaining terms in the formula. To get back to the ordinary prime count, keep the steps at primes, remove the steps at higher prime powers, and undo the log weights so each prime counts once.
+At 125, this pair adds **1.17** to the starting estimate of 125. At 150, the same pair subtracts **1.71** from the starting estimate of 150. The full calculation also uses the other pairs and a few more terms. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+
+<details>
+<summary>The formulas behind the chart</summary>
+
+The negative derivative of the logarithm of Euler’s product brings down the log weights. On the zeta side, that gives the quotient below. At a zero of zeta, its denominator goes to zero one power faster than its numerator, so the quotient has a pole there.
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>&#x003B6;</mi><mrow><mi>&#x02032;</mi></mrow></msup><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></mfrac></mrow></math></div>
+
+Recovering the weighted count from the quotient turns the pole at each nontrivial zero, written ρ, into the contribution below. Here x is the cutoff. Combine this with the term from the zero at the opposite height and the imaginary parts cancel. That pair gives the real wave in the chart.
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>x</mi><mi>&#x003C1;</mi></msup></mrow><mrow><mi>&#x003C1;</mi></mrow></mfrac></mrow></math></div>
+
+</details>
 
 ## Where The ½ Shows Up
 
-For a zero at **a + bi**, the height b controls how quickly the wave oscillates as we increase the cutoff. The horizontal coordinate a controls how fast its envelope grows. That’s because raising x to this complex power gives a magnitude of x to the power a.
-
-<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007C;</mo><msup><mi>x</mi><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></msup><mo stretchy="true" fence="true" form="postfix">&#x0007C;</mo></mrow><mo>&#x0003D;</mo><msup><mi>x</mi><mi>a</mi></msup></mrow></math></div>
-
-So if the real part is **½**, that power is **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>2</mn></mrow></msup><mo>&#x0003D;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math>**. A hypothetical zero with real part ¾ would give a factor of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>3</mn><mo>&#x0002F;</mo><mn>4</mn></mrow></msup></mrow></math>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math> bound below. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+The horizontal position of a zero tells us how fast its wave can grow. A zero with real part **½** gives a wave whose limit grows like the **square root of the cutoff**. A zero at **¾** would allow a faster-growing wave. The hypothesis says every nontrivial zero is on the ½ line, so every one of these waves has the square-root scale. [The formula connecting zeros and the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 ## What The Hypothesis Says About The Counting Error
 
-The statement about the zeros is equivalent to a bound on the gap between the staircase and Li(x).
+To get back to the ordinary staircase, drop the steps at higher prime powers and undo the log weights so each prime counts once. Mathematicians can control the combined effect of the corrections through that calculation. The result is a bound on the gap we started with, between the smooth estimate and the actual number of primes. For large cutoffs, the gap can grow at most on the scale of **the square root of the cutoff times its logarithm**. [The prime-counting error bound](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4)
 
-<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C0;</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>O</mi><mspace width="negativethinmathspace" /><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">(</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">)</mo></mrow></math></div>
+<details>
+<summary>The error bound in mathematical notation</summary>
 
-Here, **π(x)** is how many primes there actually are up to x. **Li(x)** is our smooth estimate. The **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi><mo stretchy="false">&#x00028;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>** part says how far off the estimate can be. Once x is large enough, the absolute difference stays below some fixed constant times <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math>. Think of a band around the estimate. It can get wider as x grows, but it gets much smaller relative to the number of primes we’re counting. We’re learning how much the primes can bunch up or thin out in the cumulative count. The formula doesn’t tell us which numbers are prime. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states the equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4).
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C0;</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>O</mi><mspace width="negativethinmathspace" /><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
 
-Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. The result bounds the error in the cumulative prime count. It leaves the problem of quickly factoring a particular large number open. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
+The left side is the actual number of primes up to x. The O term says that, once x is large enough, the absolute gap stays below a fixed constant times the square root of x times log x.
 
-We started with prime numbers, moved through infinite sums and complex analysis, and ended with a geometric question about a line. I love that these ideas can connect so precisely. A geometric restriction on the zeros of a function becomes a guarantee about prime counts.
+</details>
 
 In [Part 2](/blog/riemann-hypothesis-part-2), I look at how the argument works, what the independent Lean checks established, and what to make of the competing claims.
