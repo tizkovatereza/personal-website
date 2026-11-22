@@ -23,11 +23,15 @@ The same techniques work in Lean. In my thesis, I remember borrowing a step from
 
 Alpöge says he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines. That includes definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. The 250,000-page figure Alpöge mentions was from an attempt at a prose write-up. What he released was the Lean library. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
-![Highlighted line from Alpöge’s announcement saying he believes he discovered a proof working with Claude](/images/blog/riemann/alpoge-announcement-highlight.webp)
+<figure className="not-prose my-8 border-y border-border py-4">
+  <img className="block w-full border border-border" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
+  <figcaption className="mt-2 text-sm">The announcement, cropped from <a href="https://x.com/deedydas/status/2123797546741232063">Deedy’s post</a>.</figcaption>
+</figure>
 
-*The highlighted opening of Alpöge’s announcement, cropped from [Deedy’s post](https://x.com/deedydas/status/2123797546741232063). The announcement describes the work and links to the Lean proof.*
-
-![A cropped excerpt showing Lean source from the proof library](/images/blog/riemann/lean-source-excerpt.png)
+<figure className="not-prose my-8 border-y border-border py-4">
+  <img className="block w-full border border-border" src="/images/blog/riemann/lean-source-excerpt.png" alt="Lean source code from the proof library" />
+  <figcaption className="mt-2 text-sm">A look inside the Lean library.</figcaption>
+</figure>
 
 ### What The Human Brought
 
@@ -41,11 +45,16 @@ Alpöge guided the search toward a setting where he thought the analogy could wo
 
 **The proof rules out zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
-![The proof bounds a weighted prime sum, rules out zeros right of ½, then uses symmetry to rule out zeros on the left](/images/blog/riemann/lean-proof-strategy.png)
+<figure className="not-prose my-8 border-y border-border py-4">
+  <figcaption className="mb-2 text-xl font-semibold">How the proof rules out zeros off the line</figcaption>
+  <ol className="divide-y divide-border">
+    <li className="py-3"><strong>Bound the prime sum.</strong> Use theta lifts and other tools to put a ceiling on a weighted sum over primes and prime powers.</li>
+    <li className="py-3"><strong>Rule out the right.</strong> A zero right of ½ would force the sum above that ceiling.</li>
+    <li className="py-3"><strong>Reflect to rule out the left.</strong> A zero left of ½ would need a partner on the right.</li>
+  </ol>
+</figure>
 
-1. **Get a bound from the primes.** They smooth the count so it is easier to analyze, and use chains of theta lifts and other tools from number theory to bound it from above. They need that bound on long stretches of scales, with room in the exponent above ½.
-2. **Use the bound to rule out zeros on the right.** A Landau-type argument turns those one-sided bounds into a zero-free region. Roughly, a zero farther right than ½ would force the weighted sum to exceed the allowed bound on those stretches.
-3. **Use the mirror.** A nontrivial zero to the left of ½ would have a partner to the right. With the right side ruled out, the only place left for a nontrivial zero is the line itself. [A technical diagram and guide to the argument](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf)
+[A technical guide to the argument](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf)
 
 ### What Did They Actually Bound?
 
@@ -56,8 +65,6 @@ Take a cutoff of 10. The primes and prime powers below it are 2, 3, 4, 5, 7, 8, 
 If a positive integer is divisible by 4 and by 3, it has to be at least 12. Turn that around. If you know it’s at most 20, there’s a limit to what can divide it. Take logs and those prime factors give you a sum. The proof uses a much more sophisticated version of that idea. The theta lifts come from the theory of automorphic forms and create divisibility at selected primes. An inequality about lattices from arithmetic geometry, called Bost’s slope inequality, limits how much divisibility there can be. That limit helps bound the prime sums. [Technical guide, sections 4–6](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=4)
 
 ## How They Checked This Proof
-
-![The reviewers asked whether the claim was the Riemann hypothesis and whether the argument proved it](/images/blog/riemann/lean-verification-static.png)
 
 **First, did the claim actually say what we mean by the Riemann hypothesis?** Mathlib is a shared library of mathematics written in Lean. It already had an exact statement of the hypothesis for the reviewers to compare with the conclusion in Alpöge’s proof. Two independent tools confirmed they matched.
 
@@ -79,7 +86,14 @@ Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is 
 
 **Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
-![Diagram showing the module-by-module Lean replay and independent checks of the exported proof](/images/blog/riemann/lean-module-replay.png)
+<figure className="not-prose my-8 border-y border-border py-4">
+  <figcaption className="mb-2 text-xl font-semibold">How the reviewers checked the proof</figcaption>
+  <ol className="divide-y divide-border">
+    <li className="py-3"><strong>Check the statement.</strong> Compare the conclusion to Mathlib’s formal statement of the hypothesis.</li>
+    <li className="py-3"><strong>Replay the modules.</strong> Rebuild the library and recheck 175,187 compiled modules in Lean’s kernel.</li>
+    <li className="py-3"><strong>Check the export independently.</strong> Give the full proof object to other checkers.</li>
+  </ol>
+</figure>
 
 Some checks zoomed in on one link at a time. An independent reading project isolated the step from the prime-sum bound to the Riemann hypothesis and checked it in two proof checkers. That check takes the bound as a premise. The full proof also supplies the argument for the bound itself. [The isolated checks and their premises](https://github.com/nasqret/riemann-rev#the-two-implications-checked-in-isolation)
 

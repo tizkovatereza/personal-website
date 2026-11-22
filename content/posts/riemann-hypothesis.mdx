@@ -200,27 +200,41 @@ I’m used to symmetry around zero, where the reflection sends 3 to −3. Here t
   </dl>
 </figure>
 
-## Why This Connection Is So Beautiful
+## How The Primes Get Into Zeta
 
-Let’s return to why we introduced zeta. Prime numbers belong to a world of whole numbers, divisibility, and multiplication. These are discrete objects. You can list them one by one. Analysis studies functions, limits, infinite series, differentiation, and integration. It gives us ways to reason about continuous behavior. Euler’s product connects those worlds. Where the original sum converges, zeta can also be written as a product with one factor for each prime.
+Go back to the original sum. It has a term for every positive whole number. Euler showed that when **Re(s) > 1**, the same sum equals a product with one factor for each prime.
 
-<Equation>ζ(s) = 1/(1 − 2⁻ˢ) × 1/(1 − 3⁻ˢ) × 1/(1 − 5⁻ˢ) × ⋯</Equation>
+<Equation>
+  1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + ⋯
+  <br />
+  = 1/(1 − 2<sup>−s</sup>) × 1/(1 − 3<sup>−s</sup>) × 1/(1 − 5<sup>−s</sup>) × ⋯
+</Equation>
 
-Expand each factor as a geometric series and multiply. To get the term for **12**, pick 1/4<sup>s</sup> from the factor for 2, 1/3<sup>s</sup> from the factor for 3, and 1 from the others. Their product is 1/12<sup>s</sup>, because 12 = 2² × 3. Each whole number appears exactly once in the expanded product, because each has a unique prime factorization. [Euler’s product formula](https://dlmf.nist.gov/27.4)
+This is **Euler’s product formula**. The reason it works is that every whole number greater than 1 can be written as a product of primes in exactly one way, apart from order. For example, 12 = 2² × 3. The 2 factor supplies 1/4<sup>s</sup>, the 3 factor supplies 1/3<sup>s</sup>, and multiplying those gives the term 1/12<sup>s</sup> in the sum. Every number gets its one term this way. [Euler’s product and its derivation](https://dlmf.nist.gov/27.4)
 
-### What Are We Correcting?
+## Counting Primes Up To A Million
 
-Say we want to count the primes up to **one million**. The smooth estimate, Li(1,000,000), gives about **78,628**. There are actually **78,498** primes up to that point. The estimate is about **130 too high**. At another cutoff it could be too low. A correction is a term we add or subtract to account for part of that gap.
+Here’s the staircase again. It steps up by one at each prime. The smooth curve is **Li(x)**, short for *logarithmic integral*. Near a big number t, primes occur at an average rate of roughly **1/log t**. Li adds up that changing rate as you move along the number line. If you want the recipe, start from 2 and take the area under 1/log t up to x. With the convention used here, add the starting value Li(2) ≈ 1.045.
 
-Here’s how the zeros come in. Starting with Euler’s product, mathematicians take the derivative of its logarithm. The product side then gives a sum over primes and prime powers. The zeta side gives ζ′(s)/ζ(s), which has a pole at each zero of ζ(s). When mathematicians turn that expression into a formula for a weighted prime count, the poles from the nontrivial zeros contribute correction terms. The formula starts with a smooth trend, then adds contributions that can push the count up or down. [The explicit formula for the weighted prime count](https://dlmf.nist.gov/25.16.E2)
+<Equation>Li(x) = Li(2) + ∫<sub>2</sub><sup>x</sup> dt / log t</Equation>
 
-This is what I love about math. Different areas can look like separate subjects until someone finds a connection, and suddenly you can use everything you know about one to understand the other. You are looking at prime numbers and asking where they appear. Then you change the point of view, and the question becomes about a function. Change it again, and you are looking at geometry in the complex plane. The connections are exact enough that proving something about the geometry gives you a theorem about the original numbers.
+![The staircase counts actual primes and the smooth curve estimates the count, with the gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
 
-For me, this is a big part of why abstraction is useful. It gives us more ways to approach the same problem.
+At **one million**, we can get the exact answer by listing the primes, for example with a sieve. There are **78,498**. Evaluate the smooth formula at the same cutoff and you get about **78,628**. So Li is about **130 too high** there. At another cutoff it could be too low. By “corrections,” I mean the terms that account for the gap between a smooth estimate and the count. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
-## What Would A Proof Change?
+### How The Zeros Give Corrections
 
-Remember the staircase of actual prime counts and the smooth curve we use to estimate it? The Riemann hypothesis tells us how far apart they can get. The two statements are mathematically equivalent. Prove that every nontrivial zero lies on the line through ½ and you get this bound on the error. Prove the bound and you get the statement about the zeros back.
+The formula is easiest to see with a **weighted count**. The ordinary staircase adds 1 for each prime. This version counts prime powers too and adds **log p** for each power of a prime p. Up to 5 it counts 2, 3, 4, and 5. Since 4 is a power of 2, its step has size log 2.
+
+<Equation>Weighted count up to 5 = log 2 + log 3 + log 2 + log 5</Equation>
+
+Euler’s product lets us express that weighted count using zeta. Here’s the part that confused me. At a zero, **zeta itself goes to zero**. In the calculation, you divide by zeta, so the expression you’re working with blows up there. Think of what happens to 1/u as u approaches zero. Same input, two different functions. Zeta has a zero there. The expression built from it has a pole. If you want the exact expression, it’s −ζ′(s)/ζ(s).
+
+Those poles tell you which corrections to add to the weighted count. Its smooth starting estimate is simply **x**. Then the zeros contribute terms that can push the count up or down, like waves. Mathematicians translate what they learn from this weighted count back to the ordinary staircase. That’s how information about zeros turns into information about the prime count. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+
+## What The Proof Tells Us About The Counting Error
+
+The proven statement about the zeros is equivalent to a bound on the gap between the staircase and Li(x).
 
 <Equation>π(x) = Li(x) + O(√x log x)</Equation>
 
@@ -234,7 +248,7 @@ Here’s the bit I find wild. In a formula for a weighted count of primes and pr
 
 So if the real part is **½**, that power is **x<sup>½</sup> = √x**. A hypothetical zero with real part ¾ would give a factor of x<sup>¾</sup>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the √x log x bound above. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
-Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. A proof of RH would not, by itself, supply a fast factoring algorithm or automatically break encryption. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
+Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. The result bounds the error in the cumulative prime count. It leaves the problem of quickly factoring a particular large number open. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
 
 We started with prime numbers, moved through infinite sums and complex analysis, and ended with a geometric question about a line. I love that these ideas can connect so precisely. A geometric restriction on the zeros of a function becomes a guarantee about prime counts.
 
