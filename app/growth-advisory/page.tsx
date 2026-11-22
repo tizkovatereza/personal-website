@@ -22,7 +22,7 @@ export default function GrowthAdvisoryPreview() {
         <div className="grid sm:grid-cols-2 gap-8 sm:gap-12">
           <div>
             <a href="https://factory.ai" target="_blank" rel="noopener noreferrer" className="inline-flex items-center h-10 hover:opacity-70"><img src="/images/companies/factory.svg" alt="Factory" width="140" height="27" className="w-[140px] h-auto dark:invert" /></a>
-            <p className="text-[15px] text-secondary leading-[1.85] mt-4">I launched and scaled paid ads at Factory. I also work on AEO, ecosystem growth, out-of-home campaigns, and growth engineering.</p>
+            <p className="text-[15px] text-secondary leading-[1.85] mt-4">I built a community of Factory supporters and doubled Factory’s social following in three months. I also launched and scaled paid ads and work on AEO, out-of-home campaigns, and growth engineering.</p>
           </div>
           <div>
             <a href="https://e2b.dev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center h-10 hover:opacity-70"><img src="/images/companies/e2b.svg" alt="E2B" width="90" height="26" className="w-[90px] h-auto dark:invert" /></a>
