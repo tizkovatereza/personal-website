@@ -7,7 +7,7 @@ tags: ["math", "Riemann hypothesis"]
 image: "/images/blog/riemann/golem.webp"
 ---
 
-Levent Alpöge announced that he’d proved the Riemann hypothesis with Claude. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859.
+Levent Alpöge announced a Claude-assisted proof of the Riemann hypothesis on November 20. Lean and Mathlib reviewers reported that the formal proof passed independent checks. Clay still lists the problem as unsolved as of November 21. [What Lean verified](/blog/riemann-hypothesis-part-2) I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859.
 
 Why does it matter? **A proof puts a precise limit on how far off we can be when we estimate the number of primes up to a given size.** It also settles the assumption behind a lot of results mathematicians had already proved *if* the hypothesis was true. And the wild part, to me, is that the limit on this counting error comes from where points sit on a vertical line. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
 
@@ -23,7 +23,7 @@ So why does a sum of fractions have anything to do with primes in the first plac
 
 Prime numbers are whole numbers greater than 1 divisible only by 1 and themselves. 2, 3, 5, 7, 11, 13, 17, 19… They are the building blocks of whole numbers. For example,
 
-<Equation>60 = 2² × 3 × 5</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mn>60</mn><mo>&#x0003D;</mo><msup><mn>2</mn><mn>2</mn></msup><mo>&#x000D7;</mo><mn>3</mn><mo>&#x000D7;</mo><mn>5</mn></mrow></math></div>
 
 Every whole number greater than 1 has a unique prime factorization, apart from the order. But the primes themselves appear irregularly. Sometimes they are close together, like 11 and 13. Sometimes there is a much larger gap. One way to see their patterns is to arrange whole numbers in an outward square spiral, then highlight the primes. This is called an [Ulam spiral](https://mathworld.wolfram.com/PrimeSpiral.html). Diagonal patterns start appearing.
 
@@ -43,15 +43,15 @@ There are 25 primes up to 100. Draw the count as a staircase and each prime take
 
 A function takes an input and gives you an output. Feed me chocolate, I turn happy. Zeta's recipe involves a lot more fractions.
 
-Zeta takes a number we call **s**. Plot **2 + 3i** by going two units right and three up. The two is the real part, the three is the imaginary part, and **s** is the whole point. Writing **2** is shorthand for **2 + 0i**.
+Zeta takes a number we call **s**. Plot **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi></mrow></math>** by going two units right and three up. The two is the real part, the three is the imaginary part, and **s** is the whole point. Writing **2** is shorthand for **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>**.
 
 ### The Original Sum
 
-<Equation>ζ(s) = 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + ⋯</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>3</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>4</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mo>&#x022EF;</mo></mrow></math></div>
 
-Use the same **s** in every exponent. At **s = 2**, that gives 1 + ¼ + ⅑ + 1/16 + ⋯. The running total settles near 1.645. That’s what **converges** means. A function is **defined** at an input if it gives that input a value.
+Use the same **s** in every exponent. At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math>**, that gives 1 + ¼ + ⅑ + 1/16 + ⋯. The running total settles near 1.645. That’s what **converges** means. A function is **defined** at an input if it gives that input a value.
 
-At **s = 1** and **s = ½**, the running total keeps growing. At **s = 1 + i** it also fails to settle, though the terms now turn in different directions. The sum converges exactly when the real part of **s** is greater than 1. That means strictly right of the vertical line through 1.
+At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>** and **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**, the running total keeps growing. At **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> + i** it also fails to settle, though the terms now turn in different directions. The sum converges exactly when the real part of **s** is greater than 1. That means strictly right of the vertical line through 1.
 
 ### How Analytic Continuation Works
 
@@ -119,7 +119,7 @@ The Greek letter **ζ** is called *zeta*. From here on, “zeta” means the ful
   <figcaption className="pt-2 text-base text-secondary">Re(s) is the horizontal coordinate of the input. Both recipes give values of the same function.</figcaption>
 </figure>
 
-In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means 1 + 0i, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At 1 + i, one step above the pole, extended zeta has a finite value.
+In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math>, one step above the pole, extended zeta has a finite value.
 
 ![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
 
@@ -129,32 +129,38 @@ In the diagram, blue marks where the original sum works. Green marks where the e
 
 Here’s what an actual recipe for the whole plane looks like. **Hasse’s formula works at every complex input except 1.** You can use the short sum to the right of 1 and this one everywhere else it’s defined.
 
-<Equation>ζ(s) = [1/(s − 1)] ∑<sub>n=0</sub><sup>∞</sup> [1/(n + 1)] ∑<sub>k=0</sub><sup>n</sup> (−1)<sup>k</sup> C(n, k) (k + 1)<sup>1 − s</sup></Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>s</mi><mo>&#x02212;</mo><mn>1</mn></mrow></mfrac><munderover><mo>&#x02211;</mo><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mrow><mo>&#x0221E;</mo></mrow></munderover><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></mfrac><munderover><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>0</mn></mrow><mi>n</mi></munderover><mo stretchy="false">&#x00028;</mo><mo>&#x02212;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mi>k</mi></msup><mo minsize="2.047em" maxsize="2.047em">&#x00028;</mo><mfrac linethickness="0"><mrow><mi>n</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo minsize="2.047em" maxsize="2.047em">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>k</mi><mo>&#x0002B;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></math></div>
 
-Here C(n, k) means “n choose k.” For a quick example, use **s = 0**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **ζ(0) = −½**. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
+Here C(n, k) means “n choose k.” For a quick example, use **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>**. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
 
 The figure above describes the inputs. The stills below show what happens on the **output** side. Each curve traces the zeta outputs for a line of inputs. In the second still, more of each input line is available, so its output curve continues farther. The parts of the curves we already had stay where they were.
 
 ![3Blue1Brown still showing two highlighted zeta output arcs ending at the boundary of the original input region](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img5.jpg)
 
-*Zeta outputs with the original sum. Each arc traces the values of ζ(s) along a line of inputs. Follow the input line one unit above the horizontal axis from 2 + i toward 1 + i. Its outputs trace an arc. At 1 + i the original sum fails to settle on a number, so there’s no next point to plot using that sum. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
+*Zeta outputs with the original sum. Each arc traces the values of ζ(s) along a line of inputs. Follow the input line one unit above the horizontal axis from <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math> toward <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math>. Its outputs trace an arc. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math> the original sum fails to settle on a number, so there’s no next point to plot using that sum. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 ![3Blue1Brown still showing the zeta output grid extended as additional complex inputs are included](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img7.jpg)
 
-*Zeta outputs after analytic continuation. Extended zeta gives a value at 1 + i and at inputs farther left, so the arc can keep going. The extra curves plot these new outputs. The short sum on screen is the starting recipe. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
+*Zeta outputs after analytic continuation. Extended zeta gives a value at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math> and at inputs farther left, so the arc can keep going. The extra curves plot these new outputs. The short sum on screen is the starting recipe. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 I love seeing this in motion. In [3Blue1Brown’s video on zeta and analytic continuation](https://www.youtube.com/watch?v=sD0NjbwqlYw), you can follow a straight line of inputs as zeta turns it into a curve of outputs.
 
+Vivek posted this picture with the words “Riemann Hypothesis.” Some replies thought it looked like a butthole. I see it. The curves look like what happens when zeta sends a grid of inputs into a grid of outputs. The post leaves the axes and colors unlabeled, so I can’t tell which input line made each curve.
+
+![Vivek’s post showing a dense, eye-shaped web of curves labeled Riemann Hypothesis](/images/blog/riemann/zeta-vivek.webp)
+
+*[Vivek’s original post](https://x.com/itsreallyvivek/status/2123826942185181510).*
+
 ### A Quick Recap Of The Two Recipes
 
-In both cases, the input can be complex. Write **s = a + bi**. The real part **a** tells you how far left or right the input is. The imaginary part **b** tells you how high or low it is. The output **ζ(s)** can also be complex.
+In both cases, the input can be complex. Write **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></math>**. The real part **a** tells you how far left or right the input is. The imaginary part **b** tells you how high or low it is. The output **ζ(s)** can also be complex.
 
-1. **The original sum works when a > 1.** For example, s = 2 + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
-2. **Extended zeta works everywhere except at s = 1.** At 2 + 3i it gives exactly the original sum’s answer. At ½ + 3i it gives an answer too, even though the original sum diverges there. **The difference is which inputs have an answer.** On their shared region, the answers are identical.
+1. **The original sum works when a > 1.** For example, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> + 3i works because its real part is 2. The height, 3, has no effect on whether the sum converges.
+2. **Extended zeta works everywhere except at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>.** At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi></mrow></math> it gives exactly the original sum’s answer. At <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi></mrow></math> it gives an answer too, even though the original sum diverges there. **The difference is which inputs have an answer.** On their shared region, the answers are identical.
 
 **The two vertical lines have different jobs.** The line through 1 marks the boundary of the original sum. The line through ½ is where the Riemann hypothesis says the nontrivial zeros lie. Analytic continuation lets us ask which inputs there give an output of zero.
 
-**A quick side note about the pole.** As s approaches 1 + 0i, the magnitude of ζ(s) grows without bound. At that exact input there’s no finite output. The hypothesis is about the inputs where the output actually equals zero.
+**A quick side note about the pole.** As s approaches <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>, the magnitude of ζ(s) grows without bound. At that exact input there’s no finite output. The hypothesis is about the inputs where the output actually equals zero.
 
 ![Rabbi Loew placing the parchment in the clay Golem’s mouth](/images/blog/riemann/golem.webp)
 
@@ -164,7 +170,7 @@ In both cases, the input can be complex. Write **s = a + bi**. The real part **a
 
 Imagine a glass of wine is my input. I get tired and shut down. My output is zero. In that very scientific model of me, the glass of wine is a zero.
 
-A **zero of zeta** is an input that lands at the origin of the **output** grid. That output is **0 + 0i**. Zero across, zero up. It’s where the two axes cross.
+A **zero of zeta** is an input that lands at the origin of the **output** grid. That output is **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mo>&#x0002B;</mo><mn>0</mn><mi>i</mi></mrow></math>**. Zero across, zero up. It’s where the two axes cross.
 
 ![Two inputs, minus two and minus four, both map to zero at the intersection of the output axes](/images/blog/riemann/zeta-zero-map.png)
 
@@ -176,13 +182,13 @@ For example, −2 and −4 both land on that same dot. When we ask where the zer
 
 The real part is the horizontal coordinate. Saying all the nontrivial zeros have real part ½ means they all sit somewhere on the vertical line through ½. Here are three known examples.
 
-<Equation>½ + 14.134725i<br />½ + 21.022040i<br />½ + 25.010858i</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>14.134725</mn><mi>i</mi><mspace linebreak="newline" /><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>21.022040</mn><mi>i</mi><mspace linebreak="newline" /><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>25.010858</mn><mi>i</mi></mrow></mrow></math></div>
 
 ![Three marked zeta zeros share the real coordinate one half](/images/blog/riemann/critical-line-static.png)
 
 *Inputs. Each dot gives the same output, zero.*
 
-I’m used to symmetry around zero, where the reflection sends 3 to −3. Here the relation built into zeta pairs the real coordinate **a** with **1 − a**. A zero at 0.3 would have a partner at 0.7, at the same height. The one coordinate that reflects onto itself is ½. That’s why ½ is the natural line to look at. The examples give us a reason to suspect the pattern continues. The symmetry still allows pairs off the line, and ruling out every such pair is the hard part.
+I’m used to symmetry around zero, where the reflection sends 3 to −3. Here the relation built into zeta pairs the real coordinate **a** with **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x02212;</mo><mi>a</mi></mrow></math>**. A zero at 0.3 would have a partner at 0.7, at the same height. The one coordinate that reflects onto itself is ½. That’s why ½ is the natural line to look at. The examples give us a reason to suspect the pattern continues. The symmetry still allows pairs off the line, and ruling out every such pair is the hard part.
 
 ![Hypothetical zeros with real parts 0.3 and 0.7 sit at the same height on opposite sides of one half](/images/blog/riemann/zero-symmetry-static.png)
 
@@ -204,19 +210,15 @@ I’m used to symmetry around zero, where the reflection sends 3 to −3. Here t
 
 Go back to the original sum. It has a term for every positive whole number. Euler showed that when **Re(s) > 1**, the same sum equals a product with one factor for each prime.
 
-<Equation>
-  1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + ⋯
-  <br />
-  = 1/(1 − 2<sup>−s</sup>) × 1/(1 − 3<sup>−s</sup>) × 1/(1 − 5<sup>−s</sup>) × ⋯
-</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mi>&</mi><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>3</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mo>&#x022EF;</mo><mspace linebreak="newline" /><mi>&</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></mrow></math></div>
 
-This is **Euler’s product formula**. The reason it works is that every whole number greater than 1 can be written as a product of primes in exactly one way, apart from order. For example, 12 = 2² × 3. The 2 factor supplies 1/4<sup>s</sup>, the 3 factor supplies 1/3<sup>s</sup>, and multiplying those gives the term 1/12<sup>s</sup> in the sum. Every number gets its one term this way. [Euler’s product and its derivation](https://dlmf.nist.gov/27.4)
+This is **Euler’s product formula**. The reason it works is that every whole number greater than 1 can be written as a product of primes in exactly one way, apart from order. For example, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>12</mn><mo>&#x0003D;</mo><msup><mn>2</mn><mn>2</mn></msup><mo>&#x000D7;</mo><mn>3</mn></mrow></math>. The 2 factor supplies 1/4<sup>s</sup>, the 3 factor supplies 1/3<sup>s</sup>, and multiplying those gives the term 1/12<sup>s</sup> in the sum. Every number gets its one term this way. [Euler’s product and its derivation](https://dlmf.nist.gov/27.4)
 
 ## Counting Primes Up To A Million
 
 Here’s the staircase again. It steps up by one at each prime. The smooth curve is **Li(x)**, short for *logarithmic integral*. Near a big number t, primes occur at an average rate of roughly **1/log t**. Li adds up that changing rate as you move along the number line. If you want the recipe, start from 2 and take the area under 1/log t up to x. With the convention used here, add the starting value Li(2) ≈ 1.045.
 
-<Equation>Li(x) = Li(2) + ∫<sub>2</sub><sup>x</sup> dt / log t</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><msubsup><mo>&#x0222B;</mo><mn>2</mn><mi>x</mi></msubsup><mfrac><mrow><mi>d</mi><mi>t</mi></mrow><mrow><mi>log</mi><mi>t</mi></mrow></mfrac></mrow></math></div>
 
 ![The staircase counts actual primes and the smooth curve estimates the count, with the gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
 
@@ -226,30 +228,30 @@ At **one million**, we can get the exact answer by listing the primes, for examp
 
 The formula is easiest to see with a **weighted count**. The ordinary staircase adds 1 for each prime. This version counts prime powers too and adds **log p** for each power of a prime p. Up to 5 it counts 2, 3, 4, and 5. Since 4 is a power of 2, its step has size log 2.
 
-<Equation>Weighted count up to 5 = log 2 + log 3 + log 2 + log 5</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C8;</mi><mo stretchy="false">&#x00028;</mo><mn>5</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>log</mi><mn>2</mn><mo>&#x0002B;</mo><mi>log</mi><mn>3</mn><mo>&#x0002B;</mo><mi>log</mi><mn>2</mn><mo>&#x0002B;</mo><mi>log</mi><mn>5</mn></mrow></math></div>
 
-Euler’s product lets us express that weighted count using zeta. Here’s the part that confused me. At a zero, **zeta itself goes to zero**. In the calculation, you divide by zeta, so the expression you’re working with blows up there. Think of what happens to 1/u as u approaches zero. Same input, two different functions. Zeta has a zero there. The expression built from it has a pole. If you want the exact expression, it’s −ζ′(s)/ζ(s).
+Euler’s product lets us express that weighted count using zeta. Here’s the part that confused me. At a zero, **zeta itself goes to zero**. In the calculation, you divide by zeta, so the expression you’re working with blows up there. Think of what happens to 1/u as u approaches zero. Same input, two different functions. Zeta has a zero there. The expression built from it has a pole. If you want the exact expression, it’s <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>&#x003B6;</mi><mrow><mi>&#x02032;</mi></mrow></msup><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></mfrac></mrow></math>.
 
 Those poles tell you which corrections to add to the weighted count. Its smooth starting estimate is simply **x**. Then the zeros contribute terms that can push the count up or down, like waves. Mathematicians translate what they learn from this weighted count back to the ordinary staircase. That’s how information about zeros turns into information about the prime count. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
-## What The Proof Tells Us About The Counting Error
+## What The Hypothesis Says About The Counting Error
 
-The proven statement about the zeros is equivalent to a bound on the gap between the staircase and Li(x).
+The statement about the zeros is equivalent to a bound on the gap between the staircase and Li(x).
 
-<Equation>π(x) = Li(x) + O(√x log x)</Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C0;</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Li</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>O</mi><mspace width="negativethinmathspace" /><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">(</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="true" fence="true" minsize="1.2em" maxsize="1.2em">)</mo></mrow></math></div>
 
-Here, **π(x)** is how many primes there actually are up to x. **Li(x)** is our smooth estimate. The **O(√x log x)** part says how far off the estimate can be. Once x is large enough, the absolute difference stays below some fixed constant times √x log x. Think of a band around the estimate. It can get wider as x grows, but it gets much smaller relative to the number of primes we’re counting. We’re learning how much the primes can bunch up or thin out in the cumulative count. The formula doesn’t tell us which numbers are prime. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states the equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4).
+Here, **π(x)** is how many primes there actually are up to x. **Li(x)** is our smooth estimate. The **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi><mo stretchy="false">&#x00028;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>** part says how far off the estimate can be. Once x is large enough, the absolute difference stays below some fixed constant times <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math>. Think of a band around the estimate. It can get wider as x grows, but it gets much smaller relative to the number of primes we’re counting. We’re learning how much the primes can bunch up or thin out in the cumulative count. The formula doesn’t tell us which numbers are prime. [Enrico Bombieri’s write-up for the Clay Mathematics Institute states the equivalence on page 4](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4).
 
 ### Where The ½ Shows Up
 
 Here’s the bit I find wild. In a formula for a weighted count of primes and prime powers, every nontrivial zero contributes a correction. A zero at **a + bi** gives a term involving **x raised to that complex number**. The imaginary part makes the correction oscillate. The real part a gives the power of x in its size.
 
-<Equation>|x<sup>a + bi</sup>| = x<sup>a</sup></Equation>
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007C;</mo><msup><mi>x</mi><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mi>i</mi></mrow></msup><mo stretchy="true" fence="true" form="postfix">&#x0007C;</mo></mrow><mo>&#x0003D;</mo><msup><mi>x</mi><mi>a</mi></msup></mrow></math></div>
 
-So if the real part is **½**, that power is **x<sup>½</sup> = √x**. A hypothetical zero with real part ¾ would give a factor of x<sup>¾</sup>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the √x log x bound above. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+So if the real part is **½**, that power is **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>2</mn></mrow></msup><mo>&#x0003D;</mo><msqrt><mrow><mi>x</mi></mrow></msqrt></mrow></math>**. A hypothetical zero with real part ¾ would give a factor of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>3</mn><mo>&#x0002F;</mo><mn>4</mn></mrow></msup></mrow></math>, which grows faster. The hypothesis says every nontrivial zero has the square-root exponent. Bounding the corrections together and translating the weighted count back to the ordinary prime count gives the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>x</mi></mrow></msqrt><mi>log</mi><mi>x</mi></mrow></math> bound above. That’s where a position on the zeta graph becomes a limit on the error in counting primes. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 Primes appear in cryptography, but counting primes and factoring a particular large number are different tasks. The result bounds the error in the cumulative prime count. It leaves the problem of quickly factoring a particular large number open. And the proof’s methods could be as interesting as the conclusion. Which connection finally makes the argument work? Could the same ideas help elsewhere?
 
 We started with prime numbers, moved through infinite sums and complex analysis, and ended with a geometric question about a line. I love that these ideas can connect so precisely. A geometric restriction on the zeros of a function becomes a guarantee about prime counts.
 
-Before I finished writing this, the Lean and Mathlib communities independently verified the proof. Whoa. In [Part 2](/blog/riemann-hypothesis-part-2), we’ll look at the proof Alpöge released and what it took to check it.
+In [Part 2](/blog/riemann-hypothesis-part-2), I look at how the argument works, what the independent Lean checks established, and what to make of the competing claims.
