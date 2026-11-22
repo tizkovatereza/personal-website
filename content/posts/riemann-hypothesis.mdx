@@ -11,7 +11,9 @@ image: "/images/blog/riemann/golem.webp"
 
 Levent Alpöge announced a Claude-assisted proof of the Riemann hypothesis on November 20. Lean and Mathlib reviewers reported that the formal proof passed independent checks. Clay still lists the problem as unsolved as of November 21. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859.
 
-Why does it matter? **A proof puts a precise limit on how far off we can be when we estimate the number of primes up to a given size.** It also settles the assumption behind a lot of results mathematicians had already proved *if* the hypothesis was true. And the wild part, to me, is that the limit on this counting error comes from where points sit on a vertical line. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
+**Why count primes in the first place?** In 1859, Riemann was trying to understand how often primes show up as numbers get bigger. Gauss had already guessed a smooth estimate for the count. Riemann found a way to explain the bumps in the actual count using zeta. Today, knowing how dense primes are helps you work out how many candidates you might have to try when looking for a large prime, for example when generating an RSA key. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/) · [NIST’s prime-generation standard](https://doi.org/10.6028/NIST.FIPS.186-5)
+
+We can already compute exact counts. If we could do it cheaply at huge scales, we could subtract two counts to see exactly how many primes are in a range, or find the millionth prime by looking for where the count first reaches a million. **The Riemann hypothesis answers a different question. How far off can our estimate get as we count farther out?** [An algorithm for exact prime counts](https://websites.umich.edu/lagarias/doc/compute.pdf)
 
 Here’s the claim we’re working toward. **Every nontrivial zero of the Riemann zeta function has real part ½.** Okay, but why are we talking about a function when we want to count primes?
 
