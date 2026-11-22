@@ -76,21 +76,38 @@ Alpöge says he guided the search toward a setting where the analogy could work.
 
 ### What The Proof Actually Does
 
-**The proof rules out zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
+**The proof rules out nontrivial zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-3 text-xl font-semibold">How the proof rules out zeros off the line</figcaption>
-  <img className="mb-2 block w-full" src="/images/blog/riemann/zero-symmetry-static.png" alt="Two hypothetical zeros at real parts 0.3 and 0.7 reflect across the line at one half" />
-  <ol className="divide-y divide-[#d3d9de]">
-    <li className="py-3"><strong className="text-[#245b99]">Bound the prime sum.</strong> Use theta lifts and other tools to put a ceiling on a weighted sum over primes and prime powers.</li>
-    <li className="py-3"><strong className="text-[#245b99]">Rule out the right.</strong> A zero right of ½ would force the sum above that ceiling.</li>
-    <li className="py-3"><strong className="text-[#326f64]">Reflect to rule out the left.</strong> A zero left of ½ would need a partner on the right.</li>
+  <figcaption className="mb-4 text-xl font-semibold">From a bound on primes to a line of zeros</figcaption>
+  <ol className="space-y-0">
+    <li className="border-l-2 border-[#245b99] pl-4 pb-4">
+      <strong className="text-[#245b99]">Build a ceiling.</strong> The theta lifts build up divisibility. Geometry limits how much can build up, so a weighted sum over primes has a ceiling on certain long stretches of cutoffs.
+    </li>
+    <li className="border-l-2 border-[#245b99] pl-4 pb-4">
+      <strong className="text-[#245b99]">Combine the sums.</strong> The bound arrives for several related prime sums together. They combine them with positive weights so a zero’s signal survives in the combined sum.
+    </li>
+    <li className="border-l-2 border-[#326f64] pl-4 pb-4">
+      <strong className="text-[#326f64]">A zero on the right would break the ceiling.</strong> The Landau argument says an off-line zero to the right would force the sum above the ceiling somewhere in every sufficiently late stretch. The bound gives stretches where it stays below.
+    </li>
+    <li className="border-l-2 border-[#326f64] pl-4">
+      <strong className="text-[#326f64]">Reflection takes care of the left.</strong> A zero on the left would have a partner on the right. With the right side ruled out, the nontrivial zeros sit on the line through ½.
+    </li>
   </ol>
 </figure>
 
-![The technical guide’s proof map places the chain of theta lifts before character averaging, the Landau argument, and reflection](/images/blog/riemann/lean-guide-map.webp)
+The two halves of the proof meet at the ceiling. Geometry says the sum stays below it on certain stretches. Analysis says a zero too far to the right would make that impossible. The ceiling can grow like a power arbitrarily close to the square-root scale, which is what lets the argument get all the way down to ½. [Technical guide, sections 2–5](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
-*The guide’s full map. Follow the “Chain of theta lifts” box across to “Reflection.” [Technical guide, page 1](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=1).*
+<details>
+<summary>See the technical guide’s full proof map</summary>
+
+![The technical map shows the branches that supply the theta-lift estimate, the averaging step, the Landau argument, and reflection](/images/blog/riemann/lean-guide-map.webp)
+
+*“Chain of theta lifts” builds the ceiling. “Character averaging” combines the sums. “Localized Landau” turns the ceiling into a region without zeros. “Reflection” brings that result to the other side. [Technical guide, page 1](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=1).*
+
+</details>
+
+Michael Rubinstein also posted a 164-page working draft on November 21 that explains the argument for the ordinary zeta function. It gives readers a way into the mathematics behind the checked code. [Rubinstein’s working guide](https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/)
 
 #### What Did They Actually Bound?
 
@@ -141,20 +158,29 @@ The release also covers the generalized hypothesis for Dirichlet L-functions, a 
 
 ## Was It Disproved Already?
 
-I found [a January 2025 preprint claiming a disproof](https://www.preprints.org/manuscript/202501.0292/v1). I can’t tell if it’s the same claim I saw on Polymarket, and I couldn’t verify it as an accepted disproof. What would settle the question the other way? One nontrivial zero off the line, or a valid argument showing that such a zero exists.
+I checked the public comments on Polymarket’s markets for independent verification, a Clay declaration, and further progress. I couldn’t trace the older disproof claim to a specific post. I did find two actual manuscripts that we can read.
+
+- **January 2025.** Huan Xiao claimed that two older results about weighted prime sums contradict each other if the Riemann hypothesis holds. The argument needs an oscillation in one count to survive a smoothing step. Equation 3 is where the preprint makes that jump, with no detailed justification there. The preprint page labels this version as unreviewed. [Xiao’s preprint, equations 1–3](https://www.preprints.org/manuscript/202501.0292/v1)
+- **February 2026.** Tatenda Kubalalika claimed something stronger than a single off-line zero. The working paper argues that zeros approach the right edge of the strip. Cambridge Open Engage identifies it as an unreviewed working paper. I couldn’t find independent verification of either disproof. [Kubalalika’s working paper](https://www.cambridge.org/engage/coe/article-details/698bc7d24770e67d92050e8a)
+
+What would settle it the other way? One nontrivial zero off the line, or a valid argument that such a zero exists.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mn>0</mn><mo>&#x0003C;</mo><mo>Re</mo><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003C;</mo><mn>1</mn><mo>&#x0002C;</mo><mspace width="2em" /><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mspace width="2em" /><mo>Re</mo><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02260;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math></div>
 
-There’s also a competing **proof** claim. Ravi Vakil reported on November 20 that Alessandro Maria Masullo had a separate proposed proof of the generalized hypothesis, and that Brian Conrad had been reviewing it. That proposal would establish a version of the hypothesis rather than refute it. Terence Tao flagged both announcements. [Vakil on Masullo](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) · [Tao’s summary](https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/)
+### What About Masullo’s Draft?
+
+Ravi Vakil reported on November 20 that Alessandro Maria Masullo had a separate proposed proof of the generalized hypothesis and that Brian Conrad had been reviewing it. In the released manuscript, section 12.3 still has an instruction to fill in the section. That part is supposed to connect the calculation on the zero side with the one on the prime side. Without it, a reader has an argument with a step left to check. This is a question about Masullo’s proposed proof. Alpöge’s argument uses a different route. [Vakil’s announcement](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) · [Masullo’s manuscript, section 12.3](https://math216.wordpress.com/wp-content/uploads/2026/11/the-music-of-the-primes.pdf#page=514)
+
+Terence Tao described Alpöge’s Lean release and pointed readers to the verification discussion. Mathematician Sam Hopkins linked Vakil’s announcement about Masullo in the comments. [Tao’s post and discussion](https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/)
 
 One Polymarket question asks whether independent verification happens by a deadline. A separate market asks whether Clay officially declares the problem solved by a deadline. Those are different events. As of November 21, the public evidence I can point to is the independent formal verification. Clay’s official status page still says unsolved. Its prize process requires publication in a qualifying outlet, a two-year wait, and broad acceptance by mathematicians. [Clay’s prize rules](https://www.claymath.org/millennium-problems/rules/) · [Verification market](https://polymarket.com/event/alpoge-riemann-hypothesis-lean-proof-independently-verified-in-2026) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
 
-## Maybe This Is Me Coping As A Mathematician
+## Conclusion
 
-I keep thinking about how much the way we do math has changed. We can count on our fingers. With a diagram we can see why something might be true. In Euclid you can see a whole system of geometry built by writing down what you assume and arguing from there. Centuries later, formal logic gave us an even more precise way to write down what follows from what. And now we can write a proof in Lean and have a computer check every step.
+Maybe this is me coping as a mathematician. I keep thinking about how much the way we do math has changed. We can count on our fingers. With a diagram we can see why something might be true. In Euclid you can see a whole system of geometry built by writing down what you assume and arguing from there. Centuries later, formal logic gave us an even more precise way to write down what follows from what. And now we can write a proof in Lean and have a computer check every step.
 
 That last part matters to me. Alpöge could bring an intuition from another area of math. Claude could suggest a way to make it work. Lean gave them a language precise enough to turn the resulting argument into something other people could independently check. To me, the fact that those three things worked together is more interesting than the question of whether to call it AGI.
 
-Maybe this is me coping as a mathematician. But I don’t feel like math is over. I feel like we just got a new way to do it. We still get to ask weird questions. We might get further with them now.
+I don’t feel like math is over. I feel like we just got a new way to do it. We still get to ask weird questions. We might get further with them now.
 
 [Read Part 1 — The Riemann Hypothesis Explained Simply](/blog/riemann-hypothesis)
