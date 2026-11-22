@@ -326,7 +326,7 @@ Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi
 
 ![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
 
-*The blue curve is what one pair of zeros contributes. It sits above zero at 125 and below zero at 150. The green lines show how big the contribution can get in either direction.*
+*The blue curve is what one pair of zeros contributes. It sits above zero at 125 and below zero at 150. The dashed green lines are the upper and lower limits. They’re called a square-root envelope because if you quadruple the cutoff, their distance from zero doubles.*
 
 At 125, this pair moves the starting estimate up to **125 + 1.17**. At 150, the same pair moves it down to **150 − 1.71**. Those are intermediate steps. The full calculation includes the other pairs and the remaining terms in the formula. To get back to the ordinary prime count, keep the steps at primes, remove the steps at higher prime powers, and undo the log weights so each prime counts once.
 
