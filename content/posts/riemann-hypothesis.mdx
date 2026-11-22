@@ -27,7 +27,7 @@ Here’s the claim we’re working toward. **Every nontrivial zero of the Rieman
     <span aria-hidden="true" className="hidden pt-1 text-[#4a5568] sm:block">→</span>
     <div className="border-t border-[#d3d9de] pt-3 sm:border-0 sm:pt-0">
       <p className="font-semibold text-[#326f64]">The zeros tell us about the count</p>
-      <p>Riemann found that the inputs where zeta gives zero show up in the corrections to a smooth estimate of the prime count. Where the zeros sit affects how large those corrections can get.</p>
+      <p>Riemann found that the inputs where zeta gives zero show up in terms that raise or lower a smooth estimate of the prime count. Where the zeros sit affects how large those corrections can get.</p>
     </div>
   </div>
 </figure>
@@ -259,7 +259,11 @@ Here’s the staircase again. It steps up by one at each prime. The smooth curve
 
 ![The staircase counts actual primes and the smooth curve estimates the count, with the gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
 
-At **one million**, we can get the exact answer by listing the primes, for example with a sieve. There are **78,498**. Evaluate the smooth formula at the same cutoff and you get about **78,628**. So Li is about **130 too high** there. At another cutoff it could be too low. By “corrections,” I mean the terms that account for the gap between a smooth estimate and the count. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
+At **one million**, we can get the exact answer by listing the primes, for example with a sieve. There are **78,498**. Evaluate the smooth formula at the same cutoff and you get about **78,628**. So Li is about **130 too high** there. At another cutoff it could be too low.
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>628</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>rounded&#x000A0;estimate</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x02212;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>130</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>adjustment</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x0003D;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>498</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>actual&#x000A0;count</mtext></mrow></munder></mrow></math></div>
+
+The adjustment here is about −130 overall. Riemann’s formula breaks an adjustment like this into terms that can push the estimate up or down. Those are the **correction terms**. We’ll see where they come from by looking at a weighted count first. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
 ### How The Zeros Give Corrections
 
