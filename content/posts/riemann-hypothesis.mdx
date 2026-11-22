@@ -306,19 +306,29 @@ Add the third column and you get **5 primes**. Add the last column and you get t
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003C8;</mi><mo stretchy="false">&#x00028;</mo><mn>11</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>3</mn><mi>log</mi><mn>2</mn><mo>&#x0002B;</mo><mn>2</mn><mi>log</mi><mn>3</mn><mo>&#x0002B;</mo><mi>log</mi><mn>5</mn><mo>&#x0002B;</mo><mi>log</mi><mn>7</mn><mo>&#x0002B;</mo><mi>log</mi><mn>11</mn><mo>&#x02248;</mo><mn>10.23</mn></mrow></math></div>
 
-Euler’s product connects the weighted count to <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>&#x003B6;</mi><mrow><mi>&#x02032;</mi></mrow></msup><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></mfrac></mrow></math>. The prime on ζ means “take the derivative.” On the product side, taking this derivative of the logarithm is what brings down a weight of log p for each prime p.
+Euler’s product is the version of zeta that multiplies one factor per prime. It agrees with the original sum when **Re(s) > 1**.
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></math></div>
+
+Take the negative derivative of the logarithm of that product and you get <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>&#x003B6;</mi><mrow><mi>&#x02032;</mi></mrow></msup><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></mfrac></mrow></math>. The prime mark on ζ means “take the derivative.” This step brings down the log p weights from the table and gives us a way to recover the weighted count from zeta.
 
 The denominator of that fraction is zeta itself. At a zero of zeta, the denominator goes to zero one power faster than the numerator. So the **fraction** blows up there. That’s the pole we use in the prime-counting calculation.
 
-Those poles tell you which corrections to add to the weighted count. Its smooth starting estimate is simply **x**. A zero, written ρ, contributes a term of the form <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>x</mi><mi>&#x003C1;</mi></msup></mrow><mrow><mi>&#x003C1;</mi></mrow></mfrac></mrow></math>. Combine it with the term from its mirror across the real axis and you get a real correction that can push the count up or down, like a wave. Mathematicians translate what they learn from this weighted count back to the ordinary staircase. That’s how information about zeros turns into information about the prime count. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+**Start with the cutoff itself.** For the weighted count up to 125, the smooth starting estimate is 125. The idea is that near a large number, you expect roughly one prime per log of that number, and each prime carries a weight of about that same log. The two factors roughly cancel, so the weighted count grows at about one unit per integer.
+
+When you recover the count from the quotient, each pole at a zeta zero contributes a term. If the zero is called <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C1;</mi></mrow></math>, its term is
+
+<div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x02212;</mo><mfrac><mrow><msup><mi>x</mi><mrow><mi>&#x003C1;</mi></mrow></msup></mrow><mrow><mi>&#x003C1;</mi></mrow></mfrac></mrow></math></div>
+
+Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> is the cutoff. That term is usually complex. Add the term from the zero at the opposite height and the imaginary parts cancel, leaving a real number. As the cutoff changes, that real number can be positive or negative. [The explicit formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 ### What One Correction Looks Like
 
 ![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
 
-*This is one wave in the weighted count. At a cutoff of 125, this pair adds about 1.17. At 150, the same pair subtracts about 1.71. The green lines show how big this wave can get in either direction.*
+*The blue curve is what one pair of zeros contributes. It sits above zero at 125 and below zero at 150. The green lines show how big the contribution can get in either direction.*
 
-The correction of about −130 we saw earlier was the overall gap in the ordinary count at a million. This graph shows just one piece of the calculation that starts with the weighted count. You need all the zero terms and the rest of the formula to get back to the ordinary count.
+At 125, this pair moves the starting estimate up to **125 + 1.17**. At 150, the same pair moves it down to **150 − 1.71**. Those are intermediate steps. The full calculation includes the other pairs and the remaining terms in the formula. To get back to the ordinary prime count, keep the steps at primes, remove the steps at higher prime powers, and undo the log weights so each prime counts once.
 
 ## Where The ½ Shows Up
 
