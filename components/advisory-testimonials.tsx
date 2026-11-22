@@ -52,7 +52,6 @@ const quotes = [
 const moreQuotes = [
   { name: 'Natalie Sportelli', context: 'Clay', quote: "you'd be missing out if you're not following these growth and marketing folks: … @ElenaVerna @tereza_tizkova.", url: 'https://x.com/N_Sportelli/status/2121250696431382631' },
   { name: 'Haroon Choudery', context: 'AI Ready podcast · Our episode on AI agents', quote: 'Just recorded a 🔥 episode with @tereza_tizkova - all about AI agents.', url: 'https://x.com/haroonc/status/1762563455750381740' },
-  { name: 'meng shao', context: '', quote: 'Fragments by @e2b_dev @tereza_tizkova …', url: 'https://x.com/shao__meng/status/1842788840664404448' },
   { name: 'Nehil Jain', context: 'Anyscale · On an E2B hackathon I organized', quote: 'Thanks @tereza_tizkova for such an amazing event. Learnt a ton about @e2b_dev!', url: 'https://x.com/nehiljain/status/1842773037122453997' },
 ]
 
@@ -60,21 +59,18 @@ type Appearance = { image?: string; alt?: string; source: string; title: string;
 const appearances: Appearance[] = [
   { image: '/images/advisory/keynote.jpg', alt: 'Tereza speaking at AI Engineer World’s Fair', source: 'AI Engineer World’s Fair · Keynote', title: 'Rise of the Software Factory', url: 'https://www.youtube.com/watch?v=vGCJ7diEtrw' },
   { image: '/images/advisory/technically.png', alt: 'Technically', source: 'technically.dev', title: 'How do “computer use” agents work?', description: 'How agents see a screen, decide what to do, and use a computer.', url: 'https://technically.dev/posts/how-do-computer-use-agents-work' },
-  { image: '/images/advisory/launches.webp', alt: 'The secret behind viral product launches', source: 'With Kyle Jeong · Browserbase', title: 'The secret behind viral product launches', url: 'https://kylejeong.com/blog/no-such-thing-as-a-free-launch' },
-  { image: '/images/advisory/fragments.png', alt: 'E2B Fragments project preview', source: 'E2B · Open-source project', title: 'Fragments', description: 'A template for building AI-generated apps with E2B sandboxes.', url: 'https://github.com/e2b-dev/fragments' },
-  { image: '/images/advisory/agents.png', alt: 'Awesome AI Agents project preview', source: 'E2B · Open-source project', title: 'Awesome AI Agents', description: 'The directory of AI agents I built and maintain.', url: 'https://github.com/e2b-dev/awesome-ai-agents' },
+  { image: '/images/advisory/launches.webp', alt: 'The secret behind viral product launches', source: 'Kyle Jeong · Browserbase', title: 'The secret behind viral product launches', description: 'I contributed to and reviewed this article with Kyle Jeong.', url: 'https://kylejeong.com/blog/no-such-thing-as-a-free-launch' },
   { image: 'https://media.licdn.com/dms/image/v2/D4E22AQFZ72duPhV7vg/feedshare-shrink_800/B4EZo3cwEjIoAg-/0/1761866875821?e=2147483647&v=beta&t=5BJmO0uXStETgHxDrrckBe8zklmREd2vKFNyb_0EUws', alt: 'Recording the course with Andrew Ng, Francesco Zuppichini and Esmaeil Gargari', source: 'DeepLearning.AI · Course launch', title: 'Building Coding Agents with Tool Execution', description: 'Co-created and taught with Francesco Zuppichini. Announced by Andrew Ng.', url: 'https://www.deeplearning.ai/short-courses/building-coding-agents-with-tool-execution/' },
 
 ]
 
 type Item = { kind: 'quote'; value: typeof quotes[number] & { image?: string; imageAlt?: string; note?: string; relatedUrl?: string } } | { kind: 'appearance'; value: typeof appearances[number] }
 const items: Item[] = [
-  { kind: 'appearance', value: { image: 'https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/ccff0b45-d474-4fdd-90c3-f01e5419a5dc/ee341b9f-8fd3-47e5-87db-9b3d0fc72de5_1280x720.jpg?t=1788558979', alt: 'Latent Space coverage of AI Engineer World’s Fair', source: 'Latent Space · Richard MacManus', title: 'My keynote in Latent Space', description: 'Coverage of my AI Engineer World’s Fair keynote and how I define a software factory.', url: 'https://latent.space/p/aiewf-daily-dispatch-loops' } },
-  { kind: 'appearance', value: { image: 'https://images.lumacdn.com/event-covers/nb/ff5e3a7b-be7e-4974-bb87-ed272f4c0502', alt: 'Code Interpreting 2.0 hackathon event poster', source: 'E2B × Fireworks AI × Swyx', title: 'Code Interpreting 2.0', description: 'An SF hackathon I hosted with E2B, Fireworks AI, and Shawn “Swyx” Wang, co-founder of Latent Space.', url: 'https://luma.com/kkc0gwao' } },
-  { kind: 'quote', value: { name: 'Paolo Perrone', context: 'On Awesome AI Agents', quote: 'Skip months of research. See what’s actually being built. Find gaps in the market.', url: 'https://www.linkedin.com/posts/paoloperrone_found-a-github-repo-with-200-ai-agents-that-activity-7370517844016496640-EckE', note: 'On the directory of AI agents I built at E2B.', relatedUrl: 'https://github.com/e2b-dev/awesome-ai-agents' } },
+  { kind: 'appearance', value: { image: '/images/advisory/latent-space-keynote.webp', alt: 'Tereza speaking on stage at AI Engineer World’s Fair', source: 'Latent Space · Richard MacManus', title: 'My keynote in Latent Space', description: 'Coverage of my AI Engineer World’s Fair keynote and how I define a software factory.', url: 'https://latent.space/p/aiewf-daily-dispatch-loops' } },
+  { kind: 'quote', value: { name: 'Paolo Perrone', context: 'On Awesome AI Agents', image: '/images/advisory/agents.png', imageAlt: 'Awesome AI Agents directory preview', quote: 'Skip months of research. See what’s actually being built. Find gaps in the market.', url: 'https://www.linkedin.com/posts/paoloperrone_found-a-github-repo-with-200-ai-agents-that-activity-7370517844016496640-EckE', note: 'On the directory of AI agents I built at E2B.', relatedUrl: 'https://github.com/e2b-dev/awesome-ai-agents' } },
   { kind: 'quote', value: { name: 'The Right Stack', context: 'On my 2023 State of AI Agents report', quote: 'Expert romp through the world of AI Agents.', url: 'https://therightstack.com/cloud-developer-and-cloud-security-surveys/the-state-of-ai-agents' } },
-  { kind: 'appearance', value: { image: 'https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/b2720848-20ac-4091-88f7-b90bdebffe6f/945a649f-d47b-40ba-a02b-e0d06a073f0f_1280x720.jpeg?t=1786542960', alt: 'Latent Space episode artwork about E2B’s agent sandboxes', source: 'Latent Space · E2B coverage', title: 'Why every agent needs open-source cloud sandboxes', description: 'Latent Space covered how E2B built an early cloud for agents and how developers put the sandboxes to work.', url: 'https://latent.space/p/e2b/' } },
-  { kind: 'appearance', value: { source: 'MIAI · Cornelia Kutterer', title: 'The State of AI Agents cited in policy research', description: 'My E2B report is cited in a paper on data portability rights and autonomous AI agents.', url: 'https://ai-regulation.com/wp-content/uploads/2024/02/Cornelia-Data-portability-rights.pdf#page=3' } },
+  { kind: 'appearance', value: { image: '/images/advisory/latent-space-e2b.webp', alt: 'Latent Space graphic for the E2B episode', source: 'Latent Space · E2B coverage', title: 'Why every agent needs open-source cloud sandboxes', description: 'Latent Space covered how E2B built an early cloud for agents and how developers put the sandboxes to work.', url: 'https://latent.space/p/e2b/' } },
+  { kind: 'appearance', value: { image: '/images/advisory/state-of-ai-agents-citation.webp', alt: 'Cover of Cornelia Kutterer’s paper on data portability rights and autonomous AI agents', source: 'MIAI · Cornelia Kutterer', title: 'The State of AI Agents cited in policy research', description: 'Cornelia Kutterer cites my E2B article “AI agents in the wild” in her paper on data portability rights and autonomous AI agents.', url: 'https://ai-regulation.com/wp-content/uploads/2024/02/Cornelia-Data-portability-rights.pdf#page=3' } },
   { kind: 'quote', value: moreQuotes[0] },
   { kind: 'appearance', value: appearances[0] },
   { kind: 'quote', value: quotes[0] },
@@ -82,12 +78,11 @@ const items: Item[] = [
   { kind: 'quote', value: quotes[4] },
   { kind: 'appearance', value: appearances[2] },
   { kind: 'quote', value: quotes[1] },
-  { kind: 'appearance', value: appearances[5] },
+  { kind: 'appearance', value: appearances[3] },
   { kind: 'appearance', value: appearances[1] },
   { kind: 'quote', value: { ...quotes[5], image: '/images/advisory/keynote.jpg', imageAlt: 'Tereza speaking at AI Engineer World’s Fair', note: 'Watch my AI Engineer World’s Fair keynote on building software factories.', relatedUrl: 'https://www.youtube.com/watch?v=vGCJ7diEtrw' } },
   { kind: 'quote', value: moreQuotes[1] },
-  { kind: 'appearance', value: appearances[3] },
-  { kind: 'quote', value: moreQuotes[3] },
+  { kind: 'quote', value: moreQuotes[2] },
   { kind: 'quote', value: { name: 'Swetha Nyalam', context: 'E2B hackathon attendee', quote: 'A big thank you to Tereza Tizkova for putting together such an amazing event!', url: 'https://www.linkedin.com/posts/swetha-nyalam_i-had-the-incredible-opportunity-to-attend-activity-7248881779854467072-BZV_', image: 'https://media.licdn.com/dms/image/v2/D5622AQFsicrx3o42IQ/feedshare-image-high-res/feedshare-image-high-res/0/1728268093071?e=2147483647&v=beta&t=nEisWbZ1EYvhcOGs3sDZ385bn1lFqlS7zErn6aeP5V8' } },
   { kind: 'quote', value: { name: 'Richard Molnár', context: 'E2B hackathon attendee', quote: 'Thanks for organizing such a fun event, we had a great experience building something interesting!', url: 'https://www.linkedin.com/posts/tereza-tizkova-568439174_yes-im-posting-about-the-hackathon-again-activity-7312203593883832320-bYPD' } },
   { kind: 'quote', value: { name: 'Henry Scott-Green', context: 'Co-founder, Context.ai', note: 'On the AI agents map I created at E2B, a directory of agent projects and tools.', relatedUrl: 'https://github.com/e2b-dev/awesome-ai-agents', image: '/images/advisory/agents.png', quote: 'Great map!', url: 'https://x.com/HenrySG/status/1693575160085832015' } },
