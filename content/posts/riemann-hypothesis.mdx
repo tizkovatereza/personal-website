@@ -266,7 +266,7 @@ This is **Euler’s product formula**. The reason it works is that every whole n
 
 ## Counting Primes Up To A Million
 
-The staircase steps up by one at each prime. The smooth curve, called **Li(x)**, adds up the expected density of primes as you move along the number line. Near a large number, that density is roughly one prime per natural log of that number.
+Pick a number on the horizontal axis. That’s the **cutoff**, the number you count up to. At 70, the blue staircase is at 19 because there are 19 primes up to 70. The green curve gives the estimate for the same cutoff. The blue line takes a step whenever you pass a prime. The smooth curve, called **Li(x)**, adds up the expected density of primes as you move along the number line. Near a large number, that density is roughly one prime per natural log of that number.
 
 <details>
 <summary>The formula for the smooth estimate</summary>
@@ -283,13 +283,22 @@ At **one million**, we can get the exact answer by listing the primes, for examp
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>628</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>rounded&#x000A0;estimate</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x02212;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>130</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>adjustment</mtext></mrow></munder><mspace width="0.278em" /><mo>&#x0003D;</mo><mspace width="0.278em" /><munder><munder><mrow><mn>78</mn><mrow><mo>&#x0002C;</mo></mrow><mn>498</mn></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>actual&#x000A0;count</mtext></mrow></munder></mrow></math></div>
 
-A correction is something we add or subtract to bring an estimate closer to the count. The adjustment at a million is about −130 overall. To see how a zero can supply one piece of an adjustment, it helps to start with a different way of counting. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
+The ordinary count at a million is about 130 below the estimate. The question Riemann was after is how big that gap can get as we count farther out. His route goes through a second count where the steps have different sizes. [Riemann’s prime-counting formula](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
 ### Counting With Weights
 
-To count primes up to 11, go through the whole numbers one by one. Add **1** when the number is prime and **0** when it isn’t. So 4 adds zero because it has a divisor other than 1 and itself.
+The **ordinary count** gives each prime a step of size 1. The **weighted count** gives a prime or prime power a step of size log of its base prime. The weight is a number you add when you reach that entry. For example, the natural log of 2 is about 0.69.
 
-The **weighted count** adds the natural log of the base prime for each prime or prime power. So 2, 4, and 8 each add log 2. A number like 6 adds zero because it has two different prime factors.
+<figure className="not-prose my-7 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <figcaption className="mb-3 text-xl font-semibold">What gets added at 2, 4, and 6?</figcaption>
+  <div className="grid gap-3 sm:grid-cols-3 sm:gap-5">
+    <div><p className="font-semibold">2 is prime</p><p className="text-[#245b99]">Ordinary step +1</p><p className="text-[#326f64]">Weighted step +0.69</p></div>
+    <div><p className="font-semibold">4 is 2²</p><p className="text-[#245b99]">Ordinary step 0</p><p className="text-[#326f64]">Weighted step +0.69</p></div>
+    <div><p className="font-semibold">6 is 2 × 3</p><p className="text-[#245b99]">Ordinary step 0</p><p className="text-[#326f64]">Weighted step 0</p></div>
+  </div>
+</figure>
+
+Four gets a weight because it’s made by repeating one prime, 2. Six mixes two different primes, so it has no step in either count. You can calculate the weighted count exactly by adding the prescribed weights. We’ll estimate that total separately.
 
 <table>
   <thead>
@@ -309,7 +318,7 @@ The **weighted count** adds the natural log of the base prime for each prime or 
   </tbody>
 </table>
 
-Add the third column and you get **5 primes**. Add the last column and you get the weighted total, about **10.23**.
+At a cutoff of 11, the ordinary total is **5 primes**. The weighted total is about **10.23**, from adding the logs in the last column.
 
 The weighted count has a simple starting estimate. Up to 125, start at **125**. Near a large cutoff, primes show up roughly once per log of that number, and each prime adds roughly that same log as its weight. Those two effects balance, so the weighted total grows about as fast as the cutoff.
 
@@ -319,15 +328,17 @@ Euler’s product is zeta written with one factor per prime. It agrees with the 
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></math></div>
 
-Working with this product gives a way to calculate the weighted count. The formula starts with the cutoff and then adjusts it. Each pair of zeros at opposite heights contributes a wave. That wave can raise the estimate at one cutoff and lower it at another.
+Working with this product gives a formula for the weighted count. It starts from the smooth estimate and adds terms that depend on the zeros. The chart below isolates one of those terms after pairing two zeros.
+
+The pair comes from the zeta input grid. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is above the real axis and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x02212;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is below it, at the same distance. Both are nontrivial zeros with real part ½. Mathematicians combine their contributions because the imaginary parts cancel and the result is a real adjustment you can add to the count.
 
 ### What One Correction Looks Like
 
 ![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
 
-*The blue curve is what one pair of zeros contributes. It sits above zero at 125 and below zero at 150. The dashed green lines are the upper and lower limits. They’re called a square-root envelope because if you quadruple the cutoff, their distance from zero doubles.*
+*The horizontal axis is how far we count. The vertical axis is how much this pair adds to or subtracts from the weighted estimate. The dashed green lines bound this one blue wave.*
 
-At 125, this pair adds **1.17** to the starting estimate of 125. At 150, the same pair subtracts **1.71** from the starting estimate of 150. The full calculation also uses the other pairs and a few more terms. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+At 125, this pair adds **1.17** to the starting estimate of 125. At 150, it subtracts **1.71** from the estimate of 150. Those are changes to the weighted estimate. The heights of the two zeros stay fixed at about +14.13 and −14.13 on the zeta input grid. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 <details>
 <summary>The formulas behind the chart</summary>
@@ -344,11 +355,15 @@ Recovering the weighted count from the quotient turns the pole at each nontrivia
 
 ## Where The ½ Shows Up
 
-The horizontal position of a zero tells us how fast its wave can grow. A zero with real part **½** gives a wave whose limit grows like the **square root of the cutoff**. A zero at **¾** would allow a faster-growing wave. The hypothesis says every nontrivial zero is on the ½ line, so every one of these waves has the square-root scale. [The formula connecting zeros and the weighted count](https://dlmf.nist.gov/25.16.E2)
+The ½ belongs to the **input that makes zeta zero**. It shows up in this chart as an exponent. For that pair, the dashed green lines move away from zero in proportion to the **cutoff raised to the power ½**. That’s the square root. From 125 to 500, the cutoff quadruples and the maximum size of the wave doubles. The blue wave can still be anywhere between those dashed lines.
+
+We already know the two zeros used in this chart sit on ½. The hypothesis says that **every** nontrivial zero does. That would give each pair a square-root limit on its own wave. A zero farther to the right would allow a faster-growing contribution. [The formula connecting zeros and the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 ## What The Hypothesis Says About The Counting Error
 
-To get back to the ordinary staircase, drop the steps at higher prime powers and undo the log weights so each prime counts once. Mathematicians can control the combined effect of the corrections through that calculation. The result is a bound on the gap we started with, between the smooth estimate and the actual number of primes. For large cutoffs, the gap can grow at most on the scale of **the square root of the cutoff times its logarithm**. [The prime-counting error bound](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4)
+The blue wave is one piece of the weighted calculation. To translate the full weighted staircase back into an ordinary count, keep the steps at primes and change their sizes to 1. For example, the weighted step at 2 becomes a step of size 1. The weighted step at 4 disappears because 4 is a higher power of 2.
+
+A **bound** is a limit on how far the estimate can be from the count. At a million we measured a gap of about 130. The hypothesis gives a general limit for large cutoffs after mathematicians control all the waves together and translate back to the ordinary count. That limit grows on the scale of **the square root of the cutoff times its logarithm**. [The prime-counting error bound](https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf#page=4)
 
 <details>
 <summary>The error bound in mathematical notation</summary>
