@@ -33,74 +33,34 @@ I am an atheist, but seeing that prime numbers form mysterious shapes and patter
 
 ## Counting Primes
 
-Instead of asking “What is the next prime?”, ask “How many primes are there up to a given number?” We call this count π(x). The π here names a counting function. It has nothing to do with circles.
+There are 25 primes up to 100. Draw the count as a staircase and each prime takes you one step up. The smooth curve gives an estimate of about 30 at the same cutoff. So it’s about five too high there. The Riemann hypothesis puts a limit on how far apart those two can get as we count farther out.
 
-<Equation>π(10) = 4</Equation>
-
-Because there are four primes up to 10. They are 2, 3, 5, and 7. Imagine drawing this count as a staircase. Every time you pass a prime, the count goes up by one. Mathematicians have smooth formulas that approximate this staircase. The prime number theorem describes the overall growth. The Riemann hypothesis concerns how far the actual count can deviate from a more precise approximation. Keep that picture in mind. **A staircase, a smooth curve, and the difference between them.**
+![A staircase of actual prime counts and a smooth estimate, with the gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
 
 ## What The Zeta Function Does
 
-**The Riemann zeta function takes a number s and returns a number ζ(s).** The letter s stands for the whole input. We can write it out as 2 + 3i, or just write 2 when we mean 2 + 0i. Both are points on the complex plane. When the output is zero, we call that input a **zero of zeta**.
+A function takes an input and gives you an output. Feed me chocolate, I turn happy. Zeta's recipe involves a lot more fractions.
 
-Here’s the catch. The easiest formula for zeta works only to the right of the line through 1. **Analytic continuation keeps the values we already know and gives us values farther left, where the zeros we care about are.** Let’s start with the formula we can actually calculate.
+Zeta takes a number we call **s**. Plot **2 + 3i** by going two units right and three up. The two is the real part, the three is the imaginary part, and **s** is the whole point. Writing **2** is shorthand for **2 + 0i**.
 
 ### The Original Sum
 
-At s = 2, take the reciprocal of every positive whole number squared and add them up. For other values of s, use s as the exponent.
+<Equation>ζ(s) = 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + ⋯</Equation>
 
-<Equation>ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯<br />ζ(2) = 1 + 1/4 + 1/9 + 1/16 + ⋯ ≈ 1.645</Equation>
+Use the same **s** in every exponent. At **s = 2**, that gives 1 + ¼ + ⅑ + 1/16 + ⋯. The running total settles near 1.645. That’s what **converges** means. A function is **defined** at an input if it gives that input a value.
 
-An infinite sum has a value when its running total approaches a finite number. We say it **converges**. At s = 2, the running total settles near 1.645. At s = 1, it keeps growing. You can see why by grouping the fractions.
-
-<Equation>1 + 1/2 + (1/3 + 1/4) + (1/5 + ⋯ + 1/8) + ⋯</Equation>
-
-The first bracket has two terms of at least ¼ each. The next has four terms of at least ⅛ each. Every bracket adds at least ½, and the brackets go on forever. At s = ½ the terms are even larger, so that sum grows without bound too. To find ζ(½), we need a different formula.
-
-### Where The Original Sum And Extended Zeta Agree
-
-Think of a complex number as a point on a grid. **2 + 3i** is two units right and three units up. The horizontal coordinate, 2, is called the **real part**. That’s all we need to read the figure below.
-
-A **sum converges** when its running totals settle toward one number. A **function is defined** at an input when it assigns that input a value. At s = ½, the original zeta sum diverges, but extended zeta is defined there. We can get its value from another formula.
-
-**The original sum converges when the real part of s is greater than 1.** Extended zeta gives exactly the same values there and is defined everywhere else except at s = 1.
-
-<figure className="not-prose my-8 border-y border-border px-1 py-4 sm:px-4" aria-label="Three cases for the zeta function">
-  <p className="pb-2 text-2xl">What is ζ(s)?</p>
-  <dl className="divide-y divide-border">
-    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
-      <dt className="font-semibold">If Re(s) &gt; 1</dt>
-      <dd>Use the original sum, 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ⋯</dd>
-    </div>
-    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
-      <dt className="font-semibold">If Re(s) ≤ 1 and s ≠ 1</dt>
-      <dd>Use analytic continuation to get the value.</dd>
-    </div>
-    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
-      <dt className="font-semibold">If s = 1 + 0i</dt>
-      <dd>There’s a pole. Zeta has no finite value.</dd>
-    </div>
-  </dl>
-  <figcaption className="pt-2 text-base text-secondary">Re(s) is the horizontal coordinate of the input. Both recipes give values of the same function.</figcaption>
-</figure>
-
-In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means 1 + 0i, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At 1 + i, one step above the pole, extended zeta has a finite value.
-
-![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
-
-*Zeta inputs. Each point is a possible s. The shading shows which inputs each recipe covers.*
+At **s = 1** and **s = ½**, the running total keeps growing. At **s = 1 + i** it also fails to settle, though the terms now turn in different directions. The sum converges exactly when the real part of **s** is greater than 1. That means strictly right of the vertical line through 1.
 
 ### How Analytic Continuation Works
 
-**Match first, then extend.** Find a formula that agrees with the original wherever you already know the answer. If the new formula also works at more inputs, you can follow it there.
+Why go farther? Riemann was looking for a way to count primes. The zeros that give corrections to the estimate live in the strip between real parts 0 and 1. The original sum can’t reach them.
 
-Here’s a smaller example. The sum 1 + x + x² + ⋯ equals 1/(1 − x) between −1 and 1. At x = −2 the sum jumps around forever, but 1/(1 − x) still gives ⅓. The two formulas match where the sum works, and the fraction gives us a way to keep going.
+**Match first, then extend.** Find a different formula that gives the old answers everywhere on the right and still works at new inputs. One trick is to flip the sign of every other term. At ½, the alternating terms cancel enough for the sum to settle. A factor in the denominator undoes the change so the formula still matches the original on the right. [Derivation of the alternating formula](https://dlmf.nist.gov/25.2.E3)
 
-**Why is there only one extension?** Two analytic formulas that agree on an open patch have to keep agreeing throughout a connected region where both work. That’s the **identity theorem**. Knowing zeta on the right pins down the values farther left. [MIT’s notes on why analytic continuation is unique](https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/af8c9c78c3915aaf3fd1695f8d32a3b3_MIT18_04S18_topic13.pdf#page=2)
+Why is there only one extension? Two analytic functions that match on an open patch have to keep matching throughout the connected region where both work. I love this. Those answers on the right pin down the answers farther left. [MIT’s notes on the identity theorem](https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/af8c9c78c3915aaf3fd1695f8d32a3b3_MIT18_04S18_topic13.pdf#page=2)
 
-### A Formula That Reaches ½
-
-For zeta, the trick is to flip the signs of the even terms, then divide to recover the original answer wherever the old sum works.
+<details>
+<summary>See the original and alternating formulas side by side</summary>
 
 <figure className="not-prose my-8 space-y-5 border-y border-border py-5" aria-label="Original and alternating zeta formulas">
   <div>
@@ -132,19 +92,44 @@ For zeta, the trick is to flip the signs of the even terms, then divide to recov
   </div>
 </figure>
 
-**Why divide?** Where the original sum converges, the even terms add up to 2<sup>−s</sup> times the whole sum. Subtract twice those even terms and you flip their signs. That leaves (1 − 2<sup>1 − s</sup>) times the original answer. Dividing by that factor gives the original answer back. So the new recipe passes the test. It matches the old one.
+</details>
 
-**Now plug in s = ½.** The original sum just keeps growing. The alternating sum settles because its terms shrink and alternate in sign. The denominator becomes 1 − √2, so we can divide. The result is ζ(½). This recipe reaches the point we wanted. Below is a separate formula that covers the whole extended domain. [NIST’s derivation of the alternating formula](https://dlmf.nist.gov/25.2.E3)
+### Where The Original Sum And Extended Zeta Agree
+
+The Greek letter **ζ** is called *zeta*. From here on, “zeta” means the full function. “The original sum” means our first recipe.
+
+<figure className="not-prose my-8 border-y border-border px-1 py-4 sm:px-4" aria-label="Three cases for the zeta function">
+  <p className="pb-2 text-2xl">What is ζ(s)?</p>
+  <dl className="divide-y divide-border">
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If Re(s) &gt; 1</dt>
+      <dd>Use the original sum, 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ⋯</dd>
+    </div>
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If Re(s) ≤ 1 and s ≠ 1</dt>
+      <dd>Use the full continuation formula below.</dd>
+    </div>
+    <div className="grid gap-1 py-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:gap-4">
+      <dt className="font-semibold">If s = 1 + 0i</dt>
+      <dd>There’s a pole. Zeta has no finite value.</dd>
+    </div>
+  </dl>
+  <figcaption className="pt-2 text-base text-secondary">Re(s) is the horizontal coordinate of the input. Both recipes give values of the same function.</figcaption>
+</figure>
+
+In the diagram, blue marks where the original sum works. Green marks where the extension adds values. **Real part 1 is the whole vertical line. The input 1 means 1 + 0i, a single point on that line.** Start at 1 on the horizontal axis and go straight up or down. Your horizontal coordinate stays fixed. At 1 + i, one step above the pole, extended zeta has a finite value.
+
+![The original sum works only right of the line through 1. Extended zeta keeps those values and covers the rest of the plane except the point 1.](/images/blog/riemann/zeta-domain-static.png)
+
+*Zeta inputs. Each point is a possible s. The shading shows which inputs each recipe covers.*
 
 ### A Formula For The Whole Extended Function
 
-The alternating formula gives us ζ(½). If you want a single recipe for the whole plane, **Hasse’s formula works at every complex input except 1.**
+Here’s what an actual recipe for the whole plane looks like. **Hasse’s formula works at every complex input except 1.** You can use the short sum to the right of 1 and this one everywhere else it’s defined.
 
 <Equation>ζ(s) = [1/(s − 1)] ∑<sub>n=0</sub><sup>∞</sup> [1/(n + 1)] ∑<sub>k=0</sub><sup>n</sup> (−1)<sup>k</sup> C(n, k) (k + 1)<sup>1 − s</sup></Equation>
 
-C(n, k) means “n choose k.” The inner sum makes one group at a time. The first group is 1. The second is (1 − 2<sup>1 − s</sup>)/2. The third is (1 − 2 · 2<sup>1 − s</sup> + 3<sup>1 − s</sup>)/3. Add the groups, then divide by s − 1.
-
-Try **s = 0**. The original sum would be 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups are 1 and −½, and all the later groups cancel to zero. Divide ½ by −1 and you get **ζ(0) = −½**. It’s an actual number you can calculate with the continued formula. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
+Here C(n, k) means “n choose k.” For a quick example, use **s = 0**. The original sum is 1 + 1 + 1 + ⋯. In Hasse’s formula the first two groups give 1 and −½, and the rest cancel. Divide by −1 and you get **ζ(0) = −½**. [Hasse’s formula, equation 11](https://arxiv.org/pdf/1606.02044#page=5)
 
 The figure above describes the inputs. The stills below show what happens on the **output** side. Each curve traces the zeta outputs for a line of inputs. In the second still, more of each input line is available, so its output curve continues farther. The parts of the curves we already had stay where they were.
 
@@ -154,7 +139,7 @@ The figure above describes the inputs. The stills below show what happens on the
 
 ![3Blue1Brown still showing the zeta output grid extended as additional complex inputs are included](https://storage.googleapis.com/3blue1brown-website-bucket/lessons/2016/zeta/zeta_img7.jpg)
 
-*Zeta outputs after analytic continuation. Extended zeta gives a value at 1 + i and at inputs farther left, so the arc can keep going. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
+*Zeta outputs after analytic continuation. Extended zeta gives a value at 1 + i and at inputs farther left, so the arc can keep going. The extra curves plot these new outputs. The short sum on screen is the starting recipe. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
 I love seeing this in motion. In [3Blue1Brown’s video on zeta and analytic continuation](https://www.youtube.com/watch?v=sD0NjbwqlYw), you can follow a straight line of inputs as zeta turns it into a curve of outputs.
 
@@ -167,21 +152,7 @@ In both cases, the input can be complex. Write **s = a + bi**. The real part **a
 
 **The two vertical lines have different jobs.** The line through 1 marks the boundary of the original sum. The line through ½ is where the Riemann hypothesis says the nontrivial zeros lie. Analytic continuation lets us ask which inputs there give an output of zero.
 
-## What Happens At A Pole?
-
-Our simpler function has a problem at 1,
-
-<Equation>f(x) = 1/(1 − x)</Equation>
-
-As x approaches 1, the denominator approaches zero.
-
-<Equation>f(0.9) = 10, f(0.99) = 100, f(0.999) = 1000</Equation>
-
-From the other side,
-
-<Equation>f(1.1) = −10, f(1.01) = −100, f(1.001) = −1000</Equation>
-
-This kind of point is called a **pole**. The output grows without bound in magnitude as the input approaches it. Exactly at 1, there’s no finite value. Zeta also has a pole at s = 1.
+**A quick side note about the pole.** As s approaches 1 + 0i, the magnitude of ζ(s) grows without bound. At that exact input there’s no finite output. The hypothesis is about the inputs where the output actually equals zero.
 
 ![Rabbi Loew placing the parchment in the clay Golem’s mouth](/images/blog/riemann/golem.webp)
 
@@ -189,11 +160,13 @@ This kind of point is called a **pole**. The output grows without bound in magni
 
 ## What Is A Zero Of A Function?
 
-“Zero” here is also a term. A **zero of a function is an input that makes its output equal zero**. For example, f(x) = x − 3 has a zero at **3**, because f(3) = 0. So a zero of a function doesn’t mean the input number 0. As a loose human analogy, imagine a function measuring your remaining energy after an activity. Your “zero” might be a long hike. Or a glass of wine, after which you shut down for the evening. The hike isn’t the number zero. It is the input that produces zero as the result. For zeta, we want numbers s such that
+Imagine a glass of wine is my input. I get tired and shut down. My output is zero. In that very scientific model of me, the glass of wine is a zero.
 
-<Equation>ζ(s) = 0</Equation>
+A **zero of zeta** is an input that lands at the origin of the **output** grid. That output is **0 + 0i**. Zero across, zero up. It’s where the two axes cross.
 
-We can mark the zeros as points on the input plane. Why care where they land? Their positions affect how far off our estimate of the prime count can be. We want to prove where the zeros can be, even without finding each one.
+![Two inputs, minus two and minus four, both map to zero at the intersection of the output axes](/images/blog/riemann/zeta-zero-map.png)
+
+For example, −2 and −4 both land on that same dot. When we ask where the zeros sit, we go back to the **input** grid. That’s where the line through ½ lives.
 
 ## What Makes Some Zeros Trivial?
 
