@@ -13,13 +13,24 @@ Levent Alpöge announced a Claude-assisted proof of the Riemann hypothesis on No
 
 Why does it matter? **A proof puts a precise limit on how far off we can be when we estimate the number of primes up to a given size.** It also settles the assumption behind a lot of results mathematicians had already proved *if* the hypothesis was true. And the wild part, to me, is that the limit on this counting error comes from where points sit on a vertical line. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
 
-Here’s the claim we’re working toward. **Every nontrivial zero of the Riemann zeta function has real part ½.** Let’s unpack what those words mean and then come back to the primes.
+Here’s the claim we’re working toward. **Every nontrivial zero of the Riemann zeta function has real part ½.** Okay, but why are we talking about a function when we want to count primes?
 
-How many primes are there below a million? You can count them. But what if you want to know how that count behaves as you go further and further out? How good an estimate can you get, and how far off could it be?
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <figcaption className="mb-3 text-xl font-semibold">How zeta helps count primes</figcaption>
+  <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-start sm:gap-5">
+    <div>
+      <p className="font-semibold text-[#245b99]">Primes go into zeta</p>
+      <p>Euler wrote zeta’s sum over whole numbers as a product with one factor per prime. For 12, the pieces come from 2 and 3, because <math display="inline"><mn>12</mn><mo>=</mo><msup><mn>2</mn><mn>2</mn></msup><mo>×</mo><mn>3</mn></math>.</p>
+    </div>
+    <span aria-hidden="true" className="hidden pt-1 text-[#4a5568] sm:block">→</span>
+    <div className="border-t border-[#d3d9de] pt-3 sm:border-0 sm:pt-0">
+      <p className="font-semibold text-[#326f64]">The zeros tell us about the count</p>
+      <p>Riemann found that the inputs where zeta gives zero show up in the corrections to a smooth estimate of the prime count. Where the zeros sit affects how large those corrections can get.</p>
+    </div>
+  </div>
+</figure>
 
-In 1859, Bernhard Riemann wrote a paper about that counting problem. He started with something Euler had noticed earlier. An infinite sum over **all** the whole numbers could also be written as a product over **just** the primes. Riemann took the function behind that sum, called zeta, and asked what it does when the inputs are complex numbers. He found that the places where zeta becomes zero show up in a formula for counting primes. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
-
-So why does a sum of fractions have anything to do with primes in the first place? Let’s build up to it.
+For example, the smooth formula estimates about 78,628 primes up to a million. The actual count is 78,498. That’s the kind of gap we’re trying to understand as we go farther out. The hypothesis ties a limit on that gap to the line through ½. We’ll come back to how that works. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
 ## Where Do Prime Numbers Appear?
 
