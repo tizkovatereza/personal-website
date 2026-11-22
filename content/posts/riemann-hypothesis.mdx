@@ -11,6 +11,8 @@ Levent Alpöge announced that he’d proved the Riemann hypothesis with Claude. 
 
 Why does it matter? **A proof puts a precise limit on how far off we can be when we estimate the number of primes up to a given size.** It also settles the assumption behind a lot of results mathematicians had already proved *if* the hypothesis was true. And the wild part, to me, is that the limit on this counting error comes from where points sit on a vertical line. [Clay’s explanation of the Riemann hypothesis](https://www.claymath.org/millennium/riemann-hypothesis/)
 
+Here’s the claim we’re working toward. **Every nontrivial zero of the Riemann zeta function has real part ½.** Let’s unpack what those words mean and then come back to the primes.
+
 How many primes are there below a million? You can count them. But what if you want to know how that count behaves as you go further and further out? How good an estimate can you get, and how far off could it be?
 
 In 1859, Bernhard Riemann wrote a paper about that counting problem. He started with something Euler had noticed earlier. An infinite sum over **all** the whole numbers could also be written as a product over **just** the primes. Riemann took the function behind that sum, called zeta, and asked what it does when the inputs are complex numbers. He found that the places where zeta becomes zero show up in a formula for counting primes. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
@@ -168,47 +170,35 @@ A **zero of zeta** is an input that lands at the origin of the **output** grid. 
 
 For example, −2 and −4 both land on that same dot. When we ask where the zeros sit, we go back to the **input** grid. That’s where the line through ½ lives.
 
-## What Makes Some Zeros Trivial?
+**A side note on “nontrivial.”** The hypothesis says every **nontrivial** zero has real part ½. The obvious family, once you know where to look, is −2, −4, −6, and so on. Mathematicians already know exactly where those zeros are. The hypothesis is about the rest, in the strip between real parts 0 and 1. [The two kinds of zeros](https://dlmf.nist.gov/25.10)
 
-Some zeta zeros occur at −2, −4, −6, −8, and so on. These are called the **trivial zeros**. “Trivial” often means a result follows relatively directly from definitions or established facts. It doesn’t mean you should immediately find it obvious. Here, these zeros follow from an identity called zeta’s functional equation. Their locations are understood. The **nontrivial zeros** are the remaining ones. They lie in the strip where the real part is between 0 and 1. You can find the [precise statement here](https://dlmf.nist.gov/25.10).
+## Why ½?
 
-## Why Would They Lie On One Vertical Line?
-
-Start with these inputs,
-
-<Equation>½ + 2i, ½ + 5i, ½ − 3i</Equation>
-
-Their heights differ. Their horizontal coordinate is always ½. So they sit directly above or below one another, on the vertical line through ½. Some known zeta zeros are approximately
+The real part is the horizontal coordinate. Saying all the nontrivial zeros have real part ½ means they all sit somewhere on the vertical line through ½. Here are three known examples.
 
 <Equation>½ + 14.134725i<br />½ + 21.022040i<br />½ + 25.010858i</Equation>
 
 ![Three marked zeta zeros share the real coordinate one half](/images/blog/riemann/critical-line-static.png)
 
-*Zeta inputs. The three dots are different values of s. All three have the same output, zero.*
+*Inputs. Each dot gives the same output, zero.*
 
-The height here belongs to the input. At each marked point, the output is zero. But why would ½ be special? Why not 0.4 or 0.7?
-
-## The Middle Is A Mirror
-
-Zeta has a deep symmetry, expressed through its functional equation. Among other things, the nontrivial zeros are symmetric about the vertical line through ½. If a + bi is a nontrivial zero, then its reflected point (1 − a) + bi is also a zero. So a hypothetical zero with horizontal coordinate 0.3 would have a partner at 0.7, at the same height. They are equally far from ½. The midpoint is special because
-
-<Equation>a = 1 − a implies a = ½</Equation>
-
-A point on that middle line reflects onto itself.
+I’m used to symmetry around zero, where the reflection sends 3 to −3. Here the relation built into zeta pairs the real coordinate **a** with **1 − a**. A zero at 0.3 would have a partner at 0.7, at the same height. The one coordinate that reflects onto itself is ½. That’s why ½ is the natural line to look at. The examples give us a reason to suspect the pattern continues. The symmetry still allows pairs off the line, and ruling out every such pair is the hard part.
 
 ![Hypothetical zeros with real parts 0.3 and 0.7 sit at the same height on opposite sides of one half](/images/blog/riemann/zero-symmetry-static.png)
 
-*Zeta inputs. If one of these hypothetical points sent zeta to zero, its mirror partner would too.*
+*Inputs. If either hypothetical point sent zeta to zero, its mirror partner would too.*
 
-This gives intuition for **why that particular line is the natural candidate**. It is built into the function’s symmetry. But symmetry alone doesn’t put every zero on the line. Imagine two people standing on opposite sides of a mirror. They can form a symmetric arrangement without either person standing on the mirror itself. Likewise, zeros could theoretically occur in reflected pairs away from the middle. The Riemann hypothesis says that never happens. So the difficult leap is from “the zeros are symmetric around this line” to “every nontrivial zero actually lies on this line.”
+## The Hypothesis In One Sentence
 
-## Finally, The Whole Hypothesis
-
-Now we can put the sentence together.
-
-**Every nontrivial zero of the Riemann zeta function has real part ½.**
-
-**Every** is doing a lot of work here. Check a trillion of them and there are still infinitely many left. Find one off the line and the hypothesis is false.
+<figure className="not-prose my-8 space-y-4 border-y border-border py-5" aria-label="A color key for the Riemann hypothesis">
+  <p className="text-xl font-semibold"><span className="text-blue-800 dark:text-blue-300">Every</span> <span className="text-emerald-800 dark:text-emerald-300">nontrivial zero</span> of the <span className="text-purple-800 dark:text-purple-300">Riemann zeta function</span> has <span className="text-amber-800 dark:text-amber-300">real part ½</span>.</p>
+  <dl className="space-y-2">
+    <div><dt className="inline font-semibold text-blue-800 dark:text-blue-300">Every.</dt> <dd className="inline">The proof has to cover all of them at once. One off the line would be enough to disprove it.</dd></div>
+    <div><dt className="inline font-semibold text-emerald-800 dark:text-emerald-300">Nontrivial zero.</dt> <dd className="inline">An input with output zero in the strip between real parts 0 and 1.</dd></div>
+    <div><dt className="inline font-semibold text-purple-800 dark:text-purple-300">Riemann zeta function.</dt> <dd className="inline">Start with 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ⋯ for Re(s) &gt; 1, then use analytic continuation to reach the strip.</dd></div>
+    <div><dt className="inline font-semibold text-amber-800 dark:text-amber-300">Real part ½.</dt> <dd className="inline">Go to ½ on the horizontal axis and draw a vertical line.</dd></div>
+  </dl>
+</figure>
 
 ## Why This Connection Is So Beautiful
 
