@@ -166,6 +166,12 @@ The domain diagram shows which inputs each formula covers. The stills below show
 
 *Zeta outputs after analytic continuation. Extended zeta gives a value at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi></mrow></math> and at inputs farther left, so the arc can keep going. The extra curves plot these new outputs. The short sum on screen is the starting recipe. [3Blue1Brown’s visual explanation](https://www.3blue1brown.com/lessons/zeta/#analytic-continuation)*
 
+The colored still shows where the grid goes. To see one zero, follow just a short stretch of the input line through ½. Look at what happens to its output curve.
+
+![On the left, the input moves up the line with real part one half. The marked input at height about 14.134725 maps to the marked origin on the output curve on the right.](/images/blog/riemann/critical-zero-example.png)
+
+*The green dot on the left is the input ½ + 14.134725…i. The green dot on the right is its output, 0 + 0i. The height matters. Plug in just ½ and you get about −1.460, so that particular point on the line is not a zero.*
+
 I love seeing this in motion. In [3Blue1Brown’s video on zeta and analytic continuation](https://www.youtube.com/watch?v=sD0NjbwqlYw), you can follow a straight line of inputs as zeta turns it into a curve of outputs.
 
 Vivek posted this picture with the words “Riemann Hypothesis.” Some replies thought it looked like a butthole. I see it. The curves look like what happens when zeta sends a grid of inputs into a grid of outputs. The post leaves the axes and colors unlabeled, so I can’t tell which input line made each curve.
@@ -213,13 +219,19 @@ The real part is the horizontal coordinate. Saying all the nontrivial zeros have
 
 *Inputs. Each dot gives the same output, zero.*
 
-We are used to symmetry around zero, where the reflection sends 3 to −3. Here the relation built into zeta pairs the real coordinate **a** with **<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x02212;</mo><mi>a</mi></mrow></math>**. A zero at 0.3 would have a partner at 0.7, at the same height. The one coordinate that reflects onto itself is ½. That’s why ½ is the natural line to look at. The examples give us a reason to suspect the pattern continues. The symmetry still allows pairs off the line, and ruling out every such pair is the hard part.
+We are used to symmetry around zero. On that number line, reflection sends 3 to −3. Zeta has a different rule. Riemann showed that his *completed zeta function*, called <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BE;</mi></mrow></math>, has exactly the same zeros inside the strip and satisfies
+
+<div className="not-prose my-5 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003BE;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>&#x003BE;</mi><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x02212;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+Where does the 1 come from? In Riemann’s integral formula, the two powers <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mi>s</mi><mo>&#x0002F;</mo><mn>2</mn></mrow></msup></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo>&#x02212;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>2</mn></mrow></msup></mrow></math> occur together. Swap <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi></mrow></math> and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x02212;</mo><mi>s</mi></mrow></math> and the powers trade places. For zeros, that symmetry, together with reflection across the real axis, pairs a horizontal coordinate <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> with <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x02212;</mo><mi>a</mi></mrow></math> at the same height. [The completed zeta symmetry](https://dlmf.nist.gov/25.4.E3) · [The two powers in the integral](https://dlmf.nist.gov/25.5.E13)
+
+Think of 0.3 and 0.7. They add up to 1, so their midpoint is ½. Every reflected pair has this same midpoint. The only horizontal coordinate that stays put is the one that satisfies <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mi>a</mi></mrow></math>, which gives <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle></mrow></math>. That’s why the center is ½. Symmetry still allows off-line pairs. Ruling those out is what the hypothesis asks us to do.
 
 ![Hypothetical zeros with real parts 0.3 and 0.7 sit at the same height on opposite sides of one half](/images/blog/riemann/zero-symmetry-static.png)
 
-*Inputs. If either hypothetical point sent zeta to zero, its mirror partner would too.*
+*The horizontal segment measures distance on the input grid. The two dots mark hypothetical inputs. If zeta were zero at the left dot, it would also give zero at the right dot.*
 
-## The Hypothesis In One Sentence
+## The Hypothesis Recap
 
 <figure className="not-prose my-8 space-y-4 border-y border-border py-5" aria-label="A color key for the Riemann hypothesis">
   <p className="text-xl font-semibold"><span className="text-blue-800 dark:text-blue-300">Every</span> <span className="text-emerald-800 dark:text-emerald-300">nontrivial zero</span> of the <span className="text-purple-800 dark:text-purple-300">Riemann zeta function</span> has <span className="text-amber-800 dark:text-amber-300">real part ½</span>.</p>
