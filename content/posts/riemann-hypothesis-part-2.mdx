@@ -23,20 +23,20 @@ The same techniques work in Lean. In my thesis, I remember borrowing a step from
 
 Alpöge says he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines. That includes definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. The 250,000-page figure Alpöge mentions was from an attempt at a prose write-up. What he released was the Lean library. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
-<figure className="not-prose my-8 border-y border-[#d8d0c2] bg-[#f8f5ed] px-4 py-4 text-[#252320] sm:px-6">
-  <img className="block w-full border border-[#d8d0c2]" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <img className="block w-full border border-[#d3d9de]" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
   <figcaption className="mt-2 text-sm">The announcement, cropped from <a href="https://x.com/deedydas/status/2123797546741232063">Deedy’s post</a>.</figcaption>
 </figure>
 
-<figure className="not-prose my-8 border-y border-[#d8d0c2] bg-[#f8f5ed] px-4 py-4 text-[#252320] sm:px-6">
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-4 text-sm">Two excerpts from the Lean library</figcaption>
   <div className="space-y-4">
     <div>
-      <p className="text-xs text-[#62594d]">Main.lean</p>
+      <p className="text-xs text-[#4a5568]">Main.lean</p>
       <pre className="mt-1 whitespace-pre-wrap break-words bg-transparent font-mono text-xs leading-relaxed sm:text-sm"><code><span className="text-[#245b99]">theorem</span> riemannHypothesis : RiemannHypothesis :=<br /><span className="pl-[2ch]">rhOfAll</span></code></pre>
     </div>
     <div>
-      <p className="break-all text-xs text-[#62594d]">Supplements/Kernels/MainTheorems.lean</p>
+      <p className="break-all text-xs text-[#4a5568]">Supplements/Kernels/MainTheorems.lean</p>
       <pre className="mt-1 whitespace-pre-wrap break-words bg-transparent font-mono text-xs leading-relaxed sm:text-sm"><code><span className="text-[#245b99]">theorem</span> rhOfAll : RiemannHypothesis :=<br /><span className="pl-[2ch]">Formalism.VW.rh_of_every allChi</span></code></pre>
     </div>
   </div>
@@ -54,13 +54,13 @@ Alpöge guided the search toward a setting where he thought the analogy could wo
 
 **The proof rules out zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
-<figure className="not-prose my-8 border-y border-[#d8d0c2] bg-[#f8f5ed] px-4 py-4 text-[#252320] sm:px-6">
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-xl font-semibold">How the proof rules out zeros off the line</figcaption>
   <img className="mb-2 block w-full" src="/images/blog/riemann/zero-symmetry-static.png" alt="Two hypothetical zeros at real parts 0.3 and 0.7 reflect across the line at one half" />
-  <ol className="divide-y divide-[#d8d0c2]">
+  <ol className="divide-y divide-[#d3d9de]">
     <li className="py-3"><strong className="text-[#245b99]">Bound the prime sum.</strong> Use theta lifts and other tools to put a ceiling on a weighted sum over primes and prime powers.</li>
     <li className="py-3"><strong className="text-[#245b99]">Rule out the right.</strong> A zero right of ½ would force the sum above that ceiling.</li>
-    <li className="py-3"><strong className="text-[#9e4225]">Reflect to rule out the left.</strong> A zero left of ½ would need a partner on the right.</li>
+    <li className="py-3"><strong className="text-[#326f64]">Reflect to rule out the left.</strong> A zero left of ½ would need a partner on the right.</li>
   </ol>
 </figure>
 
@@ -96,9 +96,9 @@ Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is 
 
 **Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
-<figure className="not-prose my-8 border-y border-[#d8d0c2] bg-[#f8f5ed] px-4 py-4 text-[#252320] sm:px-6">
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-2 text-xl font-semibold">How the reviewers checked the proof</figcaption>
-  <ol className="divide-y divide-[#d8d0c2]">
+  <ol className="divide-y divide-[#d3d9de]">
     <li className="py-3"><strong className="text-[#245b99]">Check the statement.</strong> Compare the conclusion to Mathlib’s formal statement of the hypothesis.</li>
     <li className="py-3"><strong className="text-[#245b99]">Replay the modules.</strong> Rebuild the library and recheck 175,187 compiled modules in Lean’s kernel.</li>
     <li className="py-3"><strong className="text-[#245b99]">Check the export independently.</strong> Give the full proof object to other checkers.</li>
