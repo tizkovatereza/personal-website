@@ -125,7 +125,9 @@ If a positive integer is divisible by 4 and by 3, it has to be at least 12. Turn
 
 ### How They Checked This Proof
 
-**First, did the claim actually say what we mean by the Riemann hypothesis?** Mathlib is a shared library of mathematics written in Lean. It already had an exact statement of the hypothesis for the reviewers to compare with the conclusion in Alpöge’s proof. Two independent tools confirmed they matched.
+**First, check that the code states the Riemann hypothesis.** This is a standard check, even when the theorem looks right on screen. A theorem named `RiemannHypothesis` could say that *one* zero lies on the line. Lean could correctly check a proof of that sentence. The Riemann hypothesis says *every* nontrivial zero lies there.
+
+Here, reviewers had a reference they could check against. Mathlib already defines the standard statement using its own definition of zeta. Two independent tools compared the result in Alpöge’s library with that reference and confirmed they say the same thing.
 
 If you’ve never seen Lean, here’s the same claim both ways.
 
