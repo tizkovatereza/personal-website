@@ -9,7 +9,9 @@ image: "/images/blog/riemann/golem.webp"
 
 [Part 1 · Explained Simply](/blog/riemann-hypothesis)
 
-On November 20, Levent Alpöge announced a proof of the Riemann hypothesis that he developed with Claude. On November 21, the Lean and Mathlib teams reported that independent checkers accepted the formal proof of the standard statement. That’s a big deal. Clay still lists the problem as unsolved as of November 21. I also saw talk of an earlier disproof on Polymarket, so I wanted to find out what each of these claims meant. [Lean and Mathlib’s statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+**Update, November 22. Independent checkers have accepted Alpöge’s Lean proof of the standard Riemann hypothesis.** Two independently written checkers accepted the complete exported proof, and Lean’s own kernel accepted all 175,187 compiled modules. Andrew Sutherland’s log still lists additional runs on the export as in progress. Clay still lists the problem as unsolved. [Lean and Mathlib’s statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Sutherland’s November 22 log](https://math.mit.edu/~drew/grh/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+
+Levent Alpöge announced the proof, developed with Claude, on November 20. I’m a little emotional about it. People have been trying to prove this since 1859. I wanted to understand what the checkers saw and where the competing claims fit in.
 
 The line to remember is the one through ½, where every nontrivial zeta zero has to sit.
 
@@ -109,6 +111,8 @@ The two halves of the proof meet at the ceiling. Geometry says the sum stays bel
 
 Michael Rubinstein also posted a 164-page working draft on November 21 that explains the argument for the ordinary zeta function. It gives readers a way into the mathematics behind the checked code. [Rubinstein’s working guide](https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/)
 
+On November 22, Robin Zhang published a preliminary note tracing the mathematical ideas behind the proof. It gives context for the work on automorphic forms and divisibility that the map compresses. Zhang describes it as an AI-assisted exposition and cautions that he has yet to check whether it faithfully translates the whole archive. [Zhang’s preliminary note](https://www.ihes.fr/~rzhang/files/GRH%20note.pdf)
+
 #### What Did They Actually Bound?
 
 Take a cutoff of 10. The primes and prime powers below it are 2, 3, 4, 5, 7, 8, and 9. For each number, take the natural log of its base prime and multiply by (10 divided by the number, minus 1). For 4, the contribution is
@@ -141,7 +145,9 @@ If you’ve never seen Lean, here’s the same claim both ways.
 
 Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is ½. The first line says “for every complex number s.” The arrows say the conclusion follows if all three conditions hold. Zeta has to be zero at s, s can’t be one of the already known zeros −2, −4, −6, …, and s can’t be the pole at 1. One difference is that English can tuck those details into the word *nontrivial*. Lean needs each condition stated precisely. [The formal statements the reviewers checked](https://math.mit.edu/~drew/grh/#what-was-verified)
 
-**Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. Sutherland also reports an independent sandboxed rebuild with an identical export. His log separates finished checks from some end-to-end comparator and export replays that were still running. [Buzzard’s four checks](https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/) · [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
+**Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. A separate sandboxed rebuild produced a byte-for-byte identical export.
+
+Sutherland’s **November 22, 16:20 UTC** update is specific about the remaining checks. Lean’s default and paranoid kernels were still checking the full export, and the end-to-end Comparator run was waiting on its Lean-kernel check of that export. The statement and axiom checks had already passed in one Comparator run. Older bundled checkers stopped because they lacked support for a type used in the proof. Newer builds supported it and passed the corresponding checks. [Buzzard’s four checks](https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/) · [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-2 text-xl font-semibold">How the reviewers checked the proof</figcaption>
@@ -173,7 +179,7 @@ Ravi Vakil reported on November 20 that Alessandro Maria Masullo had a separate 
 
 Terence Tao described Alpöge’s Lean release and pointed readers to the verification discussion. Mathematician Sam Hopkins linked Vakil’s announcement about Masullo in the comments. [Tao’s post and discussion](https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/)
 
-One Polymarket question asks whether independent verification happens by a deadline. A separate market asks whether Clay officially declares the problem solved by a deadline. Those are different events. As of November 21, the public evidence I can point to is the independent formal verification. Clay’s official status page still says unsolved. Its prize process requires publication in a qualifying outlet, a two-year wait, and broad acceptance by mathematicians. [Clay’s prize rules](https://www.claymath.org/millennium-problems/rules/) · [Verification market](https://polymarket.com/event/alpoge-riemann-hypothesis-lean-proof-independently-verified-in-2026) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+One Polymarket question asks whether independent verification happens by a deadline. A separate market asks whether Clay officially declares the problem solved by a deadline. Those are different events. As of November 22, the independent checks still stand. I found no public retraction or independently verified disproof. Clay’s official status page still says unsolved. Its prize process requires publication in a qualifying outlet, a two-year wait, and broad acceptance by mathematicians. [Clay’s prize rules](https://www.claymath.org/millennium-problems/rules/) · [Verification market](https://polymarket.com/event/alpoge-riemann-hypothesis-lean-proof-independently-verified-in-2026) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
 
 ## Conclusion
 
