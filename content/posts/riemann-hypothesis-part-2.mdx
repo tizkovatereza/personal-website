@@ -117,7 +117,7 @@ Take a cutoff of 10. The primes and prime powers below it are 2, 3, 4, 5, 7, 8, 
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>log</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x02212;</mo><mn>1</mn><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02248;</mo><mn>1.04</mn></mrow></math></div>
 
-Adding all the contributions gives about 9.11. Subtract the smooth trend, about 7.25, and the excess is about **1.86**. The bound is a ceiling on that excess. The proof needs ceilings much farther out than 10. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+Adding all the contributions gives about 9.11. Subtract the smooth trend, about 7.25, and the excess is about **1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. That matters because a zero off the line on the right could leave the sum below the bound at 10. The Landau argument says that such a zero would force the sum above the bound somewhere in every sufficiently large range of the required length. Finding large ranges where the sum stays below the bound rules that out. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### Where The Geometry Comes In
 
