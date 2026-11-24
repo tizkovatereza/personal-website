@@ -24,14 +24,14 @@ export function BlogList({ posts }: { posts: WritingPost[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap border-y border-border sm:gap-x-3" role="group" aria-label="Filter articles by topic">
+      <div className="flex flex-wrap gap-x-4 border-y border-border sm:gap-x-6" role="group" aria-label="Filter articles by topic">
         {filters.map((filter) => (
           <button
             key={filter.value}
             type="button"
             onClick={() => setActive(filter.value)}
             aria-pressed={active === filter.value}
-            className="min-h-11 border-b-2 border-transparent px-1.5 font-mono text-[12px] text-secondary transition-colors hover:text-foreground aria-pressed:border-primary aria-pressed:text-foreground sm:px-3"
+            className="min-h-11 border-b-2 border-transparent px-0.5 font-mono text-[13px] text-secondary transition-colors hover:text-foreground aria-pressed:border-primary aria-pressed:text-foreground"
           >
             {filter.label}
           </button>
@@ -54,19 +54,15 @@ export function BlogList({ posts }: { posts: WritingPost[] }) {
             <LinkComponent
               key={post.url}
               {...linkProps}
-              className="group grid min-w-0 gap-2 border-b border-border py-5 transition-colors hover:border-primary/40 sm:py-6 md:grid-cols-[minmax(0,1fr)_10rem] md:gap-8"
+              className="group block min-w-0 border-b border-border py-6 transition-colors hover:border-primary/40 sm:py-7"
             >
-              <div className="min-w-0">
-                <h2 className="text-[24px] leading-[1.14] text-foreground group-hover:text-primary sm:text-[29px]">
-                  {post.title}
-                </h2>
-                {post.excerpt && (
-                  <p className="mt-2 line-clamp-2 max-w-[62ch] text-[17px] leading-[1.45] text-secondary sm:text-[18px]">
-                    {post.excerpt}
-                  </p>
-                )}
-              </div>
-              <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[11px] leading-[1.5] text-secondary md:flex-col md:items-end md:pt-1 md:text-right md:text-xs">
+              <h2 className="text-[23px] leading-tight text-foreground group-hover:text-primary sm:text-[28px]">
+                {post.title}
+              </h2>
+              <p className="mt-2 max-w-[67ch] text-[17px] leading-relaxed text-secondary sm:text-[18px]">
+                {post.excerpt}
+              </p>
+              <div className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 font-mono text-xs leading-relaxed text-secondary [&>*+*]:before:mr-2 [&>*+*]:before:content-['·']">
                 <span>{post.date}</span>
                 <span>{post.source}</span>
                 <WritingLikeCount source={post.source} slug={post.isInternal ? post.url.split("/").pop() : undefined} count={post.likes} />

@@ -18,9 +18,9 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "The Riemann Hypothesis, Part 2, What Lean Verified",
+    title: "The Riemann Hypothesis, Part 2, Was It Proven?",
     date: "Nov 21, 2026",
-    subtitle: "How independent checkers verified Levent Alpöge’s Claude-assisted proof",
+    subtitle: "What Lean checked in Levent Alpöge’s Claude-assisted proof, how the argument works, and where the competing claims fit in",
     image: "/images/blog/riemann/golem.webp",
     url: "/blog/riemann-hypothesis-part-2",
     isNew: true,

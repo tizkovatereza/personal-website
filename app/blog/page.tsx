@@ -22,8 +22,8 @@ export const revalidate = 3600
 export default async function BlogPage() {
   const posts = await getWritingPosts()
   return (
-    <div className="mx-auto min-h-screen max-w-[69rem] px-6 pb-24 pt-12 sm:px-10 sm:pt-16 lg:px-12 lg:pt-20">
-      <header className="mb-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_15rem] md:items-end md:gap-10">
+    <div className="mx-auto min-h-screen max-w-[56rem] px-6 pb-24 pt-12 sm:px-10 sm:pt-16 lg:pt-20">
+      <header className="mb-9 space-y-5">
         <div>
           <h1 className="mb-3 text-[44px] leading-none sm:text-[52px] lg:text-[60px]">Writing</h1>
           <p className="max-w-[51ch] text-[18px] leading-[1.55] text-secondary sm:text-[20px]">
@@ -34,7 +34,7 @@ export default async function BlogPage() {
             with fellow writers.
           </p>
         </div>
-        <aside aria-label="Writing subscriptions" className="flex max-w-[15rem] flex-col items-start gap-2 md:w-full">
+        <aside aria-label="Writing subscriptions" className="flex flex-wrap items-center gap-x-5 gap-y-3 [&>form]:w-full sm:[&>form]:w-auto">
           <SubscribeForm variant="button" layout="vertical" />
           <a
             href="https://terezatizkova.substack.com/"

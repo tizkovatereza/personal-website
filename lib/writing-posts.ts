@@ -35,7 +35,7 @@ export async function getWritingPosts(): Promise<WritingPost[]> {
 
     return {
       ...post,
-      excerpt: snapshot?.excerpt ?? '',
+      excerpt: post.subtitle.trim() || snapshot?.excerpt.trim() || "",
       source: post.isInternal ? 'Blog' : isSubstack ? 'Substack' : post.publication ?? post.guestPost ?? 'Guest post',
       likes,
     }
