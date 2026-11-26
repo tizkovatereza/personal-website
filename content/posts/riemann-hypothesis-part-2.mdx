@@ -107,21 +107,21 @@ The goal is to prove that every nontrivial zero of the zeta function has real pa
 
 A zero farther to the right would contribute swings that can grow faster as the cutoff increases. This is the idea behind the contradiction. Assume there’s a zero to the right of ½. The Landau argument then says a related sum must break a certain ceiling. The geometry shows it stays below that ceiling over the stretches where a break would have to occur. The little chart only shows what a swing looks like. The proof needs a bound at arbitrarily large cutoffs.
 
-The **weighted prime sum** is the total of the scores at one cutoff. The scoring comes from a standard tool in number theory. When you take the logarithmic derivative of zeta’s product over primes, each prime power naturally carries the weight log(p), where p is the prime it comes from. The proof also uses a cutoff weight that tapers to zero. This particular weight gives a formula that splits the total into a main growth term and contributions from the zeros. It’s the same prime–zero connection as in Part 1, applied to a different total. [The formula connecting the sum to the zeros](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+The **weighted prime sum** is the actual total of the scores at one cutoff. The logarithm comes from a standard way of connecting primes to the zeta function. The additional weight makes each new contribution start at zero and grow as the cutoff moves past it. With these choices, a formula tells us how the zeros affect the total. [The formula connecting the sum to the zeros](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 For a cutoff of `X`, the baseline is `X × (log(X) − 1 − γ)`, where γ is the Euler–Mascheroni constant, about 0.5772. You can think of this as an estimate of the total’s overall growth. It comes from the formula itself, so you can calculate it from the cutoff alone.
 
 Say we stop at 10. The primes up to 10 are 2, 3, 5, and 7. We also include 4, 8, and 9 because they are powers of those primes (2², 2³, and 3²).
 
-Take 4. Since 4 = 2², the score starts with log(2), about 0.693. The 2 goes **inside** the logarithm because it’s the prime that makes 4. Here log means the natural logarithm, so its base is **e**. In other words, log(2) asks what power you raise e to in order to get 2.
+Let’s use 4 as an example. It’s **2**², so its score starts with log(**2**), about 0.693. The bold 2 is the prime we squared. The superscript tells us how many times to multiply that prime by itself. Here log means the natural logarithm, so log(2) asks what power you raise e to in order to get 2.
 
-Then we multiply by a weight that depends on how close 4 is to the cutoff. The rule is to divide the cutoff by the number and subtract 1. Here that’s 10 ÷ 4 − 1 = 2.5 − 1 = 1.5. This gives smaller numbers more weight and makes the weight drop to zero at the cutoff. Multiplying 0.693 by 1.5 gives about 1.04. That’s the amount 4 adds to the total.
+Next comes the cutoff weight. At a cutoff of 10, the weight for 4 is (10 − 4) ÷ 4 = 1.5. That’s the same as 10 ÷ 4 − 1. Think of it as how far past 4 we’ve counted, measured in units of 4. At the moment the cutoff reaches a number, its weight is zero. At the same cutoff, smaller numbers have larger weights. For example, 8 gets a weight of (10 − 8) ÷ 8 = 0.25. Multiplying 0.693 by 1.5 gives about 1.04, the amount 4 adds to the actual total.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>log</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x02212;</mo><mn>1</mn><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02248;</mo><mn>1.04</mn></mrow></math></div>
 
-Apply the same rule to the other six numbers and add all seven contributions. The total is about 9.11.
+Apply the same rule to the other six numbers and add all seven contributions. The **actual weighted total** is about 9.11. We got it by adding up scores from the primes and prime powers on the list.
 
-At 10 the baseline gives about 7.25, so the actual total sits about **1.86 above the baseline** (9.11 − 7.25). The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+The **baseline estimate** comes from plugging 10 into the smooth formula above. That gives about 7.25. Subtract the estimate from the actual weighted total to get the gap, **9.11 − 7.25 ≈ 1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### 2. Build a ceiling using geometry
 
