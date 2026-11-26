@@ -170,7 +170,13 @@ The two halves of the proof meet at the ceiling. Geometry says the sum stays bel
 
 #### What the shorter proof makes easier to see
 
-The shorter proof still uses chains of theta lifts and the same overall route to the zeros. Its reading guide shows how three pieces come together. First, the lifts help construct forms with controlled size. Second, the proof shows there are enough of those forms to span the space it cares about. Third, an independent lower bound limits how small a full set of integral forms can be. Putting those pieces together gives the ceiling on the weighted prime sum. [Reading guide for the shorter proof](https://github.com/lsernau/grh-lean/blob/main/grh/GUIDE.md)
+The shorter proof still uses chains of theta lifts and the same overall route to the zeros. Its reading guide shows how three pieces come together.
+
+1. **Construct forms with controlled size.** The theta lifts give a way to build these forms.
+2. **Show there are enough forms.** Together, they span the space the proof needs.
+3. **Bound how small the integral forms can be.** An independent lower bound limits how small a full set of integral forms can be.
+
+Putting those pieces together gives the ceiling on the weighted prime sum. [Reading guide for the shorter proof](https://github.com/lsernau/grh-lean/blob/main/grh/GUIDE.md)
 
 The guide also gives a clue about how the rewrite got smaller. Where the proof uses a piece of an existing theory, the Lean code can build just the version it needs. For example, for one step involving Galois representations, matching certain polynomials at most primes is enough. The code can stop there. [Reading guide, section 1](https://github.com/lsernau/grh-lean/blob/main/grh/GUIDE.md#1-where-to-start)
 
