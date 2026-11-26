@@ -86,6 +86,45 @@ In his announcement, Alpöge traces one of the ideas behind the proof to Sergei 
 
 Imagine working modulo 5, so every calculation ends by taking the remainder after dividing by 5. For the curve **y = x²**, choosing x = 2 gives y = 4. Choosing x = 3 also gives y = 4, because 9 leaves a remainder of 4. So (2, 4) and (3, 4) are two different points on the curve. With only five possible x values, we could list all the points in this example. Stepanov’s method gives a way to bound the count for more complicated curves without listing the points one by one.
 
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <figcaption className="mb-3 text-lg font-semibold">The five points on y = x² modulo 5</figcaption>
+  <div aria-hidden="true" className="grid max-w-[19rem] grid-cols-[2rem_repeat(5,minmax(0,1fr))] items-center text-center text-sm">
+    <span className="text-[#4a5568]">y</span><span className="col-span-5" />
+    <span className="text-[#4a5568]">4</span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-l border-t"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-t"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-t"><span className="block size-3 rounded-full bg-[#326f64]" /></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-t"><span className="block size-3 rounded-full bg-[#326f64]" /></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-t"></span>
+    <span className="text-[#4a5568]">3</span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-l"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="text-[#4a5568]">2</span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-l"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="text-[#4a5568]">1</span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-l"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"><span className="block size-3 rounded-full bg-[#245b99]" /></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"><span className="block size-3 rounded-full bg-[#245b99]" /></span>
+    <span className="text-[#4a5568]">0</span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de] border-l"><span className="block size-3 rounded-full bg-[#245b99]" /></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="flex aspect-square items-center justify-center border-b border-r border-[#d3d9de]"></span>
+    <span className="text-[#4a5568]">x</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+  </div>
+  <p className="mt-3 text-sm">The dots mark (0, 0), (1, 1), (2, 4), (3, 4), and (4, 1). The two dots on the top row show how 2² and 3² both leave a remainder of 4.</p>
+</figure>
+
 The trick is to build a second function on the curve. Every point you want to count has to be a zero of this function, meaning the function is zero there. And you want each of those zeros to be a **repeated** zero. To see why that helps, here’s an ordinary polynomial in one variable.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>P</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mi>t</mi><mo>−</mo><mn>2</mn><mo>)</mo></mrow><mn>3</mn></msup><msup><mrow><mo>(</mo><mi>t</mi><mo>−</mo><mn>5</mn><mo>)</mo></mrow><mn>3</mn></msup></mrow></math></div>
@@ -100,13 +139,10 @@ On a curve, Stepanov uses the same counting idea with a function defined on the 
 
 Alpöge wanted something that could do the job of repeated zeros when the objects he cared about were integers and primes. A **theta lift** takes an automorphic form, a function with particular symmetries, and transfers information from it to a new form. In this construction the output of one lift becomes the input of the next. The chain builds up divisibility at selected primes. That divisibility plays the role of repeated vanishing in the earlier argument.
 
-<figure className="not-prose my-8 space-y-3 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="text-xl font-semibold">What carries over from Stepanov?</figcaption>
-  <div className="grid gap-4 sm:grid-cols-2">
-    <p><strong className="text-[#245b99]">Counting points on a curve</strong><br />Build a function with repeated zeros. Its degree limits how many points it can cover.</p>
-    <p><strong className="text-[#326f64]">Bounding a sum over primes</strong><br />Chain theta lifts to build divisibility. A geometric inequality limits how much can build up.</p>
-  </div>
-</figure>
+#### What carries over from Stepanov?
+
+- **Counting points on a curve.** Build a function with repeated zeros. A bound on its total zeros, counted with multiplicity, limits how many points it can cover.
+- **Bounding a sum over primes.** Chain theta lifts to build divisibility. A geometric inequality limits how much can build up.
 
 Alpöge says he guided the search toward a setting where the analogy could work. Claude suggested using about <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>X</mi></mrow></msqrt></mrow></math> lifts when the prime sum has cutoff <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi></mrow></math>. The exact chain and the inequality that controls it are where the technical work is. [Alpöge’s note](https://alpo.ge/remark.pdf) · [The technical guide, section 4](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=4)
 
@@ -180,14 +216,11 @@ Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is 
 
 Sutherland’s **November 25** run compared all five theorem statements against the reference statements, checked the assumptions, and ran three proof checkers on the original archive. All three accepted it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-2 text-xl font-semibold">How the reviewers checked the proof</figcaption>
-  <ol className="divide-y divide-[#d3d9de]">
-    <li className="py-3"><strong className="text-[#245b99]">Check the statement.</strong> Compare the conclusion to Mathlib’s formal statement of the hypothesis.</li>
-    <li className="py-3"><strong className="text-[#245b99]">Replay the modules.</strong> Rebuild the library and recheck 175,187 compiled modules in Lean’s kernel.</li>
-    <li className="py-3"><strong className="text-[#245b99]">Check the export independently.</strong> Give the full proof object to other checkers.</li>
-  </ol>
-</figure>
+#### How the reviewers checked the proof
+
+1. **Check the statement.** Compare the conclusion to Mathlib’s formal statement of the hypothesis.
+2. **Replay the modules.** Rebuild the library and recheck 175,187 compiled modules in Lean’s kernel.
+3. **Check the export independently.** Give the full proof object to other checkers.
 
 Some checks zoomed in on one link at a time. An independent reading project isolated the step from the prime-sum bound to the Riemann hypothesis and checked it in two proof checkers. That check takes the bound as a premise. The full proof also supplies the argument for the bound itself. [The isolated checks and their premises](https://github.com/nasqret/riemann-rev#the-two-implications-checked-in-isolation)
 
