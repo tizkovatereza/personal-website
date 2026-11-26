@@ -121,15 +121,15 @@ Next comes the cutoff weight. At a cutoff of 10, the weight for 4 is (10 − 4) 
 
 Apply the same rule to the other six numbers and add all seven contributions. The **actual weighted total** is about 9.11. We got it by adding up scores from the primes and prime powers on the list.
 
-The **baseline estimate** comes from plugging 10 into the smooth formula above. That gives about 7.25. Subtract the estimate from the actual weighted total to get the gap, **9.11 − 7.25 ≈ 1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+The **baseline estimate** comes from plugging 10 into the smooth formula above. Here γ is the Greek letter gamma, and we use its value, about 0.5772. So the calculation is `10 × (log(10) − 1 − 0.5772) ≈ 10 × (2.3026 − 1 − 0.5772) ≈ 7.25`. Subtract the estimate from the actual weighted total to get the gap, **9.11 − 7.25 ≈ 1.86**. The ceiling limits how far the actual total can rise above the baseline. At each cutoff, we subtract the baseline from the total and ask how big that positive gap can get. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### 2. Build a ceiling using geometry
 
 To put a ceiling on the excess, Alpöge borrowed an idea from a different problem in math. Sergei Stepanov had found a way to limit how many points can lie on a curve by using a polynomial. Alpöge wanted to see if the same kind of reasoning could put a ceiling on a sum over primes.
 
-Stepanov worked with curves over finite fields. A simple example shows what it means to count points on one of those curves. [An introduction to Stepanov’s method](https://www.ias.edu/video/csdm/stepanov)
+The idea we need from Stepanov is that an equation can help us limit how many solutions another equation has. His examples use curves over finite fields. To see what he was counting, all we need here is arithmetic with remainders. [An introduction to Stepanov’s method](https://www.ias.edu/video/csdm/stepanov)
 
-Imagine working modulo 5, so every calculation ends by taking the remainder after dividing by 5. For the curve **y = x²**, choosing x = 2 gives y = 4. Choosing x = 3 also gives y = 4, because 9 leaves a remainder of 4. So (2, 4) and (3, 4) are two different points on the curve. With only five possible x values, we could list all the points in this example. Stepanov’s method gives a way to bound the count for more complicated curves without listing the points one by one.
+Imagine working modulo 5, so every calculation ends by taking the remainder after dividing by 5. For the curve **y = x²**, choosing x = 2 gives y = 4. Choosing x = 3 also gives y = 4, because 9 leaves a remainder of 4. So (2, 4) and (3, 4) are two different points on the curve. With only five possible x values, we could list all the points in this example. For a more complicated equation, Stepanov’s method gives an upper limit on the number of coordinate pairs that satisfy it. Here that would mean how many pairs (x, y), with x and y each between 0 and 4, satisfy y = x² modulo 5.
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-lg font-semibold">The five points on y = x² modulo 5</figcaption>
@@ -170,7 +170,7 @@ Imagine working modulo 5, so every calculation ends by taking the remainder afte
   <p className="mt-3 text-sm">The dots mark (0, 0), (1, 1), (2, 4), (3, 4), and (4, 1). The two dots on the top row show how 2² and 3² both leave a remainder of 4.</p>
 </figure>
 
-The trick is to build a second function on the curve. Every point you want to count has to be a zero of this function, meaning the function is zero there. And you want each of those zeros to be a **repeated** zero. To see why that helps, here’s an ordinary polynomial in one variable.
+Here’s the trick. Keep the original equation, which tells us which pairs are on the curve. Then build a second function that gives zero when you plug in any of those pairs. If the second function can only have so many zeros, that gives us a ceiling on the number of pairs. Stepanov makes that ceiling tighter by making each point use up several zeros’ worth of room. That’s what a **repeated zero** does, and it’s easier to see with an ordinary polynomial in one variable.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>P</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mi>t</mi><mo>−</mo><mn>2</mn><mo>)</mo></mrow><mn>3</mn></msup><msup><mrow><mo>(</mo><mi>t</mi><mo>−</mo><mn>5</mn><mo>)</mo></mrow><mn>3</mn></msup></mrow></math></div>
 
@@ -180,18 +180,18 @@ Now imagine you can build a nonzero polynomial of degree at most 60, and every z
 
 On a curve, Stepanov uses the same counting idea with a function defined on the curve itself. The hard part is constructing a function that vanishes repeatedly at the points you care about, stays within a known limit on its total zeros counted with multiplicity, and isn’t zero everywhere on the curve. Each point then accounts for several of the available zeros. That’s the idea Alpöge wanted to carry over. What could play the role of a repeated zero when the things you’re counting are primes? [An exposition of Stepanov’s method](https://mathworld.wolfram.com/StepanovsMethod.html)
 
-##### How theta lifts build divisibility
+<h5 className="mb-2 mt-6 text-lg font-semibold">How theta lifts build divisibility</h5>
 
 Alpöge wanted something that could do the job of repeated zeros when the objects he cared about were integers and primes. A **theta lift** takes an automorphic form, a function with particular symmetries, and transfers information from it to a new form. In this construction the output of one lift becomes the input of the next. The chain builds up divisibility at selected primes. That divisibility plays the role of repeated vanishing in the earlier argument.
 
-##### What carries over from Stepanov?
+<h5 className="mb-2 mt-6 text-lg font-semibold">What carries over from Stepanov?</h5>
 
 - **Counting points on a curve.** Build a function with repeated zeros. A bound on its total zeros, counted with multiplicity, limits how many points it can cover.
 - **Bounding a sum over primes.** Chain theta lifts to build divisibility. A geometric inequality limits how much can build up.
 
 Alpöge [says](https://alpo.ge/remark.pdf#page=1) he guided the search toward a setting where the analogy could work. Claude suggested using about <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><mi>X</mi></mrow></msqrt></mrow></math> lifts when the prime sum has cutoff <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>X</mi></mrow></math>. The exact chain and the inequality that controls it are where the technical work is. [The technical guide, section 4](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=4)
 
-##### How divisibility gives a bound
+<h5 className="mb-2 mt-6 text-lg font-semibold">How divisibility gives a bound</h5>
 
 If a positive integer is divisible by 4 and by 3, it has to be at least 12. Turn that around. If you know it’s at most 20, there’s a limit to what can divide it. Take logs and those prime factors give you a sum. The proof uses a much more sophisticated version of that idea. The theta lifts come from the theory of automorphic forms and create divisibility at selected primes. An inequality about lattices from arithmetic geometry, called Bost’s slope inequality, limits how much divisibility there can be. That limit helps bound the prime sums. [Technical guide, sections 4–6](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=4)
 
