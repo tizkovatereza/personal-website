@@ -83,7 +83,9 @@ Then we multiply by a weight that depends on how close 4 is to the cutoff. The r
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>log</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x02212;</mo><mn>1</mn><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02248;</mo><mn>1.04</mn></mrow></math></div>
 
-Apply the same rule to the other six numbers and add all seven contributions. The total is about 9.11. Subtract the smooth trend, about 7.25, and the excess is about **1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+Apply the same rule to the other six numbers and add all seven contributions. The total is about 9.11.
+
+Where does the baseline come from? The weighted total grows as we raise the cutoff. The baseline is a formula for its overall growth, so we can subtract that growth and look at what’s left. For a cutoff of `X`, the formula is `X × (log(X) − 1 − γ)`, where γ is the Euler–Mascheroni constant, about 0.5772. It only needs the cutoff. At 10 it gives about 7.25, so the actual total sits about **1.86 above the baseline** (9.11 − 7.25). The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### 2. Build a ceiling using geometry
 
