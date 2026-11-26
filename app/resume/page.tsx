@@ -29,7 +29,6 @@ const experience = [
     bullets: [
       'Helped build an AI sandbox infrastructure company whose customers include Manus, Perplexity, Hugging Face, and Groq',
       'First hire; owned growth end-to-end from pre-seed through Series A',
-      'Created and co-taught a DeepLearning.AI course with Andrew Ng, with tens of thousands of enrollments',
       'Led product launches and launch campaigns',
       'Led a global OOH campaign',
       'Built co-marketing partnerships (Groq, Mistral, LangChain)',
@@ -133,9 +132,6 @@ function ResumeContent() {
           <h1 className="text-[22px] font-bold text-gray-900 mb-0.5">
             Tereza Tizkova
           </h1>
-          <p className="text-[11px] text-gray-600 mb-2">
-            Growth leader for developer products. Currently growth at Factory; first hire at E2B, where I owned marketing, growth, startup programs, and developer relations from zero to Series A+.
-          </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[10px] text-gray-500">
             <span className="flex items-center gap-1 whitespace-nowrap">
               <MapPin className="w-3 h-3 shrink-0" />
