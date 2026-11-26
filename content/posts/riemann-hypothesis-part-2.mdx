@@ -75,7 +75,7 @@ To understand at least parts of Alpöge’s proof, I would summarize it as three
 
 #### 1. Measure how far a weighted sum over primes strays
 
-Why add up primes in the first place? The proof needs a number that tracks how the primes are distributed and that would behave differently if the Riemann hypothesis were false. One way to get that number is to give each prime and prime power a score, add those scores, and compare the total with a smooth baseline. That total is what I mean by the prime sum here. The gap above the baseline is what the proof needs to bound.
+Why add up primes in the first place? Part 1 explained that the zeros of the zeta function affect how the primes are distributed. Here’s how the proof uses that connection. A zero to the right of ½ would eventually make a certain sum over primes rise too far above its usual trend. So the first thing we need is a way to calculate that sum. One way to get that number is to give each prime and prime power a score, add those scores, and compare the total with a smooth baseline. That total is what I mean by the prime sum here. The gap above the baseline is what the proof needs to bound.
 
 Say we stop at 10. That means we only include primes and prime powers up to 10. Here, those are 2, 3, 4, 5, 7, 8, and 9. Take 4. It’s on the list because 4 = 2². The rule starts with the natural log of the prime you raised to a power, so for 4 we start with log(2), which is about 0.693.
 
@@ -172,6 +172,8 @@ Putting those pieces together gives the ceiling on the weighted prime sum. [Read
 #### 3. Use the ceiling to rule out zeros off the line
 
 The proof combines several related prime sums with positive weights so the effect of a zero survives in the combined sum. The Landau argument then says that a zero to the right of ½ would force the sum to break the ceiling somewhere in every sufficiently large range of the required length. The geometric bound gives ranges on arbitrarily large scales where that doesn’t happen. This rules out zeros to the right of ½. By the mirror symmetry from Part 1, a zero on the left would have a partner on the right, so that side is ruled out too. [Technical guide, sections 2–5](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+
+The same proof also covers a family of functions related to zeta, called **Dirichlet L-functions**. To study their zeros, you use related prime sums that give different weights to numbers according to their remainders. The argument rules out zeros off the line for these functions too, which is the Generalized Riemann Hypothesis for Dirichlet L-functions. [The statements Lean verified](https://math.mit.edu/~drew/grh/)
 
 #### A summary in four steps
 
