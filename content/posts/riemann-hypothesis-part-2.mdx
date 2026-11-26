@@ -9,17 +9,37 @@ image: "/images/blog/riemann/golem.webp"
 
 [Part 1 · Explained Simply](/blog/riemann-hypothesis)
 
-When Levent Alpöge announced a proof of the Riemann hypothesis on November 20, I wanted to see what he and Claude had actually done. How do you check a proof that comes as code?
+On November 20, 2026, Levent Alpöge announced a proof of the Riemann hypothesis. He’s a mathematician at Anthropic and a junior fellow in Harvard’s Society of Fellows. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [His website](https://alpo.ge/)
 
-**Update, November 22. Independent checkers have accepted Alpöge’s Lean proof of the standard Riemann hypothesis.** Two independently written checkers accepted the complete exported proof, and Lean’s own kernel accepted all 175,187 compiled modules. Andrew Sutherland’s log still lists additional runs on the export as in progress. Clay still lists the problem as unsolved. [Lean and Mathlib’s statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · [Sutherland’s November 22 log](https://math.mit.edu/~drew/grh/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+I wanted to see what Alpöge and Claude had actually done. I give Alpöge credit for seeing where to look, and I’ll show why that mattered. And how much of the original proof, all 17 million lines of Lean code, can we even decipher?
 
-## What Alpöge Announced And How It Was Checked
+**Update, November 25.** Andrew Sutherland’s end-to-end check of the original proof passed. It confirmed that the code proves the intended statements and uses only Lean’s standard assumptions, and three proof checkers accepted it. Luke Sernau and colleagues also released two shorter versions of the same proof in Lean, one about 76,000 lines and the other about 300,000. Clay still lists the problem as “Active.” [Sutherland’s verification log](https://math.mit.edu/~drew/grh/) · [The shorter versions](https://github.com/lsernau/grh-lean) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
 
-### What Lean Does
+## Let’s start with how Lean works
 
-**Lean is a tool for writing mathematical proofs in a form a computer can check.** You tell it exactly what you want to prove and give it an argument. Lean’s core checker, called the **kernel**, verifies that the conclusion follows from the definitions, theorems, and assumptions the argument uses. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
+Alpöge did use Claude, but Claude used Lean, a programming language that can check mathematical proofs. I’m convinced they couldn’t have pulled off a proof on this scale without being able to check it as they went.
 
-Mathematicians already have ways to build those arguments. In a **direct proof**, you start from what you know and work toward the claim. In a **proof by contradiction**, you assume the claim is false and show that this leads to something impossible. In **induction**, you prove the first case and show why each case implies the next, like knocking over a row of dominoes.
+You tell Lean exactly what you want to prove and give it the steps you think prove it. Lean’s built-in proof checker, called the **kernel**, checks that those steps are allowed and that they get you to the claim you started with. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
+
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <figcaption className="mb-4 text-xl font-semibold">What Lean checks, with a tiny example</figcaption>
+  <div className="grid gap-3 sm:grid-cols-2">
+    <div className="border border-[#d3d9de] p-3">
+      <strong className="text-[#245b99]">The claim</strong>
+      <p>If x = 2, then x + 3 = 5.</p>
+    </div>
+    <div className="border border-[#d3d9de] p-3">
+      <strong className="text-[#245b99]">The proof steps</strong>
+      <p>Replace x with 2, then work out 2 + 3.</p>
+    </div>
+    <div className="border-t-2 border-[#326f64] p-3 sm:col-span-2">
+      <strong className="text-[#326f64]">The kernel checks both</strong>
+      <p>Does the assumption x = 2 let you make that replacement? Does the arithmetic give you the 5 you claimed? Both checks pass.</p>
+    </div>
+  </div>
+</figure>
+
+Mathematicians already have ways to put those steps together. In a **direct proof**, you start from what you know and work toward the claim. In a **proof by contradiction**, you assume the claim is false and show that this leads to something impossible. In **induction**, you prove the first case and show why each case implies the next, like knocking over a row of dominoes.
 
 The same techniques work in Lean. In my thesis, I remember borrowing a step from a paper that said it was obvious. So I wrote that it was obvious too. My supervisor asked me to derive it, and it took a lot more space than the word “obvious.” Lean makes you supply the work behind that sentence, or use a tool that can reconstruct it for the checker.
 
@@ -147,7 +167,7 @@ Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is 
 
 **Second, did the argument prove that claim?** Multiple people rebuilt the library and reproduced the same proof export. In one run, Sutherland’s team rechecked all 175,187 compiled modules in Lean’s kernel. Independent checkers also verified the full exported proof as a whole. Andrew Sutherland’s audit found that the theorem uses only Lean’s three standard axioms. The export let reviewers check the underlying proof separately from the code that produced it. A separate sandboxed rebuild produced a byte-for-byte identical export.
 
-Sutherland’s **November 22, 16:20 UTC** update is specific about the remaining checks. Lean’s default and paranoid kernels were still checking the full export, and the end-to-end Comparator run was waiting on its Lean-kernel check of that export. The statement and axiom checks had already passed in one Comparator run. Older bundled checkers stopped because they lacked support for a type used in the proof. Newer builds supported it and passed the corresponding checks. [Buzzard’s four checks](https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/) · [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
+Sutherland’s **November 25** run compared all five theorem statements against the reference statements, checked the assumptions, and ran three proof checkers on the original archive. All three accepted it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-2 text-xl font-semibold">How the reviewers checked the proof</figcaption>
@@ -178,7 +198,7 @@ Ravi Vakil reported on November 20 that Alessandro Maria Masullo had a separate 
 
 Terence Tao described Alpöge’s Lean release and pointed readers to the verification discussion. Mathematician Sam Hopkins linked Vakil’s announcement about Masullo in the comments. [Tao’s post and discussion](https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/)
 
-The independent checks of Alpöge’s proof still stand as of November 22. Clay still lists the problem as unsolved. Its prize rules require publication in a qualifying outlet, at least two years after publication, and general acceptance by mathematicians. [Verification log](https://math.mit.edu/~drew/grh/) · [Clay’s prize rules](https://www.claymath.org/millennium-problems/rules/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+The original Lean proof passed Sutherland’s end-to-end check on November 25. Clay still lists the problem as “Active.” Its prize rules require publication in a qualifying outlet, at least two years after publication, and general acceptance by mathematicians. [Verification log](https://math.mit.edu/~drew/grh/) · [Clay’s prize rules](https://www.claymath.org/millennium-problems/rules/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
 
 ## Conclusion
 
