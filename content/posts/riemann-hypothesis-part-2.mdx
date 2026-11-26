@@ -19,7 +19,7 @@ I wanted to see what Alpöge and Claude had actually done. I give Alpöge credit
 
 Alpöge did use Claude, but Claude used Lean, a programming language that can check mathematical proofs. I strongly believe the human and robot couldn't have pulled off this proof without being able to codify it in Lean. Computers work much more efficiently with code, and the scale of the new theory needed to be built for proving Riemann Hypothesis was tremendous.
 
-You tell Lean exactly what you want to prove and give it the steps you think prove it. Lean’s built-in proof checker, called the **kernel**, checks that those steps are allowed and that they get you to the claim you started with. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
+You tell Lean exactly what you want to prove and give it the steps you think prove it. Lean’s built-in proof checker, called the **kernel**, checks that those steps are allowed (each step has to follow from an assumption, a definition, or a result you already know) and that they get you to the claim you started with. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-4 text-xl font-semibold">What Lean checks, with a tiny example</figcaption>
