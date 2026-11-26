@@ -73,13 +73,17 @@ For example, at university we were allowed to bring an A4 sheet of our own notes
 
 To understand at least parts of Alpöge’s proof, I would summarize it as three core ideas. First, add up weighted contributions from primes and their powers up to a number you choose (the cutoff), then compare the total with its expected trend. A zero to the right of ½ would make the total overshoot that trend by more than the proof allows as the cutoff grows. Then use geometry to put a ceiling on that sum. Finally, show that a zero off the line would be incompatible with that ceiling. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
-#### 1. Measure how far the prime sum strays
+#### 1. Measure how far a weighted sum over primes strays
 
-Say we stop at 10. That means we only include primes and prime powers up to 10. Here, those are 2, 3, 4, 5, 7, 8, and 9. For each number, take the natural log of its base prime and multiply by (10 divided by the number, minus 1). For 4, the contribution is
+Why add up primes in the first place? The proof needs a number that tracks how the primes are distributed and that would behave differently if the Riemann hypothesis were false. One way to get that number is to give each prime and prime power a score, add those scores, and compare the total with a smooth baseline. That total is what I mean by the prime sum here. The gap above the baseline is what the proof needs to bound.
+
+Say we stop at 10. That means we only include primes and prime powers up to 10. Here, those are 2, 3, 4, 5, 7, 8, and 9. Take 4. It’s on the list because 4 = 2². The rule starts with the natural log of the prime you raised to a power, so for 4 we start with log(2), which is about 0.693.
+
+Then we multiply by a weight that depends on how close 4 is to the cutoff. The rule is to divide the cutoff by the number and subtract 1. Here that’s 10 ÷ 4 − 1 = 2.5 − 1 = 1.5. This gives smaller numbers more weight and makes the weight drop to zero at the cutoff. Multiplying 0.693 by 1.5 gives about 1.04. That’s the amount 4 adds to the total.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>log</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x02212;</mo><mn>1</mn><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02248;</mo><mn>1.04</mn></mrow></math></div>
 
-Adding all the contributions gives about 9.11. Subtract the smooth trend, about 7.25, and the excess is about **1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+Apply the same rule to the other six numbers and add all seven contributions. The total is about 9.11. Subtract the smooth trend, about 7.25, and the excess is about **1.86**. The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### 2. Build a ceiling using geometry
 
