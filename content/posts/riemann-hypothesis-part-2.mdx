@@ -77,6 +77,12 @@ To understand at least parts of Alpöge’s proof, I would summarize it as three
 2. **Put a ceiling on the gap.** Use geometry to limit how far the total can rise above that baseline over certain long stretches of stopping points.
 3. **Use that ceiling to locate the zeros.** The Riemann hypothesis says that all the nontrivial zeros of the zeta function lie on the vertical line where the real part is ½. A zero to the right of that line would force the total to break the ceiling. The proof rules that out, and symmetry rules out zeros to the left. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
+In [Part 1](/blog/riemann-hypothesis), we compared the actual count of primes with a smooth estimate. At 100, the staircase counts 25 primes and the smooth curve estimates about 30.
+
+![The actual prime count and its smooth estimate, with their gap marked at 100](/images/blog/riemann/prime-count-staircase.png)
+
+The proof uses the same idea of comparing a total with a smooth baseline. Here the total adds up scores for primes and prime powers, so it has a different baseline. It’s the gap between that weighted total and its baseline that the proof needs to bound.
+
 #### 1. Measure how far a weighted sum over primes strays
 
 The goal is to prove that every nontrivial zero of the zeta function has real part ½. The intuition is to look for what a zero to the right of that line would do to the primes. There’s a formula that connects the zeros to a weighted total over primes and prime powers. As you count farther out, the zeros show up as swings around the total’s main trend. A zero farther to the right would contribute swings that grow faster. So the proof gives itself something concrete to check. Can the total ever swing as far above the trend as a zero to the right of ½ would require?
