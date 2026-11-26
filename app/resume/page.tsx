@@ -34,7 +34,7 @@ const experience = [
       'Built co-marketing partnerships (Groq, Mistral, LangChain)',
       'Ran developer community and events (1000+ hackathon attendees)',
       'Owned content strategy across blog, docs, and social',
-      'Built and scaled the Startup Program, Research Program, and YC Deal to 10% of the latest YC batches running on E2B',
+      'Built and scaled the Startup Program, Research Program, and YC Deal',
     ],
   },
   {
