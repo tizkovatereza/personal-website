@@ -35,17 +35,10 @@ The same techniques work in Lean. In my thesis, I remember borrowing a step from
 
 ### What Alpöge and Claude built
 
-Alpöge [says](https://alpo.ge/remark.pdf#page=1) he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines. That includes definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. The 250,000-page figure Alpöge mentions was from an attempt at a prose write-up. But what I would actually consider the proof itself in this case, was the Lean library. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
-
-**Disclaimer:** I’m not trying to rewrite the complete proof here. I want to focus on a few interesting techniques and how Alpöge and Claude thought through the problem.
+Alpöge [says](https://alpo.ge/remark.pdf#page=1) he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines.
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <img className="block w-full border border-[#d3d9de]" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
-  <figcaption className="mt-2 text-sm">The announcement, cropped from <a href="https://x.com/deedydas/status/2123797546741232063">Deedy’s post</a>.</figcaption>
-</figure>
-
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-4 text-sm">Two excerpts from the Lean library</figcaption>
+  <figcaption className="mb-4 text-sm">A look inside the original Lean library</figcaption>
   <div className="space-y-4">
     <div>
       <p className="text-xs text-[#4a5568]">Main.lean</p>
@@ -56,6 +49,16 @@ Alpöge [says](https://alpo.ge/remark.pdf#page=1) he guided the work from a simp
       <pre className="mt-1 whitespace-pre-wrap break-words bg-transparent font-mono text-xs leading-relaxed sm:text-sm"><code><span className="text-[#245b99]">theorem</span> rhOfAll : RiemannHypothesis :=<br /><span className="pl-[2ch]">Formalism.VW.rh_of_every allChi</span></code></pre>
     </div>
   </div>
+  <p className="mt-3 text-sm">The first file states the Riemann hypothesis and points to <code>rhOfAll</code>. The second shows where that result is defined and which earlier result it uses.</p>
+</figure>
+
+Those 17 million lines include definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. The 250,000-page figure Alpöge mentions was from an attempt at a prose write-up. But what I would actually consider the proof itself in this case, was the Lean library. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
+
+**Disclaimer:** I’m not trying to rewrite the complete proof here. I want to focus on a few interesting techniques and how Alpöge and Claude thought through the problem.
+
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <img className="block w-full border border-[#d3d9de]" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
+  <figcaption className="mt-2 text-sm">The announcement, cropped from <a href="https://x.com/deedydas/status/2123797546741232063">Deedy’s post</a>.</figcaption>
 </figure>
 
 #### What Alpöge brought to the proof
