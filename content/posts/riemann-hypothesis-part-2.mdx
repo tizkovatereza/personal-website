@@ -21,23 +21,7 @@ Alpöge did use Claude, but Claude used Lean, a programming language that can ch
 
 You tell Lean exactly what you want to prove and give it the steps you think prove it. Lean’s built-in proof checker, called the **kernel**, checks that those steps are allowed (each step has to follow from an assumption, a definition, or a result you already know) and that they get you to the claim you started with. [How Lean validates proofs](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-4 text-xl font-semibold">What Lean checks, with a tiny example</figcaption>
-  <div className="grid gap-3 sm:grid-cols-2">
-    <div className="border border-[#d3d9de] p-3">
-      <strong className="text-[#245b99]">The claim</strong>
-      <p>If x = 2, then x + 3 = 5.</p>
-    </div>
-    <div className="border border-[#d3d9de] p-3">
-      <strong className="text-[#245b99]">The proof steps</strong>
-      <p>Replace x with 2, then work out 2 + 3.</p>
-    </div>
-    <div className="border-t-2 border-[#326f64] p-3 sm:col-span-2">
-      <strong className="text-[#326f64]">The kernel checks both</strong>
-      <p>Does the assumption x = 2 let you make that replacement? Does the arithmetic give you the 5 you claimed? Both checks pass.</p>
-    </div>
-  </div>
-</figure>
+Say you want to prove that if x = 2, then x + 3 = 5. You can replace x with 2 because that’s what you assumed. Then you’re left with 2 + 3 = 5. The kernel checks that the substitution is justified and that the arithmetic gives you the result you set out to prove.
 
 ### What a proof is in math
 
@@ -49,7 +33,7 @@ Mathematicians already have ways to put those steps together.
 
 The same techniques work in Lean. In my thesis, I remember borrowing a step from a paper that said it was obvious. Naive me thought it could be “obvious” too in my thesis. My supervisor asked me to derive it, and the “obvious” took over a page of mathematical text.
 
-### What Alpöge and Claude Built
+### What Alpöge and Claude built
 
 Alpöge says he guided the work from a simpler problem toward the one they needed to solve. He credits Claude with important mathematical ideas along the way. One example was figuring out how to combine tools called *theta lifts* to adapt an earlier method from a different setting. They developed the argument and formalized it as a Lean library of roughly 17 million lines. That includes definitions, existing results written in Lean, and intermediate results the new argument needs. Mathlib supplied a foundation, including the statement of the Riemann hypothesis itself. The 250,000-page figure Alpöge mentions was from an attempt at a prose write-up. But what I would actually consider the proof itself in this case, was the Lean library. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
@@ -74,7 +58,7 @@ Alpöge says he guided the work from a simpler problem toward the one they neede
   </div>
 </figure>
 
-#### What The Human Brought
+#### What Alpöge brought to the proof
 
 Could you and I open Claude and hammer-solve the Riemann hypothesis? I don’t think so. You still have to be a good prompter. Here that meant knowing enough mathematics to see which analogy was worth pursuing and what question to ask next.
 
@@ -151,7 +135,7 @@ Now imagine you can build a nonzero polynomial of degree at most 60, and every z
 
 On a curve, Stepanov uses the same counting idea with a function defined on the curve itself. The hard part is constructing a function that vanishes repeatedly at the points you care about, stays within a known limit on its total zeros counted with multiplicity, and isn’t zero everywhere on the curve. Each point then accounts for several of the available zeros. That’s the idea Alpöge wanted to carry over. What could play the role of a repeated zero when the things you’re counting are primes? [An exposition of Stepanov’s method](https://mathworld.wolfram.com/StepanovsMethod.html)
 
-##### What Theta Lifts Do In This Argument
+##### How theta lifts build divisibility
 
 Alpöge wanted something that could do the job of repeated zeros when the objects he cared about were integers and primes. A **theta lift** takes an automorphic form, a function with particular symmetries, and transfers information from it to a new form. In this construction the output of one lift becomes the input of the next. The chain builds up divisibility at selected primes. That divisibility plays the role of repeated vanishing in the earlier argument.
 
@@ -200,7 +184,7 @@ If you’d rather read prose, Michael Rubinstein’s working guide to the ordina
 
 On November 22, Robin Zhang published a preliminary note tracing the mathematical ideas behind the proof. It gives context for the work on automorphic forms and divisibility that the map compresses. Zhang describes it as an AI-assisted exposition and cautions that he has yet to check whether it faithfully translates the whole archive. [Zhang’s preliminary note](https://www.ihes.fr/~rzhang/files/GRH%20note.pdf)
 
-### How They Checked This Proof
+### How reviewers checked the proof
 
 **First, check that the code states the Riemann hypothesis.** This is a standard check, even when the theorem looks right on screen. A theorem named `RiemannHypothesis` could say that *one* zero lies on the line. Lean could correctly check a proof of that sentence. The Riemann hypothesis says *every* nontrivial zero lies there.
 
@@ -208,9 +192,7 @@ Here, reviewers had a reference they could check against. Mathlib already define
 
 If you’ve never seen Lean, here’s the same claim both ways.
 
-**In English.** Every nontrivial zero of zeta has real part ½.
-
-**In Lean.** Here’s that claim laid out one condition per line.
+Every nontrivial zero of zeta has real part ½. Here’s how that reads in Lean, one condition per line.
 
 ```lean
 ∀ s : ℂ,
@@ -226,7 +208,7 @@ Read the last line first. `s.re = 1 / 2` says the horizontal coordinate of s is 
 
 Sutherland’s **November 25** run compared all five theorem statements against the reference statements, checked the assumptions, and ran three proof checkers on the original archive. All three accepted it. [Sutherland’s verification records](https://math.mit.edu/~drew/grh/)
 
-#### How the reviewers checked the proof
+#### Verification checklist
 
 1. **Check the statement.** Compare the conclusion to Mathlib’s formal statement of the hypothesis.
 2. **Replay the modules.** Rebuild the library and recheck 175,187 compiled modules in Lean’s kernel.
@@ -236,7 +218,7 @@ Some checks zoomed in on one link at a time. An independent reading project isol
 
 The release also covers the generalized hypothesis for Dirichlet L-functions, a family of functions related to zeta. Sutherland’s audit includes those statements too. [The exact statements checked](https://math.mit.edu/~drew/grh/)
 
-## Was It Disproved Already?
+## Was it disproved already?
 
 One nontrivial zero off the line would settle this. Two older manuscripts claim that such zeros exist.
 
@@ -246,7 +228,7 @@ Tatenda Kubalalika’s February 2026 working paper claims that some zeros get ar
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mn>0</mn><mo>&#x0003C;</mo><mo>Re</mo><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003C;</mo><mn>1</mn><mo>&#x0002C;</mo><mspace width="2em" /><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mspace width="2em" /><mo>Re</mo><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02260;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math></div>
 
-### What About Masullo’s Draft?
+### What about Masullo’s draft?
 
 Ravi Vakil reported on November 20 that Alessandro Maria Masullo had a separate proposed proof of the generalized hypothesis and that Brian Conrad had been reviewing it. In the released manuscript, section 12.3 still has an instruction to fill in the section. That part is supposed to connect the calculation on the zero side with the one on the prime side. Without it, a reader has an argument with a step left to check. This is a question about Masullo’s proposed proof. Alpöge’s argument uses a different route. [Vakil’s announcement](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) · [Masullo’s manuscript, section 12.3](https://math216.wordpress.com/wp-content/uploads/2026/11/the-music-of-the-primes.pdf#page=514)
 
