@@ -79,9 +79,13 @@ To understand at least parts of Alpöge’s proof, I would summarize it as three
 
 #### 1. Measure how far a weighted sum over primes strays
 
-Why add up primes in the first place? Part 1 explained that the zeros of the zeta function affect how the primes are distributed. Here’s how the proof uses that connection. A zero to the right of ½ would eventually make a certain sum over primes rise too far above its usual trend. So the first thing we need is a way to calculate that sum. One way to get that number is to give each prime and prime power a score, add those scores, and compare the total with a smooth baseline. That total is what I mean by the prime sum here. The gap above the baseline is what the proof needs to bound.
+The goal is to prove that every nontrivial zero of the zeta function has real part ½. The intuition is to look for what a zero to the right of that line would do to the primes. There’s a formula that connects the zeros to a weighted total over primes and prime powers. As you count farther out, the zeros show up as swings around the total’s main trend. A zero farther to the right would contribute swings that grow faster. So the proof gives itself something concrete to check. Can the total ever swing as far above the trend as a zero to the right of ½ would require?
 
-Say we stop at 10. That means we only include primes and prime powers up to 10. Here, those are 2, 3, 4, 5, 7, 8, and 9. Take 4. It’s on the list because 4 = 2². The rule starts with the natural log of the prime you raised to a power, so for 4 we start with log(2), which is about 0.693.
+To calculate that total, give each prime and prime power a score and add up the scores. That’s the **weighted prime sum**. The **baseline** is the main growth term in the formula connecting that sum to the zeros. It’s a smooth curve because it changes continuously with the cutoff. Subtracting it leaves the part of the total where we can look for those swings. [The formula connecting the sum to the zeros](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+
+Say we stop at 10. The primes up to 10 are 2, 3, 5, and 7. We also include 4, 8, and 9 because they are powers of those primes (2², 2³, and 3²).
+
+Take 4. Since 4 = 2², the score starts with log(2), about 0.693. The 2 goes **inside** the logarithm because it’s the prime that makes 4. Here log means the natural logarithm, so its base is **e**. In other words, log(2) asks what power you raise e to in order to get 2.
 
 Then we multiply by a weight that depends on how close 4 is to the cutoff. The rule is to divide the cutoff by the number and subtract 1. Here that’s 10 ÷ 4 − 1 = 2.5 − 1 = 1.5. This gives smaller numbers more weight and makes the weight drop to zero at the cutoff. Multiplying 0.693 by 1.5 gives about 1.04. That’s the amount 4 adds to the total.
 
@@ -89,7 +93,7 @@ Then we multiply by a weight that depends on how close 4 is to the cutoff. The r
 
 Apply the same rule to the other six numbers and add all seven contributions. The total is about 9.11.
 
-Where does the baseline come from? The weighted total grows as we raise the cutoff. The baseline is a formula for its overall growth, so we can subtract that growth and look at what’s left. For a cutoff of `X`, the formula is `X × (log(X) − 1 − γ)`, where γ is the Euler–Mascheroni constant, about 0.5772. It only needs the cutoff. At 10 it gives about 7.25, so the actual total sits about **1.86 above the baseline** (9.11 − 7.25). The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+For a cutoff of `X`, the formula is `X × (log(X) − 1 − γ)`, where γ is the Euler–Mascheroni constant, about 0.5772. It only needs the cutoff. At 10 it gives about 7.25, so the actual total sits about **1.86 above the baseline** (9.11 − 7.25). The bound is a ceiling on that excess. Ten is just an example of a cutoff, the number we count up to. The proof needs an upper bound that holds throughout certain long ranges of cutoffs, and it needs such ranges at arbitrarily large scales. [The weighted sum in the technical guide](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 #### 2. Build a ceiling using geometry
 
