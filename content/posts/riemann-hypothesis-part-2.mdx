@@ -114,23 +114,12 @@ Alpöge says he guided the search toward a setting where the analogy could work.
 
 **The proof rules out nontrivial zeros to the right of ½. The mirror symmetry from Part 1 then rules them out on the left.** To make the right-hand side empty, Alpöge and Claude turned the zero question into a question about how big a weighted sum over primes and prime powers can get. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-4 text-xl font-semibold">From a bound on primes to a line of zeros</figcaption>
-  <ol className="space-y-0">
-    <li className="border-l-2 border-[#245b99] pl-4 pb-4">
-      <strong className="text-[#245b99]">Build a ceiling.</strong> The theta lifts build up divisibility. Geometry limits how much can build up, so a weighted sum over primes has a ceiling on certain long stretches of cutoffs.
-    </li>
-    <li className="border-l-2 border-[#245b99] pl-4 pb-4">
-      <strong className="text-[#245b99]">Combine the sums.</strong> The bound arrives for several related prime sums together. They combine them with positive weights so a zero’s signal survives in the combined sum.
-    </li>
-    <li className="border-l-2 border-[#326f64] pl-4 pb-4">
-      <strong className="text-[#326f64]">A zero on the right would break the ceiling.</strong> The Landau argument says an off-line zero to the right would force the sum above the ceiling somewhere in every sufficiently late stretch. The bound gives stretches where it stays below.
-    </li>
-    <li className="border-l-2 border-[#326f64] pl-4">
-      <strong className="text-[#326f64]">Reflection takes care of the left.</strong> A zero on the left would have a partner on the right. With the right side ruled out, the nontrivial zeros sit on the line through ½.
-    </li>
-  </ol>
-</figure>
+#### From a bound on primes to a line of zeros
+
+1. **Build a ceiling.** The theta lifts build up divisibility. Geometry limits how much can build up, so a weighted sum over primes has a ceiling on certain long stretches of cutoffs.
+2. **Combine the sums.** The bound arrives for several related prime sums together. They combine them with positive weights so a zero’s signal survives in the combined sum.
+3. **A zero on the right would break the ceiling.** The Landau argument says an off-line zero to the right would force the sum above the ceiling somewhere in every sufficiently late stretch. The bound gives stretches where it stays below.
+4. **Reflection takes care of the left.** A zero on the left would have a partner on the right. With the right side ruled out, the nontrivial zeros sit on the line through ½.
 
 The two halves of the proof meet at the ceiling. Geometry says the sum stays below it on certain stretches. Analysis says a zero too far to the right would make that impossible. The ceiling can grow like a power arbitrarily close to the square-root scale, which is what lets the argument get all the way down to ½. [Technical guide, sections 2–5](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
