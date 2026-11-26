@@ -91,9 +91,7 @@ Where does the baseline come from? The weighted total grows as we raise the cuto
 
 To put a ceiling on the excess, Alpöge borrowed an idea from a different problem in math. Sergei Stepanov had found a way to limit how many points can lie on a curve by using a polynomial. Alpöge wanted to see if the same kind of reasoning could put a ceiling on a sum over primes.
 
-##### How Stepanov counted points on a curve
-
-In his announcement, Alpöge traces one of the ideas behind the proof to Sergei Stepanov, a mathematician who in 1969 used polynomials to tackle a related problem. Stepanov wanted to put an upper limit on how many points lie on certain curves when you do arithmetic with remainders. Alpöge and Claude were after a different upper limit, this time on a sum involving primes. To see why they reached for Stepanov’s idea, start with what he was counting. [Alpöge’s announcement](https://alpo.ge/remark.pdf) · [An introduction to Stepanov’s method](https://www.ias.edu/video/csdm/stepanov)
+Stepanov worked with curves over finite fields. A simple example shows what it means to count points on one of those curves. [An introduction to Stepanov’s method](https://www.ias.edu/video/csdm/stepanov)
 
 Imagine working modulo 5, so every calculation ends by taking the remainder after dividing by 5. For the curve **y = x²**, choosing x = 2 gives y = 4. Choosing x = 3 also gives y = 4, because 9 leaves a remainder of 4. So (2, 4) and (3, 4) are two different points on the curve. With only five possible x values, we could list all the points in this example. Stepanov’s method gives a way to bound the count for more complicated curves without listing the points one by one.
 
