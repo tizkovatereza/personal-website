@@ -13,7 +13,7 @@ On November 20, 2026, Levent Alpöge announced a proof of the Riemann hypothesis
 
 I wanted to see what Alpöge and Claude had actually done. I give Alpöge credit for seeing where to look, and I’ll show why that mattered. And how much of the original proof, all 17 million lines of Lean code, can we even decipher?
 
-**Update, November 25.** Andrew Sutherland’s end-to-end check of the original proof passed. It confirmed that the code proves the intended statements and uses only Lean’s standard assumptions, and three proof checkers accepted it. Luke Sernau and colleagues also released two shorter versions of the same proof in Lean, one about 76,000 lines and the other about 300,000. Clay still lists the problem as “Active.” [Sutherland’s verification log](https://math.mit.edu/~drew/grh/) · [The shorter versions](https://github.com/lsernau/grh-lean) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
+**Update, November 26.** Andrew Sutherland’s end-to-end check of the original proof passed. It confirmed that the code proves the intended statements and uses only Lean’s standard assumptions, and three proof checkers accepted it. Luke Sernau and colleagues also released two shorter versions of the same proof in Lean, one about 76,000 lines and the other about 300,000, using the authors’ counts. Both passed Sutherland’s full suite of proof checks. Clay still lists the problem as “Active.” [Sutherland’s verification log](https://math.mit.edu/~drew/grh/) · [The shorter versions](https://github.com/lsernau/grh-lean) · [Checks of both shorter editions](https://math.mit.edu/~drew/shortgrh/) · [Clay’s status page](https://www.claymath.org/millennium/riemann-hypothesis/)
 
 ## Let’s start with how Lean works
 
@@ -133,7 +133,13 @@ The two halves of the proof meet at the ceiling. Geometry says the sum stays bel
 
 </details>
 
-Michael Rubinstein also posted a 164-page working draft on November 21 that explains the argument for the ordinary zeta function. It gives readers a way into the mathematics behind the checked code. [Rubinstein’s working guide](https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/)
+#### What the shorter proof makes easier to see
+
+The shorter proof still uses chains of theta lifts and the same overall route to the zeros. Its reading guide shows how three pieces come together. First, the lifts help construct forms with controlled size. Second, the proof shows there are enough of those forms to span the space it cares about. Third, an independent lower bound limits how small a full set of integral forms can be. Putting those pieces together gives the ceiling on the weighted prime sum. [Reading guide for the shorter proof](https://github.com/lsernau/grh-lean/blob/main/grh/GUIDE.md)
+
+The guide also gives a clue about how the rewrite got smaller. Where the proof uses a piece of an existing theory, the Lean code can build just the version it needs. For example, for one step involving Galois representations, matching certain polynomials at most primes is enough. The code can stop there. [Reading guide, section 1](https://github.com/lsernau/grh-lean/blob/main/grh/GUIDE.md#1-where-to-start)
+
+If you’d rather read prose, Michael Rubinstein’s working guide to the ordinary zeta function is now 265 pages. It works out how the prime-sum ceiling leads to the Riemann hypothesis and lists the precise mathematical claims that still need to be written up to prove the ceiling in prose. [Rubinstein’s working guide](https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/)
 
 On November 22, Robin Zhang published a preliminary note tracing the mathematical ideas behind the proof. It gives context for the work on automorphic forms and divisibility that the map compresses. Zhang describes it as an AI-assisted exposition and cautions that he has yet to check whether it faithfully translates the whole archive. [Zhang’s preliminary note](https://www.ihes.fr/~rzhang/files/GRH%20note.pdf)
 
