@@ -11,28 +11,11 @@ image: "/images/blog/riemann/golem.webp"
 
 Levent Alpöge announced a Claude-assisted proof of the Riemann hypothesis on November 20. Lean and Mathlib reviewers reported that the formal proof passed independent checks. Clay still lists the problem as unsolved as of November 21. I wanted to write about it and look into what had actually been proved. It’s a big, emotional moment for a lot of mathematicians. People have been trying to prove this since 1859.
 
-**Why count primes in the first place?** In 1859, Riemann was trying to understand how often primes show up as numbers get bigger. Gauss had already guessed a smooth estimate for the count. Riemann found a way to explain the bumps in the actual count using zeta. Today, knowing how dense primes are helps you work out how many candidates you might have to try when looking for a large prime, for example when generating an RSA key. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/) · [NIST’s prime-generation standard](https://doi.org/10.6028/NIST.FIPS.186-5)
+**Why count primes in the first place?** In 1859, Riemann was trying to understand how often primes show up as numbers get bigger. Gauss had already guessed a smooth estimate for the count. Today, knowing how dense primes are helps you work out how many candidates you might have to try when looking for a large prime, for example when generating an RSA key. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/) · [NIST’s prime-generation standard](https://doi.org/10.6028/NIST.FIPS.186-5)
 
 We can already compute exact counts. If we could do it cheaply at huge scales, we could subtract two counts to see exactly how many primes are in a range, or find the millionth prime by looking for where the count first reaches a million. **The Riemann hypothesis answers a different question. How far off can our estimate get as we count farther out?** [An algorithm for exact prime counts](https://websites.umich.edu/lagarias/doc/compute.pdf)
 
-Here’s the claim we’re working toward. **Every nontrivial zero of the Riemann zeta function has real part ½.** Okay, but why are we talking about a function when we want to count primes?
-
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
-  <figcaption className="mb-3 text-xl font-semibold">How zeta helps count primes</figcaption>
-  <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-start sm:gap-5">
-    <div>
-      <p className="font-semibold text-[#245b99]">Primes go into zeta</p>
-      <p>Euler wrote zeta’s sum over whole numbers as a product with one factor per prime. For 12, the pieces come from 2 and 3, because <math display="inline"><mn>12</mn><mo>=</mo><msup><mn>2</mn><mn>2</mn></msup><mo>×</mo><mn>3</mn></math>.</p>
-    </div>
-    <span aria-hidden="true" className="hidden pt-1 text-[#4a5568] sm:block">→</span>
-    <div className="border-t border-[#d3d9de] pt-3 sm:border-0 sm:pt-0">
-      <p className="font-semibold text-[#326f64]">The zeros tell us about the count</p>
-      <p>Riemann found that the inputs where zeta gives zero show up in terms that raise or lower a smooth estimate of the prime count. Where the zeros sit affects how large those corrections can get.</p>
-    </div>
-  </div>
-</figure>
-
-For example, the smooth formula estimates about 78,628 primes up to a million. The actual count is 78,498. That’s the kind of gap we’re trying to understand as we go farther out. The hypothesis ties a limit on that gap to the line through ½. We’ll come back to how that works. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
+For example, the smooth formula estimates about 78,628 primes up to a million. The actual count is 78,498. That’s the kind of gap we’re trying to understand as we go farther out. We’ll start by looking at the primes and the estimate side by side. [Riemann’s 1859 paper](https://www.claymath.org/collections/riemanns-1859-manuscript/)
 
 ## Where Do Prime Numbers Appear?
 
@@ -263,6 +246,21 @@ Go back to the original sum. It has a term for every positive whole number. Eule
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mi>&</mi><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>3</mn><mi>s</mi></msup></mrow></mfrac><mo>&#x0002B;</mo><mo>&#x022EF;</mo><mspace linebreak="newline" /><mi>&</mi><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></mrow></math></div>
 
 This is **Euler’s product formula**. The reason it works is that every whole number greater than 1 can be written as a product of primes in exactly one way, apart from order. For example, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>12</mn><mo>&#x0003D;</mo><msup><mn>2</mn><mn>2</mn></msup><mo>&#x000D7;</mo><mn>3</mn></mrow></math>. The 2 factor supplies 1/4<sup>s</sup>, the 3 factor supplies 1/3<sup>s</sup>, and multiplying those gives the term 1/12<sup>s</sup> in the sum. Every number gets its one term this way. [Euler’s product and its derivation](https://dlmf.nist.gov/27.4)
+
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+  <figcaption className="mb-3 text-xl font-semibold">How zeta helps count primes</figcaption>
+  <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-start sm:gap-5">
+    <div>
+      <p className="font-semibold text-[#245b99]">Primes go into zeta</p>
+      <p>Euler wrote zeta’s sum over whole numbers as a product with one factor per prime. For 12, the pieces come from 2 and 3, because <math display="inline"><mn>12</mn><mo>=</mo><msup><mn>2</mn><mn>2</mn></msup><mo>×</mo><mn>3</mn></math>.</p>
+    </div>
+    <span aria-hidden="true" className="hidden pt-1 text-[#4a5568] sm:block">→</span>
+    <div className="border-t border-[#d3d9de] pt-3 sm:border-0 sm:pt-0">
+      <p className="font-semibold text-[#326f64]">The zeros tell us about the count</p>
+      <p>Riemann found that the inputs where zeta gives zero show up in terms that raise or lower a smooth estimate of the prime count. Where the zeros sit affects how large those corrections can get.</p>
+    </div>
+  </div>
+</figure>
 
 ## Counting Primes Up To A Million
 
