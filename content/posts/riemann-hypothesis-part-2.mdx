@@ -39,7 +39,7 @@ Alpöge [says](https://alpo.ge/remark.pdf#page=1) he guided the work from a simp
 
 They built on [Mathlib](https://leanprover-community.github.io/), a shared collection of definitions, theorems, and proofs written in Lean. Mathlib already had a definition of the zeta function and spelled out what the Riemann hypothesis says about its zeros. In the first file below, `RiemannHypothesis` is the name Mathlib gives to that statement. Alpöge and Claude supplied the proof, and reviewers could check that it proved the exact statement Mathlib already had. [The Lean community’s verification report](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+<figure className="not-prose my-8 border border-border bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-4 text-sm">A look inside the original Lean library</figcaption>
   <div className="space-y-4">
     <div>
@@ -58,7 +58,7 @@ Those 17 million lines include definitions, existing results written in Lean, an
 
 **Disclaimer:** I’m not trying to rewrite the complete proof here. I want to focus on a few interesting techniques and how Alpöge and Claude thought through the problem.
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+<figure className="not-prose my-8 border border-border bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <img className="block w-full border border-[#d3d9de]" src="/images/blog/riemann/alpoge-announcement-highlight.webp" alt="Highlighted line from Alpöge’s announcement about discovering a proof with Claude" />
   <figcaption className="mt-2 text-sm">The announcement, cropped from <a href="https://x.com/deedydas/status/2123797546741232063">Deedy’s post</a>.</figcaption>
 </figure>
@@ -97,7 +97,14 @@ As s approaches 1 from above, the series approaches the harmonic series, `1 + 1/
 
 **Weighted prime total ≈ smooth main term + waves from the zeros**
 
-The smooth main term is our **baseline**. For this scoring rule and a cutoff X, the formula gives `X × (log(X) − 1 − γ)`, where γ is about 0.5772. The term `X × log(X)` drives the growth. The correction `−(1 + γ) × X` grows linearly. Both pieces come from the same calculation at the pole. Once the scoring rule is fixed, the baseline can be calculated at any cutoff without listing the primes or fitting a curve to their scores.
+The smooth main term is our **baseline**. For this scoring rule and a cutoff X, the formula gives `X × (log(X) − 1 − γ)`, where γ is about 0.5772. Once the scoring rule is fixed, the baseline can be calculated at any cutoff without listing the primes or fitting a curve to their scores.
+
+<details>
+<summary>The two terms in the baseline formula</summary>
+
+The formula can also be written as `X × log(X) − (1 + γ) × X`. The first term grows faster than a straight line, and the second subtracts a fixed amount per unit of X. Both terms come from the same calculation at the pole of zeta. [Technical guide, section 2](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+
+</details>
 
 Say we stop at 10. The primes up to 10 are 2, 3, 5, and 7. We also include 4, 8, and 9 because they are powers of those primes (2², 2³, and 3²).
 
@@ -116,7 +123,7 @@ Here are the two calculations side by side. They use the same cutoff and can be 
 
 The blue line below plots the result of subtracting the right column from the left. At 10, that’s **9.11 − 7.25 ≈ 1.86**.
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-3 py-4 text-[#22272b]">
+<figure className="not-prose my-8 border border-border bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-2 font-semibold">Subtract the baseline and the swings come into view</figcaption>
   <svg viewBox="0 0 540 200" role="img" aria-label="Weighted prime sum minus its baseline for cutoffs from 10 to 100. The difference fluctuates around a positive level." className="block w-full">
     <path d="M66 32V145H498" fill="none" stroke="#d3d9de" />
@@ -138,7 +145,7 @@ Why would a zero farther to the right matter? A zero at height +t has a partner 
 
 The farther a pair is from the horizontal axis, the faster its wave oscillates as the cutoff grows. The farther right the pair is, the faster the wave’s maximum size grows. Those are two different effects.
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-3 py-4 text-[#22272b]">
+<figure className="not-prose my-8 border border-border bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-2 font-semibold">Higher zeros give faster waves</figcaption>
   <svg viewBox="0 0 520 186" role="img" aria-label="Two illustrative waves across the same range of cutoffs. The higher pair of zeros produces more oscillations." className="block w-full">
     <path d="M167 51H492M167 118H492" stroke="#d3d9de" fill="none" />
@@ -165,7 +172,7 @@ The idea we need from Stepanov is that an equation can help us limit how many so
 
 Imagine working modulo 5, so every calculation ends by taking the remainder after dividing by 5. For the curve **y = x²**, choosing x = 2 gives y = 4. Choosing x = 3 also gives y = 4, because 9 leaves a remainder of 4. So (2, 4) and (3, 4) are two different points on the curve. With only five possible x values, we could list all the points in this example. For a more complicated equation, Stepanov’s method gives an upper limit on the number of coordinate pairs that satisfy it. Here that would mean how many pairs (x, y), with x and y each between 0 and 4, satisfy y = x² modulo 5.
 
-<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
+<figure className="not-prose my-8 border border-border bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-lg font-semibold">The five points on y = x² modulo 5</figcaption>
   <div aria-hidden="true" className="grid max-w-[19rem] grid-cols-[2rem_repeat(5,minmax(0,1fr))] items-center text-center text-sm">
     <span className="text-[#4a5568]">y</span><span className="col-span-5" />
