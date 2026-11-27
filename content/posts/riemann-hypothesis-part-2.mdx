@@ -87,7 +87,7 @@ The proof uses the same idea of comparing a total with a smooth baseline. Here t
 
 The goal is to prove that every nontrivial zero of the zeta function has real part ½. The idea is to look at what a zero farther to the right would do to a calculation involving primes.
 
-In [Part 1, we saw how the zeros give corrections to a weighted prime count](/blog/riemann-hypothesis#how-the-zeros-give-corrections). The proof uses a version of that formula with an extra weight. A prime power gets a score based on the log of its prime, as in Part 1, and the extra weight lets that score start at zero and grow as we count past it. The **weighted prime sum** is what we get by adding up those scores.
+[Part 1](/blog/riemann-hypothesis#counting-with-weights) started with two ways to add up primes. Counting each prime once gives the ordinary count. Giving primes and prime powers log scores gives an actual weighted total that we can study through zeta. The proof starts with that weighted count and adds a second factor to each score. The factor starts at zero when the cutoff reaches the number and grows as we count past it. We’ll compare the total of those scores with the smooth estimate for this particular rule.
 
 Remember the zeta formula from Part 1. For real inputs greater than 1, it starts like this.
 
@@ -116,10 +116,15 @@ One score comes from multiplying two numbers. The **log factor** tells us which 
 
 Here are the two calculations side by side. They use the same cutoff and can be done in either order.
 
-| Actual weighted total | Smooth baseline |
-| --- | --- |
-| List the primes and prime powers up to 10. Calculate each score and add all seven scores. | Plug 10 into the baseline formula. No list of primes is needed. |
-| **About 9.11** | `10 × (2.3026 − 1 − 0.5772)`, or **about 7.25** |
+<table>
+  <thead>
+    <tr><th scope="col">Actual weighted total</th><th scope="col">Smooth baseline</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>List the primes and prime powers up to 10. Calculate each score and add all seven scores.</td><td>Plug 10 into the baseline formula. No list of primes is needed.</td></tr>
+    <tr><td><strong>About 9.11</strong></td><td><code>10 × (2.3026 − 1 − 0.5772)</code>, or <strong>about 7.25</strong></td></tr>
+  </tbody>
+</table>
 
 The blue line below plots the result of subtracting the right column from the left. At 10, that’s **9.11 − 7.25 ≈ 1.86**.
 
