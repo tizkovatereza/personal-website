@@ -340,13 +340,17 @@ The weighted count has a simple starting estimate. Up to 125, start at **125**. 
 
 ### How The Zeros Give Corrections
 
-Euler’s product is zeta written with one factor per prime. On the right of 1, where **Re(s) > 1**, both the original series and the prime product converge and give the same value. Zeta is analytic there. Analytic continuation is how we extend that same function beyond the region where those recipes converge.
+A quick recap. Euler’s product writes zeta with one factor per prime. To the right of 1, where **Re(s) > 1**, zeta is analytic and both the original series and the prime product give the same value. Analytic continuation extends that same function beyond the region where those two formulas converge.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></math></div>
 
-The prime product gives us another way to calculate the same weighted total from the table. The first piece is the cutoff itself, our smooth starting estimate. Then the formula adds or subtracts corrections that depend on the zeros of zeta, along with a few smaller terms. You could list the primes and add their weights, or calculate the total from this formula. Both routes describe the same total (with a midpoint convention if the cutoff lands exactly on a jump).
+Here’s how the formula works for the **weighted** count.
 
-Why are zeros involved? The calculation uses the rate of change of zeta divided by zeta itself. At a zero, the denominator vanishes and that ratio has a singularity, which contributes a term when we turn the calculation back into a prime count. The chart below picks one pair of zeros and shows just their contribution. At some cutoffs it adds to the estimate. At others it subtracts. The full formula combines the contributions from all the pairs. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+1. **Choose a cutoff.** Say we stop at 125. That just tells us how far along the number line to count.
+2. **Start with an estimate.** For this weighted count, the smooth estimate is the cutoff itself, so we start at 125. The units here are log scores. We’re estimating a total of scores for primes and prime powers.
+3. **Use the zeros to correct it.** Zeta’s prime product connects the scores to the function. The formula built from it gives each pair of zeros its own adjustment. Some adjustments pull the estimate up, others pull it down. Putting them together with a few smaller terms recovers the weighted total. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+
+The next chart zooms in on just one of those adjustments. At a cutoff of 125, that pair adds about 1.17 to the estimate. The other pairs still have their own contributions.
 
 The pair comes from the zeta input grid. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is above the real axis and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x02212;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is below it, at the same distance. Both are nontrivial zeros with real part ½. Mathematicians combine their contributions because the imaginary parts cancel and the result is a real adjustment you can add to the count.
 
@@ -364,6 +368,8 @@ At 125, this pair adds **1.17** to the starting estimate of 125. At 150, it subt
 
 <details>
 <summary>The formulas behind the chart</summary>
+
+At a cutoff where the weighted staircase jumps, the formula uses the midpoint of that jump. Elsewhere it gives the usual weighted total.
 
 The negative derivative of the logarithm of Euler’s product brings down the log weights. On the zeta side, that gives the quotient below. At a zero of zeta, its denominator goes to zero one power faster than its numerator, so the quotient has a pole there.
 
