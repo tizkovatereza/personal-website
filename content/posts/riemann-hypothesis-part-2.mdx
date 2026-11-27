@@ -89,19 +89,32 @@ The goal is to prove that every nontrivial zero of the zeta function has real pa
 
 In [Part 1, we saw how the zeros give corrections to a weighted prime count](/blog/riemann-hypothesis#how-the-zeros-give-corrections). The proof uses a version of that formula with an extra weight. A prime power gets a score based on the log of its prime, as in Part 1, and the extra weight lets that score start at zero and grow as we count past it. The **weighted prime sum** is what we get by adding up those scores.
 
-Where does the **baseline** come from? Zeta’s product over primes links that weighted sum to two features of the same function. Zeta blows up at 1, and that gives the sum its smooth main growth term. Its zeros give corrections that can add to or subtract from that term. The baseline is what you get by keeping just that smooth main term. For a cutoff of `X`, it’s `X × (log(X) − 1 − γ)`, where γ is the Euler–Mascheroni constant, about 0.5772. Once you have the formula, you only need the cutoff to calculate the baseline. [The formula for this version of the sum](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+Remember the zeta formula from Part 1. For real inputs greater than 1, it starts like this.
+
+`ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + ⋯`
+
+As s approaches 1 from above, the series approaches the harmonic series, `1 + 1/2 + 1/3 + ⋯`, which grows without limit. That blow-up at 1 is called a **pole**. It matters here because zeta can also be written as a product over primes. Using that product, mathematicians can express the weighted prime total in terms of zeta. In that formula, the pole at 1 supplies the smooth main term, and the zeros supply waves that can push the total up or down. [The formula for this version of the sum](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+
+**Weighted prime total ≈ smooth main term + waves from the zeros**
+
+The smooth main term is our **baseline**. For this scoring rule and a cutoff X, the formula gives `X × (log(X) − 1 − γ)`, where γ is about 0.5772. The term `X × log(X)` drives the growth. The correction `−(1 + γ) × X` grows linearly. Both pieces come from the same calculation at the pole. Once the scoring rule is fixed, the baseline can be calculated at any cutoff without listing the primes or fitting a curve to their scores.
 
 Say we stop at 10. The primes up to 10 are 2, 3, 5, and 7. We also include 4, 8, and 9 because they are powers of those primes (2², 2³, and 3²).
 
 Let’s use 4 as an example. It’s **2**², so its score starts with log(**2**), about 0.693. The bold 2 is the prime we squared. The superscript tells us how many times to multiply that prime by itself. Here log means the natural logarithm, so log(2) asks what power you raise e to in order to get 2.
 
-Next comes the cutoff weight. At a cutoff of 10, the weight for 4 is (10 − 4) ÷ 4 = 1.5. That’s the same as 10 ÷ 4 − 1. Think of it as how far past 4 we’ve counted, measured in units of 4. At the moment the cutoff reaches a number, its weight is zero. At the same cutoff, smaller numbers have larger weights. For example, 8 gets a weight of (10 − 8) ÷ 8 = 0.25. Multiplying 0.693 by 1.5 gives about 1.04, the amount 4 adds to the actual total.
+One score comes from multiplying two numbers. The **log factor** tells us which prime the number comes from. For 4 and 8, that’s log(2) in both cases, because both are powers of 2. The **cutoff factor** tells us how much of that log factor to count. The proof uses the rule `cutoff ÷ number − 1`. At a cutoff of 10, that gives 1.5 for 4 and 0.25 for 8. The weight starts at zero when the cutoff first reaches a number, then grows as we count farther past it. The rule is useful because the resulting total has the formula linking it to the pole and the zeros. For 4, the score is 0.693 × 1.5, or about 1.04.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>log</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x02212;</mo><mn>1</mn><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02248;</mo><mn>1.04</mn></mrow></math></div>
 
-Apply the same rule to the other six numbers and add all seven contributions. The **actual weighted total** is about 9.11. We got it by adding up scores from the primes and prime powers on the list.
+Here are the two calculations side by side. They use the same cutoff and can be done in either order.
 
-The **baseline estimate** comes from plugging 10 into the formula for the baseline. Here γ is the Greek letter gamma, and we use its value, about 0.5772. So the calculation is `10 × (log(10) − 1 − 0.5772) ≈ 10 × (2.3026 − 1 − 0.5772) ≈ 7.25`. Subtract the estimate from the actual weighted total to get the gap, **9.11 − 7.25 ≈ 1.86**.
+| Actual weighted total | Smooth baseline |
+| --- | --- |
+| List the primes and prime powers up to 10. Calculate each score and add all seven scores. | Plug 10 into the baseline formula. No list of primes is needed. |
+| **About 9.11** | `10 × (2.3026 − 1 − 0.5772)`, or **about 7.25** |
+
+The blue line below plots the result of subtracting the right column from the left. At 10, that’s **9.11 − 7.25 ≈ 1.86**.
 
 <figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-3 py-4 text-[#22272b]">
   <figcaption className="mb-2 font-semibold">Subtract the baseline and the swings come into view</figcaption>
@@ -121,7 +134,26 @@ The **baseline estimate** comes from plugging 10 into the formula for the baseli
   <p className="mt-2 text-sm">At the left edge, X is 10 and the blue line is at the gap we just calculated, about 1.86. Each point farther right repeats that subtraction at a new cutoff. The dashed line marks a gap of zero, where the weighted total and the baseline would agree.</p>
 </figure>
 
-Why would a zero farther to the right matter? Each pair of zeros at opposite heights gives a wave, like the one [plotted in Part 1](/blog/riemann-hypothesis#what-one-correction-looks-like). The height of the zero sets the pace of the oscillation. Its position left or right controls how quickly the wave can get bigger. For a zero on the ½ line, multiplying the cutoff by four doubles the wave’s maximum size. For a hypothetical zero at ¾, multiplying the cutoff by four would make its wave almost three times as large.
+Why would a zero farther to the right matter? A zero at height +t has a partner at height −t, directly below it across the horizontal axis. For example, the first pair has real part ½ and heights about +14.13 and −14.13. The two partners give one real wave when you add their contributions. Part 1 shows [the wave from that pair](/blog/riemann-hypothesis#what-one-correction-looks-like).
+
+The farther a pair is from the horizontal axis, the faster its wave oscillates as the cutoff grows. The farther right the pair is, the faster the wave’s maximum size grows. Those are two different effects.
+
+<figure className="not-prose my-8 border-y border-[#d3d9de] bg-[#faf9f7] px-3 py-4 text-[#22272b]">
+  <figcaption className="mb-2 font-semibold">Higher zeros give faster waves</figcaption>
+  <svg viewBox="0 0 520 186" role="img" aria-label="Two illustrative waves across the same range of cutoffs. The higher pair of zeros produces more oscillations." className="block w-full">
+    <path d="M167 51H492M167 118H492" stroke="#d3d9de" fill="none" />
+    <polyline points="167.0,35.0 170.3,35.1 173.5,35.5 176.8,36.1 180.0,37.0 183.3,38.1 186.5,39.3 189.8,40.8 193.0,42.4 196.3,44.2 199.5,46.1 202.8,48.0 206.0,50.0 209.3,52.0 212.5,54.0 215.8,55.9 219.0,57.8 222.3,59.6 225.5,61.2 228.8,62.7 232.0,63.9 235.3,65.0 238.5,65.9 241.8,66.5 245.0,66.9 248.3,67.0 251.5,66.9 254.8,66.5 258.0,65.9 261.3,65.0 264.5,63.9 267.8,62.7 271.0,61.2 274.3,59.6 277.5,57.8 280.8,55.9 284.0,54.0 287.3,52.0 290.5,50.0 293.8,48.0 297.0,46.1 300.3,44.2 303.5,42.4 306.8,40.8 310.0,39.3 313.3,38.1 316.5,37.0 319.8,36.1 323.0,35.5 326.3,35.1 329.5,35.0 332.8,35.1 336.0,35.5 339.3,36.1 342.5,37.0 345.8,38.1 349.0,39.3 352.3,40.8 355.5,42.4 358.8,44.2 362.0,46.1 365.3,48.0 368.5,50.0 371.8,52.0 375.0,54.0 378.3,55.9 381.5,57.8 384.8,59.6 388.0,61.2 391.3,62.7 394.5,63.9 397.8,65.0 401.0,65.9 404.3,66.5 407.5,66.9 410.8,67.0 414.0,66.9 417.3,66.5 420.5,65.9 423.8,65.0 427.0,63.9 430.3,62.7 433.5,61.2 436.8,59.6 440.0,57.8 443.3,55.9 446.5,54.0 449.8,52.0 453.0,50.0 456.3,48.0 459.5,46.1 462.8,44.2 466.0,42.4 469.3,40.8 472.5,39.3 475.8,38.1 479.0,37.0 482.3,36.1 485.5,35.5 488.8,35.1 492.0,35.0" stroke="#245b99" strokeWidth="2.5" fill="none" />
+    <polyline points="167.0,102.0 170.3,102.5 173.5,104.0 176.8,106.3 180.0,109.4 183.3,113.1 186.5,117.0 189.8,121.0 193.0,124.8 196.3,128.2 199.5,130.9 202.8,132.9 206.0,133.9 209.3,133.9 212.5,132.9 215.8,130.9 219.0,128.2 222.3,124.8 225.5,121.0 228.8,117.0 232.0,113.1 235.3,109.4 238.5,106.3 241.8,104.0 245.0,102.5 248.3,102.0 251.5,102.5 254.8,104.0 258.0,106.3 261.3,109.4 264.5,113.1 267.8,117.0 271.0,121.0 274.3,124.8 277.5,128.2 280.8,130.9 284.0,132.9 287.3,133.9 290.5,133.9 293.8,132.9 297.0,130.9 300.3,128.2 303.5,124.8 306.8,121.0 310.0,117.0 313.3,113.1 316.5,109.4 319.8,106.3 323.0,104.0 326.3,102.5 329.5,102.0 332.8,102.5 336.0,104.0 339.3,106.3 342.5,109.4 345.8,113.1 349.0,117.0 352.3,121.0 355.5,124.8 358.8,128.2 362.0,130.9 365.3,132.9 368.5,133.9 371.8,133.9 375.0,132.9 378.3,130.9 381.5,128.2 384.8,124.8 388.0,121.0 391.3,117.0 394.5,113.1 397.8,109.4 401.0,106.3 404.3,104.0 407.5,102.5 410.8,102.0 414.0,102.5 417.3,104.0 420.5,106.3 423.8,109.4 427.0,113.1 430.3,117.0 433.5,121.0 436.8,124.8 440.0,128.2 443.3,130.9 446.5,132.9 449.8,133.9 453.0,133.9 456.3,132.9 459.5,130.9 462.8,128.2 466.0,124.8 469.3,121.0 472.5,117.0 475.8,113.1 479.0,109.4 482.3,106.3 485.5,104.0 488.8,102.5 492.0,102.0" stroke="#326f64" strokeWidth="2.5" fill="none" />
+    <g fontSize="16" fill="#22272b">
+      <text x="5" y="56">Lower pair</text>
+      <text x="5" y="123">Higher pair</text>
+      <text x="330" y="168" textAnchor="middle">Increasing cutoff (log scale) →</text>
+    </g>
+  </svg>
+  <p className="mt-2 text-sm">Illustration of the pace of the waves. The heights of the zeros are measured by distance from the horizontal axis. A pair at twice the height gives twice as many oscillations over the same range on this scale.</p>
+</figure>
+
+To see what moving to the right changes, hold the height fixed and imagine moving a pair from ½ to ¾. Now quadruple the cutoff. On the ½ line, the wave’s maximum size doubles. At ¾, it would grow by a factor of almost three.
 
 The blue line adds the effects together, so some waves can cancel others. A faster-growing wave on its own doesn’t tell us how high the combined sum will go. First we’ll see how geometry puts a ceiling on that sum. In step 3, we’ll come back to why a zero to the right of ½ would force the sum to cross it anyway.
 
