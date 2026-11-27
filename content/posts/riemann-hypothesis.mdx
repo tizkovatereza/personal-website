@@ -287,16 +287,23 @@ The ordinary count at a million is about 130 below the estimate. The question Ri
 
 ### Counting With Weights
 
-So far we’ve been counting primes one by one. Now we’ll do a second calculation using the same cutoff. For either calculation, we can add up the actual entries or use a smooth formula to estimate what the total will be.
+There are two ways to add up the entries, and each has its own smooth estimate. Both actual totals are calculated from the primes.
 
-| What we’re counting | Actual total | Smooth estimate |
-| --- | --- | --- |
-| Ordinary count | Add 1 for each prime. | Use the smooth curve from the prime-count chart. |
-| Weighted count | Add a score for each prime and prime power. | Use the cutoff itself as the starting estimate. |
+<table>
+  <thead>
+    <tr><th scope="col">What we add up</th><th scope="col">Actual total</th><th scope="col">Smooth estimate</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Ordinary count</th><td>Add 1 for each prime.</td><td>The green curve from the chart above.</td></tr>
+    <tr><th scope="row">Weighted count</th><td>Add a log score for every prime and prime power.</td><td>Use the cutoff itself as a starting estimate.</td></tr>
+  </tbody>
+</table>
 
-For example, at a cutoff of 11 there are **5 primes**. The weighted total at that same cutoff is **about 10.23**, and its smooth estimate is **11**. The 5 and the 10.23 are both actual totals. They answer different questions because they add up different things.
+The blue staircase above is the **ordinary count**. At a cutoff of 2, it counts one prime. At 3, it counts two. At 4, it still counts two because 4 isn’t prime, so the staircase stays flat.
 
-Picture moving the cutoff along the horizontal axis of the staircase chart. At 3, you’ve counted two primes, 2 and 3. At 4, you’ve still counted two, so the line stays flat. At 5, you’ve counted three, so the line jumps up by one. That jump is the step. The weighted count makes the same kind of running total, using log scores in place of ones and including prime powers. A weight is just the amount you add to your running total. When you reach 2, add about 0.69 to the weighted total. When you reach 4, add another 0.69 because 4 is a power of 2. In the ordinary count, 2 adds 1 and 4 adds zero.
+If we draw a staircase for the **weighted count**, it jumps at 4. The rule is simple. A prime p gets the score log(p), and every power of p gets that same score. So 2, 4, and 8 each add log(2), about 0.69, whenever the cutoff reaches them. At 4, the weighted total is log(2) + log(3) + log(2), about 2.48. That number is the total of the scores. The ordinary total at 4 is exactly 2 primes.
+
+Why make a second staircase? The log scores are the ones that appear when we work out the rate of change of zeta’s product over primes. That gives us a way to study the weighted staircase using the zeros of zeta, as we’ll see in the next section.
 
 <figure className="not-prose my-7 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-xl font-semibold">What gets added at 2, 4, and 6?</figcaption>
