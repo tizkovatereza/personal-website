@@ -287,7 +287,16 @@ The ordinary count at a million is about 130 below the estimate. The question Ri
 
 ### Counting With Weights
 
-The **ordinary count** gives each prime a step of size 1. The **weighted count** gives a prime or prime power a step of size log of its base prime. The weight is a number you add when you reach that entry. For example, the natural log of 2 is about 0.69.
+So far we’ve been counting primes one by one. Now we’ll do a second calculation using the same cutoff. For either calculation, we can add up the actual entries or use a smooth formula to estimate what the total will be.
+
+| What we’re counting | Actual total | Smooth estimate |
+| --- | --- | --- |
+| Ordinary count | Add 1 for each prime. | Use the smooth curve from the prime-count chart. |
+| Weighted count | Add a score for each prime and prime power. | Use the cutoff itself as the starting estimate. |
+
+For example, at a cutoff of 11 there are **5 primes**. The weighted total at that same cutoff is **about 10.23**, and its smooth estimate is **11**. The 5 and the 10.23 are both actual totals. They answer different questions because they add up different things.
+
+The **ordinary count** gives each prime a step of size 1. The **weighted count** gives a prime or prime power a step of size log of its base prime. A weight is just the amount you add to your running total. When you reach 2, add about 0.69 to the weighted total. When you reach 4, add another 0.69 because 4 is a power of 2. In the ordinary count, 2 adds 1 and 4 adds zero.
 
 <figure className="not-prose my-7 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-xl font-semibold">What gets added at 2, 4, and 6?</figcaption>
