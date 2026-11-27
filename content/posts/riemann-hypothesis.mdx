@@ -345,9 +345,13 @@ The pair comes from the zeta input grid. <math xmlns="http://www.w3.org/1998/Mat
 
 ### What One Correction Looks Like
 
-![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
+For this chart, we fix two zeros of zeta. One is at ½ + 14.13i and its partner is at ½ − 14.13i, with the heights rounded. Zeta has up-and-down symmetry. If it’s zero at one input, it’s also zero at the input reflected across the horizontal axis. The left-and-right symmetry discussed earlier is a separate reflection, across the line at ½.
 
-*The horizontal axis is how far we count. The vertical axis is how much this pair adds to or subtracts from the weighted estimate. The dashed green lines bound this one blue wave.*
+The **input** of this chart is the cutoff, the number we count up to. The **output**, shown in blue, is how much this one pair adds to or subtracts from the smooth estimate for the weighted prime count. At a cutoff of 500, for example, you start with the estimate 500 and read the blue line at 500 to see this pair’s adjustment. The dashed green lines show the largest positive and negative adjustments this pair could make at each cutoff.
+
+Why a wave? Each zero appears as a complex exponent in its correction term. The imaginary part makes that term rotate as the cutoff grows, like a hand going around a clock. The reflected partner rotates in the opposite direction. Their vertical components cancel and their horizontal components add. That horizontal projection swings from positive to negative and back, which is the blue wave. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
+
+![A blue curve shows the correction from the first pair of zeta zeros, adding about 1.17 at a cutoff of 125 and subtracting about 1.71 at 150. A green envelope shows the limits on the size of the correction.](/images/blog/riemann/prime-zero-correction.png)
 
 At 125, this pair adds **1.17** to the starting estimate of 125. At 150, it subtracts **1.71** from the estimate of 150. Those are changes to the weighted estimate. The heights of the two zeros stay fixed at about +14.13 and −14.13 on the zeta input grid. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
