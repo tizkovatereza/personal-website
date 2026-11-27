@@ -296,7 +296,7 @@ So far we’ve been counting primes one by one. Now we’ll do a second calculat
 
 For example, at a cutoff of 11 there are **5 primes**. The weighted total at that same cutoff is **about 10.23**, and its smooth estimate is **11**. The 5 and the 10.23 are both actual totals. They answer different questions because they add up different things.
 
-The **ordinary count** gives each prime a step of size 1. The **weighted count** gives a prime or prime power a step of size log of its base prime. A weight is just the amount you add to your running total. When you reach 2, add about 0.69 to the weighted total. When you reach 4, add another 0.69 because 4 is a power of 2. In the ordinary count, 2 adds 1 and 4 adds zero.
+Picture moving the cutoff along the horizontal axis of the staircase chart. At 3, you’ve counted two primes, 2 and 3. At 4, you’ve still counted two, so the line stays flat. At 5, you’ve counted three, so the line jumps up by one. That jump is the step. The weighted count makes the same kind of running total, using log scores in place of ones and including prime powers. A weight is just the amount you add to your running total. When you reach 2, add about 0.69 to the weighted total. When you reach 4, add another 0.69 because 4 is a power of 2. In the ordinary count, 2 adds 1 and 4 adds zero.
 
 <figure className="not-prose my-7 border-y border-[#d3d9de] bg-[#faf9f7] px-4 py-4 text-[#22272b] sm:px-6">
   <figcaption className="mb-3 text-xl font-semibold">What gets added at 2, 4, and 6?</figcaption>
@@ -333,11 +333,13 @@ The weighted count has a simple starting estimate. Up to 125, start at **125**. 
 
 ### How The Zeros Give Corrections
 
-Euler’s product is zeta written with one factor per prime. It agrees with the original sum when **Re(s) > 1**.
+Euler’s product is zeta written with one factor per prime. On the right of 1, where **Re(s) > 1**, both the original series and the prime product converge and give the same value. Zeta is analytic there. Analytic continuation is how we extend that same function beyond the region where those recipes converge.
 
 <div className="not-prose my-6 overflow-x-auto py-2 text-lg sm:text-xl"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x003B6;</mi><mo stretchy="false">&#x00028;</mo><mi>s</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>2</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>3</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x000B7;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>&#x02212;</mo><msup><mn>5</mn><mrow><mo>&#x02212;</mo><mi>s</mi></mrow></msup></mrow></mfrac><mo>&#x022EF;</mo></mrow></math></div>
 
-Working with this product gives a formula for the weighted count. It starts from the smooth estimate and adds terms that depend on the zeros. The chart below isolates one of those terms after pairing two zeros.
+The prime product gives us another way to calculate the same weighted total from the table. The first piece is the cutoff itself, our smooth starting estimate. Then the formula adds or subtracts corrections that depend on the zeros of zeta, along with a few smaller terms. You could list the primes and add their weights, or calculate the total from this formula. Both routes describe the same total (with a midpoint convention if the cutoff lands exactly on a jump).
+
+Why are zeros involved? The calculation uses the rate of change of zeta divided by zeta itself. At a zero, the denominator vanishes and that ratio has a singularity, which contributes a term when we turn the calculation back into a prime count. The chart below picks one pair of zeros and shows just their contribution. At some cutoffs it adds to the estimate. At others it subtracts. The full formula combines the contributions from all the pairs. [The formula for the weighted count](https://dlmf.nist.gov/25.16.E2)
 
 The pair comes from the zeta input grid. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x0002B;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is above the real axis and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo>&#x02212;</mo><mn>14.134725</mn><mi>&#x02026;</mi><mi>i</mi></mrow></math> is below it, at the same distance. Both are nontrivial zeros with real part ½. Mathematicians combine their contributions because the imaginary parts cancel and the result is a real adjustment you can add to the count.
 
