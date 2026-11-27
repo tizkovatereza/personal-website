@@ -75,7 +75,7 @@ To understand at least parts of Alpöge’s proof, I would summarize it as three
 
 1. **Give the primes a score.** Pick a stopping point, say 10. Give each prime and prime power up to 10 a numerical score, then add the scores. Those scores are the “weighted contributions.” The stopping point tells you which numbers to include, and the example below shows how to calculate their scores. Compare the total with a baseline that describes how it usually grows.
 2. **Put a ceiling on the gap.** Use geometry to limit how far the total can rise above that baseline over certain long stretches of stopping points.
-3. **Use that ceiling to locate the zeros.** The Riemann hypothesis says that all the nontrivial zeros of the zeta function lie on the vertical line where the real part is ½. The farther right a zero is, the faster its contribution to the swings grows as you count farther out. A zero to the right of ½ would produce swings that grow faster than the ceiling allows. The Landau argument shows that these swings can’t stay hidden by cancellation and must send the gap above the ceiling. The proof rules that out, and symmetry rules out zeros to the left. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
+3. **Use that ceiling to locate the zeros.** The Riemann hypothesis says that all the nontrivial zeros of the zeta function lie on the vertical line where the real part is ½. The farther right a zero is, the faster its contribution to the swings grows as you count farther out. A zero to the right of ½ would produce swings that grow faster than the ceiling allows. Later we’ll see why those swings must show up as a spike above the ceiling, even when some waves cancel each other. The proof rules that out, and symmetry rules out zeros to the left. [Siniša Slijepčević’s outline of the proof](https://hexagonmath.org/pdf/2611.00812v1)
 
 In [Part 1](/blog/riemann-hypothesis), we compared the actual count of primes with a smooth estimate. At 100, the staircase counts 25 primes and the smooth curve estimates about 30.
 
@@ -123,7 +123,7 @@ The **baseline estimate** comes from plugging 10 into the formula for the baseli
 
 Why would a zero farther to the right matter? Each pair of zeros at opposite heights gives a wave, like the one [plotted in Part 1](/blog/riemann-hypothesis#what-one-correction-looks-like). The height of the zero sets the pace of the oscillation. Its position left or right controls how quickly the wave can get bigger. For a zero on the ½ line, multiplying the cutoff by four doubles the wave’s maximum size. For a hypothetical zero at ¾, multiplying the cutoff by four would make its wave almost three times as large.
 
-The blue line adds the effects together, so some waves can cancel others. The proof uses the Landau argument to show that a zero to the right of ½ would still force a breach in the ceiling. Geometry supplies the ceiling on long stretches at arbitrarily large cutoffs. [Technical guide, sections 2–3](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+The blue line adds the effects together, so some waves can cancel others. A faster-growing wave on its own doesn’t tell us how high the combined sum will go. First we’ll see how geometry puts a ceiling on that sum. In step 3, we’ll come back to why a zero to the right of ½ would force the sum to cross it anyway.
 
 #### 2. Build a ceiling using geometry
 
@@ -207,7 +207,11 @@ Putting those pieces together gives the ceiling on the weighted prime sum. [Read
 
 #### 3. Use the ceiling to rule out zeros off the line
 
-The proof combines several related prime sums with positive weights so the effect of a zero survives in the combined sum. The Landau argument then says that a zero to the right of ½ would force the sum to break the ceiling somewhere in every sufficiently large range of the required length. The geometric bound gives ranges on arbitrarily large scales where that doesn’t happen. This rules out zeros to the right of ½. By the mirror symmetry from Part 1, a zero on the left would have a partner on the right, so that side is ruled out too. [Technical guide, sections 2–5](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
+The proof combines several related prime sums with positive weights so that when two terms come from the same zero, their coefficients reinforce one another. Waves from different zeros can still partly cancel. How do we know a zero on the right would still show up in the combined sum?
+
+This is where the **Landau argument** comes in. It’s a result from analysis that connects zeros to how large the combined sum has to get. Suppose there’s a zero to the right of ½. The result says that in every sufficiently large stretch of cutoffs of the required length, at least one cutoff must send the sum above the ceiling.
+
+Now compare that with what geometry gave us. There are stretches of exactly the required length, arbitrarily far out, where the sum stays below the ceiling at **every** cutoff. On one of those stretches, the assumed zero would require a crossing and the geometric bound would rule it out. So there can be no zero on the right. By the mirror symmetry from Part 1, a zero on the left would have a partner on the right, so there can be none on the left either. [Technical guide, sections 2–5](https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf#page=2)
 
 The same proof also covers a family of functions related to zeta, called **Dirichlet L-functions**. To study their zeros, you use related prime sums that give different weights to numbers according to their remainders. The argument rules out zeros off the line for these functions too, which is the Generalized Riemann Hypothesis for Dirichlet L-functions. [The statements Lean verified](https://math.mit.edu/~drew/grh/)
 
